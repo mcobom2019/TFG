@@ -18,6 +18,7 @@ to this section's matching END comment to see page-specific styles.
 :root {
   --color-bg: #69F7BE;
   --color-text-main: #000000;
+  --color-text-header: #2800FF;
   --color-primary: #FFFF00;
   --wrapper-height: 87vh;
   --image-max-width: 300px;
@@ -131,7 +132,7 @@ body {
 
 /* Very light scaling for our illustration */
 .title {
-  color: #2800FF;
+  color: var(--color-text-header);
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: bold;
@@ -167,7 +168,7 @@ input {
 
 /* Subheading */
 h2 {
-  color: #2800FF;
+  color: var(--color-text-header);
 }
 
 /* Interactive image */
