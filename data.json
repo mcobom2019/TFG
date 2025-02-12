@@ -1,8 +1,4 @@
 {
-  "legend": true,
-  "palette": "blues",
-  "key": "model",
-  "size": "sales",
   "data": [
     {"model": "leon", "motor": "electric", "color": "red", "doors": 5, "sales": 10},
     {"model": "ibiza", "motor": "electric", "color": "white", "doors": 3, "sales": 15},

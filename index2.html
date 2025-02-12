@@ -21,6 +21,11 @@
             <a-entity laser-controls="hand: right"></a-entity>
         </a-entity>
       <a-entity id="data" babia-queryjson="url: ./data.json"></a-entity>
+      <a-entity babia-barsmap="from: data; legend: true; palette: ubuntu;
+                         x_axis: model; z_axis: color; height: sales" 
+          position="0 5 20" scale="1 1 1"></a-entity>
+      
+      
     </a-scene>
   </body>
 </html>
