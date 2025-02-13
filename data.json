@@ -1,5 +1,5 @@
-{
-  "data": [
+
+  [
     {"model": "leon", "motor": "electric", "color": "red", "doors": 5, "sales": 10},
     {"model": "ibiza", "motor": "electric", "color": "white", "doors": 3, "sales": 15},
     {"model": "cordoba", "motor": "diesel", "color": "black", "doors": 5, "sales": 3},
@@ -11,4 +11,4 @@
     {"model": "127", "motor": "gasoline", "color": "white", "doors": 5, "sales": 2},
     {"model": "panda", "motor": "gasoline", "color": "black", "doors": 3, "sales": 13}
   ]
-}
+

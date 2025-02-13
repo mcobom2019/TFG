@@ -21,8 +21,8 @@
             <a-entity laser-controls="hand: right"></a-entity>
         </a-entity>
 
-        <!-- Load JSON data and display pie chart -->
-        <!--<a-entity babia-pie='legend: true; palette: blues; key: model; size: doors;
+        <!--  Representacion de los datos con diagrama circular desde el html------------------------------>
+        <a-entity babia-pie='legend: true; palette: blues; key: model; size: doors;
           data:[{"model":"leon","motor":"electric","color":"red","doors":5,"sales":10},
                 {"model":"ibiza","motor":"electric","color":"white","doors":3,"sales":15},
                 {"model":"cordoba","motor":"diesel","color":"black","doors":5,"sales":3},
@@ -33,22 +33,30 @@
                 {"model":"600","motor":"gasoline","color":"yellow","doors":3,"sales":20},
                 {"model":"127","motor":"gasoline","color":"white","doors":5,"sales":2},
                 {"model":"panda","motor":"gasoline","color":"black","doors":3,"sales":13}]'
-          position="0 5 20" rotation="90 0 0" scale="2 2 2">
-        </a-entity>-->
+          position="-20 2 0" rotation="90 0 0" scale="2 2 2">
+        </a-entity>
+      <!-- --------------------------------------------------------------------------------------------- -->
+      
+      <!-- Representacion de los datos con diagrama de barras desde json ------------------------------- -->
 
         <!-- Load the data from the JSON file and create bars -->
-        <a-entity id="data" babia-queryjson="url: ./data.json"></a-entity>
+        <a-entity id="data" babia-queryjson="url: ./data.json; path: data"></a-entity>
 
 
         <!-- Display bar chart using the data from the JSON -->
         <a-entity babia-barsmap="from: data; legend: true; palette: ubuntu; 
                          x_axis: model; z_axis: color; height: sales" 
                   position="-10 0 0" scale="1 1 1"></a-entity>
-      <script>fetch("data.json")
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error("Error cargando JSON:", error));
-</script>
+      <!-- ---------------------------------------------------------------------------------------------- -->
+      
+      <!-- Representacion de los datos filtrados por motor diesel con diagrama de barras circulares desde json -->
+      
+      <a-entity id="filter-data" babia-filter="from: data; filter:motor=diesel"></a-entity>
+      <a-entity babia-cyls="from: filter-data; legend: true; palette:foxy; 
+                     x_axis: model; height: sales; radius: doors"
+         position="10 0 0" scale="0.5 0.5 0.5"></a-entity>
+      
+      <!-- ------------------------------------------------------------------------------------------------------ -->
 
     </a-scene>
   </body>
