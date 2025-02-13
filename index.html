@@ -37,12 +37,19 @@
         </a-entity>-->
 
         <!-- Load the data from the JSON file and create bars -->
-        <a-entity id="data" babia-queryjson="url: https://babia-tutorial.glitch.me/data.json"></a-entity>
+        <a-entity id="data" babia-queryjson="url: ./data.json"></a-entity>
+
 
         <!-- Display bar chart using the data from the JSON -->
-        <a-entity babia-barsmap="from: #data; legend: true; palette: ubuntu; 
+        <a-entity babia-barsmap="from: data; legend: true; palette: ubuntu; 
                          x_axis: model; z_axis: color; height: sales" 
                   position="-10 0 0" scale="1 1 1"></a-entity>
+      <script>fetch("data.json")
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error cargando JSON:", error));
+</script>
+
     </a-scene>
   </body>
 </html>
