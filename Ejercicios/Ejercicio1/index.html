@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://babiaxr.org/babiaxr.js"></script>
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <a-scene>
+        <!-- Cámara, tiene un puntero-->
+        <a-entity position="0 1.6 0">
+            <a-camera>
+                <a-cursor></a-cursor>
+            </a-camera>
+        </a-entity>
+
+        <!-- Caja-->
+        <a-box position="0 1 -3" color="red"></a-box>
+
+        <!-- Menú-->
+        <a-entity id="menu" position="0 1.5 -2">
+            <a-plane width="1.5" height="1" color="black" opacity="0.7"></a-plane>
+            <a-text value="Menu" position="0 0.4 0" align="center"></a-text>
+            
+            <a-entity id="btn-box" position="0 0.1 0">
+                <a-box color="blue" depth="0.1" height="0.3" width="0.8"
+                    position="0 0 0.05"></a-box>
+                <a-text value="Añadir Caja" position="0 0 0.1" align="center" color="white"></a-text>
+            </a-entity>
+        </a-entity>
+
+    </a-scene>
+</body>
+</html>
+
