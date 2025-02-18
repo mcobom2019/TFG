@@ -6,9 +6,9 @@
   </head>
   <body>
     <a-scene>
-        <a-entity id="id1" compgestor="elemento: #id3; componente: chivato; tiempo: 7000; tiempo_antes: ; prop_n"></a-entity>
-        <a-entity id="id2" compgestor="componente: chivato; tiempo: 8000"></a-entity>
-        <a-entity id="id1"></a-entity>
+        <a-entity id="id1" compgestor="elemento: #id3; componente: chivato; tiempo: 10000"></a-entity>
+        <a-entity id="id2" compgestor="elemento: #id3; componente: geometry; tiempo: 5000; tiempo_antes:7000 ; prop_nombre: primitive; prop_valor: sphere"></a-entity>
+        <a-entity id="id3" position="0 0.5 -3" geometry="primitive: box;" material="color: blue;"></a-entity>
     </a-scene>
   </body>
 </html>

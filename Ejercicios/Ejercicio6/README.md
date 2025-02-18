@@ -1,0 +1,9 @@
+Ejercicios:
+
+-Crea un documento HTML que solo tenga una escena y un componente compgestor en una entidad. Este componente se encargará de gestor otros componentes en la entidad. Para ello, aceptará una propiedad componente, que será el nombre del componente que ha de insertar en la entidad. Utiliza el componente chivato del ejercicio anterior (en la versión de chivato2.js) como componente que compgestor debe insertar (indicándolo en el HTML como propiedad componente de compgestor).(compgestor.html, compgestor.js)
+
+-Ahora, haz que el componente compgestor elimine el componente al cabo de un tiempo, que se especificará como una nueva propiedad tiempo (en milisegundos).(compgestor2.html, compgestor2.js)
+
+-Ahora, haz que el componente compgestor acepte una nueva propiedad, elemento, que tendrá un selector del elemento donde se ha de poner el componente. Si no se especifica, el componente se insertará en la propia entidad.(compgestor3.html, compgestor3.js)
+
+-Hagamos ahora algo más visual. Primero, crearemos un compgestor (en compgestor4.js) que incluya además de las propiedades elemento, componente y tiempo, las propiedades tiempo_antes (que indicará cuánto hay que esperar hasta poner el componente), prop_nombre y prop_valor (que indicán el nombre y el valor de una propiedad del componente). A continuación, crearemos un documento HTML con tres entidades. En la primera, pondremos un compgestor que incluya en la tercera un componente chivato (de chivato2.js), con tiempo 10 segundos. En la segunda entidad, pondremos un compgestor que incluya en la tercera un componente geometry que ponga una esfera, con tiempo de espera 7 segundos, y tiempo 5 segundos. En la tercera entidad pondremos un componente geometry que ponga una caja (box), y un componente material que ponga un color azul. Deberemos ver cómo pasados 7 segundos, la caja se transforma en esfera, que luego desaparece al cabo de 5 segundos.(compgestor4.html, compgestor4.js)
