@@ -7,23 +7,22 @@
               console.log('Cambiando color de esfera');
               this.el.addEventListener('click', function() {
                   const color = randomColor();
-                  this.setAttribute('color', randomColor);
+                  this.el.setAttribute('color', color);
               });
-              
             },
+        });
+              
 
             function randomColor() {
-                const rgb;
                 const r = Math.floor(Math.random() * 256);
                 const g = Math.floor(Math.random() * 256);
                 const b = Math.floor(Math.random() * 256);
                 
-                rgb = `rgb(${r}, ${g}, ${b})`;
-                console.log("El color es", rgb);v
+                const rgb = `rgb(${r},${g},${b})`;
+                console.log("El color es", rgb);
                 
                 return rgb;
-            };
-        });
+            }
     </script>
   </head>
   <body>
