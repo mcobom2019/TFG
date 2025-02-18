@@ -27,6 +27,12 @@
           console.log("FLAG");
           let ent = document.getElementById("entidad");
           ent.setAttribute("chivato", {});
+          set.timeout(quitar, 5000);
+        }
+        function quitar (event) {
+          console.log("QUITANDO");
+          let ent = document.getElementById("entidad");
+          ent.removeAttribute("chivato");
         }
         document.addEventListener("DOMContentLoaded", anade);
     </script>
