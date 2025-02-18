@@ -2,8 +2,17 @@
   <head>
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <script>
-        // Función fuera del componente
-        function randomColor() {
+        AFRAME.registerComponent('cambiarcoloresfera', {
+            init: function () {
+              console.log('Cambiando color de esfera');
+              var el = this.el;
+              el.addEventListener('click', function() {
+                  const color = randomColor();
+                  el.setAttribute('material', 'color', color);
+              });
+            }
+        });
+      function randomColor() {
             const r = Math.floor(Math.random() * 256);
             const g = Math.floor(Math.random() * 256);
             const b = Math.floor(Math.random() * 256);
@@ -13,14 +22,18 @@
             
             return rgb;
         }
-
-        AFRAME.registerComponent('cambiar', {
+      AFRAME.registerComponent('cambiarposicioncaja', {
             init: function () {
-              console.log('Cambiando color de esfera');
-              //var el = this.el;  // Guardamos la referencia al elemento
-              tel.addEventListener('click', function() {
-                  const color = randomColor();
-                  el.setAttribute('material', 'color', color);  // Corregido el setAttribute
+              console.log('Cambiando pisicion de la caja');
+              var el = this.el;
+              el.addEventListener('click', function() {
+                  var posicionactual = this.getAttribute('position');
+                  var nuevaposicion = {
+                    x: posicionactual.x,
+                    y: posicionactual.y,
+                    z: posicionactual.z - 1,
+                  };
+                  this.setAttribute(nuevaposicion);
               });
             }
         });
@@ -28,8 +41,8 @@
   </head>
   <body>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" cambiar></a-sphere>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" cambiarposicioncaja></a-box>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" cambiarcoloresfera></a-sphere>
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
       <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
