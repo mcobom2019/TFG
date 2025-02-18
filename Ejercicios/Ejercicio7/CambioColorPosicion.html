@@ -27,13 +27,13 @@
               console.log('Cambiando pisicion de la caja');
               var el = this.el;
               el.addEventListener('click', function() {
-                  var posicionactual = this.getAttribute('position');
+                  var posicionactual = el.getAttribute('position');
                   var nuevaposicion = {
                     x: posicionactual.x,
                     y: posicionactual.y,
                     z: posicionactual.z - 1,
                   };
-                  this.setAttribute(nuevaposicion);
+                  el.setAttribute('position', nuevaposicion);
               });
             }
         });
