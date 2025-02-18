@@ -1,27 +1,9 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="chivato2.js"></script>
   </head>
   <body>
-    <script>
-        AFRAME.registerComponent('chivato', {
-            init: function () {
-            console.log('Chivato ACTIVADO');
-              this.contador = 0;
-            },
-
-            tick: function () {
-              this.contador += 1;
-              if((this.contador % 10)==0){
-                console.log(this.contador);
-              }
-              if((this.contador % 100) == 0){
-                 console.log('Chivato 100 ACTIVADO');
-              }
-            }
-        });
-    </script>
-    
     <script>
         function anade(event) {
           console.log("FLAG");
