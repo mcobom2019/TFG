@@ -3,7 +3,7 @@ AFRAME.registerComponent('changecylinder', {
         console.log('Cambiando el cilindro');
         var el = this.el;
         el.addEventListener('click', function() {
-            var waitTime = Math.random() * 1000;
+            var waitTime = Math.random() * 3000;
             
             setTimeout( function() {
                 const color = randomColor();
