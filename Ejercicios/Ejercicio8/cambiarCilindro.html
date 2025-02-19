@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script>
+        function changeCylinder (event) {
+          
+          let time = Math.floor(Math.random() * 10001);
+          
+        }
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-cylinder position="0 1.25 -4" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#203b4f"></a-plane>
+      <a-sky color="#0b7fd5"></a-sky>
+      <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+    </a-scene>
+  </body>
+</html>
