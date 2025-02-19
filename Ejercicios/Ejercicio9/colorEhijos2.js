@@ -13,7 +13,7 @@ AFRAME.registerComponent('createsons', {
                 newSphere.setAttribute("color", "green");
                 newSphere.setAttribute("position", `${(i - 1)*0.5} ${parentY + 1} -3`);
                 newSphere.setAttribute("radius", "0.2");
-                newSphere.setAtributte("changecolor", "");
+                newSphere.setAttribute("changecolor", "");
                 scene.appendChild(newSphere);
             }
         });
@@ -27,9 +27,7 @@ AFRAME.registerComponent('changecolor', {
         
         el.addEventListener('click', function() {
             var newColor = randomColor();
-            el.setAttribute('color', "0.2");
-                scene.appendChild(newSphere);
-            }
+            el.setAttribute('color', newColor);
         });
       }
 });
