@@ -1,13 +1,25 @@
-AFRAME.registerComponent('cambiarcolorcilindro', {
+AFRAME.registerComponent('changecylinder', {
       init: function () {
-        console.log('Cambiando color de el cilindro');
+        console.log('Cambiando el cilindro');
         var el = this.el;
         el.addEventListener('click', function() {
-            const color = randomColor();
-            el.setAttribute('material', 'color', color);
+            var waitTime = Math.random() * 1000;
+            
+            setTimeout( function() {
+                const color = randomColor();
+                el.setAttribute('material', 'color', color);
+                var posicionactual = el.getAttribute('position');
+                var nuevaposicion = {
+                  x: posicionactual.x,
+                  y: posicionactual.y,
+                  z: posicionactual.z - 1,
+                };
+                el.setAttribute('position', nuevaposicion);
+            }, waitTime);
         });
       }
   });
+
 function randomColor() {
       const r = Math.floor(Math.random() * 256);
       const g = Math.floor(Math.random() * 256);
@@ -18,19 +30,3 @@ function randomColor() {
             
       return rgb;
 }
-
-AFRAME.registerComponent('cambiarposicioncilindro', {
-      init: function () {
-        console.log('Cambiando pisicion de el cilindro');
-        var el = this.el;
-        el.addEventListener('click', function() {
-            var posicionactual = el.getAttribute('position');
-            var nuevaposicion = {
-              x: posicionactual.x,
-              y: posicionactual.y,
-              z: posicionactual.z - 1,
-            };
-            el.setAttribute('position', nuevaposicion);
-        });
-      }
-});
