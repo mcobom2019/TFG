@@ -18,9 +18,6 @@ AFRAME.registerComponent('createsons', {
                   scene.appendChild(newSphere);
               }
               hasSons = true;
-            }else{
-                var newColor = randomColor();
-                el.setAttribute('color', newColor);
             }
         });
       },
