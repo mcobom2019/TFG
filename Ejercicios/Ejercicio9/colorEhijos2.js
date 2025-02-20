@@ -4,11 +4,9 @@ AFRAME.registerComponent('createsons', {
         var el = this.el;
         const scene = document.querySelector("a-scene");
         var hasSons = false;
-        console.log("TRAZA 1: ",hasSons);
         
         el.addEventListener('click', function() {
             if (!hasSons){
-              console.log("TRAZA 2: ",hasSons);
               var parentPosition = el.getAttribute('position');
               var parentY = parentPosition.y;
               for(let i=0; i<3; i++){
@@ -20,9 +18,7 @@ AFRAME.registerComponent('createsons', {
                   scene.appendChild(newSphere);
               }
               hasSons = true;
-              console.log("TRAZA 3: ",hasSons);
             }else{
-              console.log("TRAZA 4: ",hasSons);
                 var newColor = randomColor();
                 el.setAttribute('color', newColor);
             }
@@ -41,6 +37,28 @@ AFRAME.registerComponent('changecolor', {
         });
       }
 });
+
+AFRAME.registerComponent('changecylinder', {
+      init: function () {
+        console.log('Cambiando el cilindro');
+        var el = this.el;
+        el.addEventListener('click', function() {
+            var waitTime = Math.random() * 3000;
+            
+            setTimeout( function() {
+                const color = randomColor();
+                el.setAttribute('material', 'color', color);
+                var posicionactual = el.getAttribute('position');
+                var nuevaposicion = {
+                  x: posicionactual.x,
+                  y: posicionactual.y,
+                  z: posicionactual.z - 1,
+                };
+                el.setAttribute('position', nuevaposicion);
+            }, waitTime);
+        });
+      }
+  });
 
 function randomColor() {
       const r = Math.floor(Math.random() * 256);
