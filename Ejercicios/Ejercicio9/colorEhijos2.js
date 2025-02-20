@@ -1,12 +1,14 @@
 AFRAME.registerComponent('createsons', {
       init: function () {
-        console.log('Creando Hijos');
+        console.log('Creando Hijos iniciado');
         var el = this.el;
         const scene = document.querySelector("a-scene");
         var hasSons = false;
+        console.log("TRAZA 1: ",hasSons);
         
         el.addEventListener('click', function() {
             if (!hasSons){
+              console.log("TRAZA 2: ",hasSons);
               var parentPosition = el.getAttribute('position');
               var parentY = parentPosition.y;
               for(let i=0; i<3; i++){
@@ -18,7 +20,9 @@ AFRAME.registerComponent('createsons', {
                   scene.appendChild(newSphere);
               }
               hasSons = true;
+              console.log("TRAZA 3: ",hasSons);
             }else{
+              console.log("TRAZA 4: ",hasSons);
                 var newColor = randomColor();
                 el.setAttribute('color', newColor);
             }
@@ -28,7 +32,7 @@ AFRAME.registerComponent('createsons', {
 
 AFRAME.registerComponent('changecolor', {
       init: function () {
-        console.log('Cambiando de color');
+        console.log('Cambiando de color iniciado');
         var el = this.el;
         
         el.addEventListener('click', function() {
