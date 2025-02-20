@@ -4,17 +4,23 @@ AFRAME.registerComponent('createsons', {
         var el = this.el;
         const btnSphere = document.getElementById("btn-sphere");
         const scene = document.querySelector("a-scene");
+        var hasSons = false;
         
         el.addEventListener('click', function() {
-            var parentPosition = el.getAttribute('position');
-            var parentY = parentPosition.y;
-            for(let i=0; i<3; i++){
-                var newSphere = document.createElement("a-sphere");
-                newSphere.setAttribute("color", "green");
-                newSphere.setAttribute("position", `${(i - 1)*0.5} ${parentY + 1} -3`);
-                newSphere.setAttribute("radius", "0.2");
-                newSphere.setAttribute("changecolor", "");
-                scene.appendChild(newSphere);
+            if (!hasSons){
+              var parentPosition = el.getAttribute('position');
+              var parentY = parentPosition.y;
+              for(let i=0; i<3; i++){
+                  var newSphere = document.createElement("a-sphere");
+                  newSphere.setAttribute("color", "green");
+                  newSphere.setAttribute("position", `${(i - 1.7)*0.5} ${parentY + 1} -3`);
+                  newSphere.setAttribute("radius", "0.2");
+                  newSphere.setAttribute("changecolor", "");
+                  scene.appendChild(newSphere);
+              }
+              hasSons = true;
+            }else{
+              
             }
         });
       },
