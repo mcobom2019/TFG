@@ -6,6 +6,7 @@ AFRAME.registerComponent('createsons', {
         var hasSons = false;
         
         el.addEventListener('click', function() {
+            if (!hasSons){
               var parentPosition = el.getAttribute('position');
               var parentY = parentPosition.y;
               for(let i=0; i<3; i++){
@@ -16,6 +17,8 @@ AFRAME.registerComponent('createsons', {
                   newSphere.setAttribute("changecolor", "");
                   scene.appendChild(newSphere);
               }
+              hasSons = true;
+            }
         });
       },
 });
