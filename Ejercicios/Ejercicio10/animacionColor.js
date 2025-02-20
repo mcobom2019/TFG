@@ -8,10 +8,13 @@ AFRAME.registerComponent('circular-animation', {
         this.angle = 0;
         var el = this.el;
         var colors = ['red', 'green', 'blue'];
+        var i=0;
         el.addEventListener('click', function() {
            var waitTime = Math.random() * 3000;
             setTimeout( function() {
-                el.setAttribute('color', newColor);
+                i = (i + 1) % colors.length;
+                el.setAttribute('color', colors[i]);
+                i++;
             }, waitTime);
         });
       },
