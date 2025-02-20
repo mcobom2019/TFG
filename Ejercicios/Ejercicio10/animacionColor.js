@@ -6,6 +6,15 @@ AFRAME.registerComponent('circular-animation', {
       
       init: function () {
         this.angle = 0;
+        var el = this.el;
+        var colors = {red, green, blue};
+        el.addEventListener('click', function() {
+           var waitTime = Math.random() * 3000;
+            setTimeout( function() {
+                var newColor = randomColor();
+                el.setAttribute('color', newColor);
+            }, waitTime);
+        });
       },
   
       tick: function (time, timeDelta){
@@ -15,6 +24,6 @@ AFRAME.registerComponent('circular-animation', {
         let x = this.data.radius * Math.cos(this.angle);
         let y = this.data.radius * Math.sin(this.angle);
 
-        this.el.setAttribute('position', { x: x, y: y, z: 0 });
+        this.el.setAttribute('position', { x: x, y: y, z: -4 });
       }
 });
