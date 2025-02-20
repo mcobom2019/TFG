@@ -6,8 +6,6 @@ AFRAME.registerComponent('createsons', {
         var hasSons = false;
         
         el.addEventListener('click', function() {
-          var waitTime = Math.random() * 3000;
-          setTimeout( function() {
             if (!hasSons){
               var parentPosition = el.getAttribute('position');
               var parentY = parentPosition.y;
@@ -24,7 +22,6 @@ AFRAME.registerComponent('createsons', {
                 var newColor = randomColor();
                 el.setAttribute('color', newColor);
             }
-          }, waitTime);
         });
       },
 });
@@ -35,8 +32,11 @@ AFRAME.registerComponent('changecolor', {
         var el = this.el;
         
         el.addEventListener('click', function() {
-            var newColor = randomColor();
-            el.setAttribute('color', newColor);
+           var waitTime = Math.random() * 3000;
+            setTimeout( function() {
+                var newColor = randomColor();
+                el.setAttribute('color', newColor);
+            }, waitTime);
         });
       }
 });
