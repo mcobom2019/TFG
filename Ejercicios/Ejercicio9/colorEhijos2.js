@@ -6,6 +6,8 @@ AFRAME.registerComponent('createsons', {
         var hasSons = false;
         
         el.addEventListener('click', function() {
+          var waitTime = Math.random() * 3000;
+          setTimeout( function() {
             if (!hasSons){
               var parentPosition = el.getAttribute('position');
               var parentY = parentPosition.y;
@@ -22,6 +24,7 @@ AFRAME.registerComponent('createsons', {
                 var newColor = randomColor();
                 el.setAttribute('color', newColor);
             }
+          }, waitTime);
         });
       },
 });
