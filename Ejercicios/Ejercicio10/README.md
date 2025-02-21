@@ -1,0 +1,2 @@
+Ejercicio:
+-El primer ejercicios es un esfera animada, es decir, tiene movimiento circular. Si haces click sobre ella cambia de color en un circuito cerrado de colores(rojo, verde, azul) y tarda de 0 a 3 segundos en cambiar d ecolor.
