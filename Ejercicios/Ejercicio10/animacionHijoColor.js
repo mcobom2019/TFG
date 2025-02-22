@@ -36,36 +36,30 @@ AFRAME.registerComponent('createsons', {
         console.log('Creando Hijos iniciado');
         var el = this.el;
         const scene = document.querySelector("a-scene");
-        var hasSons = false;
         
         el.addEventListener('click', function() {
-            if (!hasSons){
               var parentPosition = el.getAttribute('position');
               var parentY = parentPosition.y;
               var newSphere = document.createElement("a-sphere");
               //newSphere.setAttribute("color", "green");
-              newSphere.setAttribute("position", `${(i - 2)*0.5} ${parentY + 1} -4`);
+              newSphere.setAttribute("position", `1 ${parentY + 1} -4`);
               newSphere.setAttribute("radius", "0.2");
-                  newSphere.setAttribute("changecolor", "");
-                  scene.appendChild(newSphere);
-              }
-              hasSons = true;
-            }
+              newSphere.setAttribute("changecolor", "");
+              newSphere.setAttribute("circular-animation");
+              scene.appendChild(newSphere);
         });
       },
 });
 
 AFRAME.registerComponent('changecolor', {
-      init: function () {
-        console.log('Cambiando de color iniciado');
+    init: function () {
         var el = this.el;
-        
-        el.addEventListener('click', function() {
-           var waitTime = Math.random() * 3000;
-            setTimeout( function() {
-                var newColor = randomColor();
-                el.setAttribute('color', newColor);
-            }, waitTime);
+        var colors = ['purple', 'cyan', 'orange'];
+        var i = 0;
+
+        el.addEventListener('click', function () {
+            i = (i + 1) % colors.length;
+            el.setAttribute('color', colors[i]);
         });
-      }
+    }
 });
