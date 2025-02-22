@@ -1,7 +1,7 @@
 AFRAME.registerComponent('animacion_vueltas', {
     schema: {
-        radius: { type: 'number', default: 1.5 },  // Radio del movimiento circular
-        speed: { type: 'number', default: 1 }      // Velocidad de giro
+        radius: { type: 'number', default: 1.5 },
+        speed: { type: 'number', default: 1 },
     },
 
     init: function () {
@@ -11,16 +11,6 @@ AFRAME.registerComponent('animacion_vueltas', {
         var i = 0;
         var el = this.el;
 
-        // Animación de rotación sobre su propio eje
-        el.setAttribute('animation', {
-            property: 'rotation',
-            to: '0 360 0',
-            loop: true,
-            dur: 4000,
-            easing: 'linear'
-        });
-
-        // Cambio de color al hacer clic
         el.addEventListener('click', function () {
             var waitTime = Math.random() * 3000;
             setTimeout(function () {
@@ -35,9 +25,9 @@ AFRAME.registerComponent('animacion_vueltas', {
         this.angle += this.data.speed * deltaSeconds;
 
         let x = this.data.radius * Math.cos(this.angle);
-        let z = this.data.radius * Math.sin(this.angle) - 3;  // Mantiene la profundidad de -3
+        let y = this.data.radius * Math.sin(this.angle);
 
-        this.el.setAttribute('position', { x: x, y: this.el.getAttribute('position').y, z: z });
+        this.el.setAttribute('position', { x: x, y: y, z: -5.5 });
     }
 });
 
@@ -51,13 +41,13 @@ AFRAME.registerComponent('createsons', {
         el.addEventListener('click', function () {
             if (!ok) {
                 var parentPosition = el.getAttribute('position');
-                var newY = parentPosition.y + 1;  // Hija aparece arriba
+                var newY = parentPosition.y + 1;
 
                 var newSphere = document.createElement("a-sphere");
                 newSphere.setAttribute("color", "orange");
-                newSphere.setAttribute("position", `0 ${newY} -3`);
-                newSphere.setAttribute("radius", "0.5");
-                newSphere.setAttribute("animacion_vueltas", "radius: 1.5; speed: 2");
+                newSphere.setAttribute("position", `0 ${newY} 3`);
+                newSphere.setAttribute("radius", "0.7");
+                newSphere.setAttribute("animacion_vueltas", "radius: 1.5; speed: 1");
 
                 scene.appendChild(newSphere);
                 ok = true;
