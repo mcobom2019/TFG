@@ -26,6 +26,6 @@ AFRAME.registerComponent('circular-animation', {
         let x = this.data.radius * Math.cos(this.angle);
         let y = this.data.radius * Math.sin(this.angle);
 
-        this.el.setAttribute('position', { x: x, y: y, z: -4 });
+        this.el.setAttribute('position', { x: x, y: y, z: -5.5 });
       }
 });
