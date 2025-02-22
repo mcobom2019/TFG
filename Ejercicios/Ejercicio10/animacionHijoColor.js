@@ -44,7 +44,7 @@ AFRAME.registerComponent('createsons', {
               var parentY = parentPosition.y;
               var newSphere = document.createElement("a-sphere");
               newSphere.setAttribute("color", "orange");
-              newSphere.setAttribute("position", `${parentPosition.x} ${parentY - 10} ${parentPosition.z}`);
+              newSphere.setAttribute("position", "0 1.25 10");
               newSphere.setAttribute("radius", "0.5");
               newSphere.setAttribute("circular-animation", "radius: 1; speed: 2");
               scene.appendChild(newSphere);
