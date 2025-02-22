@@ -36,30 +36,21 @@ AFRAME.registerComponent('createsons', {
         console.log('Creando Hijos iniciado');
         var el = this.el;
         const scene = document.querySelector("a-scene");
+        var ok = false;
         
         el.addEventListener('click', function() {
+          if(!ok){
               var parentPosition = el.getAttribute('position');
               var parentY = parentPosition.y;
               var newSphere = document.createElement("a-sphere");
-              //newSphere.setAttribute("color", "green");
-              newSphere.setAttribute("position", `1 ${parentY + 1} -4`);
-              newSphere.setAttribute("radius", "0.2");
-              newSphere.setAttribute("changecolor", "");
-              newSphere.setAttribute("circular-animation");
+              newSphere.setAttribute("color", "orange");
+              newSphere.setAttribute("position", `${parentPosition.x} ${parentY - 10} ${parentPosition.z}`);
+              newSphere.setAttribute("radius", "0.5");
+              newSphere.setAttribute("circular-animation", "radius: 1; speed: 2");
               scene.appendChild(newSphere);
+              ok = true;
+          }
         });
       },
 });
 
-AFRAME.registerComponent('changecolor', {
-    init: function () {
-        var el = this.el;
-        var colors = ['purple', 'cyan', 'orange'];
-        var i = 0;
-
-        el.addEventListener('click', function () {
-            i = (i + 1) % colors.length;
-            el.setAttribute('color', colors[i]);
-        });
-    }
-});
