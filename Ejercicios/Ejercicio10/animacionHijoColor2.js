@@ -95,7 +95,7 @@ AFRAME.registerComponent('create3box', {
             entityE3.setAttribute('material', {
                 color: '#5381ED'
             });
-            entityE3.setAttribute('changecolor');
+            entityE3.setAttribute('changecolor', '');
             entityE3.object3D.position.set(0.33, 0, 0);
 
             this.add3box = function (){
@@ -119,7 +119,7 @@ AFRAME.registerComponent('changecolor', {
            var waitTime = Math.random() * 3000;
             setTimeout( function() {
                 var newColor = randomColor();
-                el.setAttribute('color', newColor);
+                el.setAttribute('material', 'color', newColor);
             }, waitTime);
         });
       }
