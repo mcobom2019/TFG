@@ -55,11 +55,17 @@ AFRAME.registerComponent('createsons', {
         el.addEventListener('click', function () {
             if (!ok) {
                 var parentPosition = el.getAttribute('position');
-                var newY = parentPosition.y + 1;
-
                 var newMenu = document.createElement("a-box");
-                newMenu.setAttribute("color", "orange");
-                newMenu.setAttribute("position", `0 ${newY} 3`);
+              
+                newMenu.setAttribute('width', this.data.width);
+                newMenu.setAttribute('height', this.data.height);
+                newMenu.setAttribute('depth', this.data.depth);
+                newMenu.setAttribute('color', this.data.color);
+                newMenu.setAttribute("position", {
+                  x: parentPosition.x, 
+                  y: parentPosition.y, 
+                  z: parentPosition.z - 2
+                });
 
                 scene.appendChild(newMenu);
                 ok = true;
