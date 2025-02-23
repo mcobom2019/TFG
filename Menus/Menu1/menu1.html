@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="menu1.js"></script>
+</head>
+<body>
+  <a-scene>
+    <a-entity floating-menu></a-entity>
+    <a-plane position="0 0 -3" width="4" height="1" color="#007BFF" class="clickable" onclick="document.querySelector('a-entity').emit('menu-toggle')"></a-plane>
+    <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+  </a-scene>
+</body>
+</html>
