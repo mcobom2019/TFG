@@ -1,10 +1,4 @@
 AFRAME.registerComponent('floating-menu', {
-  schema: {
-    width: { type: 'number', default: 1 },
-    height: { type: 'number', default: 1 },
-    depth: { type: 'number', default: 0.1 },
-    color: { type: 'string', default: '#333' }
-  },
 
   init: function () {
     const el = this.el;
@@ -39,6 +33,8 @@ AFRAME.registerComponent('floating-menu', {
 });
 
 
+
+
 AFRAME.registerComponent('createsons', {
     schema: {
       width: { type: 'number', default: 1 },
@@ -50,22 +46,24 @@ AFRAME.registerComponent('createsons', {
     init: function () {
         var el = this.el;
         const scene = document.querySelector("a-scene");
-        //var ok = false;
+        var data = this.data;
+        var ok = false;
 
         el.addEventListener('click', function () {
-            //if (!ok) {
+            if (!ok) {
                 var parentPosition = el.getAttribute('position');
-                var newMenu = document.createElement("a-box");
+                var newMenu = document.createElement("floating-menu");
               
-                newMenu.setAttribute('width', this.data.width);
-                newMenu.setAttribute('height', this.data.height);
-                newMenu.setAttribute('depth', this.data.depth);
-                newMenu.setAttribute('color', this.data.color);
-                var newPosition = `${parentPosition.x} ${parentPosition.y} ${parentPosition.z+10}`;
+                newMenu.setAttribute('width', data.width);
+                newMenu.setAttribute('height', data.height);
+                newMenu.setAttribute('depth', data.depth);
+                newMenu.setAttribute('color', data.color);
+                var newPosition = `${parentPosition.x} ${parentPosition.y+2} ${parentPosition.z-1}`;
                 newMenu.setAttribute("position", newPosition);
 
                 scene.appendChild(newMenu);
-                //ok = true;
+                ok = true;
+            }
             
         });
     }
