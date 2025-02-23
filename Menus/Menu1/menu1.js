@@ -50,10 +50,10 @@ AFRAME.registerComponent('createsons', {
     init: function () {
         var el = this.el;
         const scene = document.querySelector("a-scene");
-        var ok = false;
+        this.ok = false;
 
         el.addEventListener('click', function () {
-            if (!ok) {
+            if (!this.ok) {
                 var parentPosition = el.getAttribute('position');
                 var newMenu = document.createElement("a-box");
               
@@ -61,14 +61,11 @@ AFRAME.registerComponent('createsons', {
                 newMenu.setAttribute('height', this.data.height);
                 newMenu.setAttribute('depth', this.data.depth);
                 newMenu.setAttribute('color', this.data.color);
-                newMenu.setAttribute("position", {
-                  x: parentPosition.x, 
-                  y: parentPosition.y, 
-                  z: parentPosition.z - 2
-                });
+                var newPosition = `${parentPosition.x} ${parentPosition.y} ${parentPosition.z - 2}`;
+                newMenu.setAttribute("position", newPosition);
 
                 scene.appendChild(newMenu);
-                ok = true;
+                this.ok = true;
             }
         });
     }
