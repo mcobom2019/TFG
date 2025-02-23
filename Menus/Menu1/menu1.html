@@ -6,8 +6,7 @@
 </head>
 <body>
   <a-scene>
-    <a-entity floating-menu></a-entity>
-    <a-plane position="0 0 -3" width="4" height="1" color="#007BFF" class="clickable" onclick="document.querySelector('a-entity').emit('menu-toggle')"></a-plane>
+    <a-sphere position="0 0 -3" width="4" height="1" color="#007BFF" createsons></a-sphere>
     <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
   </a-scene>
 </body>

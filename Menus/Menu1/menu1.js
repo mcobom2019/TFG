@@ -25,16 +25,45 @@ AFRAME.registerComponent('floating-menu', {
     closeButton.setAttribute('height', '0.2');
     closeButton.setAttribute('color', 'red');
     closeButton.setAttribute('position', '0.4 0.4 0.06');
-    closeButton.setAttribute('class', 'clickable');
     menuPanel.appendChild(closeButton);
 
-    closeButton.addEventListener('click', () => {
+    closeButton.addEventListener('click', function () {
       el.setAttribute('visible', false);
     });
 
     // Agregar evento para mostrar menú
-    el.sceneEl.addEventListener('menu-toggle', (){
+    el.sceneEl.addEventListener('menu-toggle', function () {
       el.setAttribute('visible', true);
     });
   }
+});
+
+
+AFRAME.registerComponent('createsons', {
+    schema: {
+      width: { type: 'number', default: 1 },
+      height: { type: 'number', default: 1 },
+      depth: { type: 'number', default: 0.1 },
+      color: { type: 'string', default: '#333' }
+    },
+  
+    init: function () {
+        var el = this.el;
+        const scene = document.querySelector("a-scene");
+        var ok = false;
+
+        el.addEventListener('click', function () {
+            if (!ok) {
+                var parentPosition = el.getAttribute('position');
+                var newY = parentPosition.y + 1;
+
+                var newMenu = document.createElement("a-box");
+                newMenu.setAttribute("color", "orange");
+                newMenu.setAttribute("position", `0 ${newY} 3`);
+
+                scene.appendChild(newMenu);
+                ok = true;
+            }
+        });
+    }
 });
