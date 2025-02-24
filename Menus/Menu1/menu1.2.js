@@ -11,64 +11,65 @@ AFRAME.registerComponent('createsons', {
         var scene = document.querySelector("a-scene");
         var menuPanel = null;
         var isDragging = false;
-        var dragOffset = { x: 0, y: 0, z: 0 };
-        
+        var offset = new THREE.Vector3();
+
         el.addEventListener('click', function () {
-            if (!menuPanel) {
+            if (!menuPanel) { 
                 var parentPosition = el.getAttribute('position');
-                var newPosition = `${parentPosition.x} ${parentPosition.y + 2} ${parentPosition.z + 2}`;
-                
+                var newPosition = { x: parentPosition.x, y: parentPosition.y + 2, z: parentPosition.z + 2 };
+
                 menuPanel = document.createElement('a-box');
                 menuPanel.setAttribute('width', data.width);
                 menuPanel.setAttribute('height', data.height);
                 menuPanel.setAttribute('depth', data.depth);
                 menuPanel.setAttribute('color', data.color);
                 menuPanel.setAttribute('position', newPosition);
-                menuPanel.setAttribute('class', 'draggable');
-                
+
+                // Botón rojo para cerrar
                 const closeButton = document.createElement('a-plane');
                 closeButton.setAttribute('width', '0.2');
                 closeButton.setAttribute('height', '0.2');
                 closeButton.setAttribute('color', 'red');
                 closeButton.setAttribute('position', '0.4 0.4 0.06');
-                menuPanel.appendChild(closeButton);
-                scene.appendChild(menuPanel);
 
-                // Eventos de arrastre para el menuPanel
-                menuPanel.addEventListener('mousedown', function(evt) {
+                // EVENTO PARA INICIAR EL ARRASTRE
+                menuPanel.addEventListener('mousedown', function (event) {
                     isDragging = true;
-                    var menuPosition = menuPanel.getAttribute('position');
-                    var intersectionPoint = evt.detail.intersection.point;
-                    dragOffset = {
-                        x: menuPosition.x - intersectionPoint.x,
-                        y: menuPosition.y - intersectionPoint.y,
-                        z: menuPosition.z - intersectionPoint.z
-                    };
+                    let panelPos = menuPanel.object3D.position;
+                    offset.set(
+                        event.detail.intersection.point.x - panelPos.x,
+                        event.detail.intersection.point.y - panelPos.y,
+                        event.detail.intersection.point.z - panelPos.z
+                    );
                 });
 
-                // Manejar el movimiento
-                scene.addEventListener('mousemove', function(evt) {
-                    if (isDragging && evt.detail.intersection) {
-                        var point = evt.detail.intersection.point;
-                        menuPanel.setAttribute('position', {
-                            x: point.x + dragOffset.x,
-                            y: point.y + dragOffset.y,
-                            z: point.z + dragOffset.z
-                        });
+                // EVENTO PARA MOVER EL PANEL
+                scene.addEventListener('mousemove', function (event) {
+                    if (isDragging && event.detail.intersection) {
+                        let newPos = event.detail.intersection.point;
+                        menuPanel.object3D.position.set(
+                            newPos.x - offset.x,
+                            newPos.y - offset.y,
+                            newPos.z - offset.z
+                        );
                     }
                 });
 
-                // Detener el arrastre
-                scene.addEventListener('mouseup', function() {
+                // EVENTO PARA TERMINAR EL ARRASTRE
+                scene.addEventListener('mouseup', function () {
                     isDragging = false;
                 });
-                
+
+                // Evento para cerrar el menú
                 closeButton.addEventListener('click', function () {
                     if (menuPanel && menuPanel.parentNode) {
                         menuPanel.parentNode.removeChild(menuPanel);
                         menuPanel = null;
                     }
                 });
+
+                menuPanel.appendChild(closeButton);
+                scene.appendChild(menuPanel);
             }
         });
     }
