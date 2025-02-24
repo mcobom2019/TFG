@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-  <script src="menu1.2.js"></script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="menu1.js"></script>
 </head>
 <body>
-  <a-scene>
-    <a-sphere position="0 0 -3" width="4" height="1" color="#007BFF" createsons></a-sphere>
-    <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
-  </a-scene>
+    <a-scene>
+        <a-sphere position="0 0 -3" width="4" height="1" color="#007BFF" createsons></a-sphere>
+        <a-camera>
+            <a-entity cursor="fuse: false; rayOrigin: mouse"
+                      raycaster="objects: .draggable, a-sphere">
+            </a-entity>
+        </a-camera>
+    </a-scene>
 </body>
 </html>
