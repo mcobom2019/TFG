@@ -7,32 +7,35 @@ AFRAME.registerComponent('createsons', {
     },
     init: function () {
         var el = this.el;
-        var data = this.data;
         var scene = document.querySelector("a-scene");
         var menuPanel = null;
         var isDragging = false;
         var offset = new THREE.Vector3();
-
+        var raycaster = new THREE.Raycaster();
+        var mouse = new THREE.Vector2();
+        
         el.addEventListener('click', function () {
             if (!menuPanel) { 
-                var parentPosition = el.getAttribute('position');
-                var newPosition = { x: parentPosition.x, y: parentPosition.y + 2, z: parentPosition.z + 2 };
-
+                var pos = el.getAttribute('position');
                 menuPanel = document.createElement('a-box');
-                menuPanel.setAttribute('width', data.width);
-                menuPanel.setAttribute('height', data.height);
-                menuPanel.setAttribute('depth', data.depth);
-                menuPanel.setAttribute('color', data.color);
-                menuPanel.setAttribute('position', newPosition);
-
-                // Botón rojo para cerrar
-                const closeButton = document.createElement('a-plane');
+                menuPanel.setAttribute('width', 1);
+                menuPanel.setAttribute('height', 1);
+                menuPanel.setAttribute('depth', 0.1);
+                menuPanel.setAttribute('color', '#333');
+                menuPanel.setAttribute('position', `${pos.x} ${pos.y + 2} ${pos.z + 2}`);
+                
+                var closeButton = document.createElement('a-plane');
                 closeButton.setAttribute('width', '0.2');
                 closeButton.setAttribute('height', '0.2');
                 closeButton.setAttribute('color', 'red');
                 closeButton.setAttribute('position', '0.4 0.4 0.06');
+                
+                closeButton.addEventListener('click', function () {
+                    scene.removeChild(menuPanel);
+                    menuPanel = null;
+                });
 
-                // EVENTO PARA INICIAR EL ARRASTRE
+                // Detectar inicio de arrastre
                 menuPanel.addEventListener('mousedown', function (event) {
                     isDragging = true;
                     let panelPos = menuPanel.object3D.position;
@@ -43,29 +46,24 @@ AFRAME.registerComponent('createsons', {
                     );
                 });
 
-                // EVENTO PARA MOVER EL PANEL
+                // Mover el menú mientras se arrastra
                 scene.addEventListener('mousemove', function (event) {
-                    if (isDragging && event.detail.intersection) {
-                        let newPos = event.detail.intersection.point;
-                        menuPanel.object3D.position.set(
-                            newPos.x - offset.x,
-                            newPos.y - offset.y,
-                            newPos.z - offset.z
-                        );
+                    if (isDragging) {
+                        let canvas = scene.renderer.domElement;
+                        mouse.x = (event.clientX / canvas.width) * 2 - 1;
+                        mouse.y = -(event.clientY / canvas.height) * 2 + 1;
+                        raycaster.setFromCamera(mouse, scene.camera);
+
+                        let intersects = raycaster.intersectObject(menuPanel.object3D, true);
+                        if (intersects.length > 0) {
+                            menuPanel.object3D.position.copy(intersects[0].point.clone().sub(offset));
+                        }
                     }
                 });
 
-                // EVENTO PARA TERMINAR EL ARRASTRE
+                // Finalizar el arrastre
                 scene.addEventListener('mouseup', function () {
                     isDragging = false;
-                });
-
-                // Evento para cerrar el menú
-                closeButton.addEventListener('click', function () {
-                    if (menuPanel && menuPanel.parentNode) {
-                        menuPanel.parentNode.removeChild(menuPanel);
-                        menuPanel = null;
-                    }
                 });
 
                 menuPanel.appendChild(closeButton);

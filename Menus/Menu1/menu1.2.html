@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="menu1.2.js"></script>
 </head>
 <body>
-  <a-scene cursor="rayOrigin: mouse">
+  <a-scene>
     <a-sphere position="0 0 -3" radius="0.5" color="#007BFF" createsons></a-sphere>
-    <a-camera position="0 1.6 0">
-      <a-cursor></a-cursor>
-    </a-camera>
+    <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
   </a-scene>
 </body>
 </html>
