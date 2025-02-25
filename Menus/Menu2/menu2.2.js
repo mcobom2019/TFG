@@ -3,7 +3,7 @@ AFRAME.registerComponent('createsons', {
         var el = this.el;
         var scene = document.querySelector("a-scene");
         var menuPanel = null;
-        var submenuPanel = null;
+        var subMenu = null;
         var barChartEntity = null; // Diagrama de barras
         var barsEntity = null; // Diagrama de barras
         var isBarChartVisible = false; // Diagrama de barras
@@ -71,9 +71,9 @@ AFRAME.registerComponent('createsons', {
         if (menuPanel && menuPanel.parentNode) {
             menuPanel.parentNode.removeChild(menuPanel);
             menuPanel = null;
-        }if (submenuPanel && submenuPanel.parentNode) {
-                scene.removeChild(submenuPanel);
-                submenuPanel = null;
+        }if (subMenu && subMenu.parentNode) {
+                scene.removeChild(subMenu);
+                subMenu = null;
         }if (barChartEntity && barChartEntity.parentNode) {
             scene.removeChild(barChartEntity);
             scene.removeChild(barsEntity);
@@ -90,15 +90,58 @@ AFRAME.registerComponent('createsons', {
       }
       
       function mostrarSubmenu() {
-        if (menuPanel && menuPanel.parentNode) {
-            menuPanel.parentNode.removeChild(menuPanel);
-            menuPanel = null;
+            if (menuPanel && menuPanel.parentNode) {
+                menuPanel.parentNode.removeChild(menuPanel);
+                menuPanel = null;
+            }
+            var parentPosition = el.getAttribute('position');
+            var newPosition = {x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z};
+
+            subMenu = document.createElement('a-box');
+            subMenu.setAttribute('width', '1');
+            subMenu.setAttribute('height', '0.7');
+            subMenu.setAttribute('depth', '0.1');
+            subMenu.setAttribute('color', '#333');
+            subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+
+            var backButton = document.createElement('a-plane');
+            backButton.setAttribute('width', '0.2');
+            backButton.setAttribute('height', '0.2');
+            backButton.setAttribute('color', 'red');
+            backButton.setAttribute('position', '0.4 0.3 0.06');
+            backButton.setAttribute('text', 'value: ←; color: white; align: center;');
+
+            backButton.addEventListener('click', function () {
+                if (subMenu && subMenu.parentNode) {
+                    subMenu.parentNode.removeChild(subMenu);
+                    subMenu = null;
+                }
+                el.click(); //Abro el menu principal de nuevo
+            });
+
+            var option1 = crearBotonSubmenu("Completo", "0 0.2 0.06");
+            var option2 = crearBotonSubmenu("Diesel", "0 0 0.06");
+            var option3 = crearBotonSubmenu("5 Puertas", "0 -0.2 0.06");
+              
+            subMenu.appendchild(backButton);
+            subMenu.appendchild(option1);
+            subMenu.appendchild(option2);
+            subMenu.appendchild(option3);
+            scene.appendChild(submenuPanel);
+      }  
+      
+      function crearBotonSubmenu(texto, posicion) {
+            var button = document.createElement('a-plane');
+            button.setAttribute('width', '0.6');
+            button.setAttribute('height', '0.2');
+            button.setAttribute('color', 'green');
+            button.setAttribute('position', posicion);
+            button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
+            button.addEventListener('click', function () {
+                if(texto == "Completo")
+            });
+            return button;
         }
-      }
-      var parentPosition = el.getAttribute('position');
-      var newPosition = {x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z};
-                
-                
 
                 // Al hacer click muestra/cierra el diagrama de barras
                 barChartButton.addEventListener('click', function () {
