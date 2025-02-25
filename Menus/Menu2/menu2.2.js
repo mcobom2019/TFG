@@ -113,8 +113,13 @@ AFRAME.registerComponent('createsons', {
 
             if (tipo === "Barras") {
                 barChartEntity = document.createElement('a-entity');  // Guardamos la referencia
-                if(filtro == "")
-                barChartEntity.setAttribute('babia-barsmap', `from: ${filtro ? 'filter-data' : 'data'}; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales`);
+                if(filtro == "Diesel"){
+                  var filterEntity = document.createElement('a-entity');
+                  filterEntity.setAttribute('id', 'filter-data');
+                  filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
+                  barChartEntity = document.createElement('a-entity');
+                  barChartEntity.setAttribute('babia-cyls', 'from: filter-data; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales');
+                }
                 barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
                 scene.appendChild(barChartEntity);
