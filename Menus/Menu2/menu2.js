@@ -28,7 +28,7 @@ AFRAME.registerComponent('createsons', {
                 barChartButton.setAttribute('width', '0.6');
                 barChartButton.setAttribute('height', '0.2');
                 barChartButton.setAttribute('color', 'blue');
-                barChartButton.setAttribute('position', '0 0 0.06');
+                barChartButton.setAttribute('position', '0 0.1 0.06');
                 barChartButton.setAttribute('text', 'value: Barras; color: white; align: center; width: 1.5;');
                 // Botón grafico circular
                 var pieChartButton = document.createElement('a-plane');
