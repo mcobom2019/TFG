@@ -113,7 +113,7 @@ AFRAME.registerComponent('createsons', {
                 barChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
 
                 barsEntity = document.createElement('a-entity');
-                barsEntity.setAttribute('babia-barsmap', `from: data; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales; filter: ${filtro}`);
+                barsEntity.setAttribute('babia-barsmap', `from: data; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales; filter: motor=${filtro.toLowerCase()}`);
                 barsEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 barsEntity.setAttribute('scale', '0.2 0.2 0.2');
 
@@ -125,7 +125,7 @@ AFRAME.registerComponent('createsons', {
                 pieChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data2');
 
                 pieEntity = document.createElement('a-entity');
-                pieEntity.setAttribute('babia-pie', `from: data2; legend: true; palette: blues; key: model; size: doors; filter: ${filtro}`);
+                pieEntity.setAttribute('babia-pie', `from: data2; legend: true; palette: blues; key: model; size: doors; filter: motor=${filtro.toLowerCase()}`);
                 pieEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 pieEntity.setAttribute('scale', '0.8 0.8 0.8');
                 pieEntity.setAttribute('rotation', '90 0 0');
