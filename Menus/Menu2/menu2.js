@@ -15,7 +15,7 @@ AFRAME.registerComponent('createsons', {
                 var parentPosition = el.getAttribute('position');
                 var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
 
-                // Crear el menú principal
+                // Crear el menú flotante
                 menuPanel = document.createElement('a-box');
                 menuPanel.setAttribute('width', '1');
                 menuPanel.setAttribute('height', '0.7');
