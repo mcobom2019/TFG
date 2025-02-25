@@ -6,74 +6,68 @@ AFRAME.registerComponent('createsons', {
         var subMenu = null;
         var barChartEntity = null;
         var barsEntity = null;
-        var isBarChartVisible = false;
         var pieChartEntity = null;
         var pieEntity = null;
-        var isPieChartVisible = false;
 
         el.addEventListener('click', function () {
             if (!menuPanel) {
-                var parentPosition = el.getAttribute('position');
-                var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
-
-                // Crear el menú principal
-                menuPanel = document.createElement('a-box');
-                menuPanel.setAttribute('width', '1');
-                menuPanel.setAttribute('height', '0.7');
-                menuPanel.setAttribute('depth', '0.1');
-                menuPanel.setAttribute('color', '#333');
-                menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-
-                // Botón gráfico de barras
-                var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
-                    mostrarSubmenu("Barras");
-                });
-
-                // Botón gráfico circular
-                var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
-                    mostrarSubmenu("Circular");
-                });
-
-                // Botón cerrar menú
-                var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
-
-                menuPanel.appendChild(barChartButton);
-                menuPanel.appendChild(pieChartButton);
-                menuPanel.appendChild(closeButton);
-                scene.appendChild(menuPanel);
+                crearMenuPrincipal();
             }
         });
 
+        function crearMenuPrincipal() {
+            cerrarMenus();
+            var parentPosition = el.getAttribute('position');
+            var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+
+            menuPanel = document.createElement('a-box');
+            menuPanel.setAttribute('width', '1');
+            menuPanel.setAttribute('height', '0.7');
+            menuPanel.setAttribute('depth', '0.1');
+            menuPanel.setAttribute('color', '#333');
+            menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+
+            var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
+                mostrarSubmenu("Barras");
+            });
+
+            var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
+                mostrarSubmenu("Circular");
+            });
+
+            var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+
+            menuPanel.appendChild(barChartButton);
+            menuPanel.appendChild(pieChartButton);
+            menuPanel.appendChild(closeButton);
+            scene.appendChild(menuPanel);
+        }
+
         function cerrarMenus() {
-            if (menuPanel && menuPanel.parentNode) {
-                menuPanel.parentNode.removeChild(menuPanel);
+            if (menuPanel) {
+                scene.removeChild(menuPanel);
                 menuPanel = null;
             }
-            if (subMenu && subMenu.parentNode) {
+            if (subMenu) {
                 scene.removeChild(subMenu);
                 subMenu = null;
             }
-            if (barChartEntity && barChartEntity.parentNode) {
+            if (barChartEntity) {
                 scene.removeChild(barChartEntity);
                 scene.removeChild(barsEntity);
                 barChartEntity = null;
                 barsEntity = null;
-                isBarChartVisible = false;
             }
-            if (pieChartEntity && pieChartEntity.parentNode) {
+            if (pieChartEntity) {
                 scene.removeChild(pieChartEntity);
                 scene.removeChild(pieEntity);
                 pieChartEntity = null;
                 pieEntity = null;
-                isPieChartVisible = false;
             }
         }
 
         function mostrarSubmenu(tipo) {
-            if (menuPanel && menuPanel.parentNode) {
-                menuPanel.parentNode.removeChild(menuPanel);
-                menuPanel = null;
-            }
+            cerrarMenus();
             var parentPosition = el.getAttribute('position');
             var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
 
@@ -85,15 +79,11 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
             var backButton = crearBoton("←", "0.4 0.3 0.06", function () {
-                if (subMenu && subMenu.parentNode) {
-                    subMenu.parentNode.removeChild(subMenu);
-                    subMenu = null;
-                }
-                el.click();
+                crearMenuPrincipal();
             }, "red", "0.2");
 
             var option1 = crearBoton("Completo", "0 0.2 0.06", function () {
-                mostrarGrafico(tipo, "Completo");
+                mostrarGrafico(tipo, "");
             });
 
             var option2 = crearBoton("Diesel", "0 0 0.06", function () {
@@ -111,6 +101,55 @@ AFRAME.registerComponent('createsons', {
             scene.appendChild(subMenu);
         }
 
+        function mostrarGrafico(tipo, filtro) {
+            cerrarGraficoPrevio();
+
+            var parentPosition = el.getAttribute('position');
+            var newPosition = { x: parentPosition.x, y: parentPosition.y, z: parentPosition.z + 3 };
+
+            if (tipo === "Barras") {
+                barChartEntity = document.createElement('a-entity');
+                barChartEntity.setAttribute('id', 'data');
+                barChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
+
+                barsEntity = document.createElement('a-entity');
+                barsEntity.setAttribute('babia-barsmap', `from: data; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales; filter: ${filtro}`);
+                barsEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+                barsEntity.setAttribute('scale', '0.2 0.2 0.2');
+
+                scene.appendChild(barChartEntity);
+                scene.appendChild(barsEntity);
+            } else if (tipo === "Circular") {
+                pieChartEntity = document.createElement('a-entity');
+                pieChartEntity.setAttribute('id', 'data2');
+                pieChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data2');
+
+                pieEntity = document.createElement('a-entity');
+                pieEntity.setAttribute('babia-pie', `from: data2; legend: true; palette: blues; key: model; size: doors; filter: ${filtro}`);
+                pieEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+                pieEntity.setAttribute('scale', '0.8 0.8 0.8');
+                pieEntity.setAttribute('rotation', '90 0 0');
+
+                scene.appendChild(pieChartEntity);
+                scene.appendChild(pieEntity);
+            }
+        }
+
+        function cerrarGraficoPrevio() {
+            if (barChartEntity) {
+                scene.removeChild(barChartEntity);
+                scene.removeChild(barsEntity);
+                barChartEntity = null;
+                barsEntity = null;
+            }
+            if (pieChartEntity) {
+                scene.removeChild(pieChartEntity);
+                scene.removeChild(pieEntity);
+                pieChartEntity = null;
+                pieEntity = null;
+            }
+        }
+
         function crearBoton(texto, posicion, onClick, color = "blue", size = "0.6") {
             var button = document.createElement('a-plane');
             button.setAttribute('width', size);
@@ -120,55 +159,6 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
             button.addEventListener('click', onClick);
             return button;
-        }
-
-        function mostrarGrafico(tipo, opcion) {
-            if (tipo === "Barras") {
-                if (!isBarChartVisible) {
-                    barChartEntity = document.createElement('a-entity');
-                    barChartEntity.setAttribute('id', 'data');
-                    barChartEntity.setAttribute('babia-queryjson', `url: ./data.json; path: ${opcion.toLowerCase()}`);
-
-                    barsEntity = document.createElement('a-entity');
-                    barsEntity.setAttribute('babia-barsmap', 'from: data; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales');
-                    barsEntity.setAttribute('position', `3 -2 0`);
-                    barsEntity.setAttribute('scale', '0.2 0.2 0.2');
-
-                    scene.appendChild(barChartEntity);
-                    scene.appendChild(barsEntity);
-
-                    isBarChartVisible = true;
-                } else {
-                    scene.removeChild(barChartEntity);
-                    scene.removeChild(barsEntity);
-                    barChartEntity = null;
-                    barsEntity = null;
-                    isBarChartVisible = false;
-                }
-            } else if (tipo === "Circular") {
-                if (!isPieChartVisible) {
-                    pieChartEntity = document.createElement('a-entity');
-                    pieChartEntity.setAttribute('id', 'data2');
-                    pieChartEntity.setAttribute('babia-queryjson', `url: ./data.json; path: ${opcion.toLowerCase()}`);
-
-                    pieEntity = document.createElement('a-entity');
-                    pieEntity.setAttribute('babia-pie', 'from: data2; legend: true; palette: blues; key: model; size: doors;');
-                    pieEntity.setAttribute('position', `7 -1 0`);
-                    pieEntity.setAttribute('scale', '0.8 0.8 0.8');
-                    pieEntity.setAttribute('rotation', '90 0 0');
-
-                    scene.appendChild(pieChartEntity);
-                    scene.appendChild(pieEntity);
-
-                    isPieChartVisible = true;
-                } else {
-                    scene.removeChild(pieChartEntity);
-                    scene.removeChild(pieEntity);
-                    pieChartEntity = null;
-                    pieEntity = null;
-                    isPieChartVisible = false;
-                }
-            }
         }
     }
 });
