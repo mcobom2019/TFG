@@ -83,7 +83,7 @@ AFRAME.registerComponent('createsons', {
             });
 
             var option3 = crearBoton("5 Puertas", "0 -0.2 0.06", function () {
-                mostrarGrafico(tipo, "5 Puertas");
+                mostrarGrafico(tipo, "5Puertas");
             });
 
             subMenu.appendChild(backButton);
@@ -103,23 +103,21 @@ AFRAME.registerComponent('createsons', {
             dataEntity.setAttribute('id', 'data');
             dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
             scene.appendChild(dataEntity);
-
-            if (filtro !== "") {
-                var filterEntity = document.createElement('a-entity');
-                filterEntity.setAttribute('id', 'filter-data');
-                filterEntity.setAttribute('babia-filter', `from: data; filter: motor=${filtro.toLowerCase()}`);
-                scene.appendChild(filterEntity);
-            }
-
+          
             if (tipo === "Barras") {
                 barChartEntity = document.createElement('a-entity');  // Guardamos la referencia
                 if(filtro == "Diesel"){
-                  var filterEntity = document.createElement('a-entity');
+                  const filterEntity = document.createElement('a-entity');
                   filterEntity.setAttribute('id', 'filter-data');
-                  filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
-                  barChartEntity = document.createElement('a-entity');
-                  barChartEntity.setAttribute('babia-cyls', 'from: filter-data; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales');
+                  filterEntity.setAttribute('babia-filter', 'from: data; filter:motor=diesel');
+                  scene.appendChild(filterEntity);
+                }if(filtro == "5Puertas"){
+                  const filterEntity = document.createElement('a-entity');
+                  filterEntity.setAttribute('id', 'filter-data');
+                  filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
+                  scene.appendChild(filterEntity);
                 }
+                barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette:foxy; x_axis: model; height: sales; radius: doors');
                 barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
                 scene.appendChild(barChartEntity);
