@@ -107,30 +107,30 @@ AFRAME.registerComponent('createsons', {
             var parentPosition = el.getAttribute('position');
             var newPosition = { x: parentPosition.x, y: parentPosition.y, z: parentPosition.z + 3 };
 
-            if (tipo === "Barras") {
-                barChartEntity = document.createElement('a-entity');
-                barChartEntity.setAttribute('id', 'data');
-                barChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
+            var dataEntity = document.createElement('a-entity');
+            dataEntity.setAttribute('id', 'data');
+            dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
+            scene.appendChild(dataEntity);
 
+            if (filtro !== "") {
+                var filterEntity = document.createElement('a-entity');
+                filterEntity.setAttribute('id', 'filter-data');
+                filterEntity.setAttribute('babia-filter', `from: data; filter: motor=${filtro.toLowerCase()}`);
+                scene.appendChild(filterEntity);
+            }
+
+            if (tipo === "Barras") {
                 barsEntity = document.createElement('a-entity');
-                barsEntity.setAttribute('babia-barsmap', `from: data; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales; filter: motor=${filtro.toLowerCase()}`);
+                barsEntity.setAttribute('babia-barsmap', `from: ${filtro ? 'filter-data' : 'data'}; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales`);
                 barsEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 barsEntity.setAttribute('scale', '0.2 0.2 0.2');
-
-                scene.appendChild(barChartEntity);
                 scene.appendChild(barsEntity);
             } else if (tipo === "Circular") {
-                pieChartEntity = document.createElement('a-entity');
-                pieChartEntity.setAttribute('id', 'data2');
-                pieChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data2');
-
                 pieEntity = document.createElement('a-entity');
-                pieEntity.setAttribute('babia-pie', `from: data2; legend: true; palette: blues; key: model; size: doors; filter: motor=${filtro.toLowerCase()}`);
+                pieEntity.setAttribute('babia-pie', `from: ${filtro ? 'filter-data' : 'data'}; legend: true; palette: blues; key: model; size: doors`);
                 pieEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 pieEntity.setAttribute('scale', '0.8 0.8 0.8');
                 pieEntity.setAttribute('rotation', '90 0 0');
-
-                scene.appendChild(pieChartEntity);
                 scene.appendChild(pieEntity);
             }
         }
