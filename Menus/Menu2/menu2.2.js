@@ -16,7 +16,8 @@ AFRAME.registerComponent('createsons', {
         });
 
         function crearMenuPrincipal() {
-            cerrarMenus();
+            cerrarMenus();  // Asegura que todo está limpio antes de abrir
+
             var parentPosition = el.getAttribute('position');
             var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
 
@@ -43,6 +44,7 @@ AFRAME.registerComponent('createsons', {
             scene.appendChild(menuPanel);
         }
 
+
         function cerrarMenus() {
             if (menuPanel) {
                 scene.removeChild(menuPanel);
@@ -52,19 +54,9 @@ AFRAME.registerComponent('createsons', {
                 scene.removeChild(subMenu);
                 subMenu = null;
             }
-            if (barChartEntity) {
-                scene.removeChild(barChartEntity);
-                scene.removeChild(barsEntity);
-                barChartEntity = null;
-                barsEntity = null;
-            }
-            if (pieChartEntity) {
-                scene.removeChild(pieChartEntity);
-                scene.removeChild(pieEntity);
-                pieChartEntity = null;
-                pieEntity = null;
-            }
+            cerrarGraficoPrevio();  // Aseguramos que los gráficos se cierran sin afectar a futuros menús
         }
+
 
         function mostrarSubmenu(tipo) {
             cerrarMenus();
@@ -105,7 +97,7 @@ AFRAME.registerComponent('createsons', {
             cerrarGraficoPrevio();
 
             var parentPosition = el.getAttribute('position');
-            var newPosition = { x: parentPosition.x, y: parentPosition.y, z: parentPosition.z + 3 };
+            var newPosition = { x: parentPosition.x + 3, y: parentPosition.y, z: parentPosition.z};
 
             var dataEntity = document.createElement('a-entity');
             dataEntity.setAttribute('id', 'data');
@@ -120,35 +112,34 @@ AFRAME.registerComponent('createsons', {
             }
 
             if (tipo === "Barras") {
-                barsEntity = document.createElement('a-entity');
-                barsEntity.setAttribute('babia-barsmap', `from: ${filtro ? 'filter-data' : 'data'}; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales`);
-                barsEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-                barsEntity.setAttribute('scale', '0.2 0.2 0.2');
-                scene.appendChild(barsEntity);
+                barChartEntity = document.createElement('a-entity');  // Guardamos la referencia
+                if(filtro == "")
+                barChartEntity.setAttribute('babia-barsmap', `from: ${filtro ? 'filter-data' : 'data'}; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales`);
+                barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+                barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
+                scene.appendChild(barChartEntity);
             } else if (tipo === "Circular") {
-                pieEntity = document.createElement('a-entity');
-                pieEntity.setAttribute('babia-pie', `from: ${filtro ? 'filter-data' : 'data'}; legend: true; palette: blues; key: model; size: doors`);
-                pieEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-                pieEntity.setAttribute('scale', '0.8 0.8 0.8');
-                pieEntity.setAttribute('rotation', '90 0 0');
-                scene.appendChild(pieEntity);
+                pieChartEntity = document.createElement('a-entity');  // Guardamos la referencia
+                pieChartEntity.setAttribute('babia-pie', `from: ${filtro ? 'filter-data' : 'data'}; legend: true; palette: blues; key: model; size: doors`);
+                pieChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+                pieChartEntity.setAttribute('scale', '0.8 0.8 0.8');
+                pieChartEntity.setAttribute('rotation', '90 0 0');
+                scene.appendChild(pieChartEntity);
             }
         }
+
 
         function cerrarGraficoPrevio() {
             if (barChartEntity) {
                 scene.removeChild(barChartEntity);
-                scene.removeChild(barsEntity);
                 barChartEntity = null;
-                barsEntity = null;
             }
             if (pieChartEntity) {
                 scene.removeChild(pieChartEntity);
-                scene.removeChild(pieEntity);
                 pieChartEntity = null;
-                pieEntity = null;
             }
         }
+
 
         function crearBoton(texto, posicion, onClick, color = "blue", size = "0.6") {
             var button = document.createElement('a-plane');
