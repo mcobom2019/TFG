@@ -3,12 +3,12 @@ AFRAME.registerComponent('createsons', {
         var el = this.el;
         var scene = document.querySelector("a-scene");
         var menuPanel = null;
-        var barChartEntity = null;
-        var pieChartEntity = null;
-        var barsEntity = null;
-        var pieEntity = null;
-        var isBarChartVisible = false; // Estado del gráfico
-        var isPieChartVisible = false;
+        var barChartEntity = null; // Diagrama de barras
+        var barsEntity = null; // Diagrama de barras
+        var isBarChartVisible = false; // Diagrama de barras
+        var pieChartEntity = null; // Diagrama circular
+        var pieEntity = null; // Diagrama circular
+        var isPieChartVisible = false; // Diagrama circular
 
         el.addEventListener('click', function () {
             if (!menuPanel) {
@@ -23,26 +23,25 @@ AFRAME.registerComponent('createsons', {
                 menuPanel.setAttribute('color', '#333');
                 menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
-                // Botón para mostrar/ocultar gráfico de barras
+                // Botón grafico de barras
                 var barChartButton = document.createElement('a-plane');
                 barChartButton.setAttribute('width', '0.6');
                 barChartButton.setAttribute('height', '0.2');
                 barChartButton.setAttribute('color', 'blue');
                 barChartButton.setAttribute('position', '0 0 0.06');
                 barChartButton.setAttribute('text', 'value: Barras; color: white; align: center; width: 1.5;');
-                // Botón para mostrar/ocultar gráfico circular
-                var barChartButton2 = document.createElement('a-plane');
-                barChartButton2.setAttribute('width', '0.6');
-                barChartButton2.setAttribute('height', '0.2');
-                barChartButton2.setAttribute('color', 'blue');
-                barChartButton2.setAttribute('position', '0 -0.2 0.06');
-                barChartButton2.setAttribute('text', 'value: Circular; color: white; align: center; width: 1.5;');
+                // Botón grafico circular
+                var pieChartButton = document.createElement('a-plane');
+                pieChartButton.setAttribute('width', '0.6');
+                pieChartButton.setAttribute('height', '0.2');
+                pieChartButton.setAttribute('color', 'blue');
+                pieChartButton.setAttribute('position', '0 -0.2 0.06');
+                pieChartButton.setAttribute('text', 'value: Circular; color: white; align: center; width: 1.5;');
                 
 
-                // Evento para mostrar/ocultar gráfico de barras
+                // Al hacer click muestra/cierra el diagrama de barras
                 barChartButton.addEventListener('click', function () {
                     if (!isBarChartVisible) {
-                        // Si el gráfico no está visible, crearlo
                         barChartEntity = document.createElement('a-entity');
                         barChartEntity.setAttribute('id', 'data');
                         barChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
@@ -57,7 +56,6 @@ AFRAME.registerComponent('createsons', {
 
                         isBarChartVisible = true;
                     } else {
-                        // Si el gráfico está visible, eliminarlo
                         if (barChartEntity && barChartEntity.parentNode) {
                             scene.removeChild(barChartEntity);
                             scene.removeChild(barsEntity);
@@ -67,10 +65,9 @@ AFRAME.registerComponent('createsons', {
                         isBarChartVisible = false;
                     }
                 });
-              // Evento para mostrar/ocultar gráfico circular
-                barChartButton2.addEventListener('click', function () {
-                    if (!isBarChartVisible) {
-                        // Si el gráfico no está visible, crearlo
+                // Al hacer click muestra/cierra el diagrama circular
+                pieChartButton.addEventListener('click', function () {
+                    if (!isPieChartVisible) {
                         pieChartEntity = document.createElement('a-entity');
                         pieChartEntity.setAttribute('id', 'data2');
                         pieChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data2');
@@ -87,7 +84,6 @@ AFRAME.registerComponent('createsons', {
 
                         isPieChartVisible = true;
                     } else {
-                        // Si el gráfico está visible, eliminarlo
                         if (pieChartEntity && pieChartEntity.parentNode) {
                             scene.removeChild(pieChartEntity);
                             scene.removeChild(pieEntity);
@@ -98,7 +94,7 @@ AFRAME.registerComponent('createsons', {
                     }
                 });
 
-                // Botón para cerrar el menú y eliminar gráfico
+                // Cerrar el menú y eliminar gráficos
                 var closeButton = document.createElement('a-plane');
                 closeButton.setAttribute('width', '0.2');
                 closeButton.setAttribute('height', '0.2');
@@ -127,7 +123,7 @@ AFRAME.registerComponent('createsons', {
                 });
 
                 menuPanel.appendChild(barChartButton);
-                menuPanel.appendChild(barChartButton2);
+                menuPanel.appendChild(pieChartButton);
                 menuPanel.appendChild(closeButton);
                 scene.appendChild(menuPanel);
             }
