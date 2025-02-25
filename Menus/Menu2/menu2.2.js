@@ -97,39 +97,48 @@ AFRAME.registerComponent('createsons', {
             cerrarGraficoPrevio();
 
             var parentPosition = el.getAttribute('position');
-            var newPosition = { x: parentPosition.x + 3, y: parentPosition.y, z: parentPosition.z};
+            var newPosition = { x: parentPosition.x + 3, y: parentPosition.y, z: parentPosition.z };
 
+            // Crear entidad de datos base
             var dataEntity = document.createElement('a-entity');
             dataEntity.setAttribute('id', 'data');
             dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
             scene.appendChild(dataEntity);
-          
-            if (tipo === "Barras") {
-                barChartEntity = document.createElement('a-entity');  // Guardamos la referencia
-                if(filtro == "Diesel"){
-                  const filterEntity = document.createElement('a-entity');
-                  filterEntity.setAttribute('id', 'filter-data');
-                  filterEntity.setAttribute('babia-filter', 'from: data; filter:motor=diesel');
-                  scene.appendChild(filterEntity);
-                }if(filtro == "5Puertas"){
-                  const filterEntity = document.createElement('a-entity');
-                  filterEntity.setAttribute('id', 'filter-data');
-                  filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
-                  scene.appendChild(filterEntity);
+
+            let dataSource = "data";  // Por defecto, usamos los datos completos
+
+            // Aplicar filtro si se ha seleccionado
+            if (filtro === "Diesel" || filtro === "5Puertas") {
+                const filterEntity = document.createElement('a-entity');
+                filterEntity.setAttribute('id', 'filter-data');
+
+                if (filtro === "Diesel") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
+                }else if (filtro === "5Puertas") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
                 }
-                barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette:foxy; x_axis: model; height: sales; radius: doors');
+
+                scene.appendChild(filterEntity);
+                dataSource = "filter-data";  // Cambiamos la fuente de datos al filtrado
+            }
+
+            // Crear gráfico según el tipo
+            if (tipo === "Barras") {
+                barChartEntity = document.createElement('a-entity');
+                barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
                 barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
                 scene.appendChild(barChartEntity);
             } else if (tipo === "Circular") {
-                pieChartEntity = document.createElement('a-entity');  // Guardamos la referencia
-                pieChartEntity.setAttribute('babia-pie', `from: ${filtro ? 'filter-data' : 'data'}; legend: true; palette: blues; key: model; size: doors`);
+                pieChartEntity = document.createElement('a-entity');
+                pieChartEntity.setAttribute('babia-pie', `from: ${dataSource}; legend: true; palette: blues; key: model; size: doors`);
                 pieChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 pieChartEntity.setAttribute('scale', '0.8 0.8 0.8');
                 pieChartEntity.setAttribute('rotation', '90 0 0');
                 scene.appendChild(pieChartEntity);
             }
         }
+
 
 
         function cerrarGraficoPrevio() {
