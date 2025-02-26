@@ -16,7 +16,7 @@ AFRAME.registerComponent('createsons', {
         });
 
         function crearMenuPrincipal() {
-            cerrarMenus();  // Asegura que todo está limpio antes de abrir
+            cerrarMenus();
 
             var parentPosition = el.getAttribute('position');
             var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
@@ -54,7 +54,7 @@ AFRAME.registerComponent('createsons', {
                 scene.removeChild(subMenu);
                 subMenu = null;
             }
-            cerrarGraficoPrevio();  // Aseguramos que los gráficos se cierran sin afectar a futuros menús
+            cerrarGraficoPrevio();
         }
 
 
@@ -70,11 +70,11 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
-            var backButton = crearBoton("←", "0.4 0.3 0.06", function () {
+            var backButton = crearBoton("<--", "-0.4 0.3 0.06", function () {
                 crearMenuPrincipal();
-            }, "red", "0.2");
+            }, "orange", "0.2");
 
-            var option1 = crearBoton("Completo", "0 0.2 0.06", function () {
+            var option1 = crearBoton("Completo", "0 0.25 0.06", function () {
                 mostrarGrafico(tipo, "");
             });
 
@@ -82,7 +82,7 @@ AFRAME.registerComponent('createsons', {
                 mostrarGrafico(tipo, "Diesel");
             });
 
-            var option3 = crearBoton("5 Puertas", "0 -0.2 0.06", function () {
+            var option3 = crearBoton("5 Puertas", "0 -0.25 0.06", function () {
                 mostrarGrafico(tipo, "5Puertas");
             });
 
@@ -99,15 +99,14 @@ AFRAME.registerComponent('createsons', {
             var parentPosition = el.getAttribute('position');
             var newPosition = { x: parentPosition.x + 3, y: parentPosition.y, z: parentPosition.z };
 
-            // Elimina cualquier entidad de filtrado previa
+            // Elimina filtrados previos
             var prevFilter = document.querySelector("#filter-data");
             if (prevFilter) {
                 scene.removeChild(prevFilter);
             }
 
-            var dataSource = "data"; // Por defecto, datos sin filtrar
+            var dataSource = "data"; //cuando es completo, no hay filtro
 
-            // Crear entidad de datos base si no existe
             if (!document.querySelector("#data")) {
                 var dataEntity = document.createElement('a-entity');
                 dataEntity.setAttribute('id', 'data');
@@ -115,7 +114,6 @@ AFRAME.registerComponent('createsons', {
                 scene.appendChild(dataEntity);
             }
 
-            // Aplicar filtro si se ha seleccionado
             if (filtro === "Diesel" || filtro === "5Puertas") {
                 const filterEntity = document.createElement('a-entity');
                 filterEntity.setAttribute('id', 'filter-data');
@@ -127,10 +125,9 @@ AFRAME.registerComponent('createsons', {
                 }
 
                 scene.appendChild(filterEntity);
-                dataSource = "filter-data"; // Cambia la fuente de datos al filtrado
+                dataSource = "filter-data"; // cuando hemos filtrado
             }
 
-            // Crear gráfico según el tipo
             if (tipo === "Barras") {
                 barChartEntity = document.createElement('a-entity');
                 barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
