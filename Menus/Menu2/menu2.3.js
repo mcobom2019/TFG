@@ -81,17 +81,17 @@ AFRAME.registerComponent('createsons', {
 
             var option2 = crearBoton("Color", "0 0.12 0.06", function () {
                 //mostrarGrafico(tipo, "Diesel");
-                mostrarSubmenu("Color");
+                mostrarSubmenu2("Color");
             });
 
             var option3 = crearBoton("Puertas", "0 -0.12 0.06", function () {
                 //mostrarGrafico(tipo, "5Puertas");
-                mostrarSubmenu("Puertas");
+                mostrarSubmenu2("Puertas");
             });
             
             var option4 = crearBoton("Ventas", "0 -0.35 0.06", function () {
                 //mostrarGrafico(tipo, "5Puertas");
-                mostrarSubmenu("Puertas");
+                mostrarSubmenu2("Ventas");
             });
 
             subMenu.appendChild(backButton);
@@ -122,10 +122,10 @@ AFRAME.registerComponent('createsons', {
               var option1 = crearBoton("Eléctrico", "0 0.35 0.06", function () {
                 mostrarGrafico(tipo, "Electrico");
               });
-              var option2 = crearBoton("Diesel", "0 0.35 0.06", function () {
+              var option2 = crearBoton("Diesel", "0 0.12 0.06", function () {
                 mostrarGrafico(tipo, "Diesel");
               });
-              var option3 = crearBoton("Gasolina", "0 0.35 0.06", function () {
+              var option3 = crearBoton("Gasolina", "0 -0.12 0.06", function () {
                 mostrarGrafico(tipo, "Gasolina");
               });
               
@@ -139,13 +139,13 @@ AFRAME.registerComponent('createsons', {
               var option1 = crearBoton("Blanco", "0 0.35 0.06", function () {
                 mostrarGrafico(tipo, "Blanco");
               });
-              var option2 = crearBoton("Negro", "0 0.35 0.06", function () {
+              var option2 = crearBoton("Negro", "0 0.12 0.06", function () {
                 mostrarGrafico(tipo, "Negro");
               });
-              var option3 = crearBoton("Rojo", "0 0.35 0.06", function () {
+              var option3 = crearBoton("Rojo", "0 -0.12 0.06", function () {
                 mostrarGrafico(tipo, "Rojo");
               });
-              var option3 = crearBoton("Amarillo", "0 0.35 0.06", function () {
+              var option4 = crearBoton("Amarillo", "0 -0.35 0.06", function () {
                 mostrarGrafico(tipo, "Amarillo");
               });
               
@@ -160,7 +160,7 @@ AFRAME.registerComponent('createsons', {
               var option1 = crearBoton("3 Puertas", "0 0.35 0.06", function () {
                 mostrarGrafico(tipo, "3puertas");
               });
-              var option2 = crearBoton("5 Puertas", "0 0.35 0.06", function () {
+              var option2 = crearBoton("5 Puertas", "0 0.12 0.06", function () {
                 mostrarGrafico(tipo, "5puertas");
               });
               
@@ -177,7 +177,6 @@ AFRAME.registerComponent('createsons', {
               subMenu.appendChild(option1);
               scene.appendChild(subMenu);
             }
-
         }
 
         function mostrarGrafico(tipo, filtro) {
@@ -201,7 +200,7 @@ AFRAME.registerComponent('createsons', {
                 scene.appendChild(dataEntity);
             }
 
-            if (filtro === "Diesel" || filtro === "5Puertas") {
+            if (filtro != "") {
                 const filterEntity = document.createElement('a-entity');
                 filterEntity.setAttribute('id', 'filter-data');
 
