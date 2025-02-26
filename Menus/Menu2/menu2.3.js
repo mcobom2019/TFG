@@ -76,22 +76,22 @@ AFRAME.registerComponent('createsons', {
 
             var option1 = crearBoton("Motor", "0 0.35 0.06", function () {
                 //mostrarGrafico(tipo, "");
-                mostrarSubmenu2("Motor");
+                mostrarSubmenu2(tipo, "Motor");
             });
 
             var option2 = crearBoton("Color", "0 0.12 0.06", function () {
                 //mostrarGrafico(tipo, "Diesel");
-                mostrarSubmenu2("Color");
+                mostrarSubmenu2(tipo, "Color");
             });
 
             var option3 = crearBoton("Puertas", "0 -0.12 0.06", function () {
                 //mostrarGrafico(tipo, "5Puertas");
-                mostrarSubmenu2("Puertas");
+                mostrarSubmenu2(tipo, "Puertas");
             });
             
             var option4 = crearBoton("Ventas", "0 -0.35 0.06", function () {
                 //mostrarGrafico(tipo, "5Puertas");
-                mostrarSubmenu2("Ventas");
+                mostrarSubmenu2(tipo, "Ventas");
             });
 
             subMenu.appendChild(backButton);
@@ -102,7 +102,7 @@ AFRAME.registerComponent('createsons', {
             scene.appendChild(subMenu);
         }
       
-        function mostrarSubmenu2(tipo) {
+        function mostrarSubmenu2(tipo, tipo2) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
             var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
@@ -118,7 +118,7 @@ AFRAME.registerComponent('createsons', {
                 crearMenuPrincipal();
             }, "orange", "0.2");
           
-            if(tipo == "Motor"){
+            if(tipo2 == "Motor"){
               var option1 = crearBoton("Eléctrico", "0 0.35 0.06", function () {
                 mostrarGrafico(tipo, "Electrico");
               });
@@ -135,7 +135,7 @@ AFRAME.registerComponent('createsons', {
               subMenu.appendChild(option3);
               scene.appendChild(subMenu);
               
-            }if(tipo == "Color"){
+            }if(tipo2 == "Color"){
               var option1 = crearBoton("Blanco", "0 0.35 0.06", function () {
                 mostrarGrafico(tipo, "Blanco");
               });
@@ -156,7 +156,7 @@ AFRAME.registerComponent('createsons', {
               subMenu.appendChild(option4);
               scene.appendChild(subMenu);
               
-            }if(tipo == "Puertas"){
+            }if(tipo2 == "Puertas"){
               var option1 = crearBoton("3 Puertas", "0 0.35 0.06", function () {
                 mostrarGrafico(tipo, "3puertas");
               });
@@ -169,7 +169,7 @@ AFRAME.registerComponent('createsons', {
               subMenu.appendChild(option2);
               scene.appendChild(subMenu);
               
-            }if(tipo == "Ventas"){
+            }if(tipo2 == "Ventas"){
               var option1 = crearBoton("Trimestre", "0 0.35 0.06", function () {
                 mostrarGrafico(tipo, "trimestre");
               });
@@ -200,7 +200,7 @@ AFRAME.registerComponent('createsons', {
                 scene.appendChild(dataEntity);
             }
 
-            if (filtro != " ") {
+            if (filtro !== " ") {
                 const filterEntity = document.createElement('a-entity');
                 filterEntity.setAttribute('id', 'filter-data');
 
@@ -213,11 +213,11 @@ AFRAME.registerComponent('createsons', {
                 }else if (filtro === "Blanco") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
                 }else if (filtro === "Negro") {
-                    filterEntity.setAttribute('babia-filter', 'from: data; filter: color=block');
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: color=black');
                 }else if (filtro === "Rojo") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
                 }else if (filtro === "Amarillo") {
-                    filterEntity.setAttribute('babia-filter', 'from: data; filter: color=wellow');
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: color=yellow');
                 }else if (filtro === "3puertas") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
                 }else if (filtro === "5puertas") {
