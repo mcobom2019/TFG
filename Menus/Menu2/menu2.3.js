@@ -200,13 +200,27 @@ AFRAME.registerComponent('createsons', {
                 scene.appendChild(dataEntity);
             }
 
-            if (filtro != "") {
+            if (filtro != " ") {
                 const filterEntity = document.createElement('a-entity');
                 filterEntity.setAttribute('id', 'filter-data');
 
-                if (filtro === "Diesel") {
+                if (filtro === "Electrico") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
+                }else if (filtro === "Diesel") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
-                } else if (filtro === "5Puertas") {
+                }else if (filtro === "Gasolina") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=gasoline');
+                }else if (filtro === "Blanco") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
+                }else if (filtro === "Negro") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: color=block');
+                }else if (filtro === "Rojo") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
+                }else if (filtro === "Amarillo") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: color=wellow');
+                }else if (filtro === "3puertas") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
+                }else if (filtro === "5puertas") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
                 }
 
