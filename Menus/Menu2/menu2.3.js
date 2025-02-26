@@ -65,7 +65,7 @@ AFRAME.registerComponent('createsons', {
 
             subMenu = document.createElement('a-box');
             subMenu.setAttribute('width', '1.1');
-            subMenu.setAttribute('height', '1');
+            subMenu.setAttribute('height', '1.3');
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
@@ -74,7 +74,7 @@ AFRAME.registerComponent('createsons', {
                 crearMenuPrincipal();
             }, "orange", "0.2");
 
-            var option1 = crearBoton("Motor", "0 0.35 0.06", function () {
+            var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
                 //mostrarGrafico(tipo, "");
                 mostrarSubmenu2(tipo, "Motor");
             });
@@ -93,12 +93,18 @@ AFRAME.registerComponent('createsons', {
                 //mostrarGrafico(tipo, "5Puertas");
                 mostrarSubmenu2(tipo, "Ventas");
             });
+            
+            var option5 = crearBoton("Completo", "0 -0.55 0.06", function () {
+                //mostrarGrafico(tipo, "5Puertas");
+                mostrarGrafico(tipo, " ");
+            });
 
             subMenu.appendChild(backButton);
             subMenu.appendChild(option1);
             subMenu.appendChild(option2);
             subMenu.appendChild(option3);
             subMenu.appendChild(option4);
+            subMenu.appendChild(option5);
             scene.appendChild(subMenu);
         }
       
@@ -226,11 +232,11 @@ AFRAME.registerComponent('createsons', {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
                 }else if (filtro === "5puertas") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
-                }else if (filtro === "alta") {
-                    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales>=10');
-                }else if (filtro === "baja") {
-                    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales<=9');
-                }
+                }//else if (filtro === "alta") {
+                 //   filterEntity.setAttribute('babia-filter', 'from: data; filter: parseInt(sales)10');
+                //}else if (filtro === "baja") {
+                //    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales<=9');
+                //}
 
                 scene.appendChild(filterEntity);
                 dataSource = "filter-data"; // cuando hemos filtrado
