@@ -170,11 +170,15 @@ AFRAME.registerComponent('createsons', {
               scene.appendChild(subMenu);
               
             }if(tipo2 == "Ventas"){
-              var option1 = crearBoton("Trimestre", "0 0.35 0.06", function () {
-                mostrarGrafico(tipo, "trimestre");
+              var option1 = crearBoton("Alta Demanda", "0 0.35 0.06", function () {
+                mostrarGrafico(tipo, "alta");
+              });
+              var option2 = crearBoton("Baja Demanda", "0 0.12 0.06", function () {
+                mostrarGrafico(tipo, "baja");
               });
               subMenu.appendChild(backButton);
               subMenu.appendChild(option1);
+              subMenu.appendChild(option2);
               scene.appendChild(subMenu);
             }
         }
@@ -222,6 +226,10 @@ AFRAME.registerComponent('createsons', {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
                 }else if (filtro === "5puertas") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
+                }else if (filtro === "alta") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales>=10');
+                }else if (filtro === "baja") {
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales<=9');
                 }
 
                 scene.appendChild(filterEntity);
