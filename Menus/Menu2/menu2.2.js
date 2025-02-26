@@ -105,8 +105,6 @@ AFRAME.registerComponent('createsons', {
             dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
             scene.appendChild(dataEntity);
 
-            let dataSource = "data";  // Por defecto, usamos los datos completos
-
             // Aplicar filtro si se ha seleccionado
             if (filtro === "Diesel" || filtro === "5Puertas") {
                 const filterEntity = document.createElement('a-entity');
@@ -115,23 +113,22 @@ AFRAME.registerComponent('createsons', {
                 if (filtro === "Diesel") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
                 }else if (filtro === "5Puertas") {
-                    filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
+                    filterEntity.setAttribute('babia-filter', 'from: data; filter: doors==5');
                 }
 
                 scene.appendChild(filterEntity);
-                dataSource = "filter-data";  // Cambiamos la fuente de datos al filtrado
             }
 
             // Crear gráfico según el tipo
             if (tipo === "Barras") {
                 barChartEntity = document.createElement('a-entity');
-                barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
+                barChartEntity.setAttribute('babia-barsmap', `from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
                 barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
                 scene.appendChild(barChartEntity);
             } else if (tipo === "Circular") {
                 pieChartEntity = document.createElement('a-entity');
-                pieChartEntity.setAttribute('babia-pie', `from: ${dataSource}; legend: true; palette: blues; key: model; size: doors`);
+                pieChartEntity.setAttribute('babia-pie', `from: filter-data; legend: true; palette: blues; key: model; size: doors`);
                 pieChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
                 pieChartEntity.setAttribute('scale', '0.8 0.8 0.8');
                 pieChartEntity.setAttribute('rotation', '90 0 0');
