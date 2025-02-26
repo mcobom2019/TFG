@@ -79,22 +79,22 @@ AFRAME.registerComponent('createsons', {
                 mostrarSubmenu2(tipo, "Motor");
             });
 
-            var option2 = crearBoton("Color", "0 0.12 0.06", function () {
+            var option2 = crearBoton("Color", "0 0.25 0.06", function () {
                 //mostrarGrafico(tipo, "Diesel");
                 mostrarSubmenu2(tipo, "Color");
             });
 
-            var option3 = crearBoton("Puertas", "0 -0.12 0.06", function () {
+            var option3 = crearBoton("Puertas", "0 0 0.06", function () {
                 //mostrarGrafico(tipo, "5Puertas");
                 mostrarSubmenu2(tipo, "Puertas");
             });
             
-            var option4 = crearBoton("Ventas", "0 -0.35 0.06", function () {
+            var option4 = crearBoton("Ventas", "0 -0.25 0.06", function () {
                 //mostrarGrafico(tipo, "5Puertas");
                 mostrarSubmenu2(tipo, "Ventas");
             });
             
-            var option5 = crearBoton("Completo", "0 -0.55 0.06", function () {
+            var option5 = crearBoton("Completo", "0 -0.5 0.06", function () {
                 //mostrarGrafico(tipo, "5Puertas");
                 mostrarGrafico(tipo, " ");
             });
@@ -120,8 +120,8 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
           
-            var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
-                crearMenuPrincipal();
+            var backButton = crearBoton("<--", "-0.45 0.39 0.06", function () {
+                mostrarSubmenu(tipo)
             }, "orange", "0.2");
           
             if(tipo2 == "Motor"){
