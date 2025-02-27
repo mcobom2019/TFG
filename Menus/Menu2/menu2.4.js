@@ -143,7 +143,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
-            hacerArrastrable(subMenu, scene, lastMenuPosition);
+            hacerArrastrable(subMenu);
           
             var backButton = crearBoton("<--", "-0.45 0.39 0.06", function () {
                 mostrarSubmenu(tipo)
@@ -218,7 +218,12 @@ AFRAME.registerComponent('createsons', {
             cerrarGraficoPrevio();
 
             var parentPosition = el.getAttribute('position');
-            var newPosition = { x: parentPosition.x + 3, y: parentPosition.y, z: parentPosition.z };
+            var newPosition;
+            if (lastMenuPosition) {
+                newPosition = { x: lastMenuPosition.x + 2, y: lastMenuPosition.y - 1, z: lastMenuPosition.z };
+            } else {
+                newPosition = { x: parentPosition.x + 2, y: parentPosition.y - 1 , z: parentPosition.z };
+            }
 
             // Elimina filtrados previos
             var prevFilter = document.querySelector("#filter-data");
@@ -286,7 +291,7 @@ AFRAME.registerComponent('createsons', {
         function hacerArrastrable(elemento) {
             var isDragging = false;
             var offset = new THREE.Vector3();
-            var mouse = new THREE.Vector2();
+            var mouse = new THREE.Vector3();
             var raycaster = new THREE.Raycaster();
 
             elemento.addEventListener('mousedown', function (event) {
@@ -324,12 +329,6 @@ AFRAME.registerComponent('createsons', {
                 isDragging = false;
             });
         }
-
-
-
-
-
-
 
         function cerrarGraficoPrevio() {
             if (barChartEntity) {
