@@ -21,9 +21,6 @@ AFRAME.registerComponent('createsons', {
 
             var parentPosition = el.getAttribute('position');
             var isDragging = false;
-            var offset = new THREE.Vector3();
-            var mouse = new THREE.Vector2();
-            var raycaster = new THREE.Raycaster();
             var newPosition;
             if (lastMenuPosition) {
                 newPosition = lastMenuPosition;
@@ -49,37 +46,8 @@ AFRAME.registerComponent('createsons', {
             });
 
             var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
-            
-            menuPanel.addEventListener('mousedown', function (event) {
-                  isDragging = true;
-                  let panelPos = menuPanel.object3D.position;
-                  offset.set(
-                      event.detail.intersection.point.x - panelPos.x,
-                      event.detail.intersection.point.y - panelPos.y,
-                      event.detail.intersection.point.z - panelPos.z
-                  );
-            });
-          
-            // Mover el menú mientras se arrastra
-            scene.addEventListener('mousemove', function (event) {
-                if (isDragging) {
-                    let canvas = scene.renderer.domElement;
-                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
-                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
-                    raycaster.setFromCamera(mouse, scene.camera);
-
-                    let intersects = raycaster.intersectObject(menuPanel.object3D, true);
-                    if (intersects.length > 0) {
-                        menuPanel.object3D.position.copy(intersects[0].point.clone().sub(offset));
-                        lastMenuPosition = menuPanel.object3D.position.clone(); // Guardamos la nueva posición
-                    }
-                }
-            });
-
-            // Finalizar el arrastre
-            scene.addEventListener('mouseup', function () {
-                isDragging = false;
-            });
+             
+            hacerArrastrable(menuPanel);
 
             menuPanel.appendChild(barChartButton);
             menuPanel.appendChild(pieChartButton);
@@ -146,6 +114,8 @@ AFRAME.registerComponent('createsons', {
                 //mostrarGrafico(tipo, "5Puertas");
                 mostrarGrafico(tipo, " ");
             });
+          
+            hacerArrastrable(subMenu);
 
             subMenu.appendChild(backButton);
             subMenu.appendChild(option1);
@@ -172,6 +142,8 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+            
+            hacerArrastrable(subMenu, scene, lastMenuPosition);
           
             var backButton = crearBoton("<--", "-0.45 0.39 0.06", function () {
                 mostrarSubmenu(tipo)
@@ -310,6 +282,51 @@ AFRAME.registerComponent('createsons', {
                 scene.appendChild(pieChartEntity);
             }
         }
+      
+        function hacerArrastrable(elemento) {
+            var isDragging = false;
+            var offset = new THREE.Vector3();
+            var mouse = new THREE.Vector2();
+            var raycaster = new THREE.Raycaster();
+
+            elemento.addEventListener('mousedown', function (event) {
+                isDragging = true;
+                let panelPos = elemento.object3D.position;
+                offset.set(
+                    event.detail.intersection.point.x - panelPos.x,
+                    event.detail.intersection.point.y - panelPos.y,
+                    event.detail.intersection.point.z - panelPos.z
+                );
+            });
+
+            scene.addEventListener('mousemove', function (event) {
+                if (isDragging) {
+                    let canvas = scene.renderer.domElement;
+                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
+                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
+                    raycaster.setFromCamera(mouse, scene.camera);
+
+                    let intersects = raycaster.intersectObject(elemento.object3D, true);
+                    if (intersects.length > 0) {
+                        elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
+                    }
+                }
+            });
+
+            scene.addEventListener('mouseup', function () {
+                if (isDragging) {
+                    lastMenuPosition = {
+                        x: elemento.object3D.position.x,
+                        y: elemento.object3D.position.y,
+                        z: elemento.object3D.position.z
+                    };
+                }
+                isDragging = false;
+            });
+        }
+
+
+
 
 
 
