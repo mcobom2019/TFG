@@ -20,6 +20,10 @@ AFRAME.registerComponent('createsons', {
 
             var parentPosition = el.getAttribute('position');
             var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+            var isDragging = false;
+            var offset = new THREE.Vector3();
+            var mouse = new THREE.Vector2();
+            var raycaster = new THREE.Raycaster();
 
             menuPanel = document.createElement('a-box');
             menuPanel.setAttribute('width', '1');
@@ -37,6 +41,35 @@ AFRAME.registerComponent('createsons', {
             });
 
             var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+            
+            menuPanel.addEventListener('mousedown', function (event) {
+                  isDragging = true;
+                  let panelPos = menuPanel.object3D.position;
+                  offset.set(
+                      event.detail.intersection.point.x - panelPos.x,
+                      event.detail.intersection.point.y - panelPos.y,
+                      event.detail.intersection.point.z - panelPos.z
+                  );
+            });
+          
+            // Mover el menú mientras se arrastra
+            scene.addEventListener('mousemove', function (event) {
+                if (isDragging) {
+                    let canvas = scene.renderer.domElement;
+                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
+                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
+                    raycaster.setFromCamera(mouse, scene.camera);
+
+                    let intersects = raycaster.intersectObject(menuPanel.object3D, true);
+                    if (intersects.length > 0) {
+                        menuPanel.object3D.position.copy(intersects[0].point.clone().sub(offset));
+                    }
+                }
+            });
+            // Finalizar el arrastre
+            scene.addEventListener('mouseup', function () {
+                isDragging = false;
+            });
 
             menuPanel.appendChild(barChartButton);
             menuPanel.appendChild(pieChartButton);

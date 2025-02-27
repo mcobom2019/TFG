@@ -1,6 +1,6 @@
 Menu:
 
--Menú 1.0: Si se hace click sobre la esfera, nos aparecerá un menu flotante el cual tiene un boton de cerrar. Si se hace click sobre el boton cerrar(rojo) del menu, este se elimina. Si se vuelve a hacer click sobre la esfera, nos vuelve a crear un menú flotante.
+-Menú 1.1: Si se hace click sobre la esfera, nos aparecerá un menu flotante el cual tiene un boton de cerrar. Si se hace click sobre el boton cerrar(rojo) del menu, este se elimina. Si se vuelve a hacer click sobre la esfera, nos vuelve a crear un menú flotante.
 
 -Menú 1.2: Funciona igual que el menú 1 pero ahora se puede cambiar de posición el menú flotante arrastrandolo por la escena.
 
