@@ -1,5 +1,9 @@
--EnEn el segundo menú (menu2.2.html, menu2.2.js)tercer33o tenemos una implementaci´ón m´ás avanzada del men´ú 2, ahora tenemos dos submenus, pudiendo eegir que tipo de gr´áfico queremos ()diagramaBarras o Circular, podemos elegir el tipo de filtro 1()Motor, Color, Puertas o vVentas, por u´último podemos elegir el tio de filtro 2() Para motor tenTenemos motores el´éctricos, . T: 
-  Motores*Motores: El´éctricos, GaoDiesel o Gasolina.
-  *Color: Rojo, Blanco, Negro o Amarillo.
-  *Puertas: 3 puertas o 5 puertas.
-  *Ventas: M´ás de 10 ventas o menos de 10 ventas.
+Explicación:
+
+-En el primer menú (menu2.1.html, menu2.1.js) si pulsamos el boton rojo, nos aparece un menú flotante el cuál tiene dos opciones, Barras y Circular. Si hacemos click en uno de estos botones no aparecerá un digrama de barras o un diagrama circular correspondientes a los datos de data.json, si cuando uno de los diagramas esta en representación, volvemos a pulsar su botón en el menú, este desaparecerá al igual que si uno o los dos diagramas están en representación y pulsamos en boton rojo del menú, desaparecerá tanto los diagramas como el menú flotante.
+
+-En el segundo menú (menu2.2.html, menu2.2.js) si pulsamos el botón rojo nos aparecerá un menú con dos opciones Barras o Circular, si hacemos click en estas opciones nos aparecerá un submenú el cuál tiene un botón naranja para volver al menú principal y 83 opciones: Completo, Diesel o 5 Puertas, si hacemos click en cualquiera de las tres opciones nos aparecerá el diagrama correspondiente filtrado.
+
+-En el tercer menú (menu2.3.html, menu2.3.js) tenemos una implementación más avanzada del menú 2, ahora tenemos dos submenus, pudiendo elegir que tipo de diagrama queremos (Barras o Circular), podemos elegir el tipo de filtro 1(Motor, Color, Puertas o Ventas), por último podemos elegir el tio de filtro 2: *Motor: Eléctricos, Diesel o Gasolina. *Color: Rojo, Blanco, Negro o Amarillo. *Puertas: 3 puertas o 5 puertas. *Ventas: Más de 10 ventas o menos de 10 ventas.
+
+-En el cuarto menú (menu2.4.html, menu2.4.js) tenemos una implementación más avanzada del menú 3, ya que tiene todas sus funcionalidades, pero además, le he añadido que los menús se puedan arrastrar por la escena. Además, si el menú lo he llevado a otra posición diferente a la inicial y creo un diagrama, este no aparecerá en la posición inicial, sino equivalente a la posición actual del menú. Por último, he añadido una camara 3D para moverme dentro de la escena retocando el HTML.

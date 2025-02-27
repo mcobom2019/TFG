@@ -60,6 +60,7 @@ AFRAME.registerComponent('createsons', {
             if (menuPanel) {
                 scene.removeChild(menuPanel);
                 menuPanel = null;
+                //lastMenuPosition = null;
             }
             if (subMenu) {
                 scene.removeChild(subMenu);
