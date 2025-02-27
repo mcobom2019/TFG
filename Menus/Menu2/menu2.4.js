@@ -8,6 +8,7 @@ AFRAME.registerComponent('createsons', {
         var barsEntity = null;
         var pieChartEntity = null;
         var pieEntity = null;
+        var lastMenuPosition = null;
 
         el.addEventListener('click', function () {
             if (!menuPanel) {
@@ -19,11 +20,16 @@ AFRAME.registerComponent('createsons', {
             cerrarMenus();
 
             var parentPosition = el.getAttribute('position');
-            var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
             var isDragging = false;
             var offset = new THREE.Vector3();
             var mouse = new THREE.Vector2();
             var raycaster = new THREE.Raycaster();
+            var newPosition;
+            if (lastMenuPosition) {
+                newPosition = lastMenuPosition;
+            } else {
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+            }
 
             menuPanel = document.createElement('a-box');
             menuPanel.setAttribute('width', '1');
@@ -65,9 +71,11 @@ AFRAME.registerComponent('createsons', {
                     let intersects = raycaster.intersectObject(menuPanel.object3D, true);
                     if (intersects.length > 0) {
                         menuPanel.object3D.position.copy(intersects[0].point.clone().sub(offset));
+                        lastMenuPosition = menuPanel.object3D.position.clone(); // Guardamos la nueva posición
                     }
                 }
             });
+
             // Finalizar el arrastre
             scene.addEventListener('mouseup', function () {
                 isDragging = false;
@@ -96,14 +104,19 @@ AFRAME.registerComponent('createsons', {
         function mostrarSubmenu(tipo, posicion) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
-            var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+            var newPosition;
+            if (lastMenuPosition) {
+                newPosition = lastMenuPosition;
+            } else {
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+            }
 
             subMenu = document.createElement('a-box');
             subMenu.setAttribute('width', '1.1');
             subMenu.setAttribute('height', '1.3');
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
-            subMenu.setAttribute('position', `${posicion.x} ${posicion.y} ${posicion.z}`);
+            subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
             var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
                 crearMenuPrincipal();
@@ -146,7 +159,12 @@ AFRAME.registerComponent('createsons', {
         function mostrarSubmenu2(tipo, tipo2) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
-            var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+            var newPosition;
+            if (lastMenuPosition) {
+                newPosition = lastMenuPosition;
+            } else {
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+            }
 
             subMenu = document.createElement('a-box');
             subMenu.setAttribute('width', '1.1');
