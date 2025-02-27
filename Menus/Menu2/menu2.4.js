@@ -33,11 +33,13 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
             var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
-                mostrarSubmenu("Barras");
+                var posicion = el.getAttribute('position');
+                mostrarSubmenu("Barras", posicion);
             });
 
             var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
-                mostrarSubmenu("Circular");
+                var posicion = el.getAttribute('position');
+                mostrarSubmenu("Circular", posicion);
             });
 
             var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
@@ -91,7 +93,7 @@ AFRAME.registerComponent('createsons', {
         }
 
 
-        function mostrarSubmenu(tipo) {
+        function mostrarSubmenu(tipo, posicion) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
             var newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
@@ -101,7 +103,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('height', '1.3');
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
-            subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+            subMenu.setAttribute('position', `${posicion.x} ${posicion.y} ${posicion.z}`);
 
             var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
                 crearMenuPrincipal();
