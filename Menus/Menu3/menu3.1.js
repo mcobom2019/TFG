@@ -73,8 +73,8 @@ AFRAME.registerComponent('createsons', {
 
 
         function mostrarCatalogo(tipo, posicion) {
-            let numArticulos = 0;
             cerrarMenus();
+            let nombres=[];
             var parentPosition = el.getAttribute('position');
             var newPosition;
             if (lastMenuPosition) {
@@ -83,10 +83,20 @@ AFRAME.registerComponent('createsons', {
                 newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
             }
             
-            numArticulos = contarArticulos();
+            let numero = 0;
+            fetch("data.json")
+                  .then(response => response.json())
+                  .then(data => {
+                      numero = data.length; 
+                      console.log("Número de artículos en el catálogo:", numero);
+                       for(let i=0; i<numero; i++){
+                         nombres[i] = data[i].model;
+                       }
+                  })
+                  .catch(error => console.error("Error al cargar el JSON:", error));
           
-            for(let i=0; i<numArticulos; i++){
-                subMenu = document.createElement('a-box');
+            for(let i=0; i<numero; i++){
+                let subMenu = document.createElement('a-box');
                 subMenu.setAttribute('width', '1.1');
                 subMenu.setAttribute('height', '1.3');
                 subMenu.setAttribute('depth', '0.1');
@@ -97,7 +107,7 @@ AFRAME.registerComponent('createsons', {
                     crearMenuPrincipal();
                 }, "orange", "0.2");
                 
-                var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
+                var option1 = crearBoton(nombres[i], "0 0.5 0.06", function () {
                   //mostrarGrafico(tipo, "");
                   //mostrarSubmenu2(tipo, "Motor");
               });
@@ -142,21 +152,6 @@ AFRAME.registerComponent('createsons', {
             subMenu.appendChild(option4);
             subMenu.appendChild(option5);
             scene.appendChild(subMenu);*/
-        }
-      
-        function contarArticulos() {
-          let numero = 0;
-          fetch("data.json")
-                .then(response => response.json())
-                .then(data => {
-                    numero = data.length; 
-                    console.log("Número de artículos en el catálogo:", numero);
-                    for(let i=0; i<numArticulos; i++){
-                      
-                    }
-                })
-                .catch(error => console.error("Error al cargar el JSON:", error));
-          return numero;
         }
       
         /*function mostrarSubmenu2(tipo, tipo2) {
