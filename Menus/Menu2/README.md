@@ -8,4 +8,4 @@ Explicación:
 
 -En el cuarto menú (menu2.4.html, menu2.4.js) tenemos una implementación más avanzada del menú 3, ya que tiene todas sus funcionalidades, pero además, le he añadido que los menús se puedan arrastrar por la escena. Además, si el menú lo he llevado a otra posición diferente a la inicial y creo un diagrama, este no aparecerá en la posición inicial, sino equivalente a la posición actual del menú. Por último, he añadido una camara 3D para moverme dentro de la escena retocando el HTML.
 
--En el quinto menú (menu2.5.html, menu2.6.js) tenemos una implementación más avanzada del menú 4, he creado un submenú mas de cada opcion elegida en los anteriores submenús. AHora el último submenú incluye dos botones, uno para mostrar el diagrama y otro para borrarlo.
+-En el quinto menú (menu2.5.html, menu2.5.js) tenemos una implementación más avanzada del menú 4, he creado un submenú mas de cada opcion elegida en los anteriores submenús. AHora el último submenú incluye dos botones, uno para mostrar el diagrama y otro para borrarlo.
