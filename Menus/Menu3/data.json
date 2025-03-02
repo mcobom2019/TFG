@@ -1,0 +1,13 @@
+
+  [
+    {"model": "Tela Crep L", "tela": "Lana", "color": "red", "doors": 5, "sales": 10},
+    {"model": "Tela Crep C", "motor": "Algodon", "color": "white", "doors": 3, "sales": 15},
+    {"model": "Tela Gasa Schiffón", "motor": "Terciopelo", "color": "black", "doors": 5, "sales": 3},
+    {"model": "Tela Rafael", "motor": "Terciopelo", "color": "white", "doors": 5, "sales": 18},
+    {"model": "Tela Gabardina", "motor": "Lana", "color": "red", "doors": 5, "sales": 4},
+    {"model": "Tela Punto Lena", "motor": "Seda", "color": "red", "doors": 3, "sales": 12},
+    {"model": "Tela Raso Stretch", "motor": "Seda", "color": "white", "doors": 5, "sales": 5},
+    {"model": "Tela Doble Crep", "motor": "Algodon", "color": "yellow", "doors": 3, "sales": 20},
+    {"model": "Tela Tafeta Técnica", "motor": "Algodon", "color": "white", "doors": 5, "sales": 2},
+    {"model": "Tela Bambula", "motor": "gasoline", "color": "black", "doors": 3, "sales": 13}
+  ]
