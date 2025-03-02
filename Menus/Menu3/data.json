@@ -9,11 +9,11 @@
     {"model": "Raso Stretch", "type": "Seda", "color": "white", "stock": 10, "sales": 5},
     {"model": "Doble Crep", "type": "Algodon", "color": "yellow", "stock": 60, "sales": 20},
     {"model": "Tafeta Técnica", "type": "Algodon", "color": "white", "stock": 8, "sales": 2},
-    {"model": "Chanel Fantasía", "type": "Seda", "color": "black", "stock": 3, "sales": 13},
-    {"model": "Lentejuela Disco", "type": "Lana", "color": "black", "stock": 3, "sales": 13},
-    {"model": "Tul con Paillete", "type": "Terciopelo", "color": "black", "stock": 3, "sales": 13},
-    {"model": "Tweed Rústico", "type": "Algodon", "color": "black", "stock": 3, "sales": 13},
-    {"model": "Mahón Impermeable", "type": "Terciopelo", "color": "black", "stock": 3, "sales": 13},
-    {"model": "Crespón Lunar", "type": "Lana", "color": "black", "stock": 3, "sales": 13},
-    {"model": "Guipour Rústico", "type": "Algodon", "color": "black", "stock": 3, "sales": 13}
+    {"model": "Chanel Fantasía", "type": "Seda", "color": "black", "stock": 30, "sales": 13},
+    {"model": "Lentejuela Disco", "type": "Lana", "color": "black", "stock": 47, "sales": 13},
+    {"model": "Tul con Paillete", "type": "Terciopelo", "color": "black", "stock": 27, "sales": 13},
+    {"model": "Tweed Rústico", "type": "Algodon", "color": "black", "stock": 67, "sales": 13},
+    {"model": "Mahón Impermeable", "type": "Terciopelo", "color": "black", "stock": 0, "sales": 13},
+    {"model": "Crespón Lunar", "type": "Lana", "color": "black", "stock": 10, "sales": 13},
+    {"model": "Guipour Rústico", "type": "Algodon", "color": "black", "stock": 22, "sales": 13}
   ]
