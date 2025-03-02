@@ -83,40 +83,34 @@ AFRAME.registerComponent('createsons', {
                 newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
             }
             
-            let numero = 0;
-            fetch("data.json")
-                  .then(response => response.json())
-                  .then(data => {
-                      numero = data.length; 
-                      console.log("Número de artículos en el catálogo:", numero);
-                       for(let i=0; i<numero; i++){
-                         nombres[i] = data[i].model;
-                       }
-                  })
-                  .catch(error => console.error("Error al cargar el JSON:", error));
+            nombres = contarArticulos();
           
-            for(let i=0; i<numero; i++){
                 let subMenu = document.createElement('a-box');
                 subMenu.setAttribute('width', '1.1');
                 subMenu.setAttribute('height', '1.3');
                 subMenu.setAttribute('depth', '0.1');
                 subMenu.setAttribute('color', '#333');
-                subMenu.setAttribute('position', `${(newPosition.x + i)*1.2} ${newPosition.y} ${newPosition.z}`);
+                subMenu.setAttribute('position', `${newPosition.x } ${newPosition.y} ${newPosition.z}`);
+                
+
 
                 var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
                     crearMenuPrincipal();
                 }, "orange", "0.2");
+            subMenu.appendChild(backButton);
+            for(let i=0; i<2; i++){
                 
-                var option1 = crearBoton(nombres[i], "0 0.5 0.06", function () {
+                var option1 = crearBoton("hola", "0 0.5 0.06", function () {
                   //mostrarGrafico(tipo, "");
                   //mostrarSubmenu2(tipo, "Motor");
               });
-                hacerArrastrable(subMenu);
+                
 
-                subMenu.appendChild(backButton);
+                
                 subMenu.appendChild(option1);
-                scene.appendChild(subMenu);
             }
+            hacerArrastrable(subMenu);
+            scene.appendChild(subMenu);
 
             /*var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
                 //mostrarGrafico(tipo, "");
@@ -278,6 +272,23 @@ AFRAME.registerComponent('createsons', {
               scene.appendChild(subMenu);
               
         }*/
+        
+        function contarArticulos() {
+          let numero = 0;
+          let nombres = [];
+            fetch("data.json")
+                  .then(response => response.json())
+                  .then(data => {
+                      numero = data.length; 
+                      console.log("Número de artículos en el catálogo:", numero);
+                       for(let i=0; i<numero; i++){
+                          console.log("Nombre:", data[i].model);
+                           nombres.push(data[i].model);
+                       }
+                  })
+                  .catch(error => console.error("Error al cargar el JSON:", error));
+          return nombres;
+        }
 
         function mostrarGrafico(tipo, filtro) {
             cerrarGraficoPrevio();
