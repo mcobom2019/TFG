@@ -73,44 +73,42 @@ AFRAME.registerComponent('createsons', {
 
 
         function mostrarCatalogo(tipo, posicion) {
-            cerrarMenus();
-            let nombres=[];
-            var parentPosition = el.getAttribute('position');
-            var newPosition;
-            if (lastMenuPosition) {
-                newPosition = lastMenuPosition;
-            } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
-            }
-            
-            nombres = contarArticulos();
-          
-                let subMenu = document.createElement('a-box');
-                subMenu.setAttribute('width', '1.1');
-                subMenu.setAttribute('height', '1.3');
-                subMenu.setAttribute('depth', '0.1');
-                subMenu.setAttribute('color', '#333');
-                subMenu.setAttribute('position', `${newPosition.x } ${newPosition.y} ${newPosition.z}`);
-                
+          cerrarMenus();
 
+          var parentPosition = el.getAttribute('position');
+          var newPosition;
+          if (lastMenuPosition) {
+              newPosition = lastMenuPosition;
+          } else {
+              newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+          }
 
-                var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
-                    crearMenuPrincipal();
-                }, "orange", "0.2");
-            subMenu.appendChild(backButton);
-            for(let i=0; i<2; i++){
-                
-                var option1 = crearBoton("hola", "0 0.5 0.06", function () {
-                  //mostrarGrafico(tipo, "");
-                  //mostrarSubmenu2(tipo, "Motor");
+          contarArticulos().then(nombres => {
+              let subMenu = document.createElement('a-box');
+              subMenu.setAttribute('width', '1.1');
+              subMenu.setAttribute('height', '1.3');
+              subMenu.setAttribute('depth', '0.1');
+              subMenu.setAttribute('color', '#333');
+              subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+
+              var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
+                  crearMenuPrincipal();
+              }, "orange", "0.2");
+              subMenu.appendChild(backButton);
+
+              nombres.forEach((nombre, index) => {
+                  let posY = 0.4 - index * 0.2; // Espaciado vertical
+                  var optionButton = crearBoton(nombre, `0 ${posY} 0.06`, function () {
+                      console.log("Seleccionaste:", nombre);
+                  });
+
+                  subMenu.appendChild(optionButton);
               });
-                
 
-                
-                subMenu.appendChild(option1);
-            }
-            hacerArrastrable(subMenu);
-            scene.appendChild(subMenu);
+              hacerArrastrable(subMenu);
+              scene.appendChild(subMenu);
+          });
+      }
 
             /*var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
                 //mostrarGrafico(tipo, "");
@@ -146,7 +144,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.appendChild(option4);
             subMenu.appendChild(option5);
             scene.appendChild(subMenu);*/
-        }
+        
       
         /*function mostrarSubmenu2(tipo, tipo2) {
             cerrarMenus();
@@ -274,21 +272,20 @@ AFRAME.registerComponent('createsons', {
         }*/
         
         function contarArticulos() {
-          let numero = 0;
-          let nombres = [];
-            fetch("data.json")
-                  .then(response => response.json())
-                  .then(data => {
-                      numero = data.length; 
-                      console.log("Número de artículos en el catálogo:", numero);
-                       for(let i=0; i<numero; i++){
-                          console.log("Nombre:", data[i].model);
-                           nombres.push(data[i].model);
-                       }
-                  })
-                  .catch(error => console.error("Error al cargar el JSON:", error));
-          return nombres;
-        }
+          return fetch("data.json")
+              .then(response => response.json())
+              .then(data => {
+                  let nombres = data.map(item => item.model); // Extrae los nombres de los modelos
+                  console.log("Número de artículos en el catálogo:", nombres.length);
+                  console.log("Nombres:", nombres);
+                  return nombres; // Devuelve la lista de nombres
+              })
+              .catch(error => {
+                  console.error("Error al cargar el JSON:", error);
+                  return []; // En caso de error, devuelve una lista vacía
+              });
+      }
+
 
         function mostrarGrafico(tipo, filtro) {
             cerrarGraficoPrevio();
