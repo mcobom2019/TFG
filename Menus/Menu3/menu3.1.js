@@ -72,7 +72,7 @@ AFRAME.registerComponent('createsons', {
         }
 
 
-        function mostrarCatalogo(tipo, posicion) {
+        async function mostrarCatalogo(tipo, posicion) {
             cerrarMenus();
             let nombres=[];
             var parentPosition = el.getAttribute('position');
@@ -83,7 +83,7 @@ AFRAME.registerComponent('createsons', {
                 newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
             }
             
-            nombres = contarArticulos();
+            nombres = await loadModels();
           
             for(let i=0; i<nombres.length; i++){
                 let subMenu = document.createElement('a-box');
@@ -269,22 +269,24 @@ AFRAME.registerComponent('createsons', {
               
         }*/
         
-        function contarArticulos() {
-          let numero = 0;
-          let nombres = [];
-            fetch("data.json")
-                  .then(response => response.json())
-                  .then(data => {
-                      numero = data.length; 
-                      console.log("Número de artículos en el catálogo:", numero);
-                       for(let i=0; i<numero; i++){
-                          console.log("Nombre:", data[i].model);
-                           nombres[i] = data[i].model;
-                       }
-                  })
-                  .catch(error => console.error("Error al cargar el JSON:", error));
-          return nombres;
+        async function loadModels() {
+            try {
+                const response = await fetch('models.json'); // Cambia la ruta si es necesario
+                const data = await response.json();
+
+                const modelsArray = data.map(item => item.model); // Extraer solo los modelos
+                return modelsArray;
+            } catch (error) {
+                console.error("Error cargando el JSON:", error);
+                return [];
+            }
         }
+
+        // Llamar a la función y manejar los modelos
+        loadModels().then(models => {
+            console.log("Modelos cargados:", models);
+        });
+
 
         function mostrarGrafico(tipo, filtro) {
             cerrarGraficoPrevio();
