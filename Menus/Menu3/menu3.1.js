@@ -72,7 +72,8 @@ AFRAME.registerComponent('createsons', {
         }
 
 
-        function mostrarCatalogou(tipo, posicion) {
+        function mostrarCatalogo(tipo, posicion) {
+            let numArticulos = 0;
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
             var newPosition;
@@ -81,23 +82,33 @@ AFRAME.registerComponent('createsons', {
             } else {
                 newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
             }
+            
+            numArticulos = contarArticulos();
           
-            for(let i=0; i<3; i++){
-              
+            for(let i=0; i<numArticulos; i++){
+                subMenu = document.createElement('a-box');
+                subMenu.setAttribute('width', '1.1');
+                subMenu.setAttribute('height', '1.3');
+                subMenu.setAttribute('depth', '0.1');
+                subMenu.setAttribute('color', '#333');
+                subMenu.setAttribute('position', `${(newPosition.x + i)*1.2} ${newPosition.y} ${newPosition.z}`);
+
+                var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
+                    crearMenuPrincipal();
+                }, "orange", "0.2");
+                
+                var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
+                  //mostrarGrafico(tipo, "");
+                  //mostrarSubmenu2(tipo, "Motor");
+              });
+                hacerArrastrable(subMenu);
+
+                subMenu.appendChild(backButton);
+                subMenu.appendChild(option1);
+                scene.appendChild(subMenu);
             }
 
-            subMenu = document.createElement('a-box');
-            subMenu.setAttribute('width', '1.1');
-            subMenu.setAttribute('height', '1.3');
-            subMenu.setAttribute('depth', '0.1');
-            subMenu.setAttribute('color', '#333');
-            subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-
-            var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
-                crearMenuPrincipal();
-            }, "orange", "0.2");
-
-            var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
+            /*var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
                 //mostrarGrafico(tipo, "");
                 mostrarSubmenu2(tipo, "Motor");
             });
@@ -130,10 +141,25 @@ AFRAME.registerComponent('createsons', {
             subMenu.appendChild(option3);
             subMenu.appendChild(option4);
             subMenu.appendChild(option5);
-            scene.appendChild(subMenu);
+            scene.appendChild(subMenu);*/
         }
       
-        function mostrarSubmenu2(tipo, tipo2) {
+        function contarArticulos() {
+          let numero = 0;
+          fetch("data.json")
+                .then(response => response.json())
+                .then(data => {
+                    numero = data.length; 
+                    console.log("Número de artículos en el catálogo:", numero);
+                    for(let i=0; i<numArticulos; i++){
+                      
+                    }
+                })
+                .catch(error => console.error("Error al cargar el JSON:", error));
+          return numero;
+        }
+      
+        /*function mostrarSubmenu2(tipo, tipo2) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
             var newPosition;
@@ -256,7 +282,7 @@ AFRAME.registerComponent('createsons', {
               subMenu.appendChild(option2);
               scene.appendChild(subMenu);
               
-        }
+        }*/
 
         function mostrarGrafico(tipo, filtro) {
             cerrarGraficoPrevio();
