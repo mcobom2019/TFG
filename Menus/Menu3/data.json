@@ -1,13 +1,19 @@
 
   [
-    {"model": "Tela Crep L", "tela": "Lana", "color": "red", "doors": 5, "sales": 10},
-    {"model": "Tela Crep C", "motor": "Algodon", "color": "white", "doors": 3, "sales": 15},
-    {"model": "Tela Gasa Schiffón", "motor": "Terciopelo", "color": "black", "doors": 5, "sales": 3},
-    {"model": "Tela Rafael", "motor": "Terciopelo", "color": "white", "doors": 5, "sales": 18},
-    {"model": "Tela Gabardina", "motor": "Lana", "color": "red", "doors": 5, "sales": 4},
-    {"model": "Tela Punto Lena", "motor": "Seda", "color": "red", "doors": 3, "sales": 12},
-    {"model": "Tela Raso Stretch", "motor": "Seda", "color": "white", "doors": 5, "sales": 5},
-    {"model": "Tela Doble Crep", "motor": "Algodon", "color": "yellow", "doors": 3, "sales": 20},
-    {"model": "Tela Tafeta Técnica", "motor": "Algodon", "color": "white", "doors": 5, "sales": 2},
-    {"model": "Tela Bambula", "motor": "gasoline", "color": "black", "doors": 3, "sales": 13}
+    {"model": "Crep L", "type": "Lana", "color": "red", "stock": 50, "sales": 10},
+    {"model": "Crep C", "type": "Algodon", "color": "white", "stock": 30, "sales": 15},
+    {"model": "Gasa Schiffón", "type": "Terciopelo", "color": "black", "stock": 15, "sales": 3},
+    {"model": "Tul Rafael", "type": "Terciopelo", "color": "white", "stock": 25, "sales": 18},
+    {"model": "Raso Gabardina", "type": "Lana", "color": "red", "stock": 32, "sales": 4},
+    {"model": "Punto Lena", "type": "Seda", "color": "red", "stock": 12, "sales": 12},
+    {"model": "Raso Stretch", "type": "Seda", "color": "white", "stock": 10, "sales": 5},
+    {"model": "Doble Crep", "type": "Algodon", "color": "yellow", "stock": 60, "sales": 20},
+    {"model": "Tafeta Técnica", "type": "Algodon", "color": "white", "stock": 8, "sales": 2},
+    {"model": "Chanel Fantasía", "type": "Seda", "color": "black", "stock": 3, "sales": 13},
+    {"model": "Lentejuela Disco", "type": "Lana", "color": "black", "stock": 3, "sales": 13},
+    {"model": "Tul con Paillete", "type": "Terciopelo", "color": "black", "stock": 3, "sales": 13},
+    {"model": "Tweed Rústico", "type": "Algodon", "color": "black", "stock": 3, "sales": 13},
+    {"model": "Mahón Impermeable", "type": "Terciopelo", "color": "black", "stock": 3, "sales": 13},
+    {"model": "Crespón Lunar", "type": "Lana", "color": "black", "stock": 3, "sales": 13},
+    {"model": "Guipour Rústico", "type": "Algodon", "color": "black", "stock": 3, "sales": 13}
   ]
