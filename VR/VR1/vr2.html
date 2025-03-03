@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<!-- Simple physics
+  Using aframe-physics-system.
+
+  The yellow plane stays static. Red and blue boxes fall down on the plane.
+  Green box falls down too, but when it collides, it receives an impulse
+  towards right (positive Y axis). Due to that impulse, it may push
+  the red box to the right (in some cases, until it falls down).
+-->
+
+<html>
+  <head>
+    <script src="//aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/MozillaReality/ammo.js@8bbc0ea/builds/ammo.wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.js"></script>
+
+     <script>
+      AFRAME.registerComponent('push', {
+        init: function() {
+        var el = this.el;
+
+        el.addEventListener("collidestart", function () {
+          const impulse = new Ammo.btVector3(1.4, 1, 0);
+          const pos = new Ammo.btVector3(0, 0, 0);
+          //el.body.applyForce(force, pos);
+          el.body.applyImpulse(impulse, pos);
+          //el.body.setLinearVelocity( force );
+          Ammo.destroy(impulse);
+          Ammo.destroy(pos);
+          });
+        }
+      });
+    </script>
+
+  </head>
+  <body>
+    <a-scene physics="driver: ammo; debug: true; debugDrawMode: 1;">
+      <!-- Camera -->
+      <a-entity camera position="0 1.6 5" look-controls wasd-controls></a-entity>
+      <!-- Static floor -->
+      <a-plane ammo-body="type: static" ammo-shape="type: box"
+          position="0 0 -4" rotation="-90 0 0" width="16" height="12"
+          color="yellow"></a-plane>
+      <!-- Dynamic box -->
+      <a-box ammo-body="type: dynamic" ammo-shape="type: box"
+          position="0 4 -2" width="3" height="2" depth="1"
+          color="red"></a-box>
+      <!-- Dynamic box -->
+      <a-box ammo-body="type: dynamic" ammo-shape="type: box"
+          position="2 10 0" width="1" height="1" depth="1"
+          color="blue"></a-box>
+      <!-- Dynamic box with impusle when colliding -->
+      <a-entity geometry="primitive: box" push
+          ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"
+          position="-3 4 -2" width="1" height="1" depth="1"
+          material="color: green"></a-entity>
+    </a-scene>
+  </body>
+</html>
