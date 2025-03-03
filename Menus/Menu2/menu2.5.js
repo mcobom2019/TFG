@@ -302,9 +302,9 @@ AFRAME.registerComponent('createsons', {
                 }else if (filtro === "5puertas") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
                 }//else if (filtro === "alta") {
-                 //   filterEntity.setAttribute('babia-filter', 'from: data; filter: parseInt(sales)10');
+                 //   filterEntity.setAttribute('babia-filter', 'from: data; filter: sales<=10');
                 //}else if (filtro === "baja") {
-                //    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales<=9');
+                //    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales>=9');
                 //}
 
                 scene.appendChild(filterEntity);
