@@ -36,15 +36,14 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('color', '#333');
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
-            var barChartButton = crearBoton("Ver Catálogo", "0 0.1 0.06", function () {
+            var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
                 var posicion = el.getAttribute('position');
-                mostrarCatalogo("Barras", posicion);
+                mostrarSubmenu("Barras", posicion);
             });
 
-            var pieChartButton = crearBoton("Cerrar", "0 -0.2 0.06", function () {
+            var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
                 var posicion = el.getAttribute('position');
-                cerrarMenus();
-                //mostrarSubmenu("Circular", posicion);
+                mostrarSubmenu("Circular", posicion);
             });
 
             var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
@@ -72,9 +71,8 @@ AFRAME.registerComponent('createsons', {
         }
 
 
-        async function mostrarCatalogo(tipo, posicion) {
+        function mostrarSubmenu(tipo, posicion) {
             cerrarMenus();
-            let nombres=[];
             var parentPosition = el.getAttribute('position');
             var newPosition;
             if (lastMenuPosition) {
@@ -82,33 +80,19 @@ AFRAME.registerComponent('createsons', {
             } else {
                 newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
             }
-            
-            nombres = await loadModels();
-          
-            for(let i=0; i<nombres.length; i++){
-                let subMenu = document.createElement('a-box');
-                subMenu.setAttribute('width', '1.1');
-                subMenu.setAttribute('height', '1.3');
-                subMenu.setAttribute('depth', '0.1');
-                subMenu.setAttribute('color', '#333');
-                subMenu.setAttribute('position', `${(newPosition.x + i)*1.2} ${newPosition.y} ${newPosition.z}`);
 
-                var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
-                    crearMenuPrincipal();
-                }, "orange", "0.2");
-                
-                var option1 = crearBoton(nombres[i], "0 0.5 0.06", function () {
-                  //mostrarGrafico(tipo, "");
-                  //mostrarSubmenu2(tipo, "Motor");
-              });
-                hacerArrastrable(subMenu);
+            subMenu = document.createElement('a-box');
+            subMenu.setAttribute('width', '1.1');
+            subMenu.setAttribute('height', '1.3');
+            subMenu.setAttribute('depth', '0.1');
+            subMenu.setAttribute('color', '#333');
+            subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
-                subMenu.appendChild(backButton);
-                subMenu.appendChild(option1);
-                scene.appendChild(subMenu);
-            }
+            var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
+                crearMenuPrincipal();
+            }, "orange", "0.2");
 
-            /*var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
+            var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
                 //mostrarGrafico(tipo, "");
                 mostrarSubmenu2(tipo, "Motor");
             });
@@ -141,10 +125,10 @@ AFRAME.registerComponent('createsons', {
             subMenu.appendChild(option3);
             subMenu.appendChild(option4);
             subMenu.appendChild(option5);
-            scene.appendChild(subMenu);*/
+            scene.appendChild(subMenu);
         }
       
-        /*function mostrarSubmenu2(tipo, tipo2) {
+        function mostrarSubmenu2(tipo, tipo2) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
             var newPosition;
@@ -267,26 +251,7 @@ AFRAME.registerComponent('createsons', {
               subMenu.appendChild(option2);
               scene.appendChild(subMenu);
               
-        }*/
-        
-        async function loadModels() {
-            try {
-                const response = await fetch('models.json'); // Cambia la ruta si es necesario
-                const data = await response.json();
-
-                const modelsArray = data.map(item => item.model); // Extraer solo los modelos
-                return modelsArray;
-            } catch (error) {
-                console.error("Error cargando el JSON:", error);
-                return [];
-            }
         }
-
-        // Llamar a la función y manejar los modelos
-        loadModels().then(models => {
-            console.log("Modelos cargados:", models);
-        });
-
 
         function mostrarGrafico(tipo, filtro) {
             cerrarGraficoPrevio();
@@ -337,9 +302,9 @@ AFRAME.registerComponent('createsons', {
                 }else if (filtro === "5puertas") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
                 }//else if (filtro === "alta") {
-                 //   filterEntity.setAttribute('babia-filter', 'from: data; filter: parseInt(sales)10');
+                 //   filterEntity.setAttribute('babia-filter', 'from: data; filter: sales<=10');
                 //}else if (filtro === "baja") {
-                //    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales<=9');
+                //    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales>=9');
                 //}
 
                 scene.appendChild(filterEntity);
