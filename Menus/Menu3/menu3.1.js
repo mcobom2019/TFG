@@ -34,6 +34,7 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('height', '0.7');
             menuPanel.setAttribute('depth', '0.1');
             menuPanel.setAttribute('color', '#333');
+            //menuPanel.setAttribute('class',"clickable");
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
             var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
@@ -374,6 +375,8 @@ AFRAME.registerComponent('createsons', {
                 isDragging = false;
             });
         }
+      
+      
 
         function cerrarGraficoPrevio() {
             if (barChartEntity) {
@@ -394,8 +397,33 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('color', color);
             button.setAttribute('position', posicion);
             button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
+            button.setAttribute('class',"clickable");
             button.addEventListener('click', onClick);
             return button;
         }
     }
 });
+
+AFRAME.registerComponent('joystick-movement', {
+      init: function () {
+        let cameraRig = document.querySelector("#cameraRig");
+        let speed = 0.1; // Ajusta la velocidad de movimiento
+
+        function moveCamera(event) {
+          let x = event.detail.x; // Movimiento horizontal del joystick
+          let y = event.detail.y; // Movimiento vertical del joystick
+
+          let position = cameraRig.getAttribute("position");
+
+          // Mueve la cámara en base a los ejes del joystick
+          position.x += x * speed;
+          position.z += y * speed;
+
+          cameraRig.setAttribute("position", position);
+        }
+
+        // Detecta el movimiento del joystick en los controladores
+        document.querySelector("#leftController").addEventListener("thumbstickmoved", moveCamera);
+        document.querySelector("#rightController").addEventListener("thumbstickmoved", moveCamera);
+      }
+    });
