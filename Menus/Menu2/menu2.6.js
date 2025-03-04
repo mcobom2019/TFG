@@ -336,42 +336,29 @@ AFRAME.registerComponent('createsons', {
         function hacerArrastrable(elemento) {
             var isDragging = false;
             var offset = new THREE.Vector3();
-            var plane = new THREE.Plane();
-            var intersection = new THREE.Vector3();
+            var mouse = new THREE.Vector3();
             var raycaster = new THREE.Raycaster();
-            var mouse = new THREE.Vector2();
-            var camera = document.querySelector("a-camera").object3D.children[0]; // Obtener la cámara
 
             elemento.addEventListener('mousedown', function (event) {
                 isDragging = true;
-
-                // Definir un plano perpendicular a la cámara para proyectar el movimiento
-                plane.setFromNormalAndCoplanarPoint(
-                    camera.getWorldDirection(new THREE.Vector3()), 
-                    elemento.object3D.position
+                let panelPos = elemento.object3D.position;
+                offset.set(
+                    event.detail.intersection.point.x - panelPos.x,
+                    event.detail.intersection.point.y - panelPos.y,
+                    event.detail.intersection.point.z - panelPos.z
                 );
-
-                // Calcular la intersección inicial del rayo con el plano
-                mouse.set(
-                    (event.detail.cursorEl.components.cursor.intersection.point.x / window.innerWidth) * 2 - 1,
-                    -(event.detail.cursorEl.components.cursor.intersection.point.y / window.innerHeight) * 2 + 1
-                );
-
-                raycaster.setFromCamera(mouse, camera);
-                raycaster.ray.intersectPlane(plane, intersection);
-                offset.copy(intersection).sub(elemento.object3D.position);
             });
 
             scene.addEventListener('mousemove', function (event) {
                 if (isDragging) {
-                    mouse.set(
-                        (event.clientX / window.innerWidth) * 2 - 1,
-                        -(event.clientY / window.innerHeight) * 2 + 1
-                    );
+                    let canvas = scene.renderer.domElement;
+                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
+                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
+                    raycaster.setFromCamera(mouse, scene.camera);
 
-                    raycaster.setFromCamera(mouse, camera);
-                    if (raycaster.ray.intersectPlane(plane, intersection)) {
-                        elemento.object3D.position.copy(intersection.sub(offset));
+                    let intersects = raycaster.intersectObject(elemento.object3D, true);
+                    if (intersects.length > 0) {
+                        elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
                     }
                 }
             });
@@ -387,7 +374,6 @@ AFRAME.registerComponent('createsons', {
                 isDragging = false;
             });
         }
-
 
         function cerrarGraficoPrevio() {
             if (barChartEntity) {
