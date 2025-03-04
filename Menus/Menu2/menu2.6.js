@@ -374,43 +374,6 @@ AFRAME.registerComponent('createsons', {
                 }
                 isDragging = false;
             });
-          
-          
-          controller.addEventListener('selectstart', function (event) {
-              isDragging = true;
-              let panelPos = elemento.object3D.position;
-              offset.set(
-                  event.target.position.x - panelPos.x,
-                  event.target.position.y - panelPos.y,
-                  event.target.position.z - panelPos.z
-              );
-          });
-
-          scene.addEventListener('mousemove', function (event) {
-                if (isDragging) {
-                    let canvas = scene.renderer.domElement;
-                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
-                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
-                    raycaster.setFromCamera(mouse, scene.camera);
-
-                    let intersects = raycaster.intersectObject(elemento.object3D, true);
-                    if (intersects.length > 0) {
-                        elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
-                    }
-                }
-            });
-
-            scene.addEventListener('mouseup', function () {
-                if (isDragging) {
-                    lastMenuPosition = {
-                        x: elemento.object3D.position.x,
-                        y: elemento.object3D.position.y,
-                        z: elemento.object3D.position.z
-                    };
-                }
-                isDragging = false;
-            });
-
         }
       
       
