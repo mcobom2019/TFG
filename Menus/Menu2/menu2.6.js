@@ -334,12 +334,13 @@ AFRAME.registerComponent('createsons', {
         }
       
         function hacerArrastrable(elemento) {
-    var isDragging = false;
-    var offset = new THREE.Vector3();
-    var raycaster = new THREE.Raycaster();
-    var mouse = new THREE.Vector2();
-    
-    // Para el ratón
+    let isDragging = false;
+    let offset = new THREE.Vector3();
+    let raycaster = new THREE.Raycaster();
+    let mouse = new THREE.Vector2();
+    let selectedController = null;
+
+    // 🖱️ Para el RATÓN
     elemento.addEventListener('mousedown', function (event) {
         isDragging = true;
         let panelPos = elemento.object3D.position;
@@ -368,19 +369,24 @@ AFRAME.registerComponent('createsons', {
         isDragging = false;
     });
 
-    // Para VR - Controladores de las gafas
-    controller.addEventListener('selectstart', function () {
-        const intersection = checkIntersection(controller, elemento);
-        if (intersection) {
-            isDragging = true;
-            offset.copy(intersection.point).sub(elemento.position);
-        }
-    });
+    // 🎮 Para las GAFAS VR (Controladores)
+    function setupVRController(controller) {
+        controller.addEventListener('selectstart', function () {
+            const intersection = checkIntersection(controller, elemento);
+            if (intersection) {
+                isDragging = true;
+                selectedController = controller;
+                offset.copy(intersection.point).sub(elemento.position);
+            }
+        });
 
-    controller.addEventListener('selectend', function () {
-        isDragging = false;
-    });
+        controller.addEventListener('selectend', function () {
+            isDragging = false;
+            selectedController = null;
+        });
+    }
 
+    // 🔍 Función para detectar intersección con el puntero láser
     function checkIntersection(controller, object) {
         const tempMatrix = new THREE.Matrix4().identity().extractRotation(controller.matrixWorld);
         raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
@@ -390,14 +396,18 @@ AFRAME.registerComponent('createsons', {
         return intersects.length > 0 ? intersects[0] : null;
     }
 
+    // 🎥 Actualizar posición si se está arrastrando
     function animate() {
-        if (isDragging) {
-            const controllerPosition = new THREE.Vector3();
-            controller.getWorldPosition(controllerPosition);
-            elemento.position.copy(controllerPosition);
+        if (isDragging && selectedController) {
+            let controllerPosition = new THREE.Vector3();
+            selectedController.getWorldPosition(controllerPosition);
+            elemento.position.copy(controllerPosition.sub(offset));
         }
         requestAnimationFrame(animate);
     }
+
+    // 🕹️ Configurar controladores VR
+    setupVRController(controller);
     animate();
 }
 
