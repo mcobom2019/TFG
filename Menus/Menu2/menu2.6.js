@@ -334,46 +334,73 @@ AFRAME.registerComponent('createsons', {
         }
       
         function hacerArrastrable(elemento) {
-            var isDragging = false;
-            var offset = new THREE.Vector3();
-            var mouse = new THREE.Vector3();
-            var raycaster = new THREE.Raycaster();
+    var isDragging = false;
+    var offset = new THREE.Vector3();
+    var raycaster = new THREE.Raycaster();
+    var mouse = new THREE.Vector2();
+    
+    // Para el ratón
+    elemento.addEventListener('mousedown', function (event) {
+        isDragging = true;
+        let panelPos = elemento.object3D.position;
+        offset.set(
+            event.detail.intersection.point.x - panelPos.x,
+            event.detail.intersection.point.y - panelPos.y,
+            event.detail.intersection.point.z - panelPos.z
+        );
+    });
 
-            elemento.addEventListener('mousedown', function (event) {
-                isDragging = true;
-                let panelPos = elemento.object3D.position;
-                offset.set(
-                    event.detail.intersection.point.x - panelPos.x,
-                    event.detail.intersection.point.y - panelPos.y,
-                    event.detail.intersection.point.z - panelPos.z
-                );
-            });
+    scene.addEventListener('mousemove', function (event) {
+        if (isDragging) {
+            let canvas = scene.renderer.domElement;
+            mouse.x = (event.clientX / canvas.width) * 2 - 1;
+            mouse.y = -(event.clientY / canvas.height) * 2 + 1;
+            raycaster.setFromCamera(mouse, scene.camera);
 
-            scene.addEventListener('mousemove', function (event) {
-                if (isDragging) {
-                    let canvas = scene.renderer.domElement;
-                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
-                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
-                    raycaster.setFromCamera(mouse, scene.camera);
-
-                    let intersects = raycaster.intersectObject(elemento.object3D, true);
-                    if (intersects.length > 0) {
-                        elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
-                    }
-                }
-            });
-
-            scene.addEventListener('mouseup', function () {
-                if (isDragging) {
-                    lastMenuPosition = {
-                        x: elemento.object3D.position.x,
-                        y: elemento.object3D.position.y,
-                        z: elemento.object3D.position.z
-                    };
-                }
-                isDragging = false;
-            });
+            let intersects = raycaster.intersectObject(elemento.object3D, true);
+            if (intersects.length > 0) {
+                elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
+            }
         }
+    });
+
+    scene.addEventListener('mouseup', function () {
+        isDragging = false;
+    });
+
+    // Para VR - Controladores de las gafas
+    controller.addEventListener('selectstart', function () {
+        const intersection = checkIntersection(controller, elemento);
+        if (intersection) {
+            isDragging = true;
+            offset.copy(intersection.point).sub(elemento.position);
+        }
+    });
+
+    controller.addEventListener('selectend', function () {
+        isDragging = false;
+    });
+
+    function checkIntersection(controller, object) {
+        const tempMatrix = new THREE.Matrix4().identity().extractRotation(controller.matrixWorld);
+        raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
+        raycaster.ray.direction.set(0, 0, -1).applyMatrix4(tempMatrix);
+
+        const intersects = raycaster.intersectObject(object);
+        return intersects.length > 0 ? intersects[0] : null;
+    }
+
+    function animate() {
+        if (isDragging) {
+            const controllerPosition = new THREE.Vector3();
+            controller.getWorldPosition(controllerPosition);
+            elemento.position.copy(controllerPosition);
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
 
         function cerrarGraficoPrevio() {
             if (barChartEntity) {
@@ -394,6 +421,7 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('color', color);
             button.setAttribute('position', posicion);
             button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
+            button.setAttribute('class',"clickable");
             button.addEventListener('click', onClick);
             return button;
         }
