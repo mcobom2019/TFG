@@ -34,6 +34,7 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('height', '0.7');
             menuPanel.setAttribute('depth', '0.1');
             menuPanel.setAttribute('color', '#333');
+            //menuPanel.setAttribute('class',"clickable");
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
             var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
@@ -334,83 +335,85 @@ AFRAME.registerComponent('createsons', {
         }
       
         function hacerArrastrable(elemento) {
-    let isDragging = false;
-    let offset = new THREE.Vector3();
-    let raycaster = new THREE.Raycaster();
-    let mouse = new THREE.Vector2();
-    let selectedController = null;
+            var isDragging = false;
+            var offset = new THREE.Vector3();
+            var mouse = new THREE.Vector3();
+            var raycaster = new THREE.Raycaster();
 
-    // 🖱️ Para el RATÓN
-    elemento.addEventListener('mousedown', function (event) {
-        isDragging = true;
-        let panelPos = elemento.object3D.position;
-        offset.set(
-            event.detail.intersection.point.x - panelPos.x,
-            event.detail.intersection.point.y - panelPos.y,
-            event.detail.intersection.point.z - panelPos.z
-        );
-    });
-
-    scene.addEventListener('mousemove', function (event) {
-        if (isDragging) {
-            let canvas = scene.renderer.domElement;
-            mouse.x = (event.clientX / canvas.width) * 2 - 1;
-            mouse.y = -(event.clientY / canvas.height) * 2 + 1;
-            raycaster.setFromCamera(mouse, scene.camera);
-
-            let intersects = raycaster.intersectObject(elemento.object3D, true);
-            if (intersects.length > 0) {
-                elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
-            }
-        }
-    });
-
-    scene.addEventListener('mouseup', function () {
-        isDragging = false;
-    });
-
-    // 🎮 Para las GAFAS VR (Controladores)
-    function setupVRController(controller) {
-        controller.addEventListener('selectstart', function () {
-            const intersection = checkIntersection(controller, elemento);
-            if (intersection) {
+            elemento.addEventListener('mousedown', function (event) {
                 isDragging = true;
-                selectedController = controller;
-                offset.copy(intersection.point).sub(elemento.position);
-            }
-        });
+                let panelPos = elemento.object3D.position;
+                offset.set(
+                    event.detail.intersection.point.x - panelPos.x,
+                    event.detail.intersection.point.y - panelPos.y,
+                    event.detail.intersection.point.z - panelPos.z
+                );
+            });
 
-        controller.addEventListener('selectend', function () {
-            isDragging = false;
-            selectedController = null;
-        });
-    }
+            scene.addEventListener('mousemove', function (event) {
+                if (isDragging) {
+                    let canvas = scene.renderer.domElement;
+                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
+                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
+                    raycaster.setFromCamera(mouse, scene.camera);
 
-    // 🔍 Función para detectar intersección con el puntero láser
-    function checkIntersection(controller, object) {
-        const tempMatrix = new THREE.Matrix4().identity().extractRotation(controller.matrixWorld);
-        raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
-        raycaster.ray.direction.set(0, 0, -1).applyMatrix4(tempMatrix);
+                    let intersects = raycaster.intersectObject(elemento.object3D, true);
+                    if (intersects.length > 0) {
+                        elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
+                    }
+                }
+            });
 
-        const intersects = raycaster.intersectObject(object);
-        return intersects.length > 0 ? intersects[0] : null;
-    }
+            scene.addEventListener('mouseup', function () {
+                if (isDragging) {
+                    lastMenuPosition = {
+                        x: elemento.object3D.position.x,
+                        y: elemento.object3D.position.y,
+                        z: elemento.object3D.position.z
+                    };
+                }
+                isDragging = false;
+            });
+          
+          
+          controller.addEventListener('selectstart', function (event) {
+              isDragging = true;
+              let panelPos = elemento.object3D.position;
+              offset.set(
+                  event.target.position.x - panelPos.x,
+                  event.target.position.y - panelPos.y,
+                  event.target.position.z - panelPos.z
+              );
+          });
 
-    // 🎥 Actualizar posición si se está arrastrando
-    function animate() {
-        if (isDragging && selectedController) {
-            let controllerPosition = new THREE.Vector3();
-            selectedController.getWorldPosition(controllerPosition);
-            elemento.position.copy(controllerPosition.sub(offset));
+          scene.addEventListener('mousemove', function (event) {
+                if (isDragging) {
+                    let canvas = scene.renderer.domElement;
+                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
+                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
+                    raycaster.setFromCamera(mouse, scene.camera);
+
+                    let intersects = raycaster.intersectObject(elemento.object3D, true);
+                    if (intersects.length > 0) {
+                        elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
+                    }
+                }
+            });
+
+            scene.addEventListener('mouseup', function () {
+                if (isDragging) {
+                    lastMenuPosition = {
+                        x: elemento.object3D.position.x,
+                        y: elemento.object3D.position.y,
+                        z: elemento.object3D.position.z
+                    };
+                }
+                isDragging = false;
+            });
+
         }
-        requestAnimationFrame(animate);
-    }
-
-    // 🕹️ Configurar controladores VR
-    setupVRController(controller);
-    animate();
-}
-
+      
+      
 
         function cerrarGraficoPrevio() {
             if (barChartEntity) {
