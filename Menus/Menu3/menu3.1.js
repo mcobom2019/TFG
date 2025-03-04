@@ -404,26 +404,47 @@ AFRAME.registerComponent('createsons', {
     }
 });
 
-AFRAME.registerComponent('joystick-movement', {
-      init: function () {
-        let cameraRig = document.querySelector("#cameraRig");
-        let speed = 0.1; // Ajusta la velocidad de movimiento
-
-        function moveCamera(event) {
-          let x = event.detail.x; // Movimiento horizontal del joystick
-          let y = event.detail.y; // Movimiento vertical del joystick
-
-          let position = cameraRig.getAttribute("position");
-
-          // Mueve la cámara en base a los ejes del joystick
-          position.x += x * speed;
-          position.z += y * speed;
-
-          cameraRig.setAttribute("position", position);
-        }
-
-        // Detecta el movimiento del joystick en los controladores
-        document.querySelector("#leftController").addEventListener("thumbstickmoved", moveCamera);
-        document.querySelector("#rightController").addEventListener("thumbstickmoved", moveCamera);
-      }
+AFRAME.registerComponent('vr-movement', {
+  schema: {
+    moveSpeed: { type: 'number', default: 0.1 },
+    rotateSpeed: { type: 'number', default: 1 }
+  },
+  
+  init: function () {
+    let cameraRig = document.querySelector("#cameraRig");
+    let camera = document.querySelector("#camera");
+    
+    // Evento para el joystick izquierdo (movimiento adelante/atrás)
+    document.querySelector("#leftController").addEventListener("thumbstickmoved", (event) => {
+      let y = event.detail.y; // Movimiento vertical del joystick izquierdo
+      
+      // Obtener la dirección actual de la cámara
+      let cameraDirection = new THREE.Vector3();
+      camera.object3D.getWorldDirection(cameraDirection);
+      
+      // Proyectar la dirección en el plano horizontal
+      cameraDirection.y = 0;
+      cameraDirection.normalize();
+      
+      // Calcular nueva posición
+      let position = cameraRig.getAttribute("position");
+      position.x += cameraDirection.x * y * this.data.moveSpeed;
+      position.z += cameraDirection.z * y * this.data.moveSpeed;
+      
+      cameraRig.setAttribute("position", position);
     });
+    
+    // Evento para el joystick derecho (rotación de la cámara)
+    document.querySelector("#rightController").addEventListener("thumbstickmoved", (event) => {
+      let x = event.detail.x; // Movimiento horizontal del joystick derecho
+      
+      // Rotar la cámara horizontal y verticalmente
+      let currentRotation = cameraRig.getAttribute("rotation");
+      currentRotation.y -= x * this.data.rotateSpeed * 30; // Rotación horizontal
+      
+      cameraRig.setAttribute("rotation", currentRotation);
+    });
+  }
+});
+
+
