@@ -403,23 +403,41 @@ AFRAME.registerComponent('createsons', {
         }
     }
 });
-
 AFRAME.registerComponent('vr-movement', {
-  schema: {
-    moveSpeed: { type: 'number', default: 0.1 },
-    rotateSpeed: { type: 'number', default: 1 }
-  },
-  
-  init: function () {
-    let cameraRig = document.querySelector("#cameraRig");
-    let camera = document.querySelector("#camera");
+  init: function() {
+    let cameraRig = this.el;
+    let camera = cameraRig.querySelector('#camera');
     
-    // Evento para el joystick izquierdo (movimiento adelante/atrás)
-    document.querySelector("#leftController").addEventListener("thumbstickmoved", (event) => {
-      let y = event.detail.y; // Movimiento vertical del joystick izquierdo
+    // Variables para seguimiento de la rotación
+    this.yaw = 0;   // Rotación horizontal
+    this.pitch = 0; // Rotación vertical
+    
+    // Función para rotar la cámara de manera más precisa
+    const rotateCamera = (x, y) => {
+      // Actualizar ángulos de rotación
+      this.yaw -= x * 50;  // Multiplicador para sensibilidad horizontal
+      this.pitch -= y * 50;  // Multiplicador para sensibilidad vertical
+      
+      // Limitar rotación vertical
+      this.pitch = Math.max(-90, Math.min(90, this.pitch));
+      
+      // Establecer rotación directamente en la cámara
+      camera.setAttribute('rotation', { 
+        x: this.pitch, 
+        y: this.yaw, 
+        z: 0 
+      });
+      
+      // Log de depuración
+      console.log('Rotation - Yaw:', this.yaw, 'Pitch:', this.pitch);
+    };
+    
+    // Evento de movimiento en el joystick izquierdo (adelante/atrás)
+    this.el.querySelector('#leftController').addEventListener('thumbstickmoved', (evt) => {
+      let y = evt.detail.y; // Movimiento vertical del joystick izquierdo
       
       // Obtener la dirección actual de la cámara
-      let cameraDirection = new THREE.Vector3();
+      let cameraDirection = new THREE.Vector3(0, 0, -1);
       camera.object3D.getWorldDirection(cameraDirection);
       
       // Proyectar la dirección en el plano horizontal
@@ -428,23 +446,15 @@ AFRAME.registerComponent('vr-movement', {
       
       // Calcular nueva posición
       let position = cameraRig.getAttribute("position");
-      position.x += cameraDirection.x * y * this.data.moveSpeed;
-      position.z += cameraDirection.z * y * this.data.moveSpeed;
+      position.x += cameraDirection.x * y * 0.05;
+      position.z += cameraDirection.z * y * 0.05;
       
       cameraRig.setAttribute("position", position);
     });
     
-    // Evento para el joystick derecho (rotación de la cámara)
-    document.querySelector("#rightController").addEventListener("thumbstickmoved", (event) => {
-      let x = event.detail.x; // Movimiento horizontal del joystick derecho
-      
-      // Rotar la cámara horizontal y verticalmente
-      let currentRotation = cameraRig.getAttribute("rotation");
-      currentRotation.y -= x * this.data.rotateSpeed * 30; // Rotación horizontal
-      
-      cameraRig.setAttribute("rotation", currentRotation);
+    // Evento de rotación en el joystick derecho
+    this.el.querySelector('#rightController').addEventListener('thumbstickmoved', (evt) => {
+      rotateCamera(evt.detail.x, evt.detail.y);
     });
   }
 });
-
-

@@ -7,11 +7,13 @@
 <body>
   <a-scene xr-mode-ui="XRMode: xr">
     <!-- Contenedor de la cámara -->
-    <a-entity id="cameraRig" position="0 1.6 0" vr-movement>
-    <a-entity id="camera" camera look-controls></a-entity>
+    <a-entity id="cameraRig" vr-movement position="0 1.6 0">
+    <a-entity id="camera" camera></a-entity>
     <a-entity id="leftController" oculus-touch-controls="hand: left"></a-entity>
     <a-entity id="rightController" oculus-touch-controls="hand: right"></a-entity>
-</a-entity>
+    <a-entity laser-controls="hand: right" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
+    <a-entity laser-controls="hand: left" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
+    </a-entity>
 
     <!-- Elementos de la escena -->
     <a-cylinder position="0 0 -3" radius="0.7" height="0.1" color="silver"></a-cylinder>
@@ -20,12 +22,5 @@
     <!-- Cursor -->
     <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
   </a-scene>
-
-  <script>
-    
-
-    // Agregar el componente a la escena
-    document.querySelector("#cameraRig").setAttribute("joystick-movement", "");
-  </script>
 </body>
 </html>
