@@ -3,10 +3,12 @@
 <!-- Simple physics
   Using aframe-physics-system.
 
-  The yellow plane stays static. Red and blue boxes fall down on the plane.
+  The yellow plane stays static. Red box falls down on the plane.
   Green box falls down too, but when it collides, it receives an impulse
   towards right (positive Y axis). Due to that impulse, it may push
   the red box to the right (in some cases, until it falls down).
+  The blue sphere has fixed velocity and no mass (thus, is not
+  affected by gravity). When it collides, it just disappears.
 -->
 
 <html>
@@ -14,7 +16,7 @@
     <script src="//aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/MozillaReality/ammo.js@8bbc0ea/builds/ammo.wasm.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.js"></script>
-    <script src="vr2.js"></script>
+    <script src="vr3.js"></script>
 
   </head>
   <body>
@@ -29,15 +31,20 @@
       <a-box ammo-body="type: dynamic" ammo-shape="type: box"
           position="0 4 -2" width="3" height="2" depth="1"
           color="red"></a-box>
-      <!-- Dynamic box -->
-      <a-box ammo-body="type: dynamic" ammo-shape="type: box"
-          position="2 10 0" width="1" height="1" depth="1"
-          color="blue"></a-box>
+      <!-- Dynamic sphere with fixed velocity -->
+      <a-sphere explode ammo-body="type: kinematic; emitCollisionEvents: true;"
+          ammo-shape="type: sphere"
+          position="-6 2 -2" velocity="1 0 0" radius="1"
+          color="blue"></a-sphere>
       <!-- Dynamic box with impusle when colliding -->
       <a-entity geometry="primitive: box" push
           ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"
           position="-3 4 -2" width="1" height="1" depth="1"
           material="color: green"></a-entity>
+      <!-- Dynamic box -->
+      <a-box ammo-body="type: dynamic" ammo-shape="type: box"
+          position="2 4 -2" width="1" height="3" depth="1"
+          color="brown"></a-box>
     </a-scene>
   </body>
 </html>
