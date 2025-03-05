@@ -144,7 +144,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('height', '1');
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
-            subMenu.setAttribute('position', ${newPosition.x} ${newPosition.y} ${newPosition.z});
+            subMenu.setAttribute('position', $`{newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
             hacerArrastrable(subMenu);
           
@@ -232,7 +232,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('height', '1');
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
-            subMenu.setAttribute('position', ${newPosition.x} ${newPosition.y} ${newPosition.z});
+            subMenu.setAttribute('position', $`{newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
             hacerArrastrable(subMenu);
           
@@ -315,14 +315,14 @@ AFRAME.registerComponent('createsons', {
             //if(!esVisible){
                 if (tipo === "Barras") {
                     barChartEntity = document.createElement('a-entity');
-                    barChartEntity.setAttribute('babia-barsmap', from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors);
-                    barChartEntity.setAttribute('position', ${newPosition.x} ${newPosition.y} ${newPosition.z});
+                    barChartEntity.setAttribute('babia-barsmap', 'from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
+                    barChartEntity.setAttribute('position', $`{newPosition.x} ${newPosition.y} ${newPosition.z}`);
                     barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
                     scene.appendChild(barChartEntity);
                 }else if (tipo === "Circular") {
                     pieChartEntity = document.createElement('a-entity');
-                    pieChartEntity.setAttribute('babia-pie', from: ${dataSource}; legend: true; palette: blues; key: model; size: doors);
-                    pieChartEntity.setAttribute('position', ${newPosition.x} ${newPosition.y} ${newPosition.z});
+                    pieChartEntity.setAttribute('babia-pie', 'from: ${dataSource}; legend: true; palette: blues; key: model; size: doors');
+                    pieChartEntity.setAttribute('position', $`{newPosition.x} ${newPosition.y} ${newPosition.z}`);
                     pieChartEntity.setAttribute('scale', '0.8 0.8 0.8');
                     pieChartEntity.setAttribute('rotation', '90 0 0');
                     scene.appendChild(pieChartEntity);
@@ -396,7 +396,7 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('height', '0.2');
             button.setAttribute('color', color);
             button.setAttribute('position', posicion);
-            button.setAttribute('text', value: ${texto}; color: white; align: center; width: 1.5;);
+            button.setAttribute('text', 'value: ${texto}; color: white; align: center; width: 1.5;');
             button.setAttribute('class',"clickable");
             button.addEventListener('click', onClick);
             return button;
@@ -404,26 +404,69 @@ AFRAME.registerComponent('createsons', {
     }
 });
 
-AFRAME.registerComponent('joystick-movement', {
-      init: function () {
-        let cameraRig = document.querySelector("#cameraRig");
-        let speed = 0.1; // Ajusta la velocidad de movimiento
+AFRAME.registerComponent('vr-interactions', {
+    init: function() {
+        const scene = document.querySelector('a-scene');
+        const cameraRig = document.querySelector('#cameraRig');
+        const leftController = document.querySelector('#leftController');
+        const rightController = document.querySelector('#rightController');
 
-        function moveCamera(event) {
-          let x = event.detail.x; // Movimiento horizontal del joystick
-          let y = event.detail.y; // Movimiento vertical del joystick
+        // Movimiento con joystick izquierdo
+        leftController.addEventListener('axismove', (evt) => {
+            if (!cameraRig) return;
 
-          let position = cameraRig.getAttribute("position");
+            const [xAxis, yAxis] = evt.detail.axis;
+            const speed = 0.1;
+            
+            // Obtener la dirección de la cámara
+            const cameraDirection = new THREE.Vector3();
+            cameraRig.object3D.getWorldDirection(cameraDirection);
+            cameraDirection.y = 0; // Mantener movimiento horizontal
+            cameraDirection.normalize();
 
-          // Mueve la cámara en base a los ejes del joystick
-          position.x += x * speed;
-          position.z += y * speed;
+            // Vector perpendicular para movimiento lateral
+            const rightVector = new THREE.Vector3().crossVectors(
+                cameraDirection, 
+                new THREE.Vector3(0, 1, 0)
+            );
 
-          cameraRig.setAttribute("position", position);
-        }
+            // Calcular vector de movimiento
+            const moveVector = new THREE.Vector3();
+            moveVector.add(cameraDirection.multiplyScalar(yAxis * speed));
+            moveVector.add(rightVector.multiplyScalar(xAxis * speed));
 
-        // Detecta el movimiento del joystick en los controladores
-        document.querySelector("#leftController").addEventListener("thumbstickmoved", moveCamera);
-        document.querySelector("#rightController").addEventListener("thumbstickmoved", moveCamera);
-      }
-    });
+            // Aplicar movimiento
+            cameraRig.object3D.position.add(moveVector);
+        });
+
+        // Configurar raycaster para interacción con botones
+        rightController.setAttribute('raycaster', {
+            objects: '.clickable',
+            far: 10,
+            interval: 100,
+            lineColor: 'blue',
+            lineOpacity: 0.5
+        });
+
+        // Manejar clics con el mando derecho
+        rightController.addEventListener('triggerdown', (evt) => {
+            const raycaster = rightController.components.raycaster;
+            if (raycaster) {
+                const intersectedEls = raycaster.intersectedEls;
+                if (intersectedEls && intersectedEls.length > 0) {
+                    intersectedEls[0].emit('click');
+                }
+            }
+        });
+
+        // Añadir visibilidad al rayo de interacción
+        const laserEntity = document.createElement('a-entity');
+        laserEntity.setAttribute('line', {
+            start: '0 0 0',
+            end: '0 0 -10',
+            color: 'blue',
+            opacity: 0.5
+        });
+        rightController.appendChild(laserEntity);
+    }
+});
