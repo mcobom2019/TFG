@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene xr-mode-ui="enabled: true">
+      <!-- Suelo -->
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="gray"></a-plane>
+
+      <!-- Objetos -->
+      <a-box position="-1 1 -3" rotation="0 45 0" color="red"></a-box>
+      <a-sphere position="1 1 -3" radius="0.5" color="blue"></a-sphere>
+      <a-cylinder position="0 1 -3" radius="0.3" height="1.5" color="green"></a-cylinder>
+
+      <!-- Cámara -->
+      <a-entity camera position="0 1.6 0">
+        <a-cursor></a-cursor>
+      </a-entity>
+
+      <!-- Controladores de VR -->
+      <a-entity laser-controls="hand: left"></a-entity>
+      <a-entity laser-controls="hand: right"></a-entity>
+
+      <!-- Seguimiento de manos (opcional) -->
+      <a-entity hand-tracking-controls="hand: left"></a-entity>
+      <a-entity hand-tracking-controls="hand: right"></a-entity>
+
+      <!-- Cielo -->
+      <a-sky color="lightblue"></a-sky>
+    </a-scene>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene xr-mode-ui="enabled: true">
+      <!-- Suelo -->
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="gray"></a-plane>
+
+      <!-- Objetos -->
+      <a-box position="-1 1 -3" rotation="0 45 0" color="red"></a-box>
+      <a-sphere position="1 1 -3" radius="0.5" color="blue"></a-sphere>
+      <a-cylinder position="0 1 -3" radius="0.3" height="1.5" color="green"></a-cylinder>
+
+      <!-- Jugador (Cámara + Movimiento con Joysticks) -->
+      <a-entity id="rig" movement-controls="constrainToNavMesh: false" position="0 1.6 0">
+        <!-- Cámara -->
+        <a-entity camera position="0 0 0">
+          <a-cursor></a-cursor>
+        </a-entity>
+
+        <!-- Controlador izquierdo -->
+        <a-entity 
+          id="leftHand" 
+          oculus-touch-controls="hand: left" 
+          thumbstick-controls="enabled: true"></a-entity>
+
+        <!-- Controlador derecho -->
+        <a-entity 
+          id="rightHand" 
+          oculus-touch-controls="hand: right" 
+          thumbstick-controls="enabled: true"></a-entity>
+      </a-entity>
+
+      <!-- Cielo -->
+      <a-sky color="lightblue"></a-sky>
+    </a-scene>
+  </body>
+</html>

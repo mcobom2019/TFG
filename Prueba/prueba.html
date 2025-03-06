@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Suelo -->
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="gray"></a-plane>
+      
+      <!-- Caja -->
+      <a-box position="-1 1 -3" rotation="0 45 0" color="red"></a-box>
+      
+      <!-- Esfera -->
+      <a-sphere position="1 1 -3" radius="0.5" color="blue"></a-sphere>
+      
+      <!-- Cilindro -->
+      <a-cylinder position="0 1 -3" radius="0.3" height="1.5" color="green"></a-cylinder>
+      
+      <!-- Cámara -->
+      <a-camera position="0 1.6 0">
+        <a-cursor></a-cursor>
+      </a-camera>
+
+      <!-- Cielo -->
+      <a-sky color="lightblue"></a-sky>
+    </a-scene>
+  </body>
+</html>
