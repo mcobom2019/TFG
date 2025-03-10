@@ -1,51 +1,109 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    
+    <script>
+      // Componente personalizado para responder al botón X del mando
+      AFRAME.registerComponent('controller-listener', {
+        init: function () {
+          const scene = document.querySelector('a-scene');
+          const menuButtonText = document.querySelector('#box-button-text');
+          let isButtonActive = false;
+          
+          // Visual feedback cuando el botón X está presionado
+          const updateButtonVisual = (active) => {
+            isButtonActive = active;
+            const boxButton = document.querySelector('#btn-box a-box');
+            
+            if (active) {
+              boxButton.setAttribute('color', '#00AAFF'); // Color claro cuando se presiona
+              menuButtonText.setAttribute('value', 'Añadiendo Caja...');
+            } else {
+              boxButton.setAttribute('color', 'blue'); // Color normal
+              menuButtonText.setAttribute('value', 'Añadir Caja (X)');
+            }
+          };
+          
+          // Crear una nueva caja en una posición aleatoria
+          const createBox = () => {
+            const newBox = document.createElement("a-box");
+            newBox.setAttribute("color", "green");
+            newBox.setAttribute("position", `${Math.random() * 20 - 10} 1 ${Math.random() * 10 - 5}`);
+            scene.appendChild(newBox);
+            console.log("¡Caja creada con el botón X!");
+          };
+          
+          // Eventos para botón X en el controlador izquierdo
+          this.el.addEventListener('xbuttondown', function (e) {
+            updateButtonVisual(true);
+          });
+          
+          this.el.addEventListener('xbuttonup', function (e) {
+            updateButtonVisual(false);
+            createBox();
+          });
+          
+          // También permitir la interacción con el cursor para compatibilidad
+          const btnBox = document.querySelector('#btn-box');
+          btnBox.addEventListener('click', createBox);
+        }
+      });
+    </script>
 </head>
 <body>
-  <a-scene 
-    xr-mode-ui="enabled: true" 
-    webxr="requiredFeatures: local-floor" 
-    renderer="antialias: true">
-    
-    <!-- Rig del jugador (se mueve con los joysticks) -->
-    <a-entity id="rig" position="0 1.6 0" movement-controls>
-      
-      <!-- Cámara (permite mirar libremente en VR) -->
-      <a-entity camera position="0 0 0"></a-entity>
+    <a-scene>
+        <!-- Cielo -->
+        <a-sky color="#87CEEB"></a-sky>
+        
+        <!-- Plano como suelo -->
+        <a-plane position="0 0 0" 
+                rotation="-90 0 0" 
+                width="20" 
+                height="20" 
+                color="#8FBC8F">
+        </a-plane>
+        
+        <!-- Cámara y controles para Quest 3 -->
+        <a-entity position="0 1.6 0">
+            <a-camera look-controls wasd-controls>
+                <a-cursor raycaster="objects: .clickable" fuse="false"></a-cursor>
+            </a-camera>
+        </a-entity>
+        
+        <!-- Controladores VR -->
+        <a-entity oculus-touch-controls="hand: left" controller-listener></a-entity>
+        <a-entity oculus-touch-controls="hand: right"></a-entity>
+        
+        <!-- Caja inicial de ejemplo -->
+        <a-box position="0 1 -3" color="red"></a-box>
 
-      <!-- Controlador izquierdo (movimiento con joystick y rayo láser) -->
-      <a-entity 
-        id="leftHand"
-        oculus-touch-controls="hand: left"
-        laser-controls
-        raycaster="showLine: true; objects: .interactable"
-        thumbstick-controls>
-      </a-entity>
+        <!-- Menú con instrucciones -->
+        <a-entity id="menu" position="0 1.5 -2">
+            <a-plane width="1.8" height="1.2" color="black" opacity="0.7"></a-plane>
+            <a-text value="Menu VR" position="0 0.4 0.01" align="center" color="white"></a-text>
+            
+            <a-entity id="btn-box" position="0 0 0.01" class="clickable">
+                <a-box color="blue" depth="0.05" height="0.3" width="1.4"
+                      position="0 0 0"></a-box>
+                <a-text id="box-button-text" value="Añadir Caja (X)" position="0 0 0.05" 
+                      align="center" color="white"></a-text>
+            </a-entity>
+            
+            <a-text value="Presiona X en el mando izquierdo" 
+                  position="0 -0.3 0.01" 
+                  align="center" 
+                  color="yellow"
+                  scale="0.5 0.5 0.5"></a-text>
+        </a-entity>
+        
+        <!-- Indicador de dirección -->
+        <a-entity position="0 0.1 -5">
+            <a-text value="FRENTE" position="0 0 0" align="center" color="red" scale="2 2 2"></a-text>
+        </a-entity>
 
-      <!-- Controlador derecho (interacción y rayo láser) -->
-      <a-entity 
-        id="rightHand"
-        oculus-touch-controls="hand: right"
-        laser-controls
-        raycaster="showLine: true; objects: .interactable">
-      </a-entity>
-
-    </a-entity>
-
-    <!-- Suelo -->
-    <a-plane position="0 0 0" rotation="-90 0 0" width="20" height="20" color="gray"></a-plane>
-
-    <!-- Objetos interactuables -->
-    <a-box class="interactable" position="-1 1 -3" rotation="0 45 0" color="red"></a-box>
-    <a-sphere class="interactable" position="1 1 -3" radius="0.5" color="blue"></a-sphere>
-    <a-cylinder class="interactable" position="0 1 -3" radius="0.3" height="1.5" color="green"></a-cylinder>
-
-    <!-- Cielo -->
-    <a-sky color="lightblue"></a-sky>
-
-  </a-scene>
+    </a-scene>
 </body>
 </html>
