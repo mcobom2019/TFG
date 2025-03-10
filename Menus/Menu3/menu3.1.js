@@ -17,51 +17,47 @@ AFRAME.registerComponent('createsons', {
             }
         });
       
-      AFRAME.registerComponent('draggable-menu', {
-  init: function () {
-    this.el.setAttribute('grabbable', '');
-    this.el.setAttribute('stretchable', '');
-    this.el.setAttribute('draggable', '');
-    this.el.setAttribute('event-set__gripclose', 'grabbable', 'true'); 
-  }
-});
 
 
         function crearMenuPrincipal() {
-  cerrarMenus();
+            cerrarMenus();
 
-  var parentPosition = { x: 0, y: 1.5, z: -3 };
-  var newPosition = lastMenuPosition || parentPosition;
+            var parentPosition = el.getAttribute('position');
+            var isDragging = false;
+            var newPosition;
+            if (lastMenuPosition) {
+                newPosition = lastMenuPosition;
+            } else {
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+            }
 
-  menuPanel = document.createElement('a-box');
-  menuPanel.setAttribute('width', '1');
-  menuPanel.setAttribute('height', '0.7');
-  menuPanel.setAttribute('depth', '0.1');
-  menuPanel.setAttribute('color', '#333');
-  menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-  menuPanel.setAttribute('class', 'clickable');
-  menuPanel.setAttribute('draggable-menu', '');
-  menuPanel.setAttribute('grabbable', ''); // 🔹 Permite agarrarlo con el botón GRIP
-  menuPanel.setAttribute('dynamic-body', ''); // 🔹 Hace que se pueda mover físicamente
+            menuPanel = document.createElement('a-box');
+            menuPanel.setAttribute('width', '1');
+            menuPanel.setAttribute('height', '0.7');
+            menuPanel.setAttribute('depth', '0.1');
+            menuPanel.setAttribute('color', '#333');
+            menuPanel.setAttribute('class',"clickable");
+            menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
-  var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
-    var posicion = menuPanel.getAttribute('position');
-    mostrarSubmenu("Barras", posicion);
-  });
+            var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
+                var posicion = el.getAttribute('position');
+                mostrarSubmenu("Barras", posicion);
+            });
 
-  var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
-    var posicion = menuPanel.getAttribute('position');
-    mostrarSubmenu("Circular", posicion);
-  });
+            var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
+                var posicion = el.getAttribute('position');
+                mostrarSubmenu("Circular", posicion);
+            });
 
-  var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+            var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+             
+            hacerArrastrable(menuPanel);
 
-  menuPanel.appendChild(barChartButton);
-  menuPanel.appendChild(pieChartButton);
-  menuPanel.appendChild(closeButton);
-  scene.appendChild(menuPanel);
-}
-
+            menuPanel.appendChild(barChartButton);
+            menuPanel.appendChild(pieChartButton);
+            menuPanel.appendChild(closeButton);
+            scene.appendChild(menuPanel);
+        }
 
 
         function cerrarMenus() {

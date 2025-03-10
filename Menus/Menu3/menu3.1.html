@@ -2,7 +2,8 @@
 <head>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
-  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-super-hands-component@3.0.4/dist/aframe-super-hands.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
   <script src="menu3.1.js"></script>
 </head>
 <body>
@@ -19,6 +20,8 @@
         <a-entity id="rightHand" oculus-touch-controls="hand: right" head-rotation="speed: 2.0" super-hands></a-entity>
         <a-entity laser-controls="hand: right" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
         <a-entity laser-controls="hand: left" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
+        
+
       </a-entity>
 
     <a-cylinder position="0 0 -3" radius="0.7" height="0.1" color="silver"></a-cylinder>
