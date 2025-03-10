@@ -1,29 +1,57 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <meta charset="utf-8">
+    <title>Escena Básica de A-Frame</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <!-- Suelo -->
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="gray"></a-plane>
-      
-      <!-- Caja -->
-      <a-box position="-1 1 -3" rotation="0 45 0" color="red"></a-box>
-      
-      <!-- Esfera -->
-      <a-sphere position="1 1 -3" radius="0.5" color="blue"></a-sphere>
-      
-      <!-- Cilindro -->
-      <a-cylinder position="0 1 -3" radius="0.3" height="1.5" color="green"></a-cylinder>
-      
-      <!-- Cámara -->
-      <a-camera position="0 1.6 0">
-        <a-cursor></a-cursor>
-      </a-camera>
-
       <!-- Cielo -->
-      <a-sky color="lightblue"></a-sky>
+      <a-sky color="#87CEEB"></a-sky>
+      
+      <!-- Plano como suelo -->
+      <a-plane position="0 0 0" 
+               rotation="-90 0 0" 
+               width="20" 
+               height="20" 
+               color="#8FBC8F">
+      </a-plane>
+      
+      <!-- Caja roja -->
+      <a-box position="-2 1 -5" 
+             rotation="0 45 0" 
+             width="1" 
+             height="1" 
+             depth="1" 
+             color="#FF0000">
+      </a-box>
+      
+      <!-- Esfera azul -->
+      <a-sphere position="2 1.25 -5" 
+                radius="1.25" 
+                color="#0000FF">
+      </a-sphere>
+      
+      <!-- Cilindro amarillo -->
+      <a-cylinder position="0 1.5 -3" 
+                 radius="0.5" 
+                 height="3" 
+                 color="#FFFF00">
+      </a-cylinder>
+      
+      <!-- Texto de bienvenida -->
+      <a-text value="¡Hola Mundo VR!" 
+              color="#000000" 
+              position="0 3 -5" 
+              width="10" 
+              align="center">
+      </a-text>
+      
+      <!-- Cámara y controles -->
+      <a-entity position="0 1.6 0">
+        <a-camera></a-camera>
+      </a-entity>
     </a-scene>
   </body>
 </html>

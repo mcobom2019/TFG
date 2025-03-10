@@ -1,33 +1,108 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <meta charset="utf-8">
+    <title>Escena A-Frame para Meta Quest 3</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
+    <!-- Componente para movimiento con joystick -->
+    <script>
+      // Componente de movimiento con joystick
+      AFRAME.registerComponent('thumbstick-movement', {
+        init: function () {
+          this.movementSpeed = 0.1;
+          this.cameraRig = document.querySelector('#cameraRig');
+          this.camera = document.querySelector('#head');
+          
+          // Capturar eventos de joystick
+          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
+        },
+        
+        onThumbstickMoved: function (evt) {
+          // Solo procesa eventos del joystick izquierdo
+          if (evt.detail.x === 0 && evt.detail.y === 0) return;
+          
+          // Obtener dirección de la cámara
+          let direction = new THREE.Vector3();
+          this.camera.object3D.getWorldDirection(direction);
+          direction.y = 0;
+          direction.normalize();
+          
+          // Vector lateral (perpendicular)
+          let right = new THREE.Vector3();
+          right.crossVectors(new THREE.Vector3(0, 1, 0), direction);
+          
+          // Calcular movimiento basado en joystick
+          let movement = new THREE.Vector3();
+          
+          // Adelante/atrás (eje Y del joystick)
+          movement.addScaledVector(direction, evt.detail.y * this.movementSpeed);
+          
+          // Izquierda/derecha (eje X del joystick)
+          movement.addScaledVector(right, evt.detail.x * this.movementSpeed);
+          
+          // Aplicar movimiento al rig de la cámara
+          let position = this.cameraRig.getAttribute('position');
+          position.x -= movement.x;
+          position.z -= movement.z;
+          this.cameraRig.setAttribute('position', position);
+        }
+      });
+    </script>
   </head>
   <body>
-    <a-scene xr-mode-ui="enabled: true">
-      <!-- Suelo -->
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="gray"></a-plane>
-
-      <!-- Objetos -->
-      <a-box position="-1 1 -3" rotation="0 45 0" color="red"></a-box>
-      <a-sphere position="1 1 -3" radius="0.5" color="blue"></a-sphere>
-      <a-cylinder position="0 1 -3" radius="0.3" height="1.5" color="green"></a-cylinder>
-
-      <!-- Cámara -->
-      <a-entity camera position="0 1.6 0">
-        <a-cursor></a-cursor>
-      </a-entity>
-
-      <!-- Controladores de VR -->
-      <a-entity laser-controls="hand: left"></a-entity>
-      <a-entity laser-controls="hand: right"></a-entity>
-
-      <!-- Seguimiento de manos (opcional) -->
-      <a-entity hand-tracking-controls="hand: left"></a-entity>
-      <a-entity hand-tracking-controls="hand: right"></a-entity>
-
+    <a-scene>
       <!-- Cielo -->
-      <a-sky color="lightblue"></a-sky>
+      <a-sky color="#87CEEB"></a-sky>
+      
+      <!-- Plano como suelo -->
+      <a-plane position="0 0 0" 
+               rotation="-90 0 0" 
+               width="20" 
+               height="20" 
+               color="#8FBC8F">
+      </a-plane>
+      
+      <!-- Objetos de la escena -->
+      <a-box position="-2 1 -5" 
+             rotation="0 45 0" 
+             width="1" 
+             height="1" 
+             depth="1" 
+             color="#FF0000">
+      </a-box>
+      
+      <a-sphere position="2 1.25 -5" 
+                radius="1.25" 
+                color="#0000FF">
+      </a-sphere>
+      
+      <a-cylinder position="0 1.5 -3" 
+                 radius="0.5" 
+                 height="3" 
+                 color="#FFFF00">
+      </a-cylinder>
+      
+      <a-text value="¡Hola Mundo VR!" 
+              color="#000000" 
+              position="0 3 -5" 
+              width="10" 
+              align="center">
+      </a-text>
+      
+      <!-- Estructura de cámara y controles para Quest -->
+      <a-entity id="cameraRig" position="0 0 0">
+        <!-- Cámara para la cabeza -->
+        <a-entity id="head" camera position="0 1.6 0" look-controls>
+          <!-- Controles de Quest 3 -->
+          <a-entity id="leftHand" 
+                   oculus-touch-controls="hand: left" 
+                   thumbstick-movement>
+          </a-entity>
+          <a-entity id="rightHand" 
+                   oculus-touch-controls="hand: right">
+          </a-entity>
+        </a-entity>
+      </a-entity>
     </a-scene>
   </body>
 </html>
