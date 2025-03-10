@@ -1,27 +1,42 @@
+<html>
 <head>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
-  <script src="menu3.1.js"></script>
+  <script src="menu2.5.js"></script>
 </head>
 <body>
-  <a-scene xr-mode-ui="XRMode: xr">
-    <!-- Un solo contenedor de cámara con todos los controles -->
+  <a-scene>
+    <!-- Cámara con movimiento en 3D -->
     <a-entity id="cameraRig" position="0 1.6 0">
-      <!-- Cámara principal con ID "head" para que coincida con la referencia en el JS -->
-      <a-entity id="head" camera look-controls wasd-controls="acceleration: 20; fly: true"></a-entity>
-      
-      <!-- Controladores VR -->
-      <a-entity id="leftController" oculus-touch-controls="hand: left" body-movement="speed: 0.15"
-                laser-controls="hand: left" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
-      <a-entity id="rightController" oculus-touch-controls="hand: right" head-rotation="speed: 2.0"
-                laser-controls="hand: right" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
+        <a-entity camera look-controls wasd-controls="acceleration: 20; fly: true"></a-entity>
+        <a-entity id="leftHand" oculus-touch-controls="hand: left" body-movement="speed: 0.15"></a-entity>
+        <a-entity id="rightHand" oculus-touch-controls="hand: right" head-rotation="speed: 2.0"></a-entity>
+        <a-entity laser-controls="hand: right" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
+        <a-entity laser-controls="hand: left" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
     </a-entity>
     
-    <!-- Elementos de la escena -->
+    <a-entity id="cameraRig" position="0 1.6 0">
+        <!-- Cámara para la cabeza -->
+        <a-entity id="head" rotation="0 0 0">
+          <a-camera look-controls="enabled: false"></a-camera>
+        </a-entity>
+        
+        <!-- Controles de Quest 3 -->
+        <a-entity id="leftHand" 
+                 oculus-touch-controls="hand: left" 
+                 body-movement="speed: 0.15">
+        </a-entity>
+        
+        <a-entity id="rightHand" 
+                 oculus-touch-controls="hand: right"
+                 head-rotation="speed: 2.0">
+        </a-entity>
+      </a-entity>
+
     <a-cylinder position="0 0 -3" radius="0.7" height="0.1" color="silver"></a-cylinder>
-    <a-cylinder id="boton3D" position="0 0.15 -3" radius="0.6" height="0.2" color="red" class="clickable" createsons></a-cylinder>
-    
-    <!-- Cursor para interacción en modo desktop -->
+    <a-cylinder id="boton3D" position="0 0.15 -3" radius="0.6" height="0.2" color="red" createsons></a-cylinder>
+
     <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
   </a-scene>
 </body>
+</html>
