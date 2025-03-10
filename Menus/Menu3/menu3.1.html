@@ -1,20 +1,24 @@
+<html>
 <head>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-  <script src="https://unpkg.com/super-hands/dist/aframe-super-hands.min.js"></script>
+  <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.min.js"></script>
   <script src="menu3.1.js"></script>
 </head>
 <body>
   <a-scene xr-mode-ui="XRMode: xr">
     
     <a-entity id="cameraRig" position="0 1.6 0">
+        <!-- Cámara para la cabeza -->
         <a-entity id="head" rotation="0 0 0">
           <a-camera look-controls="enabled: false"></a-camera>
         </a-entity>
-
-        <!-- Controladores de Quest 3 con interacción de agarre -->
-        <a-entity id="leftHand" oculus-touch-controls="hand: left" super-hands></a-entity>
-        <a-entity id="rightHand" oculus-touch-controls="hand: right" super-hands></a-entity>
+        
+        <!-- Controles de Quest 3 -->
+        <a-entity id="leftHand" oculus-touch-controls="hand: left" body-movement="speed: 0.15" super-hands></a-entity>
+        <a-entity id="rightHand" oculus-touch-controls="hand: right" head-rotation="speed: 2.0" super-hands></a-entity>
+        <a-entity laser-controls="hand: right" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
+        <a-entity laser-controls="hand: left" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
       </a-entity>
 
     <a-cylinder position="0 0 -3" radius="0.7" height="0.1" color="silver"></a-cylinder>
@@ -23,3 +27,4 @@
     <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
   </a-scene>
 </body>
+</html>
