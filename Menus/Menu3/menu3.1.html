@@ -9,14 +9,13 @@
     <!-- Contenedor de la cámara -->
       <a-entity oculus-go-controls></a-entity>
     <a-entity id="cameraRig1" position="0 1.6 0">
-      
         <a-entity camera look-controls wasd-controls="acceleration: 20; fly: true"></a-entity>
     </a-entity>
     
     <a-entity id="cameraRig" position="0 1.6 0">
     <a-entity id="camera" camera></a-entity>
-    <a-entity id="leftHand" oculus-touch-controls="hand: left" body-movement="speed: 0.15"></a-entity>
-    <a-entity id="rightHand" oculus-touch-controls="hand: right" head-rotation="speed: 2.0"></a-entity>
+    <a-entity id="leftController" oculus-touch-controls="hand: left" body-movement="speed: 0.15"></a-entity>
+    <a-entity id="rightController" oculus-touch-controls="hand: right" head-rotation="speed: 2.0"></a-entity>
     <a-entity laser-controls="hand: right" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
     <a-entity laser-controls="hand: left" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
     </a-entity>
