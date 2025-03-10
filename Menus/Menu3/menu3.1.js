@@ -18,44 +18,42 @@ AFRAME.registerComponent('createsons', {
         });
 
         function crearMenuPrincipal() {
-            cerrarMenus();
+    cerrarMenus();
 
-            var parentPosition = el.getAttribute('position');
-            var isDragging = false;
-            var newPosition;
-            if (lastMenuPosition) {
-                newPosition = lastMenuPosition;
-            } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
-            }
+    var parentPosition = el.getAttribute('position');
+    var newPosition = lastMenuPosition || { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
 
-            menuPanel = document.createElement('a-box');
-            menuPanel.setAttribute('width', '1');
-            menuPanel.setAttribute('height', '0.7');
-            menuPanel.setAttribute('depth', '0.1');
-            menuPanel.setAttribute('color', '#333');
-            menuPanel.setAttribute('class',"clickable");
-            menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+    menuPanel = document.createElement('a-box');
+    menuPanel.setAttribute('width', '1');
+    menuPanel.setAttribute('height', '0.7');
+    menuPanel.setAttribute('depth', '0.1');
+    menuPanel.setAttribute('color', '#333');
+    menuPanel.setAttribute('class', "clickable");
+    menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+    
+    // Hacer que el menú sea arrastrable con VR
+    menuPanel.setAttribute('grabbable', '');
+    menuPanel.setAttribute('stretchable', '');
+    menuPanel.setAttribute('draggable', '');
+    
+    var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
+        var posicion = el.getAttribute('position');
+        mostrarSubmenu("Barras", posicion);
+    });
 
-            var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
-                var posicion = el.getAttribute('position');
-                mostrarSubmenu("Barras", posicion);
-            });
+    var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
+        var posicion = el.getAttribute('position');
+        mostrarSubmenu("Circular", posicion);
+    });
 
-            var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
-                var posicion = el.getAttribute('position');
-                mostrarSubmenu("Circular", posicion);
-            });
+    var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
 
-            var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
-             
-            hacerArrastrable(menuPanel);
+    menuPanel.appendChild(barChartButton);
+    menuPanel.appendChild(pieChartButton);
+    menuPanel.appendChild(closeButton);
+    scene.appendChild(menuPanel);
+}
 
-            menuPanel.appendChild(barChartButton);
-            menuPanel.appendChild(pieChartButton);
-            menuPanel.appendChild(closeButton);
-            scene.appendChild(menuPanel);
-        }
 
 
         function cerrarMenus() {
