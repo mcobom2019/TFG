@@ -2,55 +2,84 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Escena A-Frame para Meta Quest 3</title>
+    <title>Escena A-Frame para Meta Quest 3 con Controles Corregidos</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
-    <!-- Componente para movimiento con joystick -->
     <script>
-      // Componente de movimiento con joystick
-      AFRAME.registerComponent('thumbstick-movement', {
+      // Componente para movimiento con joystick izquierdo (corregido)
+      AFRAME.registerComponent('body-movement', {
+        schema: {
+          speed: {type: 'number', default: 0.15}
+        },
+        
         init: function () {
-          this.movementSpeed = 0.1;
           this.cameraRig = document.querySelector('#cameraRig');
-          this.camera = document.querySelector('#head');
+          console.log("Body movement component initialized");
           
           // Capturar eventos de joystick
           this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
         },
         
         onThumbstickMoved: function (evt) {
-          // Solo procesa eventos del joystick izquierdo
+          console.log("Left thumbstick moved:", evt.detail.x, evt.detail.y);
+          
           if (evt.detail.x === 0 && evt.detail.y === 0) return;
           
-          // Obtener dirección de la cámara
-          let direction = new THREE.Vector3();
-          this.camera.object3D.getWorldDirection(direction);
-          direction.y = 0;
-          direction.normalize();
+          // Obtener posición actual
+          let position = this.cameraRig.getAttribute('position');
           
-          // Vector lateral (perpendicular)
-          let right = new THREE.Vector3();
-          right.crossVectors(new THREE.Vector3(0, 1, 0), direction);
-          
-          // Calcular movimiento basado en joystick
-          let movement = new THREE.Vector3();
-          
-          // Adelante/atrás (eje Y del joystick)
-          movement.addScaledVector(direction, evt.detail.y * this.movementSpeed);
+          // CORREGIDO: Invertir el eje Y para que adelante sea realmente adelante
+          position.z += evt.detail.y * this.data.speed;  // Invertido el signo
           
           // Izquierda/derecha (eje X del joystick)
-          movement.addScaledVector(right, evt.detail.x * this.movementSpeed);
+          position.x += evt.detail.x * this.data.speed;
           
-          // Aplicar movimiento al rig de la cámara
-          let position = this.cameraRig.getAttribute('position');
-          position.x -= movement.x;
-          position.z -= movement.z;
+          // Aplicar la nueva posición
           this.cameraRig.setAttribute('position', position);
+        }
+      });
+      
+      // Componente para rotación de cámara con joystick derecho (reescrito)
+      AFRAME.registerComponent('head-rotation', {
+        schema: {
+          speed: {type: 'number', default: 2.0}
+        },
+        
+        init: function () {
+          this.cameraHead = document.querySelector('#head');
+          console.log("Head rotation component initialized");
+          
+          // Almacenar valores de rotación
+          this.yaw = 0;
+          this.pitch = 0;
+          
+          // Capturar eventos de joystick específicamente del mando derecho
+          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
+          
+          // Verificar que estamos escuchando el mando correcto
+          console.log("Listening for thumbstick on:", this.el.id);
+        },
+        
+        tick: function() {
+          // Asegurar que la rotación se aplica constantemente
+          this.cameraHead.setAttribute('rotation', {x: this.pitch, y: this.yaw, z: 0});
+        },
+        
+        onThumbstickMoved: function (evt) {
+          console.log("Right thumbstick moved:", evt.detail.x, evt.detail.y);
+          
+          if (evt.detail.x === 0 && evt.detail.y === 0) return;
+          
+          // Actualizar ángulos basados en el joystick
+          this.yaw -= evt.detail.x * this.data.speed;
+          this.pitch = Math.max(-70, Math.min(70, this.pitch + evt.detail.y * this.data.speed));
+          
+          // El cambio real de rotación ocurre en el método tick
         }
       });
     </script>
   </head>
   <body>
-    <a-scene>
+    <a-scene debug>
       <!-- Cielo -->
       <a-sky color="#87CEEB"></a-sky>
       
@@ -61,6 +90,23 @@
                height="20" 
                color="#8FBC8F">
       </a-plane>
+      
+      <!-- Marcadores de orientación -->
+      <a-box position="0 0.5 -5" width="1" height="1" depth="1" color="#FF0000">
+        <a-text value="FRENTE" position="0 1.2 0" align="center" color="white"></a-text>
+      </a-box>
+      
+      <a-box position="0 0.5 5" width="1" height="1" depth="1" color="#00FF00">
+        <a-text value="DETRÁS" position="0 1.2 0" align="center" color="white" rotation="0 180 0"></a-text>
+      </a-box>
+      
+      <a-box position="5 0.5 0" width="1" height="1" depth="1" color="#0000FF">
+        <a-text value="DERECHA" position="0 1.2 0" align="center" color="white" rotation="0 -90 0"></a-text>
+      </a-box>
+      
+      <a-box position="-5 0.5 0" width="1" height="1" depth="1" color="#FFFF00">
+        <a-text value="IZQUIERDA" position="0 1.2 0" align="center" color="white" rotation="0 90 0"></a-text>
+      </a-box>
       
       <!-- Objetos de la escena -->
       <a-box position="-2 1 -5" 
@@ -90,17 +136,23 @@
       </a-text>
       
       <!-- Estructura de cámara y controles para Quest -->
-      <a-entity id="cameraRig" position="0 0 0">
+      <a-entity id="cameraRig" position="0 1.6 0">
         <!-- Cámara para la cabeza -->
-        <a-entity id="head" camera position="0 1.6 0" look-controls>
-          <!-- Controles de Quest 3 -->
-          <a-entity id="leftHand" 
-                   oculus-touch-controls="hand: left" 
-                   thumbstick-movement>
-          </a-entity>
-          <a-entity id="rightHand" 
-                   oculus-touch-controls="hand: right">
-          </a-entity>
+        <a-entity id="head" rotation="0 0 0">
+          <a-camera look-controls="enabled: false"></a-camera>
+        </a-entity>
+        
+        <!-- Controles de Quest 3 -->
+        <a-entity id="leftHand" 
+                 oculus-touch-controls="hand: left" 
+                 body-movement="speed: 0.15"
+                 debug="true">
+        </a-entity>
+        
+        <a-entity id="rightHand" 
+                 oculus-touch-controls="hand: right"
+                 head-rotation="speed: 2.0"
+                 debug="true">
         </a-entity>
       </a-entity>
     </a-scene>
