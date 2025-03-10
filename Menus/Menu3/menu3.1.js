@@ -34,7 +34,7 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('height', '0.7');
             menuPanel.setAttribute('depth', '0.1');
             menuPanel.setAttribute('color', '#333');
-            //menuPanel.setAttribute('class',"clickable");
+            menuPanel.setAttribute('class',"clickable");
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
 
             var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
