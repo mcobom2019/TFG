@@ -1,50 +1,50 @@
-<!DOCTYPE html>
-
-<!-- Simple physics
-  Using aframe-physics-system.
-
-  The yellow plane stays static. Red box falls down on the plane.
-  Green box falls down too, but when it collides, it receives an impulse
-  towards right (positive Y axis). Due to that impulse, it may push
-  the red box to the right (in some cases, until it falls down).
-  The blue sphere has fixed velocity and no mass (thus, is not
-  affected by gravity). When it collides, it just disappears.
--->
-
 <html>
   <head>
-    <script src="//aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/MozillaReality/ammo.js@8bbc0ea/builds/ammo.wasm.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.js"></script>
-    <script src="vr3.js"></script>
-
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-super-hands-component@3.0.4/dist/aframe-super-hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <script>
+        AFRAME.registerComponent('cambiarcoloresfera', {
+            init: function () {
+              console.log('Cambiando color de esfera');
+              var el = this.el;
+              el.addEventListener('click', function() {
+                  const color = randomColor();
+                  el.setAttribute('material', 'color', color);
+              });
+            }
+        });
+        AFRAME.registerComponent('x-button-listener', {
+          init: function () {
+            var el = this.el;
+            el.addEventListener('xbuttondown', function (evt) {
+                const color = randomColor();
+                el.setAttribute('material', 'color', color);
+            });
+          }
+        });
+      function randomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            
+            const rgb = `rgb(${r},${g},${b})`;
+            console.log("El color es", rgb);
+            
+            return rgb;
+        }
+    </script>
   </head>
   <body>
-    <a-scene physics="driver: ammo; debug: true; debugDrawMode: 1;">
-      <!-- Camera -->
-      <a-entity camera position="0 1.6 5" look-controls wasd-controls></a-entity>
-      <!-- Static floor -->
-      <a-plane ammo-body="type: static" ammo-shape="type: box"
-          position="0 0 -4" rotation="-90 0 0" width="16" height="12"
-          color="yellow"></a-plane>
-      <!-- Dynamic box -->
-      <a-box ammo-body="type: dynamic" ammo-shape="type: box"
-          position="0 4 -2" width="3" height="2" depth="1"
-          color="red"></a-box>
-      <!-- Dynamic sphere with fixed velocity -->
-      <a-sphere explode ammo-body="type: kinematic; emitCollisionEvents: true;"
-          ammo-shape="type: sphere"
-          position="-6 2 -2" velocity="1 0 0" radius="1"
-          color="blue"></a-sphere>
-      <!-- Dynamic box with impusle when colliding -->
-      <a-entity geometry="primitive: box" push
-          ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"
-          position="-3 4 -2" width="1" height="1" depth="1"
-          material="color: green"></a-entity>
-      <!-- Dynamic box -->
-      <a-box ammo-body="type: dynamic" ammo-shape="type: box"
-          position="2 4 -2" width="1" height="3" depth="1"
-          color="brown"></a-box>
+    <a-scene xr-mode-ui="XRMode: xr">
+        <a-entity id="leftHand" oculus-touch-controls="hand: left" body-movement="speed: 0.15" super-hands></a-entity>
+        <a-entity id="rightHand" oculus-touch-controls="hand: right" head-rotation="speed: 2.0" super-hands></a-entity>
+        <a-entity laser-controls="hand: right" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
+        <a-entity laser-controls="hand: left" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" cambiarcoloresfera x-button-listener></a-sphere>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+      <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
     </a-scene>
   </body>
 </html>
