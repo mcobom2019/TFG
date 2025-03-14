@@ -11,11 +11,38 @@ AFRAME.registerComponent('createsons', {
         var lastMenuPosition = null;
         var esVisible = false;
 
-        el.addEventListener('click', function () {
-            if (!menuPanel) {
-                crearMenuPrincipal();
-            }
+        // Color original para restaurar después
+        const colorOriginal = #color;
+
+        // Detectar cuando el rayo está sobre el botón
+        button.addEventListener('raycaster-intersected', function(evt) {
+            estaApuntando = true;
+            // Cambiar color para feedback visual
+            button.setAttribute('color', '#aaaaff');
+            console.log("Rayo apuntando al botón:", texto);
         });
+
+        // Detectar cuando el rayo ya no está sobre el botón
+        button.addEventListener('raycaster-intersected-cleared', function(evt) {
+            estaApuntando = false;
+            // Restaurar color original
+            button.setAttribute('color', colorOriginal);
+            console.log("Rayo ya no apunta al botón:", texto);
+        });
+
+        // Crear una función manejadora para el evento xbuttondown
+        function xButtonHandler(evt) {
+            console.log("Botón X presionado");
+            // Ejecutar onClick directamente si el rayo está apuntando
+            if (estaApuntando) {
+                console.log("Ejecutando acción para botón:", texto);
+                onClick();
+            }
+        }
+
+        // Añadir el listener a nivel de escena
+        const escena = document.querySelector('a-scene');
+        escena.addEventListener('xbuttondown', xButtonHandler);
       
 
 
@@ -36,8 +63,9 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('height', '0.7');
             menuPanel.setAttribute('depth', '0.1');
             menuPanel.setAttribute('color', '#333');
-            menuPanel.setAttribute('class',"clickable");
+            //menuPanel.setAttribute('class',"clickable");
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+            
             
 
             var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
