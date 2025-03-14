@@ -83,13 +83,14 @@ AFRAME.registerComponent('createsons', {
 
             var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
             
-            var moveButton = crearBoton("O", "0.4 0.3 0.06", moverMenu, "red", "0.2");
+            var moveButton = crearBoton("O", "0.2 0.3 0.06", moverMenu, "brown", "0.2");
              
-            hacerArrastrable(menuPanel);
+            //hacerArrastrable(menuPanel);
 
             menuPanel.appendChild(barChartButton);
             menuPanel.appendChild(pieChartButton);
             menuPanel.appendChild(closeButton);
+            menuPanel.appendChild(moveButton);
             scene.appendChild(menuPanel);
         }
 
@@ -154,7 +155,7 @@ AFRAME.registerComponent('createsons', {
                 mostrarGrafico(tipo, " ");
             });
           
-            hacerArrastrable(subMenu);
+            //hacerArrastrable(subMenu);
 
             subMenu.appendChild(backButton);
             subMenu.appendChild(option1);
@@ -164,6 +165,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.appendChild(option5);
             scene.appendChild(subMenu);
         }
+
       
         function mostrarSubmenu2(tipo, tipo2) {
             cerrarMenus();
@@ -182,7 +184,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
-            hacerArrastrable(subMenu);
+            //hacerArrastrable(subMenu);
           
             var backButton = crearBoton("<--", "-0.45 0.39 0.06", function () {
                 mostrarSubmenu(tipo)
