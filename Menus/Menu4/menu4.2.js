@@ -48,6 +48,7 @@ AFRAME.registerComponent('createsons', {
         // Guardar la referencia para poder eliminarlo después si es necesario
         el.xButtonHandler = handleXButton;
 
+
         function crearMenuPrincipal() {
             cerrarMenus();
 
@@ -81,6 +82,8 @@ AFRAME.registerComponent('createsons', {
             });
 
             var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+            
+            var moveButton = crearBoton("O", "0.4 0.3 0.06", moverMenu, "red", "0.2");
              
             hacerArrastrable(menuPanel);
 
@@ -267,7 +270,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
-            hacerArrastrable(subMenu);
+            //hacerArrastrable(subMenu);
           
             var backButton = crearBoton("<--", "-0.45 0.39 0.06", function () {
                 mostrarSubmenu(tipo)
@@ -367,142 +370,47 @@ AFRAME.registerComponent('createsons', {
             //}
         }
       
-        function hacerArrastrable(elemento) {
+        /*function hacerArrastrable(elemento) {
             var isDragging = false;
             var offset = new THREE.Vector3();
+            var mouse = new THREE.Vector3();
             var raycaster = new THREE.Raycaster();
-            var estaApuntando = false;
-            var zonasExcluidas = [];
 
-            // Encuentra todos los botones dentro del elemento para excluirlos
-            elemento.querySelectorAll('a-plane').forEach(function(boton) {
-                zonasExcluidas.push(boton);
+            elemento.addEventListener('mousedown', function (event) {
+                isDragging = true;
+                let panelPos = elemento.object3D.position;
+                offset.set(
+                    event.detail.intersection.point.x - panelPos.x,
+                    event.detail.intersection.point.y - panelPos.y,
+                    event.detail.intersection.point.z - panelPos.z
+                );
             });
 
-            // Detectar cuando el rayo está sobre el menú (pero no sobre los botones)
-            elemento.addEventListener('raycaster-intersected', function(evt) {
-                // Verificar que el rayo no está sobre un botón
-                let esBoton = false;
-                for (let i = 0; i < zonasExcluidas.length; i++) {
-                    if (evt.detail.el === zonasExcluidas[i]) {
-                        esBoton = true;
-                        break;
-                    }
-                }
-
-                if (!esBoton) {
-                    estaApuntando = true;
-                    // Cambiar color para feedback visual (hacer el menú más claro)
-                    let colorOriginal = elemento.getAttribute('color');
-                    elemento.colorOriginal = colorOriginal;
-
-                    // Convertir el color a RGB más claro
-                    let color = new THREE.Color(colorOriginal);
-                    color.addScalar(0.2); // Hacer más claro
-                    elemento.setAttribute('color', color.getStyle());
-
-                    console.log("Rayo apuntando al menú (área para arrastrar)");
-                }
-            });
-
-            // Detectar cuando el rayo ya no está sobre el menú
-            elemento.addEventListener('raycaster-intersected-cleared', function(evt) {
-                if (estaApuntando) {
-                    estaApuntando = false;
-                    // Restaurar color original
-                    if (elemento.colorOriginal) {
-                        elemento.setAttribute('color', elemento.colorOriginal);
-                    }
-                    console.log("Rayo ya no apunta al menú");
-                }
-            });
-
-            // Función para manejar el botón A (mando derecho)
-            function handleAButton(evt) {
-                console.log("Botón A presionado");
-                // Iniciar arrastre si el rayo está apuntando a una zona arrastradora
-                if (estaApuntando && !isDragging) {
-                    isDragging = true;
-
-                    // Obtener el controlador derecho
-                    let rightHand = document.querySelector('#rightHand');
-
-                    // Obtener la posición del rayo intersección
-                    let rightRaycaster = document.querySelector('a-entity[laser-controls="hand: right"]').components.raycaster;
-                    let intersection = rightRaycaster.getIntersection(elemento);
-
-                    if (intersection) {
-                        let elementPos = elemento.object3D.position;
-                        offset.set(
-                            intersection.point.x - elementPos.x,
-                            intersection.point.y - elementPos.y,
-                            intersection.point.z - elementPos.z
-                        );
-                        console.log("Iniciando arrastre del menú");
-                    }
-                }
-            }
-
-            // Función para manejar soltar el botón A
-            function handleAReleased(evt) {
+            scene.addEventListener('mousemove', function (event) {
                 if (isDragging) {
-                    console.log("Botón A liberado, terminando arrastre");
+                    let canvas = scene.renderer.domElement;
+                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
+                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
+                    raycaster.setFromCamera(mouse, scene.camera);
+
+                    let intersects = raycaster.intersectObject(elemento.object3D, true);
+                    if (intersects.length > 0) {
+                        elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
+                    }
+                }
+            });
+
+            scene.addEventListener('mouseup', function () {
+                if (isDragging) {
                     lastMenuPosition = {
                         x: elemento.object3D.position.x,
                         y: elemento.object3D.position.y,
                         z: elemento.object3D.position.z
                     };
-                    isDragging = false;
                 }
-            }
-
-            // Función para actualizar la posición durante el arrastre
-            function updateDrag() {
-                if (isDragging) {
-                    // Obtener la posición actual del rayo
-                    let rightRaycaster = document.querySelector('a-entity[laser-controls="hand: right"]').components.raycaster;
-                    let intersections = rightRaycaster.intersectObjects(scene.object3D.children, true);
-
-                    if (intersections.length > 0) {
-                        let newPos = new THREE.Vector3(
-                            intersections[0].point.x - offset.x,
-                            intersections[0].point.y - offset.y,
-                            intersections[0].point.z - offset.z
-                        );
-
-                        // Aplicar la nueva posición
-                        elemento.object3D.position.copy(newPos);
-                    }
-                }
-            }
-
-            // Añadir el listener para botón A a nivel de escena
-            scene.addEventListener('abuttondown', handleAButton);
-            scene.addEventListener('abuttonup', handleAReleased);
-
-            // Añadir una función al tick para actualizar la posición durante el arrastre
-            let tickFunction = function() {
-                updateDrag();
-            };
-
-            // Agregar el tick al sistema
-            scene.systems['createsons-dragging'] = {
-                tick: tickFunction
-            };
-
-            // Guardar referencias para poder eliminarlas después
-            elemento.aButtonHandlers = {
-                down: handleAButton,
-                up: handleAReleased
-            };
-
-            // Si el elemento se elimina, eliminar también los listeners
-            elemento.addEventListener('remove', function() {
-                scene.removeEventListener('abuttondown', elemento.aButtonHandlers.down);
-                scene.removeEventListener('abuttonup', elemento.aButtonHandlers.up);
-                delete scene.systems['createsons-dragging'];
+                isDragging = false;
             });
-        }
+        }*/
       
       
 
@@ -571,23 +479,7 @@ AFRAME.registerComponent('createsons', {
 
             return button;
         }
-    
-       scene.systems['createsons-dragging'] = {
-                tick: function() { }  // Placeholder vacío que será reemplazado por cada menú
-            };
-
-            // ... continúa con tu código
-        },
-
-
-        // Añadir un tick para el componente
-        tick: function() {
-            // Este tick se asegura de que el sistema de arrastre funcione continuamente
-            if (this.el.sceneEl.systems['createsons-dragging'] && 
-                typeof this.el.sceneEl.systems['createsons-dragging'].tick === 'function') {
-                this.el.sceneEl.systems['createsons-dragging'].tick();
-            }
-        }
+    }
 });
 // Componente para movimiento con joystick izquierdo
       AFRAME.registerComponent('body-movement', {

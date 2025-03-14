@@ -48,6 +48,7 @@ AFRAME.registerComponent('createsons', {
         // Guardar la referencia para poder eliminarlo después si es necesario
         el.xButtonHandler = handleXButton;
 
+
         function crearMenuPrincipal() {
             cerrarMenus();
 
