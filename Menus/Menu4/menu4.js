@@ -401,31 +401,49 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('color', color);
             button.setAttribute('position', posicion);
             button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
-            button.setAttribute('class',"clickable");
-            // Detectar cuando el rayo está sobre la esfera
+            button.setAttribute('class', "clickable");
+
+            // Color original para restaurar después
+            const colorOriginal = color;
+
+            // Detectar cuando el rayo está sobre el botón
             button.addEventListener('raycaster-intersected', function(evt) {
-              // Verificar que el rayo viene del controlador izquierdo
-              if (evt.detail.el.id === 'raycastIzquierdo') {
                 estaApuntando = true;
-                console.log("Rayo izquierdo apuntando a la esfera");
-              }
+                // Cambiar color para feedback visual
+                button.setAttribute('color', '#aaaaff');
+                console.log("Rayo apuntando al botón:", texto);
             });
 
-            // Detectar cuando el rayo ya no está sobre la esfera
+            // Detectar cuando el rayo ya no está sobre el botón
             button.addEventListener('raycaster-intersected-cleared', function(evt) {
-              if (evt.detail.el.id === 'raycastIzquierdo') {
                 estaApuntando = false;
-                console.log("Rayo izquierdo ya no apunta a la esfera");
-              }
+                // Restaurar color original
+                button.setAttribute('color', colorOriginal);
+                console.log("Rayo ya no apunta al botón:", texto);
             });
+
+            // Crear una función manejadora para el evento xbuttondown
+            function xButtonHandler(evt) {
+                console.log("Botón X presionado");
+                // Ejecutar onClick directamente si el rayo está apuntando
+                if (estaApuntando) {
+                    console.log("Ejecutando acción para botón:", texto);
+                    onClick();
+                }
+            }
+
+            // Añadir el listener a nivel de escena
             const escena = document.querySelector('a-scene');
-            escena.addEventListener('xbuttondown', function(evt) {
-              console.log("Botón X presionado");
-              // Cambiar color solo si el rayo está apuntando a la esfera
-              if (estaApuntando) {
-                button.addEventListener('click', onClick);
-              }
+            escena.addEventListener('xbuttondown', xButtonHandler);
+
+            // Almacenar referencia al handler para poder eliminarlo después
+            button.xButtonHandler = xButtonHandler;
+
+            // Si el botón se elimina, eliminar también el listener global
+            button.addEventListener('remove', function() {
+                escena.removeEventListener('xbuttondown', button.xButtonHandler);
             });
+
             return button;
         }
     }
