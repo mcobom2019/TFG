@@ -394,6 +394,7 @@ AFRAME.registerComponent('createsons', {
 
 
         function crearBoton(texto, posicion, onClick, color = "blue", size = "0.6") {
+            let estaApuntando = false;
             var button = document.createElement('a-plane');
             button.setAttribute('width', size);
             button.setAttribute('height', '0.2');
@@ -401,7 +402,30 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('position', posicion);
             button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
             button.setAttribute('class',"clickable");
-            button.addEventListener('click', onClick);
+            // Detectar cuando el rayo está sobre la esfera
+            button.addEventListener('raycaster-intersected', function(evt) {
+              // Verificar que el rayo viene del controlador izquierdo
+              if (evt.detail.el.id === 'raycastIzquierdo') {
+                estaApuntando = true;
+                console.log("Rayo izquierdo apuntando a la esfera");
+              }
+            });
+
+            // Detectar cuando el rayo ya no está sobre la esfera
+            button.addEventListener('raycaster-intersected-cleared', function(evt) {
+              if (evt.detail.el.id === 'raycastIzquierdo') {
+                estaApuntando = false;
+                console.log("Rayo izquierdo ya no apunta a la esfera");
+              }
+            });
+            const escena = document.querySelector('a-scene');
+            escena.addEventListener('xbuttondown', function(evt) {
+              console.log("Botón X presionado");
+              // Cambiar color solo si el rayo está apuntando a la esfera
+              if (estaApuntando) {
+                button.addEventListener('click', onClick);
+              }
+            });
             return button;
         }
     }
