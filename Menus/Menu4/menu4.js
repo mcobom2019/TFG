@@ -10,41 +10,43 @@ AFRAME.registerComponent('createsons', {
         var pieEntity = null;
         var lastMenuPosition = null;
         var esVisible = false;
-
-        // Color original para restaurar después
-        const colorOriginal = #color;
-
-        // Detectar cuando el rayo está sobre el botón
-        button.addEventListener('raycaster-intersected', function(evt) {
+        
+        // Variable para detectar si el rayo está apuntando al cilindro
+        var estaApuntando = false;
+        
+        // Detectar cuando el rayo está sobre el cilindro
+        el.addEventListener('raycaster-intersected', function(evt) {
             estaApuntando = true;
-            // Cambiar color para feedback visual
-            button.setAttribute('color', '#aaaaff');
-            console.log("Rayo apuntando al botón:", texto);
+            // Cambiar color para feedback visual (opcional)
+            el.setAttribute('color', '#ff7777');
+            console.log("Rayo apuntando al botón 3D inicial");
         });
-
-        // Detectar cuando el rayo ya no está sobre el botón
-        button.addEventListener('raycaster-intersected-cleared', function(evt) {
+        
+        // Detectar cuando el rayo ya no está sobre el cilindro
+        el.addEventListener('raycaster-intersected-cleared', function(evt) {
             estaApuntando = false;
             // Restaurar color original
-            button.setAttribute('color', colorOriginal);
-            console.log("Rayo ya no apunta al botón:", texto);
+            el.setAttribute('color', 'red');
+            console.log("Rayo ya no apunta al botón 3D inicial");
         });
-
-        // Crear una función manejadora para el evento xbuttondown
-        function xButtonHandler(evt) {
+        
+        // Función para manejar el evento xbuttondown a nivel de escena
+        function handleXButton(evt) {
             console.log("Botón X presionado");
-            // Ejecutar onClick directamente si el rayo está apuntando
+            // Ejecutar acción si el rayo está apuntando al cilindro
             if (estaApuntando) {
-                console.log("Ejecutando acción para botón:", texto);
-                onClick();
+                console.log("Ejecutando acción para botón 3D inicial");
+                if (!menuPanel) {
+                    crearMenuPrincipal();
+                }
             }
         }
-
+        
         // Añadir el listener a nivel de escena
-        const escena = document.querySelector('a-scene');
-        escena.addEventListener('xbuttondown', xButtonHandler);
-      
-
+        scene.addEventListener('xbuttondown', handleXButton);
+        
+        // Guardar la referencia para poder eliminarlo después si es necesario
+        el.xButtonHandler = handleXButton;
 
         function crearMenuPrincipal() {
             cerrarMenus();
