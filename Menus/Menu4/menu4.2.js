@@ -49,51 +49,56 @@ AFRAME.registerComponent('createsons', {
         el.xButtonHandler = handleXButton;
 
 
-        function crearMenuPrincipal() {
-            cerrarMenus();
+function crearMenuPrincipal() {
+    cerrarMenus();
 
-            var parentPosition = el.getAttribute('position');
-            var isDragging = false;
-            var newPosition;
-            if (lastMenuPosition) {
-                newPosition = lastMenuPosition;
-            } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
-            }
+    var parentPosition = el.getAttribute('position');
+    var newPosition;
+    if (lastMenuPosition) {
+        newPosition = lastMenuPosition;
+    } else {
+        newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+    }
 
-            menuPanel = document.createElement('a-box');
-            menuPanel.setAttribute('width', '1');
-            menuPanel.setAttribute('height', '0.7');
-            menuPanel.setAttribute('depth', '0.1');
-            menuPanel.setAttribute('color', '#333');
-            //menuPanel.setAttribute('class',"clickable");
-            menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            
-            
+    menuPanel = document.createElement('a-box');
+    menuPanel.setAttribute('width', '1');
+    menuPanel.setAttribute('height', '0.7');
+    menuPanel.setAttribute('depth', '0.1');
+    menuPanel.setAttribute('color', '#333');
+    menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+    
+    var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
+        var posicion = el.getAttribute('position');
+        mostrarSubmenu("Barras", posicion);
+    });
 
-            var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
-                var posicion = el.getAttribute('position');
-                mostrarSubmenu("Barras", posicion);
-            });
+    var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
+        var posicion = el.getAttribute('position');
+        mostrarSubmenu("Circular", posicion);
+    });
 
-            var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
-                var posicion = el.getAttribute('position');
-                mostrarSubmenu("Circular", posicion);
-            });
+    var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+    
+    // Botón para mover el menú - simplificado
+    var moveButton = document.createElement('a-plane');
+    moveButton.setAttribute('id', 'move-button');
+    moveButton.setAttribute('width', '0.2');
+    moveButton.setAttribute('height', '0.2');
+    moveButton.setAttribute('color', 'brown');
+    moveButton.setAttribute('position', '0.2 0.3 0.06');
+    moveButton.setAttribute('text', 'value: O; color: white; align: center; width: 1.5;');
+    moveButton.setAttribute('class', 'clickable');
+    
+    // Añadir componente personalizado para manejar el arrastre
+    moveButton.setAttribute('menu-dragger', '');
+    
+    menuPanel.appendChild(barChartButton);
+    menuPanel.appendChild(pieChartButton);
+    menuPanel.appendChild(closeButton);
+    menuPanel.appendChild(moveButton);
+    scene.appendChild(menuPanel);
+}
 
-            var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
-            
-            var moveButton = crearBoton("O", "0.2 0.3 0.06", moverMenu, "brown", "0.2");
-             
-            //hacerArrastrable(menuPanel);
-
-            menuPanel.appendChild(barChartButton);
-            menuPanel.appendChild(pieChartButton);
-            menuPanel.appendChild(closeButton);
-            menuPanel.appendChild(moveButton);
-            scene.appendChild(menuPanel);
-        }
-      
 
 
         function cerrarMenus() {
@@ -108,115 +113,7 @@ AFRAME.registerComponent('createsons', {
             }
             cerrarGraficoPrevio();
         }
-      
-function moverMenu(event) {
-    // Obtener el botón que fue clickeado (el botón O en este caso)
-    var moveButton = this;
-    var isDragging = false;
-    var offset = new THREE.Vector3();
-    var raycaster = new THREE.Raycaster();
-    
-    // Guardar la posición inicial
-    var initialPosition = new THREE.Vector3();
-    initialPosition.copy(menuPanel.object3D.position);
-    
-    // Variable para detectar si el rayo está apuntando al botón O
-    var estaApuntandoBotonO = false;
-    
-    // Detectar cuando el rayo está sobre el botón O
-    moveButton.addEventListener('raycaster-intersected', function(evt) {
-        estaApuntandoBotonO = true;
-        // Cambiar color para feedback visual
-        moveButton.setAttribute('color', '#aaaaff');
-    });
-    
-    // Detectar cuando el rayo ya no está sobre el botón O
-    moveButton.addEventListener('raycaster-intersected-cleared', function(evt) {
-        estaApuntandoBotonO = false;
-        // Restaurar color original si no está arrastrando
-        if (!isDragging) {
-            moveButton.setAttribute('color', 'brown');
-        }
-    });
-    
-    // Función manejadora para el evento abuttondown a nivel de escena
-    function handleAButton(evt) {
-        if (estaApuntandoBotonO) {
-            isDragging = true;
-            console.log("Iniciando arrastre del menú");
-            
-            // Cambiar color del botón O para indicar que está activo
-            moveButton.setAttribute('color', '#ff7777');
-        }
-    }
-    
-    // Función para mover el menú durante el arrastre
-    function moverMenuConRaycaster(evt) {
-        if (isDragging) {
-            // Obtener la dirección del rayo
-            var direction = new THREE.Vector3();
-            var raycasterComponent = document.querySelector('[raycaster]').components.raycaster;
-            
-            if (raycasterComponent && raycasterComponent.raycaster) {
-                // Actualizar la posición del menú siguiendo el rayo
-                var intersection = raycasterComponent.getIntersection(menuPanel);
-                
-                if (intersection) {
-                    menuPanel.object3D.position.x = intersection.point.x;
-                    menuPanel.object3D.position.y = intersection.point.y;
-                    menuPanel.object3D.position.z = intersection.point.z;
-                } else {
-                    // Si no hay intersección, mover el menú en la dirección del rayo
-                    var camera = document.querySelector('#head').object3D;
-                    var controllerPos = document.querySelector('[raycaster]').object3D.position;
-                    
-                    direction.set(0, 0, -1);
-                    direction.applyQuaternion(camera.quaternion);
-                    
-                    var distance = 1.5;  // Distancia por defecto frente a la cámara
-                    
-                    menuPanel.object3D.position.copy(controllerPos);
-                    menuPanel.object3D.position.addScaledVector(direction, distance);
-                }
-                
-                // Actualizar la posición para futuros menús
-                lastMenuPosition = {
-                    x: menuPanel.object3D.position.x,
-                    y: menuPanel.object3D.position.y,
-                    z: menuPanel.object3D.position.z
-                };
-            }
-        }
-    }
-    
-    // Función manejadora para el evento abuttonup a nivel de escena
-    function handleAButtonUp(evt) {
-        if (isDragging) {
-            isDragging = false;
-            console.log("Finalizando arrastre del menú");
-            
-            // Restaurar color del botón O
-            moveButton.setAttribute('color', 'brown');
-            
-            // Guardar la nueva posición para futuros menús
-            lastMenuPosition = {
-                x: menuPanel.object3D.position.x,
-                y: menuPanel.object3D.position.y,
-                z: menuPanel.object3D.position.z
-            };
-            
-            // Limpiar los event listeners cuando se suelta el botón
-            scene.removeEventListener('abuttondown', handleAButton);
-            scene.removeEventListener('raycaster-intersection', moverMenuConRaycaster);
-            scene.removeEventListener('abuttonup', handleAButtonUp);
-        }
-    }
-    
-    // Añadir los listeners a nivel de escena
-    scene.addEventListener('abuttondown', handleAButton);
-    scene.addEventListener('raycaster-intersection', moverMenuConRaycaster);
-    scene.addEventListener('abuttonup', handleAButtonUp);
-}
+
 
         function mostrarSubmenu(tipo, posicion) {
             cerrarMenus();
