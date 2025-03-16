@@ -480,6 +480,7 @@ AFRAME.registerComponent('createsons', {
     }
 });
 // Componente para movimiento con joystick izquierdo (corregido)
+// Componente para movimiento con joystick izquierdo (corregido)
 AFRAME.registerComponent('body-movement', {
   schema: {
     speed: {type: 'number', default: 0.15}
@@ -501,27 +502,25 @@ AFRAME.registerComponent('body-movement', {
     // Obtener posición actual
     let position = this.cameraRig.getAttribute('position');
     
-    // Obtener rotación actual del rig
+    // Obtener SOLO la rotación horizontal (yaw) del rig
     let rotation = this.cameraRig.getAttribute('rotation');
     let yawRad = THREE.MathUtils.degToRad(rotation.y);
-    let pitchRad = THREE.MathUtils.degToRad(rotation.x);
     
-    // Calcular vectores de dirección considerando tanto rotación horizontal como vertical
-    // NOTA: invertimos los signos para corregir la dirección del movimiento
+    // Calcular vectores para movimiento SOLO en el plano horizontal
+    let moveZ = Math.cos(yawRad);
+    let moveX = Math.sin(yawRad);
+    let moveY = Math.tan(yawRad);
     
-    // Para adelante/atrás (considerando inclinación)
-    let moveZ = Math.cos(yawRad) * Math.cos(pitchRad);
-    let moveY = Math.sin(pitchRad);
-    let moveX = Math.sin(yawRad) * Math.cos(pitchRad);
-    
-    // Para izquierda/derecha (solo consideramos rotación horizontal)
+    // Para izquierda/derecha (solo plano horizontal)
     let strafeX = Math.sin(yawRad + Math.PI/2);
     let strafeZ = Math.cos(yawRad + Math.PI/2);
+    let strafeY = Math.tan(yawRad + Math.PI/2);
     
-    // Calcular nueva posición con signos corregidos (positivos en lugar de negativos)
+    // Calcular nueva posición - solo afecta X y Z (horizontal)
     position.x += (evt.detail.y * moveX + evt.detail.x * strafeX) * this.data.speed;
-    position.y += evt.detail.y * moveY * this.data.speed; // Movimiento vertical basado en inclinación
+    // NO modificamos la altura (position.y)
     position.z += (evt.detail.y * moveZ + evt.detail.x * strafeZ) * this.data.speed;
+    position.y += (evt.detail.y * moveY + evt.detail.x * strafeY) * this.data.speed;
     
     // Aplicar nueva posición
     this.cameraRig.setAttribute('position', position);
