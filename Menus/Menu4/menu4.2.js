@@ -82,101 +82,14 @@ AFRAME.registerComponent('createsons', {
             });
 
             var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
-            
-            var moveButton = crearBoton("O", "0.2 0.3 0.06", moverMenu, "brown", "0.2");
              
-            //hacerArrastrable(menuPanel);
+            hacerArrastrable(menuPanel);
 
             menuPanel.appendChild(barChartButton);
             menuPanel.appendChild(pieChartButton);
             menuPanel.appendChild(closeButton);
-            menuPanel.appendChild(moveButton);
             scene.appendChild(menuPanel);
         }
-      
-      function moverMenu() {
-    console.log("Iniciando modo de movimiento del menú");
-    
-    // Estado interno
-    var menuState = 0;  // 0: inicio, 1: listo para mover, 2: moviendo
-    var currentMenu = menuPanel;
-    
-    // Cambiar color para indicar que está en modo de configuración
-    currentMenu.setAttribute('color', '#555');
-    
-    // Función para manejar el botón X
-    function handleXButton(event) {
-        console.log("Botón X presionado, estado actual:", menuState);
-        
-        // Cambiar estado cíclicamente
-        menuState = (menuState + 1) % 3;
-        
-        if (menuState === 0) {
-            // Finalizar el modo de movimiento
-            console.log("Modo movimiento finalizado");
-            currentMenu.setAttribute('color', '#333');  // Restaurar color original
-            
-            // Guardar la posición final
-            var pos = currentMenu.getAttribute('position');
-            lastMenuPosition = { x: pos.x, y: pos.y, z: pos.z };
-            console.log("Posición guardada:", lastMenuPosition);
-            
-            // Eliminar listeners
-            scene.removeEventListener('xbuttondown', handleXButton);
-            scene.removeEventListener('tick', updatePosition);
-        } 
-        else if (menuState === 1) {
-            // Preparar para mover
-            console.log("Preparando para mover - Presiona X otra vez para comenzar");
-            currentMenu.setAttribute('color', '#88a');  // Azul claro
-        }
-        else if (menuState === 2) {
-            // Comenzar a mover
-            console.log("Moviendo menú - Presiona X otra vez para fijar");
-            currentMenu.setAttribute('color', '#aa8');  // Amarillo oscuro
-        }
-    }
-    
-    // Función para actualizar posición durante el movimiento
-    function updatePosition() {
-        // Solo actualizar si estamos en estado de movimiento
-        if (menuState !== 2 || !currentMenu) return;
-        
-        // Obtener controlador izquierdo (ya que estamos usando el botón X)
-        var leftController = document.querySelector("[oculus-touch-controls='hand: left']") || 
-                             document.querySelector("#leftHand") ||
-                             document.querySelector("[hand-controls='left']");
-        
-        if (!leftController) {
-            console.warn("No se encontró el controlador izquierdo");
-            return;
-        }
-        
-        // Obtener posición del controlador
-        var controllerPos = leftController.object3D.getWorldPosition(new THREE.Vector3());
-        
-        // Aplicar la posición al menú con un pequeño desplazamiento
-        currentMenu.setAttribute('position', {
-            x: controllerPos.x + 0.3,  // Ligeramente a la derecha del controlador
-            y: controllerPos.y + 0.2,  // Ligeramente arriba
-            z: controllerPos.z - 0.3   // Ligeramente adelante
-        });
-    }
-    
-    // Configurar listeners
-    scene.addEventListener('xbuttondown', handleXButton);
-    scene.addEventListener('tick', updatePosition);
-    
-    // Timeout de seguridad para limpiar si no se completa el ciclo
-    setTimeout(function() {
-        if (menuState !== 0) {
-            scene.removeEventListener('xbuttondown', handleXButton);
-            scene.removeEventListener('tick', updatePosition);
-            currentMenu.setAttribute('color', '#333');  // Restaurar color
-            console.log("Modo movimiento cancelado por timeout");
-        }
-    }, 30000);  // 30 segundos
-}
 
 
         function cerrarMenus() {
@@ -239,7 +152,7 @@ AFRAME.registerComponent('createsons', {
                 mostrarGrafico(tipo, " ");
             });
           
-            //hacerArrastrable(subMenu);
+            hacerArrastrable(subMenu);
 
             subMenu.appendChild(backButton);
             subMenu.appendChild(option1);
@@ -249,7 +162,6 @@ AFRAME.registerComponent('createsons', {
             subMenu.appendChild(option5);
             scene.appendChild(subMenu);
         }
-
       
         function mostrarSubmenu2(tipo, tipo2) {
             cerrarMenus();
@@ -268,7 +180,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
-            //hacerArrastrable(subMenu);
+            hacerArrastrable(subMenu);
           
             var backButton = crearBoton("<--", "-0.45 0.39 0.06", function () {
                 mostrarSubmenu(tipo)
@@ -356,7 +268,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
-            //hacerArrastrable(subMenu);
+            hacerArrastrable(subMenu);
           
             var backButton = crearBoton("<--", "-0.45 0.39 0.06", function () {
                 mostrarSubmenu(tipo)
@@ -456,7 +368,7 @@ AFRAME.registerComponent('createsons', {
             //}
         }
       
-        /*function hacerArrastrable(elemento) {
+        function hacerArrastrable(elemento) {
             var isDragging = false;
             var offset = new THREE.Vector3();
             var mouse = new THREE.Vector3();
@@ -496,7 +408,7 @@ AFRAME.registerComponent('createsons', {
                 }
                 isDragging = false;
             });
-        }*/
+        }
       
       
 
@@ -601,40 +513,48 @@ AFRAME.registerComponent('createsons', {
       });
       
       // Componente para rotación de cámara con joystick derecho (corregido)
-      AFRAME.registerComponent('head-rotation', {
-        schema: {
-          speed: {type: 'number', default: 2.0}
-        },
-        
-        init: function () {
-          this.cameraHead = document.querySelector('#head');
-          console.log("Head rotation component initialized");
-          
-          // Almacenar valores de rotación
-          this.yaw = 0;
-          this.pitch = 0;
-          
-          // Capturar eventos de joystick
-          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
-        },
-        
-        tick: function() {
-          // Asegurar que la rotación se aplica constantemente
-          this.cameraHead.setAttribute('rotation', {x: this.pitch, y: this.yaw, z: 0});
-        },
-        
-        onThumbstickMoved: function (evt) {
-          console.log("Right thumbstick moved:", evt.detail.x, evt.detail.y);
-          
-          if (evt.detail.x === 0 && evt.detail.y === 0) return;
-          
-          // CORREGIDO: Invertir el eje Y para que arriba mire hacia arriba
-          // Actualizar ángulos basados en el joystick
-          this.yaw -= evt.detail.x * this.data.speed;
-          
-          // Invertir el pitch para que el movimiento sea natural
-          this.pitch = Math.max(-70, Math.min(70, this.pitch - evt.detail.y * this.data.speed));
-          
-          // La aplicación real ocurre en el método tick
-        }
-      });
+      // Componente para rotación de cámara con joystick derecho (corregido)
+// Componente para rotación de cámara con joystick derecho (corregido)
+AFRAME.registerComponent('head-rotation', {
+  schema: {
+    speed: {type: 'number', default: 2.0}
+  },
+  
+  init: function () {
+    this.cameraRig = document.querySelector('#cameraRig');
+    this.head = document.querySelector('#head');
+    console.log("Head rotation component initialized");
+    
+    // Almacenar valores de rotación
+    this.yaw = 0;
+    this.pitch = 0;
+    
+    // Capturar eventos de joystick
+    this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
+  },
+  
+  tick: function() {
+    // Actualizar la rotación horizontal de todo el rig (cámara y mandos juntos)
+    let currentRotation = this.cameraRig.getAttribute('rotation') || {x: 0, y: 0, z: 0};
+    currentRotation.y = this.yaw;
+    this.cameraRig.setAttribute('rotation', currentRotation);
+    
+    // Actualizar la rotación vertical solo de la cabeza
+    let headRotation = this.head.getAttribute('rotation') || {x: 0, y: 0, z: 0};
+    headRotation.x = this.pitch;
+    this.head.setAttribute('rotation', headRotation);
+  },
+  
+  onThumbstickMoved: function (evt) {
+    console.log("Right thumbstick moved:", evt.detail.x, evt.detail.y);
+    
+    if (evt.detail.x === 0 && evt.detail.y === 0) return;
+    
+    // Actualizar el ángulo de rotación horizontal (yaw)
+    this.yaw -= evt.detail.x * this.data.speed;
+    
+    // Actualizar el ángulo de rotación vertical (pitch)
+    // Limitamos entre -70 y 70 grados para evitar giros completos
+    this.pitch = Math.max(-70, Math.min(70, this.pitch - evt.detail.y * this.data.speed));
+  }
+});
