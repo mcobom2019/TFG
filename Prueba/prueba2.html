@@ -1,75 +1,159 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/master/dist/aframe-physics-system.min.js"></script>
-  </head>
-  <body>
-    <a-scene physics="gravity: -9.8">
-      <!-- Rig del jugador -->
-      <a-entity id="rig" movement-controls position="0 1.6 0">
-        <a-camera></a-camera>
-
-        <!-- Controlador derecho -->
-        <a-entity 
-          oculus-touch-controls="hand: right" 
-          teleport-controls="button: trigger; collisionEntities: [ground]" 
-          sphere-collider="objects: .interactable">
-        </a-entity>
-
-        <!-- Controlador izquierdo con evento de agarre -->
-        <a-entity 
-          id="leftController"
-          oculus-touch-controls="hand: left"
-          grab-controls>
-        </a-entity>
-      </a-entity>
-
-      <!-- Cielo -->
-      <a-sky color="#87CEEB"></a-sky>
-
-      <!-- Suelo -->
-      <a-plane id="ground" position="0 0 0" rotation="-90 0 0" width="10" height="10" color="green" static-body></a-plane>
-
-      <!-- Caja Roja -->
-      <a-box class="interactable" position="-1 0.5 -3" rotation="0 45 0" color="red" dynamic-body></a-box>
-
-      <!-- Esfera Azul -->
-      <a-sphere class="interactable" position="1 1 -3" radius="0.5" color="blue" dynamic-body></a-sphere>
-
-      <!-- Cilindro Amarillo (interactuable con botón X) -->
-      <a-cylinder id="yellowCylinder" class="interactable" position="0 1 -4" radius="0.3" height="1" color="yellow" dynamic-body></a-cylinder>
-    </a-scene>
-
+    <meta charset="utf-8">
+    <title>Escena A-Frame para Meta Quest 3 con Controles Optimizados</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
     <script>
-      AFRAME.registerComponent('grab-controls', {
+      // Componente para movimiento con joystick izquierdo
+      AFRAME.registerComponent('body-movement', {
+        schema: {
+          speed: {type: 'number', default: 0.15}
+        },
+        
         init: function () {
-          let controller = this.el;
-          let grabbedObject = null;
-
-          controller.addEventListener('buttondown', function (event) {
-            if (event.detail.id === 'X') { // Detecta botón "X"
-              let intersectedEls = controller.components['sphere-collider'].intersectedEls;
-              intersectedEls.forEach(el => {
-                if (el.id === 'yellowCylinder') { // Si el objeto es el cilindro amarillo
-                  grabbedObject = el;
-                  grabbedObject.setAttribute('dynamic-body', 'mass: 0'); // Desactiva la física
-                  grabbedObject.object3D.position.copy(controller.object3D.position);
-                  grabbedObject.object3D.parent = controller.object3D; // Lo une a la mano
-                }
-              });
-            }
-          });
-
-          controller.addEventListener('buttonup', function (event) {
-            if (event.detail.id === 'X' && grabbedObject) { // Suelta el objeto
-              grabbedObject.object3D.parent = null;
-              grabbedObject.setAttribute('dynamic-body', 'mass: 1'); // Reactiva la física
-              grabbedObject = null;
-            }
-          });
+          this.cameraRig = document.querySelector('#cameraRig');
+          console.log("Body movement component initialized");
+          
+          // Capturar eventos de joystick
+          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
+        },
+        
+        onThumbstickMoved: function (evt) {
+          console.log("Left thumbstick moved:", evt.detail.x, evt.detail.y);
+          
+          if (evt.detail.x === 0 && evt.detail.y === 0) return;
+          
+          // Obtener posición actual
+          let position = this.cameraRig.getAttribute('position');
+          
+          // Movimiento adelante/atrás (eje Y)
+          position.z += evt.detail.y * this.data.speed;
+          
+          // Izquierda/derecha (eje X)
+          position.x += evt.detail.x * this.data.speed;
+          
+          // Aplicar la nueva posición
+          this.cameraRig.setAttribute('position', position);
+        }
+      });
+      
+      // Componente para rotación de cámara con joystick derecho (corregido)
+      AFRAME.registerComponent('head-rotation', {
+        schema: {
+          speed: {type: 'number', default: 2.0}
+        },
+        
+        init: function () {
+          this.cameraHead = document.querySelector('#head');
+          console.log("Head rotation component initialized");
+          
+          // Almacenar valores de rotación
+          this.yaw = 0;
+          this.pitch = 0;
+          
+          // Capturar eventos de joystick
+          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
+        },
+        
+        tick: function() {
+          // Asegurar que la rotación se aplica constantemente
+          this.cameraHead.setAttribute('rotation', {x: this.pitch, y: this.yaw, z: 0});
+        },
+        
+        onThumbstickMoved: function (evt) {
+          console.log("Right thumbstick moved:", evt.detail.x, evt.detail.y);
+          
+          if (evt.detail.x === 0 && evt.detail.y === 0) return;
+          
+          // CORREGIDO: Invertir el eje Y para que arriba mire hacia arriba
+          // Actualizar ángulos basados en el joystick
+          this.yaw -= evt.detail.x * this.data.speed;
+          
+          // Invertir el pitch para que el movimiento sea natural
+          this.pitch = Math.max(-70, Math.min(70, this.pitch - evt.detail.y * this.data.speed));
+          
+          // La aplicación real ocurre en el método tick
         }
       });
     </script>
+  </head>
+  <body>
+    <a-scene debug>
+      <!-- Cielo -->
+      <a-sky color="#87CEEB"></a-sky>
+      
+      <!-- Plano como suelo -->
+      <a-plane position="0 0 0" 
+               rotation="-90 0 0" 
+               width="20" 
+               height="20" 
+               color="#8FBC8F">
+      </a-plane>
+      
+      <!-- Marcadores de orientación -->
+      <a-box position="0 0.5 -5" width="1" height="1" depth="1" color="#FF0000">
+        <a-text value="FRENTE" position="0 1.2 0" align="center" color="white"></a-text>
+      </a-box>
+      
+      <a-box position="0 0.5 5" width="1" height="1" depth="1" color="#00FF00">
+        <a-text value="DETRÁS" position="0 1.2 0" align="center" color="white" rotation="0 180 0"></a-text>
+      </a-box>
+      
+      <a-box position="5 0.5 0" width="1" height="1" depth="1" color="#0000FF">
+        <a-text value="DERECHA" position="0 1.2 0" align="center" color="white" rotation="0 -90 0"></a-text>
+      </a-box>
+      
+      <a-box position="-5 0.5 0" width="1" height="1" depth="1" color="#FFFF00">
+        <a-text value="IZQUIERDA" position="0 1.2 0" align="center" color="white" rotation="0 90 0"></a-text>
+      </a-box>
+      
+      <!-- Objetos adicionales para probar diferentes alturas -->
+      <a-cone position="-3 0.5 -3" 
+             radius-bottom="1" 
+             radius-top="0" 
+             height="2" 
+             color="#FF6347">
+      </a-cone>
+      
+      <a-box position="3 2 -3" 
+             width="1" 
+             height="4" 
+             depth="1" 
+             color="#9370DB">
+      </a-box>
+      
+      <a-sphere position="0 4 -8" 
+                radius="1" 
+                color="#FF8C00">
+        <a-text value="MIRAR ARRIBA" position="0 1.5 0" align="center" color="white" scale="0.5 0.5 0.5"></a-text>
+      </a-sphere>
+      
+      <a-text value="¡Hola Mundo VR!" 
+              color="#000000" 
+              position="0 3 -5" 
+              width="10" 
+              align="center">
+      </a-text>
+      
+      <!-- Estructura de cámara y controles para Quest -->
+      <a-entity id="cameraRig" position="0 1.6 0">
+        <!-- Cámara para la cabeza -->
+        <a-entity id="head" rotation="0 0 0">
+          <a-camera look-controls="enabled: false"></a-camera>
+        </a-entity>
+        
+        <!-- Controles de Quest 3 -->
+        <a-entity id="leftHand" 
+                 oculus-touch-controls="hand: left" 
+                 body-movement="speed: 0.15">
+        </a-entity>
+        
+        <a-entity id="rightHand" 
+                 oculus-touch-controls="hand: right"
+                 head-rotation="speed: 2.0">
+        </a-entity>
+      </a-entity>
+    </a-scene>
   </body>
 </html>
