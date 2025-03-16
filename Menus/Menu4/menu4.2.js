@@ -49,56 +49,140 @@ AFRAME.registerComponent('createsons', {
         el.xButtonHandler = handleXButton;
 
 
-function crearMenuPrincipal() {
-    cerrarMenus();
+        function crearMenuPrincipal() {
+            cerrarMenus();
 
-    var parentPosition = el.getAttribute('position');
-    var newPosition;
-    if (lastMenuPosition) {
-        newPosition = lastMenuPosition;
-    } else {
-        newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+            var parentPosition = el.getAttribute('position');
+            var isDragging = false;
+            var newPosition;
+            if (lastMenuPosition) {
+                newPosition = lastMenuPosition;
+            } else {
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+            }
+
+            menuPanel = document.createElement('a-box');
+            menuPanel.setAttribute('width', '1');
+            menuPanel.setAttribute('height', '0.7');
+            menuPanel.setAttribute('depth', '0.1');
+            menuPanel.setAttribute('color', '#333');
+            //menuPanel.setAttribute('class',"clickable");
+            menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+            
+            
+
+            var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
+                var posicion = el.getAttribute('position');
+                mostrarSubmenu("Barras", posicion);
+            });
+
+            var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
+                var posicion = el.getAttribute('position');
+                mostrarSubmenu("Circular", posicion);
+            });
+
+            var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+            
+            var moveButton = crearBoton("O", "0.2 0.3 0.06", moverMenu, "brown", "0.2");
+             
+            //hacerArrastrable(menuPanel);
+
+            menuPanel.appendChild(barChartButton);
+            menuPanel.appendChild(pieChartButton);
+            menuPanel.appendChild(closeButton);
+            menuPanel.appendChild(moveButton);
+            scene.appendChild(menuPanel);
+        }
+      
+      function moverMenu() {
+    // Estado de arrastre
+    var dragging = false;
+    
+    // Almacenar referencia al botón O
+    var botonO = this;
+    
+    console.log("Modo de arrastre activado - Presiona el botón A para mover");
+    
+    // Cambiar color para indicar modo activo
+    botonO.setAttribute('color', 'yellow');
+    
+    // Crear una entidad auxiliar invisible que seguirá al controlador
+    var helper = document.createElement('a-entity');
+    helper.setAttribute('visible', 'false');
+    scene.appendChild(helper);
+    
+    // Función para iniciar arrastre
+    function iniciarArrastre(e) {
+        console.log("Botón A presionado - Comenzando arrastre");
+        dragging = true;
     }
-
-    menuPanel = document.createElement('a-box');
-    menuPanel.setAttribute('width', '1');
-    menuPanel.setAttribute('height', '0.7');
-    menuPanel.setAttribute('depth', '0.1');
-    menuPanel.setAttribute('color', '#333');
-    menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
     
-    var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
-        var posicion = el.getAttribute('position');
-        mostrarSubmenu("Barras", posicion);
-    });
-
-    var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
-        var posicion = el.getAttribute('position');
-        mostrarSubmenu("Circular", posicion);
-    });
-
-    var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+    // Función para terminar arrastre
+    function terminarArrastre(e) {
+        if (dragging) {
+            console.log("Arrastre finalizado");
+            dragging = false;
+            
+            // Guardar posición final
+            if (menuPanel) {
+                var pos = menuPanel.getAttribute('position');
+                lastMenuPosition = { x: pos.x, y: pos.y, z: pos.z };
+                console.log("Nueva posición guardada:", lastMenuPosition);
+            }
+            
+            // Limpiar
+            limpiarEventos();
+        }
+    }
     
-    // Botón para mover el menú - simplificado
-    var moveButton = document.createElement('a-plane');
-    moveButton.setAttribute('id', 'move-button');
-    moveButton.setAttribute('width', '0.2');
-    moveButton.setAttribute('height', '0.2');
-    moveButton.setAttribute('color', 'brown');
-    moveButton.setAttribute('position', '0.2 0.3 0.06');
-    moveButton.setAttribute('text', 'value: O; color: white; align: center; width: 1.5;');
-    moveButton.setAttribute('class', 'clickable');
+    // Función para actualizar posición durante arrastre
+    function actualizarPosicion() {
+        if (!dragging || !menuPanel) return;
+        
+        // Obtener posición del controlador derecho
+        var rightController = document.querySelector("[oculus-touch-controls='hand: right']") || 
+                              document.querySelector("#rightHand");
+        
+        if (!rightController) return;
+        
+        // Obtener posición actual del controlador
+        var controllerPos = rightController.getAttribute('position');
+        
+        // Actualizar posición del menú
+        menuPanel.setAttribute('position', {
+            x: controllerPos.x,
+            y: controllerPos.y + 0.2, // Un poco arriba del controlador
+            z: controllerPos.z - 0.3  // Un poco adelante del controlador
+        });
+    }
     
-    // Añadir componente personalizado para manejar el arrastre
-    moveButton.setAttribute('menu-dragger', '');
+    // Limpiar todos los eventos
+    function limpiarEventos() {
+        scene.removeEventListener('abuttondown', iniciarArrastre);
+        scene.removeEventListener('abuttonup', terminarArrastre);
+        scene.removeEventListener('tick', actualizarPosicion);
+        
+        // Restaurar color del botón
+        botonO.setAttribute('color', 'brown');
+        
+        // Eliminar helper
+        if (helper && helper.parentNode) {
+            helper.parentNode.removeChild(helper);
+        }
+    }
     
-    menuPanel.appendChild(barChartButton);
-    menuPanel.appendChild(pieChartButton);
-    menuPanel.appendChild(closeButton);
-    menuPanel.appendChild(moveButton);
-    scene.appendChild(menuPanel);
+    // Registrar eventos
+    scene.addEventListener('abuttondown', iniciarArrastre);
+    scene.addEventListener('abuttonup', terminarArrastre);
+    scene.addEventListener('tick', actualizarPosicion);
+    
+    // Timeout de seguridad
+    setTimeout(function() {
+        if (!dragging) {
+            limpiarEventos();
+        }
+    }, 10000); // 10 segundos para cancelar si no se usa
 }
-
 
 
         function cerrarMenus() {
