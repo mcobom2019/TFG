@@ -93,6 +93,7 @@ AFRAME.registerComponent('createsons', {
             menuPanel.appendChild(moveButton);
             scene.appendChild(menuPanel);
         }
+      
 
 
         function cerrarMenus() {
@@ -107,7 +108,115 @@ AFRAME.registerComponent('createsons', {
             }
             cerrarGraficoPrevio();
         }
-
+      
+function moverMenu(event) {
+    // Obtener el botón que fue clickeado (el botón O en este caso)
+    var moveButton = this;
+    var isDragging = false;
+    var offset = new THREE.Vector3();
+    var raycaster = new THREE.Raycaster();
+    
+    // Guardar la posición inicial
+    var initialPosition = new THREE.Vector3();
+    initialPosition.copy(menuPanel.object3D.position);
+    
+    // Variable para detectar si el rayo está apuntando al botón O
+    var estaApuntandoBotonO = false;
+    
+    // Detectar cuando el rayo está sobre el botón O
+    moveButton.addEventListener('raycaster-intersected', function(evt) {
+        estaApuntandoBotonO = true;
+        // Cambiar color para feedback visual
+        moveButton.setAttribute('color', '#aaaaff');
+    });
+    
+    // Detectar cuando el rayo ya no está sobre el botón O
+    moveButton.addEventListener('raycaster-intersected-cleared', function(evt) {
+        estaApuntandoBotonO = false;
+        // Restaurar color original si no está arrastrando
+        if (!isDragging) {
+            moveButton.setAttribute('color', 'brown');
+        }
+    });
+    
+    // Función manejadora para el evento abuttondown a nivel de escena
+    function handleAButton(evt) {
+        if (estaApuntandoBotonO) {
+            isDragging = true;
+            console.log("Iniciando arrastre del menú");
+            
+            // Cambiar color del botón O para indicar que está activo
+            moveButton.setAttribute('color', '#ff7777');
+        }
+    }
+    
+    // Función para mover el menú durante el arrastre
+    function moverMenuConRaycaster(evt) {
+        if (isDragging) {
+            // Obtener la dirección del rayo
+            var direction = new THREE.Vector3();
+            var raycasterComponent = document.querySelector('[raycaster]').components.raycaster;
+            
+            if (raycasterComponent && raycasterComponent.raycaster) {
+                // Actualizar la posición del menú siguiendo el rayo
+                var intersection = raycasterComponent.getIntersection(menuPanel);
+                
+                if (intersection) {
+                    menuPanel.object3D.position.x = intersection.point.x;
+                    menuPanel.object3D.position.y = intersection.point.y;
+                    menuPanel.object3D.position.z = intersection.point.z;
+                } else {
+                    // Si no hay intersección, mover el menú en la dirección del rayo
+                    var camera = document.querySelector('#head').object3D;
+                    var controllerPos = document.querySelector('[raycaster]').object3D.position;
+                    
+                    direction.set(0, 0, -1);
+                    direction.applyQuaternion(camera.quaternion);
+                    
+                    var distance = 1.5;  // Distancia por defecto frente a la cámara
+                    
+                    menuPanel.object3D.position.copy(controllerPos);
+                    menuPanel.object3D.position.addScaledVector(direction, distance);
+                }
+                
+                // Actualizar la posición para futuros menús
+                lastMenuPosition = {
+                    x: menuPanel.object3D.position.x,
+                    y: menuPanel.object3D.position.y,
+                    z: menuPanel.object3D.position.z
+                };
+            }
+        }
+    }
+    
+    // Función manejadora para el evento abuttonup a nivel de escena
+    function handleAButtonUp(evt) {
+        if (isDragging) {
+            isDragging = false;
+            console.log("Finalizando arrastre del menú");
+            
+            // Restaurar color del botón O
+            moveButton.setAttribute('color', 'brown');
+            
+            // Guardar la nueva posición para futuros menús
+            lastMenuPosition = {
+                x: menuPanel.object3D.position.x,
+                y: menuPanel.object3D.position.y,
+                z: menuPanel.object3D.position.z
+            };
+            
+            // Limpiar los event listeners cuando se suelta el botón
+            scene.removeEventListener('abuttondown', handleAButton);
+            scene.removeEventListener('raycaster-intersection', moverMenuConRaycaster);
+            scene.removeEventListener('abuttonup', handleAButtonUp);
+        }
+    }
+    
+    // Añadir los listeners a nivel de escena
+    scene.addEventListener('abuttondown', handleAButton);
+    scene.addEventListener('raycaster-intersection', moverMenuConRaycaster);
+    scene.addEventListener('abuttonup', handleAButtonUp);
+}
 
         function mostrarSubmenu(tipo, posicion) {
             cerrarMenus();
