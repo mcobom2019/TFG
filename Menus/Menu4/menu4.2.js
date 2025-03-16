@@ -95,93 +95,87 @@ AFRAME.registerComponent('createsons', {
         }
       
       function moverMenu() {
-    // Estado de arrastre
-    var dragging = false;
+    console.log("Iniciando modo de movimiento del menú");
     
-    // Almacenar referencia al botón O
-    var botonO = this;
+    // Estado interno
+    var menuState = 0;  // 0: inicio, 1: listo para mover, 2: moviendo
+    var currentMenu = menuPanel;
     
-    console.log("Modo de arrastre activado - Presiona el botón A para mover");
+    // Cambiar color para indicar que está en modo de configuración
+    currentMenu.setAttribute('color', '#555');
     
-    // Cambiar color para indicar modo activo
-    botonO.setAttribute('color', 'yellow');
-    
-    // Crear una entidad auxiliar invisible que seguirá al controlador
-    var helper = document.createElement('a-entity');
-    helper.setAttribute('visible', 'false');
-    scene.appendChild(helper);
-    
-    // Función para iniciar arrastre
-    function iniciarArrastre(e) {
-        console.log("Botón A presionado - Comenzando arrastre");
-        dragging = true;
-    }
-    
-    // Función para terminar arrastre
-    function terminarArrastre(e) {
-        if (dragging) {
-            console.log("Arrastre finalizado");
-            dragging = false;
+    // Función para manejar el botón X
+    function handleXButton(event) {
+        console.log("Botón X presionado, estado actual:", menuState);
+        
+        // Cambiar estado cíclicamente
+        menuState = (menuState + 1) % 3;
+        
+        if (menuState === 0) {
+            // Finalizar el modo de movimiento
+            console.log("Modo movimiento finalizado");
+            currentMenu.setAttribute('color', '#333');  // Restaurar color original
             
-            // Guardar posición final
-            if (menuPanel) {
-                var pos = menuPanel.getAttribute('position');
-                lastMenuPosition = { x: pos.x, y: pos.y, z: pos.z };
-                console.log("Nueva posición guardada:", lastMenuPosition);
-            }
+            // Guardar la posición final
+            var pos = currentMenu.getAttribute('position');
+            lastMenuPosition = { x: pos.x, y: pos.y, z: pos.z };
+            console.log("Posición guardada:", lastMenuPosition);
             
-            // Limpiar
-            limpiarEventos();
+            // Eliminar listeners
+            scene.removeEventListener('xbuttondown', handleXButton);
+            scene.removeEventListener('tick', updatePosition);
+        } 
+        else if (menuState === 1) {
+            // Preparar para mover
+            console.log("Preparando para mover - Presiona X otra vez para comenzar");
+            currentMenu.setAttribute('color', '#88a');  // Azul claro
+        }
+        else if (menuState === 2) {
+            // Comenzar a mover
+            console.log("Moviendo menú - Presiona X otra vez para fijar");
+            currentMenu.setAttribute('color', '#aa8');  // Amarillo oscuro
         }
     }
     
-    // Función para actualizar posición durante arrastre
-    function actualizarPosicion() {
-        if (!dragging || !menuPanel) return;
+    // Función para actualizar posición durante el movimiento
+    function updatePosition() {
+        // Solo actualizar si estamos en estado de movimiento
+        if (menuState !== 2 || !currentMenu) return;
         
-        // Obtener posición del controlador derecho
-        var rightController = document.querySelector("[oculus-touch-controls='hand: right']") || 
-                              document.querySelector("#rightHand");
+        // Obtener controlador izquierdo (ya que estamos usando el botón X)
+        var leftController = document.querySelector("[oculus-touch-controls='hand: left']") || 
+                             document.querySelector("#leftHand") ||
+                             document.querySelector("[hand-controls='left']");
         
-        if (!rightController) return;
+        if (!leftController) {
+            console.warn("No se encontró el controlador izquierdo");
+            return;
+        }
         
-        // Obtener posición actual del controlador
-        var controllerPos = rightController.getAttribute('position');
+        // Obtener posición del controlador
+        var controllerPos = leftController.object3D.getWorldPosition(new THREE.Vector3());
         
-        // Actualizar posición del menú
-        menuPanel.setAttribute('position', {
-            x: controllerPos.x,
-            y: controllerPos.y + 0.2, // Un poco arriba del controlador
-            z: controllerPos.z - 0.3  // Un poco adelante del controlador
+        // Aplicar la posición al menú con un pequeño desplazamiento
+        currentMenu.setAttribute('position', {
+            x: controllerPos.x + 0.3,  // Ligeramente a la derecha del controlador
+            y: controllerPos.y + 0.2,  // Ligeramente arriba
+            z: controllerPos.z - 0.3   // Ligeramente adelante
         });
     }
     
-    // Limpiar todos los eventos
-    function limpiarEventos() {
-        scene.removeEventListener('abuttondown', iniciarArrastre);
-        scene.removeEventListener('abuttonup', terminarArrastre);
-        scene.removeEventListener('tick', actualizarPosicion);
-        
-        // Restaurar color del botón
-        botonO.setAttribute('color', 'brown');
-        
-        // Eliminar helper
-        if (helper && helper.parentNode) {
-            helper.parentNode.removeChild(helper);
-        }
-    }
+    // Configurar listeners
+    scene.addEventListener('xbuttondown', handleXButton);
+    scene.addEventListener('tick', updatePosition);
     
-    // Registrar eventos
-    scene.addEventListener('abuttondown', iniciarArrastre);
-    scene.addEventListener('abuttonup', terminarArrastre);
-    scene.addEventListener('tick', actualizarPosicion);
-    
-    // Timeout de seguridad
+    // Timeout de seguridad para limpiar si no se completa el ciclo
     setTimeout(function() {
-        if (!dragging) {
-            limpiarEventos();
+        if (menuState !== 0) {
+            scene.removeEventListener('xbuttondown', handleXButton);
+            scene.removeEventListener('tick', updatePosition);
+            currentMenu.setAttribute('color', '#333');  // Restaurar color
+            console.log("Modo movimiento cancelado por timeout");
         }
-    }, 10000); // 10 segundos para cancelar si no se usa
+    }, 30000);  // 30 segundos
 }
 
 
