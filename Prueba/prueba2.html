@@ -2,9 +2,13 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
   </head>
   <body>
     <a-scene>
+      <!-- Habilitar WebXR para Quest -->
+      <a-entity webxr="optionalFeatures: hand-tracking"></a-entity>
+      
       <!-- Cielo -->
       <a-sky color="#87CEEB"></a-sky>
       
@@ -17,11 +21,16 @@
       <!-- Esfera -->
       <a-sphere position="1 1 -5" radius="1" color="#FFD700"></a-sphere>
       
-      <!-- Cámara con control de movimiento y compatibilidad con VR -->
-      <a-entity id="rig" movement-controls="speed: 0.1" position="0 1.6 0">
-        <a-entity camera look-controls wasd-controls></a-entity>
+      <!-- Cámara con controles de movimiento y joystick -->
+      <a-entity id="rig" movement-controls="speed: 0.2" position="0 1.6 0">
+        <a-entity camera look-controls></a-entity>
         <a-entity oculus-touch-controls="hand: left"></a-entity>
         <a-entity oculus-touch-controls="hand: right"></a-entity>
+        <a-entity windows-motion-controls="hand: left"></a-entity>
+        <a-entity windows-motion-controls="hand: right"></a-entity>
+        <a-entity vive-controls="hand: left"></a-entity>
+        <a-entity vive-controls="hand: right"></a-entity>
+        <a-entity joystick-controls></a-entity>
       </a-entity>
     </a-scene>
   </body>
