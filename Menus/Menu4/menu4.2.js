@@ -482,87 +482,70 @@ AFRAME.registerComponent('createsons', {
 // Componente para movimiento con joystick izquierdo (corregido)
 // Componente para movimiento con joystick izquierdo (corregido)
 AFRAME.registerComponent('body-movement', {
-  schema: {
-    speed: {type: 'number', default: 0.15}
-  },
-  
-  init: function () {
-    this.cameraRig = document.querySelector('#cameraRig');
-    console.log("Body movement component initialized");
-    
-    // Capturar eventos de joystick
-    this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
-  },
-  
-  onThumbstickMoved: function (evt) {
-    console.log("Left thumbstick moved:", evt.detail.x, evt.detail.y);
-    
-    if (evt.detail.x === 0 && evt.detail.y === 0) return;
-    
-    // Obtener posición actual
-    let position = this.cameraRig.getAttribute('position');
-    
-    // Obtener SOLO la rotación horizontal (yaw) del rig
-    let rotation = this.cameraRig.getAttribute('rotation');
-    let yawRad = THREE.MathUtils.degToRad(rotation.y);
-    
-    // Calcular vectores para movimiento SOLO en el plano horizontal
-    let moveZ = Math.cos(yawRad);
-    let moveX = Math.sin(yawRad);
-    let moveY = Math.tan(yawRad);
-    
-    // Para izquierda/derecha (solo plano horizontal)
-    let strafeX = Math.sin(yawRad + Math.PI/2);
-    let strafeZ = Math.cos(yawRad + Math.PI/2);
-    let strafeY = Math.tan(yawRad + Math.PI/2);
-    
-    // Calcular nueva posición - solo afecta X y Z (horizontal)
-    position.x += (evt.detail.y * moveX + evt.detail.x * strafeX) * this.data.speed;
-    // NO modificamos la altura (position.y)
-    position.z += (evt.detail.y * moveZ + evt.detail.x * strafeZ) * this.data.speed;
-    position.y += (evt.detail.y * moveY + evt.detail.x * strafeY) * this.data.speed;
-    
-    // Aplicar nueva posición
-    this.cameraRig.setAttribute('position', position);
-  }
+        schema: {
+          speed: {type: 'number', default: 0.15}
+        },
+        
+        init: function () {
+          this.cameraRig = document.querySelector('#cameraRig');
+          console.log("Body movement component initialized");
+          
+          // Capturar eventos de joystick
+          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
+        },
+        
+        onThumbstickMoved: function (evt) {
+          console.log("Left thumbstick moved:", evt.detail.x, evt.detail.y);
+          
+          if (evt.detail.x === 0 && evt.detail.y === 0) return;
+          
+          // Obtener posición actual
+          let position = this.cameraRig.getAttribute('position');
+          
+          // Movimiento adelante/atrás (eje Y)
+          position.z += evt.detail.y * this.data.speed;
+          
+          // Izquierda/derecha (eje X)
+          position.x += evt.detail.x * this.data.speed;
+          
+          // Aplicar la nueva posición
+          this.cameraRig.setAttribute('position', position);
+        }
 });
       
-      // Componente para rotación de cámara con joystick derecho (corregido)
-      // Componente para rotación de cámara con joystick derecho (corregido)
+      
 AFRAME.registerComponent('head-rotation', {
-    schema: {
-      speed: {type: 'number', default: 2.0}
-    },
-    
-    init: function () {
-      this.cameraRig = document.querySelector('#cameraRig');
-      console.log("Head rotation component initialized");
-      
-      // Almacenar valores de rotación
-      this.yaw = 0;
-      this.pitch = 0;
-      
-      // Capturar eventos de joystick
-      this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
-    },
-    
-    tick: function() {
-      // Actualizar la rotación de todo el rig (cámara y mandos juntos)
-      let currentRotation = this.cameraRig.getAttribute('rotation') || {x: 0, y: 0, z: 0};
-      currentRotation.y = this.yaw;
-      currentRotation.x = this.pitch;
-      this.cameraRig.setAttribute('rotation', currentRotation);
-    },
-    
-    onThumbstickMoved: function (evt) {
-      console.log("Right thumbstick moved:", evt.detail.x, evt.detail.y);
-      
-      if (evt.detail.x === 0 && evt.detail.y === 0) return;
-      
-      // Actualizar ángulos de rotación
-      this.yaw -= evt.detail.x * this.data.speed;
-      
-      // Limitamos el pitch para evitar giros completos
-      this.pitch = Math.max(-70, Math.min(70, this.pitch - evt.detail.y * this.data.speed));
-    }
-  });
+      schema: {
+        speed: {type: 'number', default: 2.0}
+      },
+
+      init: function () {
+        this.cameraRig = document.querySelector('#cameraRig');
+        console.log("Head rotation component initialized");
+
+        // Almacenar valores de rotación
+        this.yaw = 0;
+
+        // Capturar eventos de joystick
+        this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
+      },
+
+      tick: function() {
+        // Actualizar la rotación de todo el rig (cámara y mandos juntos)
+        let currentRotation = this.cameraRig.getAttribute('rotation') || {x: 0, y: 0, z: 0};
+        currentRotation.y = this.yaw;
+        this.cameraRig.setAttribute('rotation', currentRotation);
+      },
+
+      onThumbstickMoved: function (evt) {
+        console.log("Right thumbstick moved:", evt.detail.x, evt.detail.y);
+
+        if (evt.detail.x === 0 && evt.detail.y === 0) return;
+
+        // Actualizar solo el ángulo de rotación horizontal (yaw)
+        this.yaw -= evt.detail.x * this.data.speed;
+
+        // La inclinación vertical (pitch) la manejamos con la rotación natural de la cabeza
+        // del usuario en VR para una experiencia más natural
+      }
+});
