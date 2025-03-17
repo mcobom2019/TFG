@@ -1,158 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Escena A-Frame para Meta Quest 3 con Controles Optimizados</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
-    <script>
-      // Componente para movimiento con joystick izquierdo
-      AFRAME.registerComponent('body-movement', {
-        schema: {
-          speed: {type: 'number', default: 0.15}
-        },
-        
-        init: function () {
-          this.cameraRig = document.querySelector('#cameraRig');
-          console.log("Body movement component initialized");
-          
-          // Capturar eventos de joystick
-          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
-        },
-        
-        onThumbstickMoved: function (evt) {
-          console.log("Left thumbstick moved:", evt.detail.x, evt.detail.y);
-          
-          if (evt.detail.x === 0 && evt.detail.y === 0) return;
-          
-          // Obtener posición actual
-          let position = this.cameraRig.getAttribute('position');
-          
-          // Movimiento adelante/atrás (eje Y)
-          position.z += evt.detail.y * this.data.speed;
-          
-          // Izquierda/derecha (eje X)
-          position.x += evt.detail.x * this.data.speed;
-          
-          // Aplicar la nueva posición
-          this.cameraRig.setAttribute('position', position);
-        }
-      });
-      
-      // Componente para rotación de cámara con joystick derecho (corregido)
-      AFRAME.registerComponent('head-rotation', {
-        schema: {
-          speed: {type: 'number', default: 2.0}
-        },
-        
-        init: function () {
-          this.cameraHead = document.querySelector('#head');
-          console.log("Head rotation component initialized");
-          
-          // Almacenar valores de rotación
-          this.yaw = 0;
-          this.pitch = 0;
-          
-          // Capturar eventos de joystick
-          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
-        },
-        
-        tick: function() {
-          // Asegurar que la rotación se aplica constantemente
-          this.cameraHead.setAttribute('rotation', {x: this.pitch, y: this.yaw, z: 0});
-        },
-        
-        onThumbstickMoved: function (evt) {
-          console.log("Right thumbstick moved:", evt.detail.x, evt.detail.y);
-          
-          if (evt.detail.x === 0 && evt.detail.y === 0) return;
-          
-          // CORREGIDO: Invertir el eje Y para que arriba mire hacia arriba
-          // Actualizar ángulos basados en el joystick
-          this.yaw -= evt.detail.x * this.data.speed;
-          
-          // Invertir el pitch para que el movimiento sea natural
-          this.pitch = Math.max(-70, Math.min(70, this.pitch - evt.detail.y * this.data.speed));
-          
-          // La aplicación real ocurre en el método tick
-        }
-      });
-    </script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   </head>
   <body>
-    <a-scene debug>
+    <a-scene>
       <!-- Cielo -->
       <a-sky color="#87CEEB"></a-sky>
       
-      <!-- Plano como suelo -->
-      <a-plane position="0 0 0" 
-               rotation="-90 0 0" 
-               width="20" 
-               height="20" 
-               color="#8FBC8F">
-      </a-plane>
+      <!-- Suelo -->
+      <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#228B22"></a-plane>
       
-      <!-- Marcadores de orientación -->
-      <a-box position="0 0.5 -5" width="1" height="1" depth="1" color="#FF0000">
-        <a-text value="FRENTE" position="0 1.2 0" align="center" color="white"></a-text>
-      </a-box>
+      <!-- Caja -->
+      <a-box position="-1 0.5 -3" rotation="0 45 0" width="1" height="1" depth="1" color="#FF5733"></a-box>
       
-      <a-box position="0 0.5 5" width="1" height="1" depth="1" color="#00FF00">
-        <a-text value="DETRÁS" position="0 1.2 0" align="center" color="white" rotation="0 180 0"></a-text>
-      </a-box>
+      <!-- Esfera -->
+      <a-sphere position="1 1 -5" radius="1" color="#FFD700"></a-sphere>
       
-      <a-box position="5 0.5 0" width="1" height="1" depth="1" color="#0000FF">
-        <a-text value="DERECHA" position="0 1.2 0" align="center" color="white" rotation="0 -90 0"></a-text>
-      </a-box>
-      
-      <a-box position="-5 0.5 0" width="1" height="1" depth="1" color="#FFFF00">
-        <a-text value="IZQUIERDA" position="0 1.2 0" align="center" color="white" rotation="0 90 0"></a-text>
-      </a-box>
-      
-      <!-- Objetos adicionales para probar diferentes alturas -->
-      <a-cone position="-3 0.5 -3" 
-             radius-bottom="1" 
-             radius-top="0" 
-             height="2" 
-             color="#FF6347">
-      </a-cone>
-      
-      <a-box position="3 2 -3" 
-             width="1" 
-             height="4" 
-             depth="1" 
-             color="#9370DB">
-      </a-box>
-      
-      <a-sphere position="0 4 -8" 
-                radius="1" 
-                color="#FF8C00">
-        <a-text value="MIRAR ARRIBA" position="0 1.5 0" align="center" color="white" scale="0.5 0.5 0.5"></a-text>
-      </a-sphere>
-      
-      <a-text value="¡Hola Mundo VR!" 
-              color="#000000" 
-              position="0 3 -5" 
-              width="10" 
-              align="center">
-      </a-text>
-      
-      <!-- Estructura de cámara y controles para Quest -->
-      <a-entity id="cameraRig" position="0 1.6 0">
-        <!-- Cámara para la cabeza -->
-        <a-entity id="head" rotation="0 0 0">
-          <a-camera look-controls="enabled: false"></a-camera>
-        </a-entity>
-        
-        <!-- Controles de Quest 3 -->
-        <a-entity id="leftHand" 
-                 oculus-touch-controls="hand: left" 
-                 body-movement="speed: 0.15">
-        </a-entity>
-        
-        <a-entity id="rightHand" 
-                 oculus-touch-controls="hand: right"
-                 head-rotation="speed: 2.0">
-        </a-entity>
+      <!-- Cámara con control de movimiento y compatibilidad con VR -->
+      <a-entity id="rig" movement-controls="speed: 0.1" position="0 1.6 0">
+        <a-entity camera look-controls wasd-controls></a-entity>
+        <a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity oculus-touch-controls="hand: right"></a-entity>
       </a-entity>
     </a-scene>
   </body>
