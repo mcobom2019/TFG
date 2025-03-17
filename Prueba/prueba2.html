@@ -1,47 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Mi Escena A-Frame</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <!-- Cielo -->
-      <a-sky color="#ECECEC"></a-sky>
+<head>
+  <meta charset="utf-8">
+  <title>Escena Básica A-Frame para Meta Quest 3</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
+  <!-- Añadimos el componente movement-controls que viene con A-Frame -->
+  <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- Configuración para controles básicos con movement-controls -->
+    <a-entity id="rig" movement-controls="fly: false; speed: 0.15;">
+      <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: true"></a-entity>
+      <a-entity oculus-touch-controls="hand: left" thumbstick-logging></a-entity>
+      <a-entity oculus-touch-controls="hand: right"></a-entity>
+    </a-entity>
 
-      <!-- Caja -->
-      <a-box position="0 1 -5" rotation="0 45 0" color="#4CC3D9"></a-box>
+    <!-- Suelo -->
+    <a-plane position="0 0 0" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
 
-      <!-- Esfera -->
-      <a-sphere position="2 1 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+    <!-- Cielo -->
+    <a-sky color="#ECECEC"></a-sky>
 
-      <!-- Cilindro -->
-      <a-cylinder position="-2 0.75 -5" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-
-      <!-- Plano -->
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-
-      <!-- Cámara con controles de movimiento -->
-      <a-entity camera look-controls movement-controls position="0 1.6 0">
-        <a-entity 
-          oculus-touch-controls="hand: left; model: false"
-          vive-controls="hand: left"
-          windows-motion-controls="hand: left"
-          daydream-controls="hand: left"
-          gearvr-controls="hand: left"
-          oculus-go-controls="hand: left"
-          valve-index-controls="hand: left"></a-entity>
-        <a-entity 
-          oculus-touch-controls="hand: right; model: false"
-          vive-controls="hand: right"
-          windows-motion-controls="hand: right"
-          daydream-controls="hand: right"
-          gearvr-controls="hand: right"
-          oculus-go-controls="hand: right"
-          valve-index-controls="hand: right"></a-entity>
-      </a-entity>
-    </a-scene>
-  </body>
+    <!-- Objetos en la escena -->
+    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+    <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
+    <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
+    <a-torus position="3 1 -4" color="#5CFFFD" radius="0.7" radius-tubular="0.1"></a-torus>
+    
+    <!-- Texto de bienvenida -->
+    <a-text value="Bienvenido a tu escena VR" position="0 2 -3" color="#000000" width="10" align="center"></a-text>
+    
+    <!-- Iluminación -->
+    <a-light type="ambient" intensity="0.5"></a-light>
+    <a-light type="directional" position="-1 1 1" intensity="0.6"></a-light>
+    <a-light type="point" position="2 4 -2" intensity="0.6"></a-light>
+  </a-scene>
+</body>
 </html>
