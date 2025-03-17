@@ -1,37 +1,30 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <!-- Habilitar WebXR para Quest -->
-      <a-entity webxr="optionalFeatures: hand-tracking"></a-entity>
-      
-      <!-- Cielo -->
-      <a-sky color="#87CEEB"></a-sky>
-      
-      <!-- Suelo -->
-      <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#228B22"></a-plane>
-      
-      <!-- Caja -->
-      <a-box position="-1 0.5 -3" rotation="0 45 0" width="1" height="1" depth="1" color="#FF5733"></a-box>
-      
-      <!-- Esfera -->
-      <a-sphere position="1 1 -5" radius="1" color="#FFD700"></a-sphere>
-      
-      <!-- Cámara con controles de movimiento y joystick -->
-      <a-entity id="rig" movement-controls="speed: 0.2" position="0 1.6 0">
-        <a-entity camera look-controls></a-entity>
-        <a-entity oculus-touch-controls="hand: left"></a-entity>
-        <a-entity oculus-touch-controls="hand: right"></a-entity>
-        <a-entity windows-motion-controls="hand: left"></a-entity>
-        <a-entity windows-motion-controls="hand: right"></a-entity>
-        <a-entity vive-controls="hand: left"></a-entity>
-        <a-entity vive-controls="hand: right"></a-entity>
-        <a-entity joystick-controls></a-entity>
+ <head>
+   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+   <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/aframe-super-hands-component@3.0.4/dist/aframe-super-hands.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+   <script src="menu4.js"></script>
+ </head>
+ <body>
+   <a-scene xr-mode-ui="XRMode: xr">
+     
+     <a-entity id="cameraRig" position="0 1.6 0">
+         <!-- Cámara para la cabeza -->
+         <a-entity id="head" rotation="0 0 0">
+           <a-camera look-controls="enabled: false"></a-camera>
+         </a-entity>
+         
+         <!-- Controles de Quest 3 -->
+         <a-entity id="leftHand" oculus-touch-controls="hand: left" body-movement="speed: 0.15" super-hands></a-entity>
+         <a-entity id="rightHand" oculus-touch-controls="hand: right" head-rotation="speed: 2.0" super-hands></a-entity>
+         <a-entity laser-controls="hand: right" raycaster="objects: .clickable; lineColor: blue;"></a-entity>
+         <a-entity laser-controls="hand: left" raycaster="objects: .clickable; lineColor: red;"></a-entity>
+        <a-cylinder position="0 0 -3" radius="0.7" height="0.1" color="silver"></a-cylinder>
+       <a-cylinder id="boton3D" position="0 0.15 -3" radius="0.6" height="0.2" color="red" class="clickable" createsons></a-cylinder>
+ 
+     <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
       </a-entity>
-    </a-scene>
-  </body>
-</html>
+   </a-scene>
+ </body>
+ </html>
