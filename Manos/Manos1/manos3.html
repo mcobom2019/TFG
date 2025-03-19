@@ -1,6 +1,8 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
+<script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
   </head>
   <body>
     <a-scene xr-mode-ui="XRMode: xr">
@@ -11,7 +13,8 @@
       <a-plane position="0 0 -0.7" rotation="-90 0 0" width="1" height="1" color="#7BC8A4"></a-plane>
 
       <a-entity id="leftHand" hand-tracking-grab-controls="hand: left;"></a-entity>
-      <a-entity id="rightHand" hand-tracking-grab-controls="hand: right;"></a-entity>
+      <a-entity id="rightHand" hand-tracking-grab-controls="hand: right;" hand-tracking-extras>
+      <a-entity finger-cursor raycaster="objects: .interactable"></a-entity></a-entity>
 
     </a-scene>
   </body>

@@ -1,21 +1,89 @@
+<!DOCTYPE html>
+<!-- Prueba de un detector de evento "click",
+    que se dispara cuando pulsamos el botón del ratón sobre
+    un componente. Se especifica el selector de los componentes
+    sobre los que se dispara el evento.
+-->
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
-<script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script>
+      AFRAME.registerComponent("detector", {
+          init: function () {
+              this.el.addEventListener("click", function () {
+                  console.log("Detector: Botón pulsado");
+              });
+              this.el.addEventListener("obbcollisionstarted", function () {
+                  console.log("Detector: Comienzo de colisión");
+              });
+              this.el.addEventListener("obbcollisionended", function () {
+                  console.log("Detector: Fin de colisión");
+              });
+          }
+      });
+      
+      // Componente escalador
+      // Cambia la escala del objeto cuando se dispara un evento.
+
+      AFRAME.registerComponent("escalador", {
+          schema: {
+              evento: { type: "string", default: "click" },
+              factor: { type: "number", default: 2 },
+          },
+          multiple: true,
+          init: function () {
+              console.log("Escalador: init");
+              let el = this.el;
+              let self = this;
+              let factor = this.data.factor;
+              self.original = true;
+              let escala_original = structuredClone(el.getAttribute('scale'));
+              let escala_cambiada = {
+                  x: escala_original.x * factor,
+                  y: escala_original.y * factor,
+                  z: escala_original.z * factor
+              };
+              el.addEventListener(this.data.evento, function () {
+                  console.log("Escalador: Evento disparado");
+                  if (self.original) {
+                      el.setAttribute('scale', escala_cambiada);
+                      self.original = false;
+                  } else {
+                      el.setAttribute('scale', escala_original);
+                      self.original = true;
+                  };
+              });
+          }
+      });
+    </script>
   </head>
   <body>
-    <a-scene xr-mode-ui="XRMode: xr">
-      <a-box grabbable position="-0.1 0.8 -0.3" rotation="0 45 0" color="#4CC3D9"
-          depth="0.1" height="0.1" width="0.1"></a-box>
-      <a-sphere grabbable position="0 0.8 -0.3" radius="0.05" color="#EF2D5E"></a-sphere>
-      <a-cylinder grabbable position="0.1 0.8 -0.3" radius="0.05" height="0.2" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -0.7" rotation="-90 0 0" width="1" height="1" color="#7BC8A4"></a-plane>
+    <a-scene obb-collider="showColliders: true">
+      <a-entity position="0 0.5 -4"
+        geometry="primitive: box" material="color: blue"
+        obb-collider detector
+        escalador__click="evento: click; factor: 3"
+        escalador__startcollision="evento: obbcollisionstarted; factor: 2"
+        escalador__endcollision="evento: obbcollisionended; factor: 0.5">
+      </a-entity>
 
-      <a-entity id="leftHand" hand-tracking-grab-controls="hand: left;"></a-entity>
-      <a-entity id="rightHand" hand-tracking-grab-controls="hand: right;">
-      <a-entity finger-cursor raycaster="objects: .interactable"></a-entity></a-entity>
+      <a-entity position="-3 0.5 -4"
+        geometry="primitive: box" material="color: red"
+        obb-collider detector
+        animation="property: position; to: 2.2 0.5 -4; dur: 6000;"
+        escalador__click="evento: click; factor: 2"
+        escalador__startcollision="evento: obbcollisionstarted; factor: 2"
+        escalador__endcollision="evento: obbcollisionended; factor: 0.5">
+      </a-entity>
 
+      <a-entity position="0 0 0">
+        <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
+        <a-entity cursor="rayOrigin: mouse"
+          raycaster="objects: [detector]">
+        </a-entity>
+        <a-entity laser-controls="hand: right"
+          raycaster="objects: [detector]; lineColor: blue;"></a-entity>
+      </a-entity>
     </a-scene>
   </body>
 </html>
