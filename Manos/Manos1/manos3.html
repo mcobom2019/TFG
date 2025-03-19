@@ -1,33 +1,211 @@
-<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-<script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
-<script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
-<script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras-full.js"></script>
+<!-- Importar los scripts necesarios -->
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@56d77f99494e01b6918612c526ae514f45d178a4/dist/aframe-master.min.js"></script>
+<script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jorgecardoso/aframe-hand-tracking-controls-extras@main/dist/aframe-hand-tracking-controls-extras-full.js"></script>
 
-<a-scene cursor="rayOrigin: mouse" raycaster="objects: [data-raycastable]">
-    <a-cylinder data-raycastable position="1 0.75 -0.5" radius="0.5" height="1.5" color="#FFC65D" animation__1="property: components.material.material.color;
-                  type: color;
-                  to: blue;
-                  dur: 50; 
-                  easing: linear; 
-                  startEvents: click" animation__2="property: components.material.material.color;
-                  type: color;
-                  to: #FFC65D;
-                  dur: 50; 
-                  easing: linear; 
-                  startEvents: animationcomplete__1">
-    </a-cylinder>
+<!-- Componentes personalizados -->
+<script>
+  // Componente para debugging de manos
+  AFRAME.registerComponent('hand-debug', {
+    init: function() {
+      this.el.addEventListener('model-loaded', () => {
+        console.log('Mano cargada:', this.el.id);
+        document.querySelector('#debug-text').setAttribute('value', 'Mano detectada: ' + this.el.id);
+      });
+      
+      // Mostrar eventos de gestos
+      this.el.addEventListener('pinchstarted', () => {
+        console.log(this.el.id + ': Pellizco iniciado');
+        document.querySelector('#debug-text').setAttribute('value', this.el.id + ': Pellizco iniciado');
+      });
+      
+      this.el.addEventListener('pinchended', () => {
+        console.log(this.el.id + ': Pellizco terminado');
+        document.querySelector('#debug-text').setAttribute('value', this.el.id + ': Pellizco terminado');
+      });
+      
+      this.el.addEventListener('gripstarted', () => {
+        console.log(this.el.id + ': Agarre iniciado');
+        document.querySelector('#debug-text').setAttribute('value', this.el.id + ': Agarre iniciado');
+      });
+      
+      this.el.addEventListener('gripended', () => {
+        console.log(this.el.id + ': Agarre terminado');
+        document.querySelector('#debug-text').setAttribute('value', this.el.id + ': Agarre terminado');
+      });
+    }
+  });
 
-    <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-    <a-entity id="rig">
-        <a-camera>
-        </a-camera>
-    <a-entity id="leftHand" hand-tracking-controls="hand: left;" hand-tracking-extras></a-entity>
-    <a-entity id="rightHand" 
-            hand-tracking-controls="hand: right;" 
-            hand-tracking-extras 
-            world-drag="rig: #rig"
-            touchy-fingertip="debug: true">
+  // Componente de teletransporte mejorado
+  AFRAME.registerComponent('improved-teleport', {
+    schema: {
+      rig: {type: 'selector'}
+    },
+    
+    init: function() {
+      // Flag para controlar si se puede teletransportar
+      this.canTeleport = true;
+      
+      // Escuchar eventos de pellizco
+      this.el.addEventListener('pinchstarted', this.onPinchStart.bind(this));
+      this.el.addEventListener('pinchended', this.onPinchEnd.bind(this));
+      
+      // Crear un marcador de destino
+      this.marker = document.createElement('a-entity');
+      this.marker.setAttribute('geometry', {primitive: 'ring', radiusInner: 0.25, radiusOuter: 0.3});
+      this.marker.setAttribute('material', {color: 'green', opacity: 0.5});
+      this.marker.setAttribute('rotation', {x: -90, y: 0, z: 0});
+      this.marker.setAttribute('visible', false);
+      this.el.sceneEl.appendChild(this.marker);
+    },
+    
+    onPinchStart: function() {
+      if (!this.canTeleport) return;
+      
+      const hand = this.el;
+      const direction = new THREE.Vector3(0, -1, 0);
+      const origin = new THREE.Vector3();
+      
+      // Obtener la posición de la mano
+      hand.object3D.getWorldPosition(origin);
+      
+      // Hacer un raycasting hacia abajo
+      const raycaster = new THREE.Raycaster(origin, direction);
+      const intersects = raycaster.intersectObject(this.el.sceneEl.object3D, true);
+      
+      if (intersects.length > 0) {
+        // Encontró un punto de teletransporte
+        const point = intersects[0].point;
+        this.marker.setAttribute('position', point);
+        this.marker.setAttribute('visible', true);
+        
+        // Teletransportar al usuario
+        const rig = this.data.rig;
+        if (rig) {
+          rig.object3D.position.x = point.x;
+          rig.object3D.position.z = point.z;
+          // Mantener la altura
+          rig.object3D.position.y = 1.6;
+        }
+        
+        // Deshabilitar temporalmente el teletransporte para evitar múltiples activaciones
+        this.canTeleport = false;
+      }
+    },
+    
+    onPinchEnd: function() {
+      // Ocultar el marcador
+      this.marker.setAttribute('visible', false);
+      
+      // Habilitar el teletransporte nuevamente
+      this.canTeleport = true;
+    }
+  });
+
+  // Componente mejorado para rotación
+  AFRAME.registerComponent('improved-rotation', {
+    schema: {
+      rig: {type: 'selector'}
+    },
+    
+    init: function() {
+      this.isGripping = false;
+      this.lastPosition = new THREE.Vector3();
+      this.currentPosition = new THREE.Vector3();
+      
+      // Escuchar eventos de agarre
+      this.el.addEventListener('gripstarted', this.onGripStart.bind(this));
+      this.el.addEventListener('gripended', this.onGripEnd.bind(this));
+      
+      // Configurar el tick solo cuando se necesita
+      this.tick = null;
+    },
+    
+    onGripStart: function() {
+      console.log("Grip iniciado para rotación");
+      this.isGripping = true;
+      this.el.object3D.getWorldPosition(this.lastPosition);
+      
+      // Activar el tick solo cuando se está agarrando
+      this.tick = this.handleRotation;
+    },
+    
+    onGripEnd: function() {
+      console.log("Grip terminado para rotación");
+      this.isGripping = false;
+      
+      // Desactivar el tick cuando se termina el agarre
+      this.tick = null;
+    },
+    
+    handleRotation: function() {
+      if (!this.isGripping) return;
+      
+      // Obtener la posición actual de la mano
+      this.el.object3D.getWorldPosition(this.currentPosition);
+      
+      // Calcular el movimiento lateral (eje X)
+      const deltaX = this.currentPosition.x - this.lastPosition.x;
+      
+      // Aplicar rotación al rig
+      if (Math.abs(deltaX) > 0.01) {
+        const rotationSpeed = 2; // Ajustar según sea necesario
+        const rig = this.data.rig;
+        if (rig) {
+          rig.object3D.rotation.y -= deltaX * rotationSpeed;
+        }
+      }
+      
+      // Actualizar la última posición
+      this.lastPosition.copy(this.currentPosition);
+    }
+  });
+</script>
+
+<a-scene background="color: #ECECEC" webxr="requiredFeatures: hand-tracking;">
+  <!-- Texto de debugging -->
+  <a-text id="debug-text" value="Esperando manos..." position="0 2 -2" scale="0.5 0.5 0.5" color="black" align="center"></a-text>
+  
+  <!-- Entorno -->
+  <a-entity environment="preset: yavapai"></a-entity>
+  
+  <!-- Obeliscos simplificados -->
+  <a-box position="6 1.5 -6" color="yellow" height="3" width="0.5" depth="0.5"></a-box>
+  <a-box position="6 1.5 6" color="red" height="3" width="0.5" depth="0.5"></a-box>
+  <a-box position="-6 1.5 6" color="blue" height="3" width="0.5" depth="0.5"></a-box>
+  <a-box position="-6 1.5 -6" color="green" height="3" width="0.5" depth="0.5"></a-box>
+  
+  <!-- Rig del usuario -->
+  <a-entity id="rig">
+    <a-camera wasd-controls look-controls>
+      <a-cursor></a-cursor>
+    </a-camera>
+    
+    <!-- Manos con controles mejorados -->
+    <a-entity id="left-hand" 
+              hand-tracking-controls="hand: left; modelColor: #ffcccc;" 
+              hand-tracking-extras
+              improved-teleport="rig: #rig"
+              hand-debug>
+      <!-- Indicador visual para la mano izquierda -->
+      <a-sphere radius="0.02" color="red"></a-sphere>
+      <a-text value="Pellizca para\nteletransporte" position="0 0.1 0" scale="0.05 0.05 0.05" align="center"></a-text>
     </a-entity>
+    
+    <a-entity id="right-hand" 
+              hand-tracking-controls="hand: right; modelColor: #ccccff;" 
+              hand-tracking-extras
+              improved-rotation="rig: #rig"
+              hand-debug>
+      <!-- Indicador visual para la mano derecha -->
+      <a-sphere radius="0.02" color="blue"></a-sphere>
+      <a-text value="Agarra para\nrotar vista" position="0 0.1 0" scale="0.05 0.05 0.05" align="center"></a-text>
     </a-entity>
-    <a-sky color="#ECECEC"></a-sky>
+  </a-entity>
+  
+  <!-- Instrucciones principales -->
+  <a-entity position="0 1.7 -1.5" rotation="0 0 0">
+    <a-text value="Mano izquierda: Pellizca para teletransportarte\nMano derecha: Agarra y mueve lateralmente para rotar" 
+            width="2" color="black" align="center"></a-text>
+  </a-entity>
 </a-scene>
