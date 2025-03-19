@@ -1,30 +1,17 @@
-<html>
-  <head>
-    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-    <script src="Manos/Controles/drag-move.js"></script>
-    <script src="Manos/Controles/drag-rotate.js"></script>
-    <script src="Manos/Controles/extended-teleport-controls.js"></script>
-    <script src="Manos/Controles/finger-cursor.js"></script>
-    <script src="Manos/Controles/hand-teleport.js"></script>
-    <script src="Manos/Controles/touchy-fingertips.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-entity id="rig">
-        <a-camera></a-camera>
-        <!-- left hand can teleport, and drag the world position -->
-        <a-entity hand-tracking-controls="hand: left" hand-tracking-extras
-        hand-teleport="rig: #rig; origin: a-camera" drag-move="rig: #rig; speed: 5"></a-entity>
-        <!-- right hand can rotate the world by dragging -->
-        <a-entity hand-tracking-controls="hand: right" hand-tracking-extras drag-rotate="rig: #rig"></a-entity>
-        
-        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-        <a-sky color="#ECECEC"></a-sky>
-        
-      </a-entity>
-    </a-scene>
-  </body>
-</html>
+<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+<script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
+<script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
+
+<a-scene>
+    <a-box class="interactable" position="-1 0.5 -3" rotation="0 45 0" color="red"
+        animation__mouseenter="property: components.material.material.color; type: color; to: green; startEvents: mouseenter; dur: 250"
+        animation__mouseleave="property: components.material.material.color; type: color; to: red; startEvents: mouseleave; dur: 250">
+    </a-box>
+    <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+    <a-sky color="#ECECEC"></a-sky>
+
+    <a-entity id="leftHand" hand-tracking-controls="hand: left;" hand-tracking-extras></a-entity>
+    <a-entity id="rightHand" hand-tracking-controls="hand: right;" hand-tracking-extras>
+        <a-entity finger-cursor raycaster="objects: .interactable"></a-entity>
+    </a-entity>
+</a-scene>
