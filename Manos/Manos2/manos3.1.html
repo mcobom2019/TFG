@@ -4,29 +4,44 @@
   <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-super-hands-component@3.0.4/dist/aframe-super-hands.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="laser-hands2.js"></script>
   <script src="manos3.1.js"></script>
   <script src="detector3.js"></script>
   <script src="escalador.js"></script>
-  <script src="laser-hands2.js"></script>
+  <script src="pellizcaemite.js"></script>
 </head>
 <body>
   <a-scene>
     <a-cylinder position="0 0 -3" radius="0.7" height="0.1" color="silver"></a-cylinder>
-    <a-cylinder id="boton3D" position="0 0.15 -3" radius="0.6" height="0.2" color="red" class="clickable" detector escalador="evento: click; factor: 2" createsons></a-cylinder>
+    <a-cylinder id="boton3D" position="0 0.15 -3" radius="0.6" height="0.2" color="red" class="clickable" detector createsons></a-cylinder>
 
-      <a-entity position="0 0 0">
-        <a-entity camera position="0 1.6 0"
-          look-controls wasd-controls></a-entity>
-        <a-entity cursor="rayOrigin: mouse"
-          raycaster="objects: [escalador]">
-        </a-entity>
-        <a-entity laser-controls="hand: right;" detector
-          raycaster="objects: [escalador]; lineColor: blue;"></a-entity>
-        <a-entity hand-tracking-controls="hand: right" detector pellizcaemite>
-            <a-entity raycaster="objects: [escalador]; showLine: true; lineColor: blue;">
-            </a-entity>
+    <a-entity position="0 0 0">
+      <a-entity camera position="0 1.6 0"
+        look-controls wasd-controls></a-entity>
+      
+      <!-- Cursor del ratón -->
+      <a-entity cursor="rayOrigin: mouse"
+        raycaster="objects: .clickable">
+      </a-entity>
+      
+      <!-- Controlador de mano derecha con láser -->
+      <a-entity 
+        id="rightHand"
+        laser-controls="hand: right;" 
+        laser-hands
+        detector
+        raycaster="objects: .clickable; lineColor: blue; far: 20; showLine: true">
+      </a-entity>
+      
+      <!-- Seguimiento de manos -->
+      <a-entity 
+        hand-tracking-controls="hand: right" 
+        detector
+        pellizcaemite="evento: click">
+        <a-entity raycaster="objects: .clickable; showLine: true; lineColor: blue; far: 20">
         </a-entity>
       </a-entity>
+    </a-entity>
   </a-scene>
 </body>
 </html>
