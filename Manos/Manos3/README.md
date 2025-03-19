@@ -1,0 +1,1 @@
+Explicacion: Tiene la misma funcionalidad que el último menú que hice pero en vez de controlarlo con el ratón tiene como controlador la mano derecha de la cuál sale un laser azul, al hacer pinch sobre cada botón se van abriendo los menús hasta llegar a la representación de los diagramas.
