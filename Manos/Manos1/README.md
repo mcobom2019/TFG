@@ -1,0 +1,1 @@
+Explicación:  Esta primera escena llamada manos1.html es el primer paso para aprender como funcionan las manos como controladores. Tengo una escena simple en la que se me reconocen las manos y sus movimientos. Vamos a investigar más!!
