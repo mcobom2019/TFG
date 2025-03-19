@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- Escena con rayo (laser-controls) en XR (con mando o manos),
+  y ratón en escritorio.
+  Se utiliza un componente "escalador" para cambiar la escala de la entidad
+  cuando se pulsa, en XR, el disparador sobre el objeto, o se pellizca
+  con la mano apuntando al objeto, o en escritorio, se pulsa el botón
+  del ratón sobre el objeto.
+-->
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="detector3.js"></script>
+    <script src="escalador.js"></script>
+    <script src="pellizcaemite.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity position="0 0.5 -3"
+        geometry="primitive: box" material="color: red"
+        detector escalador="evento: click; factor: 2"></a-entity>
+
+      <a-entity position="0 0 0">
+        <a-entity camera position="0 1.6 0"
+          look-controls wasd-controls></a-entity>
+        <a-entity cursor="rayOrigin: mouse"
+          raycaster="objects: [escalador]">
+        </a-entity>
+        <a-entity laser-controls="hand: right;" detector
+          raycaster="objects: [escalador]; lineColor: blue;"></a-entity>
+        <a-entity hand-tracking-controls="hand: right" detector pellizcaemite>
+            <a-entity raycaster="objects: [escalador]; showLine: true; lineColor: blue;">
+            </a-entity>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
