@@ -8,9 +8,11 @@
   <script src="detector.js"></script>
 </head>
 <body>
-  <a-scene>
+  <a-scene physics="driver: ammo; debug: true;">
     <a-cylinder position="0 0.4 -1" radius="0.7" height="0.1" color="silver"></a-cylinder>
-    <a-cylinder id="boton3D" position="0 0.55 -1" radius="0.6" height="0.2" color="red" class="clickable" detector createsons></a-cylinder>
+    <a-cylinder id="boton3D" position="0 0.55 -1" radius="0.6" height="0.2" color="red" 
+           class="clickable" detector createsons
+           ammo-body="type: static" ammo-shape="type: cylinder"></a-cylinder>
 
     <a-entity position="0 0 0">
       <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
@@ -22,7 +24,8 @@
       <a-entity id="rightHand" laser-controls="hand: right;" detector></a-entity>
       
       <!-- Seguimiento de manos -->
-      <a-entity hand-tracking-controls="hand: right" detector></a-entity>
+      <a-entity hand-tracking-controls="hand: right" detector
+          ammo-body="type: dynamic" ammo-shape="type: box"></a-entity>
     </a-entity>
   </a-scene>
 </body>
