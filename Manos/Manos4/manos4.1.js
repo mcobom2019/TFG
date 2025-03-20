@@ -18,13 +18,12 @@ AFRAME.registerComponent('createsons', {
             }
         });
       
-        //evento para ver cuando se produce colision entre el dedo el boton rojo
-        el.addEventListener('obbcollisionstarted', function (event) {
-          if (event.detail && event.detail.target && event.detail.target.id === "indexFinger") {
-              if (!menuPanel) {
-                  crearMenuPrincipal();
-              }
-          }
+     // Añade este evento para detectar cuando el dedo toca el botón
+        el.addEventListener('finger-touch', function() {
+            console.log("El dedo ha tocado el botón");
+            if (!menuPanel) {
+                crearMenuPrincipal();
+            }
         });
 
         function crearMenuPrincipal() {
