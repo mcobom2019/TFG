@@ -9,16 +9,10 @@ AFRAME.registerComponent("detector", {
         this.el.addEventListener("click", function () {
             console.log("Detector: Botón pulsado", self.el);
         });
-        this.el.addEventListener("collidestart", function (event) {
+        this.el.addEventListener("obbcollisionstarted", function () {
             console.log("Detector: Comienzo de colisión", self.el);
-            console.log("Colisión con:", event.detail.targetEl);
-            
-            // Si la colisión es con el dedo índice, activar el evento click
-            if (event.detail.targetEl.id === "index-finger-tip") {
-                self.el.emit("click");
-            }
         });
-        this.el.addEventListener("collideend", function () {
+        this.el.addEventListener("obbcollisionended", function () {
             console.log("Detector: Fin de colisión", self.el);
         });
         this.el.addEventListener("pinchstarted", function () {

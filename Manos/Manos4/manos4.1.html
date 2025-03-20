@@ -4,14 +4,25 @@
   <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-super-hands-component@3.0.4/dist/aframe-super-hands.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-  <script src="manos4.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system@4.0.1/dist/aframe-physics-system.min.js"></script>
   <script src="detector.js"></script>
-  <script src="toqueimite.js"></script>
+  <script src="manos4.1.js"></script>
 </head>
 <body>
-  <a-scene>
-    <a-cylinder position="0 0.5 -1" radius="0.7" height="0.1" color="silver"></a-cylinder>
-    <a-cylinder id="boton3D" position="0 .65 -1" radius="0.6" height="0.2" color="red" class="clickable" detector createsons></a-cylinder>
+  <a-scene physics="driver: ammo; debug: true;">
+    <a-assets>
+      <a-mixin id="hand" 
+               detector
+               ammo-body="type: kinematic"
+               ammo-shape="type: sphere; fit: manual; sphereRadius: 0.05;">
+      </a-mixin>
+    </a-assets>
+    
+    <a-cylinder position="0 0.4 -1" radius="0.7" height="0.1" color="silver"></a-cylinder>
+    <a-cylinder id="boton3D" position="0 0.55 -1" radius="0.6" height="0.2" color="red" class="clickable" 
+                detector createsons 
+                ammo-body="type: static"
+                ammo-shape="type: cylinder"></a-cylinder>
 
     <a-entity position="0 0 0">
       <a-entity camera position="0 1.6 0"
@@ -22,18 +33,12 @@
         raycaster="objects: .clickable">
       </a-entity>
       
-      <!-- Controlador de mano derecha con láser -->
+      <!-- Mano derecha física -->
       <a-entity 
         id="rightHand"
-        detector
-        raycaster="objects: .clickable; lineColor: blue; far: 20; showLine: true">
-      </a-entity>
-      
-      <!-- Seguimiento de manos con detección de toque -->
-      <a-entity id="mano-derecha" 
-                hand-tracking-controls="hand: right" 
-                detector 
-                toqueimite="evento: click; distancia: 0.1">
+        hand-tracking-controls="hand: right"
+        mixin="hand"
+        detector>
       </a-entity>
     </a-entity>
   </a-scene>
