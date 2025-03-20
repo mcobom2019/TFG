@@ -12,14 +12,18 @@ AFRAME.registerComponent('createsons', {
         var esVisible = false;
         
         el.setAttribute('detector', "");
-        
-        // Usando la colisión en lugar de click
-        el.addEventListener('obbcollisionstarted', function () {
-            console.log("Colisión detectada con el botón principal");
+        el.addEventListener('click', function () {
             if (!menuPanel) {
                 crearMenuPrincipal();
             }
         });
+      
+        el.addEventListener('obbcollisionstarted', function () {
+            if (!menuPanel) {
+                crearMenuPrincipal();
+            }
+        });
+        
       
         function crearMenuPrincipal() {
             cerrarMenus();
@@ -40,8 +44,6 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('color', '#333');
             menuPanel.setAttribute('class',"clickable");
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            menuPanel.setAttribute('ammo-body', 'type: static');
-            menuPanel.setAttribute('ammo-shape', 'type: box');
             
 
             var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
@@ -95,30 +97,33 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            subMenu.setAttribute('ammo-body', 'type: static');
-            subMenu.setAttribute('ammo-shape', 'type: box');
 
             var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
                 crearMenuPrincipal();
             }, "orange", "0.2");
 
             var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
+                //mostrarGrafico(tipo, "");
                 mostrarSubmenu2(tipo, "Motor");
             });
 
             var option2 = crearBoton("Color", "0 0.25 0.06", function () {
+                //mostrarGrafico(tipo, "Diesel");
                 mostrarSubmenu2(tipo, "Color");
             });
 
             var option3 = crearBoton("Puertas", "0 0 0.06", function () {
+                //mostrarGrafico(tipo, "5Puertas");
                 mostrarSubmenu2(tipo, "Puertas");
             });
             
             var option4 = crearBoton("Ventas", "0 -0.25 0.06", function () {
+                //mostrarGrafico(tipo, "5Puertas");
                 mostrarSubmenu2(tipo, "Ventas");
             });
             
             var option5 = crearBoton("Completo", "0 -0.5 0.06", function () {
+                //mostrarGrafico(tipo, "5Puertas");
                 mostrarGrafico(tipo, " ");
             });
           
@@ -149,8 +154,6 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            subMenu.setAttribute('ammo-body', 'type: static');
-            subMenu.setAttribute('ammo-shape', 'type: box');
             
             hacerArrastrable(subMenu);
           
@@ -239,8 +242,6 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            subMenu.setAttribute('ammo-body', 'type: static');
-            subMenu.setAttribute('ammo-shape', 'type: box');
             
             hacerArrastrable(subMenu);
           
@@ -310,26 +311,36 @@ AFRAME.registerComponent('createsons', {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
                 }else if (filtro === "5puertas") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
-                }
+                }//else if (filtro === "alta") {
+                 //   filterEntity.setAttribute('babia-filter', 'from: data; filter: sales<=10');
+                //}else if (filtro === "baja") {
+                //    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales>=9');
+                //}
 
                 scene.appendChild(filterEntity);
                 dataSource = "filter-data"; // cuando hemos filtrado
             }
             
-            if (tipo === "Barras") {
-                barChartEntity = document.createElement('a-entity');
-                barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
-                barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-                barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
-                scene.appendChild(barChartEntity);
-            }else if (tipo === "Circular") {
-                pieChartEntity = document.createElement('a-entity');
-                pieChartEntity.setAttribute('babia-pie', `from: ${dataSource}; legend: true; palette: blues; key: model; size: doors`);
-                pieChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-                pieChartEntity.setAttribute('scale', '0.8 0.8 0.8');
-                pieChartEntity.setAttribute('rotation', '90 0 0');
-                scene.appendChild(pieChartEntity);
-            }
+            //if(!esVisible){
+                if (tipo === "Barras") {
+                    barChartEntity = document.createElement('a-entity');
+                    barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
+                    barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+                    barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
+                    scene.appendChild(barChartEntity);
+                }else if (tipo === "Circular") {
+                    pieChartEntity = document.createElement('a-entity');
+                    pieChartEntity.setAttribute('babia-pie', `from: ${dataSource}; legend: true; palette: blues; key: model; size: doors`);
+                    pieChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+                    pieChartEntity.setAttribute('scale', '0.8 0.8 0.8');
+                    pieChartEntity.setAttribute('rotation', '90 0 0');
+                    scene.appendChild(pieChartEntity);
+                }
+               // esVisible =  true;
+            //}else{
+             // cerrarGraficoPrevio();
+             // esVisible = false;
+            //}
         }
       
         function hacerArrastrable(elemento) {
@@ -374,6 +385,8 @@ AFRAME.registerComponent('createsons', {
             });
         }
       
+      
+
         function cerrarGraficoPrevio() {
             if (barChartEntity) {
                 scene.removeChild(barChartEntity);
@@ -385,6 +398,7 @@ AFRAME.registerComponent('createsons', {
             }
         }
 
+
         function crearBoton(texto, posicion, onClick, color = "blue", size = "0.6") {
             var button = document.createElement('a-plane');
             button.setAttribute('width', size);
@@ -392,14 +406,9 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('color', color);
             button.setAttribute('position', posicion);
             button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
-            button.setAttribute('class', "clickable");
+            button.setAttribute('class',"clickable");
             button.setAttribute('detector', "");
-            button.setAttribute('ammo-body', 'type: static');
-            button.setAttribute('ammo-shape', 'type: box');
-            
-            // Usando la colisión en lugar de click
-            button.addEventListener('obbcollisionstarted', onClick);
-            
+            button.addEventListener('click', onClick);
             return button;
         }
     }

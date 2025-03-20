@@ -1,108 +1,24 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>A-Frame Mano Interactiva con Quest 3</title>
-  <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aframe-super-hands-component@3.0.4/dist/aframe-super-hands.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-  
-  <script>
-    // Componente para alternar el color de la caja al tocarla
-    AFRAME.registerComponent('color-toggle', {
-      init: function() {
-        this.el.setAttribute('color', '#ff0000'); // Comienza con color rojo
-        this.isRed = true;
+  <head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity id="rig">
+        <a-camera></a-camera>
+        <!-- left hand can teleport, and drag the world position -->
+        <a-entity hand-tracking-controls="hand: left" hand-tracking-extras
+        hand-teleport="rig: #rig; origin: a-camera" drag-move="rig: #rig; speed: 5"></a-entity>
+        <!-- right hand can rotate the world by dragging -->
+        <a-entity hand-tracking-controls="hand: right" hand-tracking-extras drag-rotate="rig: #rig"></a-entity>
         
-        // Escuchar eventos de colisión de super-hands
-        this.el.addEventListener('grab-start', this.toggleColor.bind(this));
-        this.el.addEventListener('hover-start', this.toggleColor.bind(this));
-      },
-      
-      toggleColor: function() {
-        if (this.isRed) {
-          this.el.setAttribute('color', '#00ff00'); // Cambia a verde
-          this.isRed = false;
-        } else {
-          this.el.setAttribute('color', '#ff0000'); // Cambia a rojo
-          this.isRed = true;
-        }
-      }
-    });
-  </script>
-</head>
-<body>
-  <a-scene>
-    <!-- Cámara y controles de manos -->
-    <a-entity id="cameraRig" position="0 1.6 0">
-      <a-entity id="head" camera wasd-controls look-controls></a-entity>
-      
-      <!-- Mano derecha con super-hands -->
-      <a-entity
-        id="rightHand"
-        oculus-touch-controls="hand: right; model: true"
-        oculus-quest-three="hand: right;"
-        super-hands="
-          colliderEvent: triggerdown;
-          colliderEventProperty: pressed;
-          colliderEndEvent: triggerup;
-          colliderEndEventProperty: released;
-          grabStartButtons: triggerdown;
-          grabEndButtons: triggerup;
-          stretchStartButtons: triggerdown;
-          stretchEndButtons: triggerup;
-        "
-        raycaster="showLine: true; far: 2; objects: .interactable; lineColor: red; lineOpacity: 0.7"
-      ></a-entity>
-      
-      <!-- Mano izquierda con super-hands -->
-      <a-entity
-        id="leftHand"
-        oculus-touch-controls="hand: left; model: true"
-        oculus-quest-three="hand: left;"
-        super-hands="
-          colliderEvent: triggerdown;
-          colliderEventProperty: pressed;
-          colliderEndEvent: triggerup;
-          colliderEndEventProperty: released;
-          grabStartButtons: triggerdown;
-          grabEndButtons: triggerup;
-          stretchStartButtons: triggerdown;
-          stretchEndButtons: triggerup;
-        "
-        raycaster="showLine: true; far: 2; objects: .interactable; lineColor: blue; lineOpacity: 0.7"
-      ></a-entity>
-    </a-entity>
-    
-    <!-- Caja interactiva que cambia de color -->
-    <a-box
-      class="interactable"
-      position="0 1 -1.5"
-      width="0.5"
-      height="0.5"
-      depth="0.5"
-      color-toggle
-      hoverable
-      grabbable
-      stretchable
-    ></a-box>
-    
-    <!-- Suelo -->
-    <a-plane
-      position="0 0 0"
-      rotation="-90 0 0"
-      width="10"
-      height="10"
-      color="#CCCCCC"
-    ></a-plane>
-    
-    <!-- Iluminación -->
-    <a-light type="ambient" intensity="0.5"></a-light>
-    <a-light type="directional" position="0 1 1" intensity="0.8"></a-light>
-    
-    <!-- Cielo -->
-    <a-sky color="#ECECEC"></a-sky>
-  </a-scene>
-</body>
+        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+        <a-sky color="#ECECEC"></a-sky>
+        
+      </a-entity>
+    </a-scene>
+  </body>
 </html>
