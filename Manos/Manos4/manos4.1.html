@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
@@ -7,7 +6,7 @@
   <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
   <script src="manos4.1.js"></script>
   <script src="detector.js"></script>
-  <script src="manos-touch.js"></script>
+  <script src="toqueimite.js"></script>
 </head>
 <body>
   <a-scene>
@@ -15,17 +14,26 @@
     <a-cylinder id="boton3D" position="0 .65 -1" radius="0.6" height="0.2" color="red" class="clickable" detector createsons></a-cylinder>
 
     <a-entity position="0 0 0">
-      <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
+      <a-entity camera position="0 1.6 0"
+        look-controls wasd-controls></a-entity>
       
       <!-- Cursor del ratón -->
-      <a-entity cursor="rayOrigin: mouse" raycaster="objects: .clickable; showLine: false"></a-entity>
+      <a-entity cursor="rayOrigin: mouse"
+        raycaster="objects: .clickable">
+      </a-entity>
       
-      <!-- Seguimiento de manos con detección de toque -->
+      <!-- Controlador de mano derecha con láser -->
       <a-entity 
         id="rightHand"
-        hand-tracking-controls="hand: right" 
         detector
-        manos-touch>
+        raycaster="objects: .clickable; lineColor: blue; far: 20; showLine: true">
+      </a-entity>
+      
+      <!-- Seguimiento de manos con detección de toque -->
+      <a-entity id="mano-derecha" 
+                hand-tracking-controls="hand: right" 
+                detector 
+                toqueimite="evento: click; distancia: 0.1">
       </a-entity>
     </a-entity>
   </a-scene>
