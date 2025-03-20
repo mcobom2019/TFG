@@ -19,8 +19,8 @@ AFRAME.registerComponent('createsons', {
         });
       
         //evento para ver cuando se produce colision entre el dedo el boton rojo
-        el.addEventListener('obbcollisionstarted', function (event) {
-        console.log("Colisión detectada en botón rojo");
+        el.addEventListener('hover-start', function () {
+        console.log("Mano sobre el botón");
         if (!menuPanel) {
             crearMenuPrincipal();
         }

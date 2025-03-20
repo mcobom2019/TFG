@@ -8,9 +8,11 @@
   <script src="detector.js"></script>
 </head>
 <body>
-  <a-scene obb-collider="showColliders: false">
+  <a-scene>
     <a-cylinder position="0 0.5 -1" radius="0.7" height="0.1" color="silver"></a-cylinder>
-    <a-cylinder id="boton3D" position="0 .65 -1" radius="0.6" height="0.2" color="red" class="clickable" detector createsons obb-collider></a-cylinder>
+    <a-cylinder id="boton3D" position="0 .65 -1" radius="0.6" height="0.2" color="red" 
+            class="clickable" detector createsons
+            hoverable grabbable></a-cylinder>
 
     <a-entity position="0 0 0">
       <a-entity camera position="0 1.6 0"
@@ -29,14 +31,14 @@
       </a-entity>
       
       <!-- Seguimiento de manos -->
-      <a-entity hand-tracking-controls="hand: right" detector>
-        <a-entity id="indexFinger" 
-                  visible="false"
-                  position="0 0 0" 
-                  obb-collider>
-        </a-entity>
-        <a-entity raycaster="objects: .clickable; showLine: true; lineColor: blue; far: 20"></a-entity>
-      </a-entity>
+      <a-entity hand-tracking-controls="hand: right" 
+          detector
+          super-hands="colliderEvent: collisions; 
+                       colliderEventProperty: els; 
+                       colliderEndEvent: collisions; 
+                       colliderEndEventProperty: clearedEls">
+  <a-entity raycaster="objects: .clickable; showLine: true; lineColor: blue; far: 20"></a-entity>
+</a-entity>
     </a-entity>
   </a-scene>
 </body>
