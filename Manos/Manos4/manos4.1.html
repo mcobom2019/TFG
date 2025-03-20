@@ -4,16 +4,13 @@
   <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-super-hands-component@3.0.4/dist/aframe-super-hands.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aframe-aabb-collider-component@3.2.0/dist/aframe-aabb-collider-component.min.js"></script>
   <script src="manos4.1.js"></script>
   <script src="detector.js"></script>
 </head>
 <body>
-  <a-scene>
+  <a-scene obb-collider="showColliders: false">
     <a-cylinder position="0 0.5 -1" radius="0.7" height="0.1" color="silver"></a-cylinder>
-    <a-cylinder id="boton3D" position="0 .65 -1" radius="0.6" height="0.2" color="red" 
-            class="clickable" detector createsons
-            aabb-collider="objects: #indexFinger; debug: true"></a-cylinder>
+    <a-cylinder id="boton3D" position="0 .65 -1" radius="0.6" height="0.2" color="red" class="clickable" detector createsons obb-collider></a-cylinder>
 
     <a-entity position="0 0 0">
       <a-entity camera position="0 1.6 0"
@@ -33,13 +30,12 @@
       
       <!-- Seguimiento de manos -->
       <a-entity hand-tracking-controls="hand: right" detector>
-        
-      <a-entity id="indexFinger" 
-            position="0 0 0"
-            geometry="primitive: sphere; radius: 0.01"
-            material="color: blue; opacity: 0.5"
-            aabb-collider="objects: #boton3D; debug: true"></a-entity>
-      <a-entity raycaster="objects: .clickable; showLine: true; lineColor: blue; far: 20"></a-entity>
+        <a-entity id="indexFinger" 
+                  visible="false"
+                  position="0 0 0" 
+                  obb-collider>
+        </a-entity>
+        <a-entity raycaster="objects: .clickable; showLine: true; lineColor: blue; far: 20"></a-entity>
       </a-entity>
     </a-entity>
   </a-scene>

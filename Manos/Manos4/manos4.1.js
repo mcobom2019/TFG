@@ -20,12 +20,11 @@ AFRAME.registerComponent('createsons', {
       
         //evento para ver cuando se produce colision entre el dedo el boton rojo
         el.addEventListener('obbcollisionstarted', function (event) {
-          if (event.detail && event.detail.target && event.detail.target.id === "indexFinger") {
-              if (!menuPanel) {
-                  crearMenuPrincipal();
-              }
-          }
-        });
+        console.log("Colisión detectada en botón rojo");
+        if (!menuPanel) {
+            crearMenuPrincipal();
+        }
+    });
 
         function crearMenuPrincipal() {
             cerrarMenus();
