@@ -20,12 +20,10 @@
       <!-- Cursor del ratón -->
       <a-entity cursor="rayOrigin: mouse" raycaster="objects: .clickable"></a-entity>
       
-      <!-- Controlador de mano derecha con láser -->
-      <a-entity id="rightHand" laser-controls="hand: right;" detector></a-entity>
-      
-      <!-- Seguimiento de manos -->
+      <!-- Seguimiento de manos - Solo mano derecha -->
       <a-entity hand-tracking-controls="hand: right" detector
-          ammo-body="type: dynamic" ammo-shape="type: box"></a-entity>
+          ammo-body="type: dynamic; collisionFilterGroup: 1; collisionFilterMask: 1;" 
+          ammo-shape="type: box"></a-entity>
     </a-entity>
   </a-scene>
 </body>

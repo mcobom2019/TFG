@@ -18,9 +18,18 @@ AFRAME.registerComponent('createsons', {
             }
         });
       
-        el.addEventListener('obbcollisionstarted', function () {
-            if (!menuPanel) {
-                crearMenuPrincipal();
+        // Esta es la parte importante para la colisión de la mano
+        el.addEventListener('obbcollisionstarted', function (event) {
+            console.log("Colisión detectada con el botón");
+            
+            // Verificar si la colisión es con la mano derecha
+            var collidingEl = event.detail ? event.detail.body.el : null;
+            if (collidingEl && collidingEl.hasAttribute('hand-tracking-controls') && 
+                collidingEl.getAttribute('hand-tracking-controls').hand === 'right') {
+                console.log("Colisión con mano derecha detectada");
+                if (!menuPanel) {
+                    crearMenuPrincipal();
+                }
             }
         });
         
