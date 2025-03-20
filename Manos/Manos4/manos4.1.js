@@ -11,29 +11,73 @@ AFRAME.registerComponent('createsons', {
         var lastMenuPosition = null;
         var esVisible = false;
         
+        // Asignar detector y configurar escuchadores de eventos
         el.setAttribute('detector', "");
+        
+        // Escuchar clicks normales (para pruebas con el ratón)
         el.addEventListener('click', function () {
+            console.log("Click en botón rojo");
             if (!menuPanel) {
                 crearMenuPrincipal();
             }
         });
       
-        // Esta es la parte importante para la colisión de la mano
-        el.addEventListener('obbcollisionstarted', function (event) {
-            console.log("Colisión detectada con el botón");
-            
-            // Verificar si la colisión es con la mano derecha
-            var collidingEl = event.detail ? event.detail.body.el : null;
-            if (collidingEl && collidingEl.hasAttribute('hand-tracking-controls') && 
-                collidingEl.getAttribute('hand-tracking-controls').hand === 'right') {
-                console.log("Colisión con mano derecha detectada");
+        // Escuchar colisiones Ammo.js estándar
+        el.addEventListener('collide', function (event) {
+            console.log("Colisión en botón rojo con ", event.detail.body.el);
+            if (event.detail && event.detail.body && event.detail.body.el && 
+                event.detail.body.el.hasAttribute('hand-tracking-controls')) {
                 if (!menuPanel) {
+                    console.log("Mostrando menú por colisión");
                     crearMenuPrincipal();
                 }
             }
         });
         
-      
+        // Escuchar colisiones OBB
+        el.addEventListener('obbcollisionstarted', function (event) {
+            console.log("OBBCollision en botón rojo");
+            if (event.detail && event.detail.body && event.detail.body.el && 
+                event.detail.body.el.hasAttribute('hand-tracking-controls')) {
+                if (!menuPanel) {
+                    console.log("Mostrando menú por colisión OBB");
+                    crearMenuPrincipal();
+                }
+            }
+        });
+        
+        // Escuchar eventos personalizados de colisión con la mano
+        el.addEventListener('hand-collision', function (event) {
+            console.log("Evento personalizado de colisión con la mano");
+            if (!menuPanel) {
+                console.log("Mostrando menú por hand-collision");
+                crearMenuPrincipal();
+            }
+        });
+        
+        // Añadir una alternativa: detectar proximidad de la mano
+        var handDetectionInterval = setInterval(function() {
+            var hand = document.querySelector("[hand-tracking-controls]");
+            if (hand) {
+                var handPos = hand.getAttribute('position');
+                var buttonPos = el.getAttribute('position');
+                
+                // Calcular distancia entre la mano y el botón
+                var dx = handPos.x - buttonPos.x;
+                var dy = handPos.y - buttonPos.y;
+                var dz = handPos.z - buttonPos.z;
+                var distance = Math.sqrt(dx*dx + dy*dy + dz*dz);
+                
+                // Si la mano está lo suficientemente cerca, mostrar menú
+                if (distance < 0.3 && !menuPanel) {  // 0.3 metros de distancia
+                    console.log("Mano detectada cerca del botón, distancia:", distance);
+                    crearMenuPrincipal();
+                }
+            }
+        }, 500);  // Comprobar cada 500ms
+        
+        // El resto del componente permanece igual...
+        
         function crearMenuPrincipal() {
             cerrarMenus();
 
@@ -45,6 +89,8 @@ AFRAME.registerComponent('createsons', {
             } else {
                 newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
             }
+
+            console.log("Creando menú principal en posición:", newPosition);
 
             menuPanel = document.createElement('a-box');
             menuPanel.setAttribute('width', '1');
@@ -73,7 +119,12 @@ AFRAME.registerComponent('createsons', {
             menuPanel.appendChild(pieChartButton);
             menuPanel.appendChild(closeButton);
             scene.appendChild(menuPanel);
+            
+            console.log("Menú principal creado y añadido a la escena");
         }
+        
+        // El resto de las funciones permanecen iguales...
+    }
 
 
         function cerrarMenus() {

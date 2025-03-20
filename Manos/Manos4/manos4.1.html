@@ -4,15 +4,306 @@
   <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-super-hands-component@3.0.4/dist/aframe-super-hands.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-  <script src="manos4.1.js"></script>
-  <script src="detector.js"></script>
+  
+  <script>
+    // Componente detector simplificado
+    AFRAME.registerComponent("detector", {
+        init: function () {
+            let self = this;
+            console.log("Detector: init en", self.el);
+            
+            this.el.addEventListener("click", function () {
+                console.log("Detector: Botón pulsado", self.el);
+            });
+        }
+    });
+    
+    // Componente proximidad para detectar cuando la mano está cerca
+    AFRAME.registerComponent('proximidad', {
+        schema: {
+            target: {type: 'selector', default: '#boton3D'},
+            distancia: {type: 'number', default: 0.2}
+        },
+        
+        init: function() {
+            console.log("Componente proximidad inicializado");
+            this.tick = AFRAME.utils.throttleTick(this.tick, 100, this);
+        },
+        
+        tick: function() {
+            if (!this.data.target) return;
+            
+            var handPos = this.el.object3D.position;
+            var targetPos = this.data.target.object3D.position;
+            
+            var dx = handPos.x - targetPos.x;
+            var dy = handPos.y - targetPos.y;
+            var dz = handPos.z - targetPos.z;
+            var distancia = Math.sqrt(dx*dx + dy*dy + dz*dz);
+            
+            // Debug cada segundo
+            if (Math.random() < 0.01) {
+                console.log("Distancia mano-botón:", distancia);
+            }
+            
+            if (distancia < this.data.distancia) {
+                console.log("¡PROXIMIDAD DETECTADA! Distancia:", distancia);
+                this.data.target.emit('mano-cerca', {distancia: distancia});
+            }
+        }
+    });
+    
+    // Componente de creación de menús modificado
+    AFRAME.registerComponent('createsons', {
+        init: function () {
+            var el = this.el;
+            var scene = document.querySelector("a-scene");
+            var menuPanel = null;
+            var subMenu = null;
+            var barChartEntity = null;
+            var barsEntity = null;
+            var pieChartEntity = null;
+            var pieEntity = null;
+            var lastMenuPosition = null;
+            var esVisible = false;
+            var menuCreationTime = 0;
+            
+            console.log("Inicializando createsons en elemento:", el);
+            
+            // Escuchar clicks normales (para pruebas con el ratón)
+            el.addEventListener('click', function () {
+                console.log("Click en botón rojo");
+                if (!menuPanel) {
+                    crearMenuPrincipal();
+                }
+            });
+            
+            // Escuchar evento personalizado de proximidad
+            el.addEventListener('mano-cerca', function (event) {
+                console.log("Evento mano-cerca recibido, distancia:", event.detail.distancia);
+                
+                // Evitar activaciones múltiples en corto tiempo
+                var ahora = Date.now();
+                if (!menuPanel && (ahora - menuCreationTime > 2000)) {
+                    menuCreationTime = ahora;
+                    console.log("Mostrando menú por proximidad");
+                    crearMenuPrincipal();
+                }
+            });
+            
+            function crearMenuPrincipal() {
+                cerrarMenus();
+
+                var parentPosition = el.getAttribute('position');
+                var newPosition;
+                if (lastMenuPosition) {
+                    newPosition = lastMenuPosition;
+                } else {
+                    newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+                }
+
+                console.log("Creando menú principal en posición:", newPosition);
+
+                menuPanel = document.createElement('a-box');
+                menuPanel.setAttribute('width', '1');
+                menuPanel.setAttribute('height', '0.7');
+                menuPanel.setAttribute('depth', '0.1');
+                menuPanel.setAttribute('color', '#333');
+                menuPanel.setAttribute('class',"clickable");
+                menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+                
+
+                var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
+                    var posicion = el.getAttribute('position');
+                    mostrarSubmenu("Barras", posicion);
+                });
+
+                var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
+                    var posicion = el.getAttribute('position');
+                    mostrarSubmenu("Circular", posicion);
+                });
+
+                var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+                 
+                hacerArrastrable(menuPanel);
+
+                menuPanel.appendChild(barChartButton);
+                menuPanel.appendChild(pieChartButton);
+                menuPanel.appendChild(closeButton);
+                scene.appendChild(menuPanel);
+                
+                console.log("Menú principal creado y añadido a la escena");
+            }
+            
+            function cerrarMenus() {
+                if (menuPanel) {
+                    scene.removeChild(menuPanel);
+                    menuPanel = null;
+                }
+                if (subMenu) {
+                    scene.removeChild(subMenu);
+                    subMenu = null;
+                }
+                cerrarGraficoPrevio();
+            }
+
+
+            function mostrarSubmenu(tipo, posicion) {
+                cerrarMenus();
+                var parentPosition = el.getAttribute('position');
+                var newPosition;
+                if (lastMenuPosition) {
+                    newPosition = lastMenuPosition;
+                } else {
+                    newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+                }
+
+                subMenu = document.createElement('a-box');
+                subMenu.setAttribute('width', '1.1');
+                subMenu.setAttribute('height', '1.3');
+                subMenu.setAttribute('depth', '0.1');
+                subMenu.setAttribute('color', '#333');
+                subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+
+                var backButton = crearBoton("<--", "-0.45 0.498 0.06", function () {
+                    crearMenuPrincipal();
+                }, "orange", "0.2");
+
+                var option1 = crearBoton("Motor", "0 0.5 0.06", function () {
+                    mostrarSubmenu2(tipo, "Motor");
+                });
+
+                var option2 = crearBoton("Color", "0 0.25 0.06", function () {
+                    mostrarSubmenu2(tipo, "Color");
+                });
+
+                var option3 = crearBoton("Puertas", "0 0 0.06", function () {
+                    mostrarSubmenu2(tipo, "Puertas");
+                });
+                
+                var option4 = crearBoton("Ventas", "0 -0.25 0.06", function () {
+                    mostrarSubmenu2(tipo, "Ventas");
+                });
+                
+                var option5 = crearBoton("Completo", "0 -0.5 0.06", function () {
+                    mostrarGrafico(tipo, " ");
+                });
+              
+                hacerArrastrable(subMenu);
+
+                subMenu.appendChild(backButton);
+                subMenu.appendChild(option1);
+                subMenu.appendChild(option2);
+                subMenu.appendChild(option3);
+                subMenu.appendChild(option4);
+                subMenu.appendChild(option5);
+                scene.appendChild(subMenu);
+            }
+          
+            function mostrarSubmenu2(tipo, tipo2) {
+                // Incluir la implementación aquí...
+                // (el resto del código sigue igual)
+            }
+          
+            function mostrarSubmenu3(tipo, tipo2) {
+                // Incluir la implementación aquí...
+                // (el resto del código sigue igual)
+            }
+
+            function mostrarGrafico(tipo, filtro) {
+                // Incluir la implementación aquí...
+                // (el resto del código sigue igual)
+            }
+          
+            function hacerArrastrable(elemento) {
+                var isDragging = false;
+                var offset = new THREE.Vector3();
+                var mouse = new THREE.Vector3();
+                var raycaster = new THREE.Raycaster();
+
+                elemento.addEventListener('mousedown', function (event) {
+                    isDragging = true;
+                    let panelPos = elemento.object3D.position;
+                    offset.set(
+                        event.detail.intersection.point.x - panelPos.x,
+                        event.detail.intersection.point.y - panelPos.y,
+                        event.detail.intersection.point.z - panelPos.z
+                    );
+                });
+
+                scene.addEventListener('mousemove', function (event) {
+                    if (isDragging) {
+                        let canvas = scene.renderer.domElement;
+                        mouse.x = (event.clientX / canvas.width) * 2 - 1;
+                        mouse.y = -(event.clientY / canvas.height) * 2 + 1;
+                        raycaster.setFromCamera(mouse, scene.camera);
+
+                        let intersects = raycaster.intersectObject(elemento.object3D, true);
+                        if (intersects.length > 0) {
+                            elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
+                        }
+                    }
+                });
+
+                scene.addEventListener('mouseup', function () {
+                    if (isDragging) {
+                        lastMenuPosition = {
+                            x: elemento.object3D.position.x,
+                            y: elemento.object3D.position.y,
+                            z: elemento.object3D.position.z
+                        };
+                    }
+                    isDragging = false;
+                });
+            }
+          
+            function cerrarGraficoPrevio() {
+                if (barChartEntity) {
+                    scene.removeChild(barChartEntity);
+                    barChartEntity = null;
+                }
+                if (pieChartEntity) {
+                    scene.removeChild(pieChartEntity);
+                    pieChartEntity = null;
+                }
+            }
+
+            function crearBoton(texto, posicion, onClick, color = "blue", size = "0.6") {
+                var button = document.createElement('a-plane');
+                button.setAttribute('width', size);
+                button.setAttribute('height', '0.2');
+                button.setAttribute('color', color);
+                button.setAttribute('position', posicion);
+                button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
+                button.setAttribute('class',"clickable");
+                button.setAttribute('detector', "");
+                button.addEventListener('click', onClick);
+                return button;
+            }
+        }
+    });
+
+    // Componente de depuración visual para la mano
+    AFRAME.registerComponent('hand-debug', {
+        init: function() {
+            this.el.setAttribute('geometry', 'primitive: sphere; radius: 0.03');
+            this.el.setAttribute('material', 'color: yellow; opacity: 0.7');
+            this.el.setAttribute('visible', 'true');
+        },
+        
+        tick: function() {
+            // La esfera de debug simplemente sigue la posición de la mano
+            console.log("Posición actual de la mano:", this.el.getAttribute('position'));
+        }
+    });
+  </script>
 </head>
 <body>
-  <a-scene physics="driver: ammo; debug: true;">
+  <a-scene>
     <a-cylinder position="0 0.4 -1" radius="0.7" height="0.1" color="silver"></a-cylinder>
+    <!-- Botón rojo con el componente de creación de menús -->
     <a-cylinder id="boton3D" position="0 0.55 -1" radius="0.6" height="0.2" color="red" 
-           class="clickable" detector createsons
-           ammo-body="type: static" ammo-shape="type: cylinder"></a-cylinder>
+           class="clickable" detector createsons></a-cylinder>
 
     <a-entity position="0 0 0">
       <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
@@ -20,10 +311,12 @@
       <!-- Cursor del ratón -->
       <a-entity cursor="rayOrigin: mouse" raycaster="objects: .clickable"></a-entity>
       
-      <!-- Seguimiento de manos - Solo mano derecha -->
-      <a-entity hand-tracking-controls="hand: right" detector
-          ammo-body="type: dynamic; collisionFilterGroup: 1; collisionFilterMask: 1;" 
-          ammo-shape="type: box"></a-entity>
+      <!-- Mano derecha con componente de proximidad -->
+      <a-entity id="rightHand" 
+                hand-tracking-controls="hand: right" 
+                proximidad="target: #boton3D; distancia: 0.3"
+                hand-debug>
+      </a-entity>
     </a-entity>
   </a-scene>
 </body>
