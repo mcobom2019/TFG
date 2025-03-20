@@ -18,13 +18,7 @@ AFRAME.registerComponent('createsons', {
             }
         });
       
-     // Añade este evento para detectar cuando el dedo toca el botón
-        el.addEventListener('finger-touch', function() {
-            console.log("El dedo ha tocado el botón");
-            if (!menuPanel) {
-                crearMenuPrincipal();
-            }
-        });
+
 
         function crearMenuPrincipal() {
             cerrarMenus();
