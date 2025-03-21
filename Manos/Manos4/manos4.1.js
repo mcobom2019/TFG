@@ -14,14 +14,6 @@ AFRAME.registerComponent('createsons', {
         // Asignar detector con distancia ajustada
         el.setAttribute('detector', "distance: 0.15");
         
-        // Escuchar eventos personalizados de colisión con la mano
-        el.addEventListener('hand-collision', function (event) {
-            console.log("Evento personalizado de colisión con la mano");
-            if (!menuPanel) {
-                console.log("Mostrando menú por hand-collision");
-                crearMenuPrincipal();
-            }
-        });
         
         // Escuchar clicks normales (para pruebas con el ratón)
         el.addEventListener('click', function () {
