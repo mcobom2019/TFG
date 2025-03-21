@@ -1,12 +1,15 @@
 /* global AFRAME */
-AFRAME.registerComponent('event-manager', {
+AFRAME.registerComponent('detector', {
 
   init: function () {
     this.bindMethods();
     
-    this.cilynderButtonEl = document.querySelector('#cilynderButtonEl');
+    // Aquí cambiamos la forma de obtener el botón para que coincida con el ID en el HTML
+    this.cylinderButtonEl = document.querySelector('#cylinderButon');
 
-    this.cilynderButtonEl.addEventListener('click', this.onClick);
+    this.cylinderButtonEl.addEventListener('click', this.onClick);
+    // Añadimos evento para la presión con manos
+    this.cylinderButtonEl.addEventListener('pressedended', this.onClick);
   },
 
   bindMethods: function () {
@@ -14,17 +17,10 @@ AFRAME.registerComponent('event-manager', {
   },
 
   onClick: function (evt) {
+    console.log("Botón presionado detectado");
+    // Simplificamos esto para que funcione solo para nuestro botón principal
     var targetEl = evt.target;
-    if (targetEl === this.boxButtonEl ||
-        targetEl === this.sphereButtonEl ||
-        targetEl === this.torusButtonEl) {
-      this.boxButtonEl.removeState('pressed');
-      this.sphereButtonEl.removeState('pressed');
-      this.torusButtonEl.removeState('pressed');
-      this.boxGeometryEl.object3D.visible = false;
-      this.sphereGeometryEl.object3D.visible = false;
-      this.torusGeometryEl.object3D.visible = false;
-      this.buttonToGeometry[targetEl.id].object3D.visible = true;
-    }
+    // Activa la función del componente createsons que mostrará el menú
+    targetEl.components.createsons.crearMenuPrincipal();
   }
 });

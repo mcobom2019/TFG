@@ -11,19 +11,26 @@ AFRAME.registerComponent('createsons', {
         var lastMenuPosition = null;
         var esVisible = false;
         
+        // Exponemos la función para que sea accesible desde fuera
+        this.crearMenuPrincipal = crearMenuPrincipal;
+        
         // Asignar detector con distancia ajustada
         el.setAttribute('detector', "distance: 0.15");
         
-        
-        // Escuchar clicks normales (para pruebas con el ratón)
+        // Escuchar clicks normales y eventos de presión de manos
         el.addEventListener('click', function () {
-            console.log("Click en botón rojo");
+            console.log("Click en botón principal");
             if (!menuPanel) {
                 crearMenuPrincipal();
             }
         });
-        
-        // El resto de tu código original permanece igual...
+
+        el.addEventListener('pressedended', function () {
+            console.log("Presión detectada en botón principal");
+            if (!menuPanel) {
+                crearMenuPrincipal();
+            }
+        });
         
         function crearMenuPrincipal() {
             cerrarMenus();
@@ -410,13 +417,16 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('color', color);
             button.setAttribute('position', posicion);
             button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
-            button.setAttribute('class',"clickable");
+            button.setAttribute('class', "clickable");
+
+            // Añadimos el componente pressable a cada botón
+            button.setAttribute('pressable', 'pressDistance: 0.08');
             button.setAttribute('detector', "distance: 0.15");
-            
+
             // Añadir eventos para interacción con las manos
-            button.addEventListener('hand-collision', onClick);
+            button.addEventListener('pressedended', onClick);
             button.addEventListener('click', onClick);
-            
+
             return button;
         }
     }

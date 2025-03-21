@@ -1,40 +1,60 @@
 /* global AFRAME, THREE */
 AFRAME.registerComponent('pressable', {
   schema: {
-    pressDistance: { default: 0.06 }
+    pressDistance: { default: 0.08 }  // Aumentamos un poco la distancia para facilitar la detección
   },
 
   init: function () {
     this.worldPosition = new THREE.Vector3();
     this.handEls = document.querySelectorAll('[hand-tracking-controls]');
     this.pressed = false;
+    
+    // Añadimos mensajes de depuración
+    console.log("Componente pressable inicializado");
+    console.log("Manos detectadas:", this.handEls.length);
   },
 
   tick: function () {
     var handEls = this.handEls;
     var handEl;
     var distance;
+    
+    // Actualiza la posición mundial del objeto
+    this.el.object3D.getWorldPosition(this.worldPosition);
+    
     for (var i = 0; i < handEls.length; i++) {
       handEl = handEls[i];
-      distance = this.calculateFingerDistance(handEl.components['hand-tracking-controls'].indexTipPosition);
-      if (distance < this.data.pressDistance) {
-        if (!this.pressed) { this.el.emit('pressedstarted'); }
-        this.pressed = true;
-        return;
+      
+      // Asegúrate de que el componente de seguimiento de manos está inicializado
+      if (handEl.components['hand-tracking-controls'] && 
+          handEl.components['hand-tracking-controls'].indexTipPosition) {
+        
+        distance = this.calculateFingerDistance(handEl.components['hand-tracking-controls'].indexTipPosition);
+        
+        // Depuración opcional
+        // if (distance < 0.2) {
+        //   console.log("Distancia al dedo:", distance);
+        // }
+        
+        if (distance < this.data.pressDistance) {
+          if (!this.pressed) {
+            console.log("Botón presionado con el dedo");
+            this.el.emit('pressedstarted');
+          }
+          this.pressed = true;
+          return;
+        }
       }
     }
-    if (this.pressed) { this.el.emit('pressedended'); }
+    
+    if (this.pressed) {
+      console.log("Botón liberado");
+      this.el.emit('pressedended');
+    }
     this.pressed = false;
   },
 
   calculateFingerDistance: function (fingerPosition) {
-    var el = this.el;
-    var worldPosition = this.worldPosition;
-
-    worldPosition.copy(el.object3D.position);
-    el.object3D.parent.updateMatrixWorld();
-    el.object3D.parent.localToWorld(worldPosition);
-
-    return worldPosition.distanceTo(fingerPosition);
+    return this.worldPosition.distanceTo(fingerPosition);
   }
 });
