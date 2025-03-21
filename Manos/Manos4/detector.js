@@ -1,72 +1,61 @@
-// Componente detector
-// Detecta cuando se pulsa el botón del ratón sobre un componente,
-// cuándo se produce una colisión, o cuándo se hace el gesto "pinch".
+/* global AFRAME */
+AFRAME.registerComponent('detector', {
 
-AFRAME.registerComponent("detector", {
-    init: function () {
-        let self = this;
-        console.log("Detector: init en", self.el);
-        
-        // Detección de clics
-        this.el.addEventListener("click", function () {
-            console.log("Detector: Botón pulsado", self.el);
-        });
-        
-        // Colisiones Ammo.js
-        this.el.addEventListener("collide", function (event) {
-            console.log("Detector: Colisión general detectada", self.el);
-            if (event.detail && event.detail.body && event.detail.body.el) {
-                console.log("Colisión con:", event.detail.body.el);
-                
-                // Verificar si la colisión es con la mano
-                if (event.detail.body.el.hasAttribute('hand-tracking-controls')) {
-                    console.log("Colisión con la mano detectada");
-                    // Disparar un evento personalizado
-                    self.el.emit('hand-collision', {hand: event.detail.body.el});
-                }
-            }
-        });
-        
-        // Colisiones OBB
-        this.el.addEventListener("obbcollisionstarted", function (event) {
-            console.log("Detector: Comienzo de colisión OBB", self.el);
-            if (event.detail && event.detail.body && event.detail.body.el) {
-                console.log("Colisión OBB con:", event.detail.body.el);
-                
-                // Verificar si la colisión es con la mano
-                if (event.detail.body.el.hasAttribute('hand-tracking-controls')) {
-                    console.log("Colisión OBB con la mano detectada");
-                    // Disparar un evento personalizado
-                    self.el.emit('hand-collision', {hand: event.detail.body.el});
-                }
-            }
-        });
-        
-        // Colisiones del sphere-collider
-        this.el.addEventListener("collisions", function (event) {
-            console.log("Detector: Colisiones de sphere-collider detectadas", self.el);
-            console.log("Colisiones con:", event.detail.els);
-            
-            // Verificar colisiones con la mano
-            event.detail.els.forEach(function(el) {
-                if (el.hasAttribute('hand-tracking-controls')) {
-                    console.log("Colisión sphere-collider con la mano detectada");
-                    self.el.emit('hand-collision', {hand: el});
-                }
-            });
-        });
-        
-        // Otros eventos
-        this.el.addEventListener("obbcollisionended", function () {
-            console.log("Detector: Fin de colisión", self.el);
-        });
-        
-        this.el.addEventListener("pinchstarted", function () {
-            console.log("Detector: Comienzo de pellizco", self.el);
-        });
-        
-        this.el.addEventListener("pinchended", function () {
-            console.log("Detector: Fin de pellizco", self.el);
-        });
+  init: function () {
+    this.bindMethods();
+
+    this.boxGeometryEl = document.querySelector('#boxGeometry');
+    this.sphereGeometryEl = document.querySelector('#sphereGeometry');
+    this.torusGeometryEl = document.querySelector('#torusGeometry');
+
+    this.boxButtonEl = document.querySelector('#boxButton');
+    this.sphereButtonEl = document.querySelector('#sphereButton');
+    this.torusButtonEl = document.querySelector('#torusButton');
+    this.darkModeButtonEl = document.querySelector('#darkModeButton');
+
+    this.buttonToGeometry = {
+      'boxButton': this.boxGeometryEl,
+      'sphereButton': this.sphereGeometryEl,
+      'torusButton': this.torusGeometryEl
+    };
+
+    this.boxButtonEl.addEventListener('click', this.onClick);
+    this.sphereButtonEl.addEventListener('click', this.onClick);
+    this.torusButtonEl.addEventListener('click', this.onClick);
+    this.darkModeButtonEl.addEventListener('click', this.onClick);
+    this.boxButtonEl.addState('pressed');
+  },
+
+  bindMethods: function () {
+    this.onClick = this.onClick.bind(this);
+  },
+
+  onClick: function (evt) {
+    var targetEl = evt.target;
+    if (targetEl === this.boxButtonEl ||
+        targetEl === this.sphereButtonEl ||
+        targetEl === this.torusButtonEl) {
+      this.boxButtonEl.removeState('pressed');
+      this.sphereButtonEl.removeState('pressed');
+      this.torusButtonEl.removeState('pressed');
+      this.boxGeometryEl.object3D.visible = false;
+      this.sphereGeometryEl.object3D.visible = false;
+      this.torusGeometryEl.object3D.visible = false;
+      this.buttonToGeometry[targetEl.id].object3D.visible = true;
     }
+
+    if (targetEl === this.darkModeButtonEl) {
+      if (this.el.sceneEl.is('starry')) {
+        targetEl.setAttribute('button', 'label', 'Dark Mode');
+        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
+        this.el.sceneEl.removeState('starry');
+      } else {
+        targetEl.setAttribute('button', 'label', 'Light Mode');
+        this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+        this.el.sceneEl.addState('starry');
+      }
+    } else {
+      targetEl.addState('pressed');
+    }
+  }
 });
