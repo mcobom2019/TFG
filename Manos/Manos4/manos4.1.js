@@ -11,40 +11,8 @@ AFRAME.registerComponent('createsons', {
         var lastMenuPosition = null;
         var esVisible = false;
         
-        // Asignar detector y configurar escuchadores de eventos
-        el.setAttribute('detector', "");
-        
-        // Escuchar clicks normales (para pruebas con el ratón)
-        el.addEventListener('click', function () {
-            console.log("Click en botón rojo");
-            if (!menuPanel) {
-                crearMenuPrincipal();
-            }
-        });
-      
-        // Escuchar colisiones Ammo.js estándar
-        el.addEventListener('collide', function (event) {
-            console.log("Colisión en botón rojo con ", event.detail.body.el);
-            if (event.detail && event.detail.body && event.detail.body.el && 
-                event.detail.body.el.hasAttribute('hand-tracking-controls')) {
-                if (!menuPanel) {
-                    console.log("Mostrando menú por colisión");
-                    crearMenuPrincipal();
-                }
-            }
-        });
-        
-        // Escuchar colisiones OBB
-        el.addEventListener('obbcollisionstarted', function (event) {
-            console.log("OBBCollision en botón rojo");
-            if (event.detail && event.detail.body && event.detail.body.el && 
-                event.detail.body.el.hasAttribute('hand-tracking-controls')) {
-                if (!menuPanel) {
-                    console.log("Mostrando menú por colisión OBB");
-                    crearMenuPrincipal();
-                }
-            }
-        });
+        // Asignar detector con distancia ajustada
+        el.setAttribute('detector', "distance: 0.15");
         
         // Escuchar eventos personalizados de colisión con la mano
         el.addEventListener('hand-collision', function (event) {
@@ -55,28 +23,15 @@ AFRAME.registerComponent('createsons', {
             }
         });
         
-        // Añadir una alternativa: detectar proximidad de la mano
-        var handDetectionInterval = setInterval(function() {
-            var hand = document.querySelector("[hand-tracking-controls]");
-            if (hand) {
-                var handPos = hand.getAttribute('position');
-                var buttonPos = el.getAttribute('position');
-                
-                // Calcular distancia entre la mano y el botón
-                var dx = handPos.x - buttonPos.x;
-                var dy = handPos.y - buttonPos.y;
-                var dz = handPos.z - buttonPos.z;
-                var distance = Math.sqrt(dx*dx + dy*dy + dz*dz);
-                
-                // Si la mano está lo suficientemente cerca, mostrar menú
-                if (distance < 0.3 && !menuPanel) {  // 0.3 metros de distancia
-                    console.log("Mano detectada cerca del botón, distancia:", distance);
-                    crearMenuPrincipal();
-                }
+        // Escuchar clicks normales (para pruebas con el ratón)
+        el.addEventListener('click', function () {
+            console.log("Click en botón rojo");
+            if (!menuPanel) {
+                crearMenuPrincipal();
             }
-        }, 500);  // Comprobar cada 500ms
+        });
         
-        // El resto del componente permanece igual...
+        // El resto de tu código original permanece igual...
         
         function crearMenuPrincipal() {
             cerrarMenus();
@@ -99,7 +54,7 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('color', '#333');
             menuPanel.setAttribute('class',"clickable");
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            
+            menuPanel.setAttribute('detector', "distance: 0.15");
 
             var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
                 var posicion = el.getAttribute('position');
@@ -122,9 +77,6 @@ AFRAME.registerComponent('createsons', {
             
             console.log("Menú principal creado y añadido a la escena");
         }
-        
-        // El resto de las funciones permanecen iguales...
-    }
 
 
         function cerrarMenus() {
@@ -467,8 +419,12 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('position', posicion);
             button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
             button.setAttribute('class',"clickable");
-            button.setAttribute('detector', "");
+            button.setAttribute('detector', "distance: 0.15");
+            
+            // Añadir eventos para interacción con las manos
+            button.addEventListener('hand-collision', onClick);
             button.addEventListener('click', onClick);
+            
             return button;
         }
     }
