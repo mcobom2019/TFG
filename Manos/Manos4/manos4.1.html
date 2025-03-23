@@ -15,16 +15,8 @@
    <a-scene environment>
     <a-entity id="cylinderButon" button="label: Menú Principal" position="0 0.55 -0.5" detector createsons></a-entity>
     <!-- Modificar las entidades de manos para usar hand-tracking-grab-controls -->
-    <a-entity id="leftHand" 
-          hand-tracking-controls="hand: left" 
-          hand-tracking-grab-controls="hand: left; grabStartButtons: triggerdown; grabEndButtons: triggerup"
-          sphere-collider="objects: .clickable" 
-          super-hands="colliderEvent: collisions"></a-entity>
-<a-entity id="rightHand" 
-          hand-tracking-controls="hand: right" 
-          hand-tracking-grab-controls="hand: right; grabStartButtons: triggerdown; grabEndButtons: triggerup"
-          sphere-collider="objects: .clickable" 
-          super-hands="colliderEvent: collisions"></a-entity>
+    <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left"></a-entity>
+    <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
    </a-scene>
 </body>
 </html>
