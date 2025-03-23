@@ -36,6 +36,7 @@ AFRAME.registerComponent('createsons', {
             cerrarMenus();
 
             var parentPosition = el.getAttribute('position');
+            var isDragging = false;
             var newPosition;
             if (lastMenuPosition) {
                 newPosition = lastMenuPosition;
@@ -50,11 +51,8 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('height', '0.35');
             menuPanel.setAttribute('depth', '0.1');
             menuPanel.setAttribute('color', '#333');
-            menuPanel.setAttribute('class', "clickable");
-            
-            // Cambiar a hand-tracking-grab-controls para manos
+            menuPanel.setAttribute('class',"clickable");
             menuPanel.setAttribute('grabbable', '');
-            
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             menuPanel.setAttribute('detector', "distance: 0.15");
 
@@ -69,24 +67,13 @@ AFRAME.registerComponent('createsons', {
             });
 
             var closeButton = crearBoton("X", "0.2 0.1 0.06", cerrarMenus, "red", "0.1");
-            
-            // Ya no necesitamos hacerArrastrable, ya que ahora usamos 'grabbable'
-            // hacerArrastrable(menuPanel);
+             
+            hacerArrastrable(menuPanel);
 
             menuPanel.appendChild(barChartButton);
             menuPanel.appendChild(pieChartButton);
             menuPanel.appendChild(closeButton);
             scene.appendChild(menuPanel);
-            
-            // Registrar la posición del menú cuando se suelta
-            menuPanel.addEventListener('grabend', function() {
-                lastMenuPosition = {
-                    x: menuPanel.getAttribute('position').x,
-                    y: menuPanel.getAttribute('position').y,
-                    z: menuPanel.getAttribute('position').z
-                };
-                console.log("Menú soltado en:", lastMenuPosition);
-            });
             
             console.log("Menú principal creado y añadido a la escena");
         }
@@ -122,8 +109,6 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            
-            // Cambiar a mano para agarrar
             subMenu.setAttribute('grabbable', '');
 
             var backButton = crearBoton("<--", "-0.225 0.249 0.06", function () {
@@ -131,37 +116,31 @@ AFRAME.registerComponent('createsons', {
             }, "orange", "0.1");
 
             var option1 = crearBoton("Motor", "0 0.25 0.06", function () {
+                //mostrarGrafico(tipo, "");
                 mostrarSubmenu2(tipo, "Motor");
             });
 
             var option2 = crearBoton("Color", "0 0.125 0.06", function () {
+                //mostrarGrafico(tipo, "Diesel");
                 mostrarSubmenu2(tipo, "Color");
             });
 
             var option3 = crearBoton("Puertas", "0 0 0.06", function () {
+                //mostrarGrafico(tipo, "5Puertas");
                 mostrarSubmenu2(tipo, "Puertas");
             });
             
             var option4 = crearBoton("Ventas", "0 -0.125 0.06", function () {
+                //mostrarGrafico(tipo, "5Puertas");
                 mostrarSubmenu2(tipo, "Ventas");
             });
             
             var option5 = crearBoton("Completo", "0 -0.25 0.06", function () {
+                //mostrarGrafico(tipo, "5Puertas");
                 mostrarGrafico(tipo, " ");
             });
-            
-            // Ya no necesitamos hacerArrastrable
-            // hacerArrastrable(subMenu);
-            
-            // Registrar la posición cuando se suelta el submenú
-            subMenu.addEventListener('grabend', function() {
-                lastMenuPosition = {
-                    x: subMenu.getAttribute('position').x,
-                    y: subMenu.getAttribute('position').y,
-                    z: subMenu.getAttribute('position').z
-                };
-                console.log("Submenú soltado en:", lastMenuPosition);
-            });
+          
+            hacerArrastrable(subMenu);
 
             subMenu.appendChild(backButton);
             subMenu.appendChild(option1);
@@ -188,22 +167,9 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            
-            // Usar componente grabbable
             subMenu.setAttribute('grabbable', '');
             
-            // Ya no necesitamos hacerArrastrable
-            // hacerArrastrable(subMenu);
-            
-            // Registrar la posición cuando se suelta
-            subMenu.addEventListener('grabend', function() {
-                lastMenuPosition = {
-                    x: subMenu.getAttribute('position').x,
-                    y: subMenu.getAttribute('position').y,
-                    z: subMenu.getAttribute('position').z
-                };
-                console.log("Submenú2 soltado en:", lastMenuPosition);
-            });
+            hacerArrastrable(subMenu);
           
             var backButton = crearBoton("<--", "-0.225 0.195 0.06", function () {
                 mostrarSubmenu(tipo)
@@ -290,22 +256,9 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            
-            // Usar component grabbable
             subMenu.setAttribute('grabbable', '');
             
-            // Ya no necesitamos hacerArrastrable
-            // hacerArrastrable(subMenu);
-            
-            // Registrar la posición cuando se suelta
-            subMenu.addEventListener('grabend', function() {
-                lastMenuPosition = {
-                    x: subMenu.getAttribute('position').x,
-                    y: subMenu.getAttribute('position').y,
-                    z: subMenu.getAttribute('position').z
-                };
-                console.log("Submenú3 soltado en:", lastMenuPosition);
-            });
+            hacerArrastrable(subMenu);
           
             var backButton = crearBoton("<--", "-0.225 0.195 0.06", function () {
                 mostrarSubmenu(tipo)
@@ -405,9 +358,6 @@ AFRAME.registerComponent('createsons', {
             //}
         }
       
-        // Esta función ya no se utiliza, ahora usamos el componente 'grabbable'
-        // Mantenerla como referencia por si se necesita personalizar más la interacción
-        /*
         function hacerArrastrable(elemento) {
             var isDragging = false;
             var offset = new THREE.Vector3();
@@ -449,8 +399,9 @@ AFRAME.registerComponent('createsons', {
                 isDragging = false;
             });
         }
-        */
       
+      
+
         function cerrarGraficoPrevio() {
             if (barChartEntity) {
                 scene.removeChild(barChartEntity);
