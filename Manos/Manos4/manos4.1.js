@@ -52,8 +52,7 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('depth', '0.1');
             menuPanel.setAttribute('color', '#333');
             menuPanel.setAttribute('class',"clickable");
-            menuPanel.setAttribute('class',"grabbable");
-            menuPanel.setAttribute('grabbable');
+            menuPanel.setAttribute('grabbable', '');
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             menuPanel.setAttribute('detector', "distance: 0.15");
 
