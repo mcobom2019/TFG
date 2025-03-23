@@ -52,6 +52,7 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('depth', '0.1');
             menuPanel.setAttribute('color', '#333');
             menuPanel.setAttribute('class',"clickable");
+            menuPanel.setAttribute('class',"grabbable");
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             menuPanel.setAttribute('detector', "distance: 0.15");
 
@@ -423,8 +424,21 @@ AFRAME.registerComponent('createsons', {
             button.setAttribute('pressable', 'pressDistance: 0.08');
             button.setAttribute('detector', "distance: 0.15");
 
-            // Añadir eventos para interacción con las manos
-            button.addEventListener('pressedended', onClick);
+            // Almacenar el color original para poder volver a él
+            button.originalColor = color;
+
+            // Añadir evento para cambiar el color cuando se presiona
+            button.addEventListener('pressedstarted', function() {
+                button.setAttribute('color', 'green');
+            });
+
+            // Añadir evento para restaurar el color cuando se suelta
+            button.addEventListener('pressedended', function() {
+                button.setAttribute('color', button.originalColor);
+                onClick();
+            });
+
+            // Mantener el evento click para interacciones con mouse/controlador
             button.addEventListener('click', onClick);
 
             return button;
