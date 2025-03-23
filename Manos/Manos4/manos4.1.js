@@ -41,31 +41,31 @@ AFRAME.registerComponent('createsons', {
             if (lastMenuPosition) {
                 newPosition = lastMenuPosition;
             } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1.5, z: parentPosition.z };
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
             }
 
             console.log("Creando menú principal en posición:", newPosition);
 
             menuPanel = document.createElement('a-box');
-            menuPanel.setAttribute('width', '1');
-            menuPanel.setAttribute('height', '0.7');
+            menuPanel.setAttribute('width', '0.5');
+            menuPanel.setAttribute('height', '0.35');
             menuPanel.setAttribute('depth', '0.1');
             menuPanel.setAttribute('color', '#333');
             menuPanel.setAttribute('class',"clickable");
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             menuPanel.setAttribute('detector', "distance: 0.15");
 
-            var barChartButton = crearBoton("Barras", "0 0.1 0.06", function () {
+            var barChartButton = crearBoton("Barras", "-0.02 0.07 0.06", function () {
                 var posicion = el.getAttribute('position');
                 mostrarSubmenu("Barras", posicion);
             });
 
-            var pieChartButton = crearBoton("Circular", "0 -0.2 0.06", function () {
+            var pieChartButton = crearBoton("Circular", "-0.02 -0.1 0.06", function () {
                 var posicion = el.getAttribute('position');
                 mostrarSubmenu("Circular", posicion);
             });
 
-            var closeButton = crearBoton("X", "0.4 0.3 0.06", cerrarMenus, "red", "0.2");
+            var closeButton = crearBoton("X", "0.2 0.1 0.06", cerrarMenus, "red", "0.1");
              
             hacerArrastrable(menuPanel);
 
@@ -103,8 +103,8 @@ AFRAME.registerComponent('createsons', {
             }
 
             subMenu = document.createElement('a-box');
-            subMenu.setAttribute('width', '1.1');
-            subMenu.setAttribute('height', '1.3');
+            subMenu.setAttribute('width', '0.55');
+            subMenu.setAttribute('height', '0.65');
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
@@ -410,13 +410,13 @@ AFRAME.registerComponent('createsons', {
         }
 
 
-        function crearBoton(texto, posicion, onClick, color = "blue", size = "0.6") {
+        function crearBoton(texto, posicion, onClick, color = "blue", size = "0.3") {
             var button = document.createElement('a-plane');
             button.setAttribute('width', size);
-            button.setAttribute('height', '0.2');
+            button.setAttribute('height', '0.1');
             button.setAttribute('color', color);
             button.setAttribute('position', posicion);
-            button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 1.5;`);
+            button.setAttribute('text', `value: ${texto}; color: white; align: center; width: 0.75;`);
             button.setAttribute('class', "clickable");
 
             // Añadimos el componente pressable a cada botón
