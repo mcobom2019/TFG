@@ -3,8 +3,9 @@
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
   <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
-  <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
-  <script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
+  <!-- Añadir bibliotecas para el agarre con manos -->
+ <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
+ <script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
   <script src="detector.js"></script>
   <script src="manos4.1.js"></script>
   <script src="button.js"></script>
@@ -13,8 +14,17 @@
 <body>
    <a-scene environment>
     <a-entity id="cylinderButon" button="label: Menú Principal" position="0 0.55 -0.5" detector createsons></a-entity>
-    <a-entity hand-tracking-controls="hand: left"></a-entity>
-    <a-entity hand-tracking-controls="hand: right"></a-entity>
+    <!-- Modificar las entidades de manos para usar hand-tracking-grab-controls -->
+    <a-entity id="leftHand" 
+          hand-tracking-controls="hand: left" 
+          hand-tracking-grab-controls="hand: left; grabStartButtons: triggerdown; grabEndButtons: triggerup"
+          sphere-collider="objects: .clickable" 
+          super-hands="colliderEvent: collisions"></a-entity>
+<a-entity id="rightHand" 
+          hand-tracking-controls="hand: right" 
+          hand-tracking-grab-controls="hand: right; grabStartButtons: triggerdown; grabEndButtons: triggerup"
+          sphere-collider="objects: .clickable" 
+          super-hands="colliderEvent: collisions"></a-entity>
    </a-scene>
 </body>
 </html>

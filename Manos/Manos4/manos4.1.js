@@ -46,13 +46,17 @@ AFRAME.registerComponent('createsons', {
 
             console.log("Creando menú principal en posición:", newPosition);
 
+            // Modifica la creación del menuPanel en la función crearMenuPrincipal()
             menuPanel = document.createElement('a-box');
             menuPanel.setAttribute('width', '0.5');
             menuPanel.setAttribute('height', '0.35');
             menuPanel.setAttribute('depth', '0.1');
             menuPanel.setAttribute('color', '#333');
-            menuPanel.setAttribute('class',"clickable");
-            menuPanel.setAttribute('class',"grabbable");
+            menuPanel.setAttribute('class', "clickable");
+            // Usa correctamente el sistema de agarre con las siguientes propiedades
+            menuPanel.setAttribute('grabbable', 'maxGrabbers: 1; invert: true');
+            // Agrega física y propiedades dinámicas para mejorar la interacción
+            menuPanel.setAttribute('dynamic-body', 'mass: 0.3; linearDamping: 0.5');
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             menuPanel.setAttribute('detector', "distance: 0.15");
 
