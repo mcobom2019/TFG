@@ -33,65 +33,65 @@ AFRAME.registerComponent('createsons', {
         });
         
         function crearMenuPrincipal() {
-    cerrarMenus();
+            cerrarMenus();
 
-    var parentPosition = el.getAttribute('position');
-    var isDragging = false;
-    var newPosition;
-    if (lastMenuPosition) {
-        newPosition = lastMenuPosition;
-    } else {
-        newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z-0.5 };
-    }
+            var parentPosition = el.getAttribute('position');
+            var newPosition;
+            if (lastMenuPosition) {
+                newPosition = lastMenuPosition;
+            } else {
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z-0.5 };
+            }
 
-    console.log("Creando menú principal en posición:", newPosition);
+            console.log("Creando menú principal en posición:", newPosition);
 
-    menuPanel = document.createElement('a-box');
-    menuPanel.setAttribute('width', '0.5');
-    menuPanel.setAttribute('height', '0.35');
-    menuPanel.setAttribute('depth', '0.1');
-    menuPanel.setAttribute('color', '#333');
-    menuPanel.setAttribute('class', "clickable");
-    
-    // Aplicamos estos atributos para mejor agarre
-    menuPanel.setAttribute('hand-tracking-grab-target', '');
-    menuPanel.setAttribute('grabbable', '');
-    
-    menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-    menuPanel.setAttribute('detector', "distance: 0.15");
+            menuPanel = document.createElement('a-box');
+            menuPanel.setAttribute('width', '0.5');
+            menuPanel.setAttribute('height', '0.35');
+            menuPanel.setAttribute('depth', '0.1');
+            menuPanel.setAttribute('color', '#333');
+            menuPanel.setAttribute('class', "clickable");
+            
+            // Asegurarse de que tenga todos los atributos de agarre
+            menuPanel.setAttribute('hand-tracking-grab-target', '');
+            menuPanel.setAttribute('grabbable', '');
+            menuPanel.setAttribute('drag-drop', '');
+            
+            menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+            menuPanel.setAttribute('detector', "distance: 0.15");
 
-    // Registramos eventos para mantener la posición
-    menuPanel.addEventListener('grabstart', function() {
-        console.log("Iniciando agarre de menú principal");
-    });
-    
-    menuPanel.addEventListener('grabend', function() {
-        console.log("Finalizando agarre de menú principal");
-        lastMenuPosition = menuPanel.getAttribute('position');
-    });
+            // Eventos de agarre para debug y funcionalidad
+            menuPanel.addEventListener('grab', function(evt) {
+                console.log("Menú agarrado", evt);
+            });
+            
+            menuPanel.addEventListener('grabstart', function(evt) {
+                console.log("Grab start de menú principal", evt);
+            });
+            
+            menuPanel.addEventListener('grabend', function(evt) {
+                console.log("Grab end de menú principal", evt);
+                lastMenuPosition = menuPanel.getAttribute('position');
+            });
 
-    var barChartButton = crearBoton("Barras", "-0.02 0.07 0.06", function () {
-        var posicion = el.getAttribute('position');
-        mostrarSubmenu("Barras", posicion);
-    });
+            var barChartButton = crearBoton("Barras", "-0.02 0.07 0.06", function () {
+                var posicion = el.getAttribute('position');
+                mostrarSubmenu("Barras", posicion);
+            });
 
-    var pieChartButton = crearBoton("Circular", "-0.02 -0.1 0.06", function () {
-        var posicion = el.getAttribute('position');
-        mostrarSubmenu("Circular", posicion);
-    });
+            var pieChartButton = crearBoton("Circular", "-0.02 -0.1 0.06", function () {
+                var posicion = el.getAttribute('position');
+                mostrarSubmenu("Circular", posicion);
+            });
 
-    var closeButton = crearBoton("X", "0.2 0.1 0.06", cerrarMenus, "red", "0.1");
-     
-    // Ya no necesitamos esto ya que usamos el sistema de agarre nativo
-    // hacerArrastrable(menuPanel);
-
-    menuPanel.appendChild(barChartButton);
-    menuPanel.appendChild(pieChartButton);
-    menuPanel.appendChild(closeButton);
-    scene.appendChild(menuPanel);
-    console.log("Menú principal creado y añadido a la escena");
-}
-
+            var closeButton = crearBoton("X", "0.2 0.1 0.06", cerrarMenus, "red", "0.1");
+             
+            menuPanel.appendChild(barChartButton);
+            menuPanel.appendChild(pieChartButton);
+            menuPanel.appendChild(closeButton);
+            scene.appendChild(menuPanel);
+            console.log("Menú principal creado y añadido a la escena");
+        }
 
         function cerrarMenus() {
             if (menuPanel) {
@@ -105,69 +105,65 @@ AFRAME.registerComponent('createsons', {
             }
             cerrarGraficoPrevio();
         }
-
-
         function mostrarSubmenu(tipo, posicion) {
-    cerrarMenus();
-    var parentPosition = el.getAttribute('position');
-    var newPosition;
-    if (lastMenuPosition) {
-        newPosition = lastMenuPosition;
-    } else {
-        newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
-    }
+            cerrarMenus();
+            var parentPosition = el.getAttribute('position');
+            var newPosition;
+            if (lastMenuPosition) {
+                newPosition = lastMenuPosition;
+            } else {
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
+            }
 
-    subMenu = document.createElement('a-box');
-    subMenu.setAttribute('width', '0.55');
-    subMenu.setAttribute('height', '0.65');
-    subMenu.setAttribute('depth', '0.1');
-    subMenu.setAttribute('color', '#333');
-    subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-    
-    // Aplicamos estos atributos para mejor agarre
-    subMenu.setAttribute('hand-tracking-grab-target', '');
-    subMenu.setAttribute('grabbable', '');
-    
-    // Registramos eventos para mantener la posición
-    subMenu.addEventListener('grabstart', function() {
-        console.log("Iniciando agarre de submenú");
-    });
-    
-    subMenu.addEventListener('grabend', function() {
-        console.log("Finalizando agarre de submenú");
-        lastMenuPosition = subMenu.getAttribute('position');
-    });
+            subMenu = document.createElement('a-box');
+            subMenu.setAttribute('width', '0.55');
+            subMenu.setAttribute('height', '0.65');
+            subMenu.setAttribute('depth', '0.1');
+            subMenu.setAttribute('color', '#333');
+            subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+            
+            // Asegurarse de que tenga todos los atributos de agarre
+            subMenu.setAttribute('hand-tracking-grab-target', '');
+            subMenu.setAttribute('grabbable', '');
+            subMenu.setAttribute('drag-drop', '');
+            
+            // Eventos de agarre para debug y funcionalidad
+            subMenu.addEventListener('grab', function(evt) {
+                console.log("Submenú agarrado", evt);
+            });
+            
+            subMenu.addEventListener('grabstart', function(evt) {
+                console.log("Grab start de submenú", evt);
+            });
+            
+            subMenu.addEventListener('grabend', function(evt) {
+                console.log("Grab end de submenú", evt);
+                lastMenuPosition = subMenu.getAttribute('position');
+            });
 
-    var backButton = crearBoton("<--", "-0.225 0.249 0.06", function () {
-        crearMenuPrincipal();
-    }, "orange", "0.1");
+            var backButton = crearBoton("<--", "-0.225 0.249 0.06", function () {
+                crearMenuPrincipal();
+            }, "orange", "0.1");
 
             var option1 = crearBoton("Motor", "0 0.25 0.06", function () {
-                //mostrarGrafico(tipo, "");
                 mostrarSubmenu2(tipo, "Motor");
             });
 
             var option2 = crearBoton("Color", "0 0.125 0.06", function () {
-                //mostrarGrafico(tipo, "Diesel");
                 mostrarSubmenu2(tipo, "Color");
             });
 
             var option3 = crearBoton("Puertas", "0 0 0.06", function () {
-                //mostrarGrafico(tipo, "5Puertas");
                 mostrarSubmenu2(tipo, "Puertas");
             });
             
             var option4 = crearBoton("Ventas", "0 -0.125 0.06", function () {
-                //mostrarGrafico(tipo, "5Puertas");
                 mostrarSubmenu2(tipo, "Ventas");
             });
             
             var option5 = crearBoton("Completo", "0 -0.25 0.06", function () {
-                //mostrarGrafico(tipo, "5Puertas");
                 mostrarGrafico(tipo, " ");
             });
-          
-            hacerArrastrable(subMenu);
 
             subMenu.appendChild(backButton);
             subMenu.appendChild(option1);
@@ -177,7 +173,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.appendChild(option5);
             scene.appendChild(subMenu);
         }
-      
+
         function mostrarSubmenu2(tipo, tipo2) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
@@ -194,10 +190,26 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            subMenu.setAttribute('grabbable', '');
             
-            hacerArrastrable(subMenu);
-          
+            // Asegurarse de que tenga todos los atributos de agarre
+            subMenu.setAttribute('hand-tracking-grab-target', '');
+            subMenu.setAttribute('grabbable', '');
+            subMenu.setAttribute('drag-drop', '');
+            
+            // Eventos de agarre para debug y funcionalidad
+            subMenu.addEventListener('grab', function(evt) {
+                console.log("Submenú 2 agarrado", evt);
+            });
+            
+            subMenu.addEventListener('grabstart', function(evt) {
+                console.log("Grab start de submenú 2", evt);
+            });
+            
+            subMenu.addEventListener('grabend', function(evt) {
+                console.log("Grab end de submenú 2", evt);
+                lastMenuPosition = subMenu.getAttribute('position');
+            });
+
             var backButton = crearBoton("<--", "-0.225 0.195 0.06", function () {
                 mostrarSubmenu(tipo)
             }, "orange", "0.1");
@@ -266,7 +278,7 @@ AFRAME.registerComponent('createsons', {
               scene.appendChild(subMenu);
             }
         }
-      
+
         function mostrarSubmenu3(tipo, tipo2) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
@@ -283,26 +295,41 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            subMenu.setAttribute('grabbable', '');
             
-            hacerArrastrable(subMenu);
-          
+            // Asegurarse de que tenga todos los atributos de agarre
+            subMenu.setAttribute('hand-tracking-grab-target', '');
+            subMenu.setAttribute('grabbable', '');
+            subMenu.setAttribute('drag-drop', '');
+            
+            // Eventos de agarre para debug y funcionalidad
+            subMenu.addEventListener('grab', function(evt) {
+                console.log("Submenú 3 agarrado", evt);
+            });
+            
+            subMenu.addEventListener('grabstart', function(evt) {
+                console.log("Grab start de submenú 3", evt);
+            });
+            
+            subMenu.addEventListener('grabend', function(evt) {
+                console.log("Grab end de submenú 3", evt);
+                lastMenuPosition = subMenu.getAttribute('position');
+            });
+
             var backButton = crearBoton("<--", "-0.225 0.195 0.06", function () {
                 mostrarSubmenu(tipo)
             }, "orange", "0.1");
           
-              var option1 = crearBoton("Mostrar", "0 0.175 0.06", function () {
+            var option1 = crearBoton("Mostrar", "0 0.175 0.06", function () {
                 mostrarGrafico(tipo, tipo2);
-              });
-              var option2 = crearBoton("Borrar", "0 0.06 0.06", function () {
+            });
+            var option2 = crearBoton("Borrar", "0 0.06 0.06", function () {
                 cerrarGraficoPrevio();
-              });
-              
-              subMenu.appendChild(backButton);
-              subMenu.appendChild(option1);
-              subMenu.appendChild(option2);
-              scene.appendChild(subMenu);
-              
+            });
+            
+            subMenu.appendChild(backButton);
+            subMenu.appendChild(option1);
+            subMenu.appendChild(option2);
+            scene.appendChild(subMenu);
         }
 
         function mostrarGrafico(tipo, filtro) {
