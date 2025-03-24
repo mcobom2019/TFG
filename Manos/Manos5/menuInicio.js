@@ -2,11 +2,6 @@
 AFRAME.registerComponent('menuinicio', {
   init: function () {
     var el = this.el;
-    
-    // Hacemos que todo el elemento principal sea agarrable
-    el.setAttribute('grabbable', '');
-    
-    // Creamos el fondo del menú como hijo
     var menuBackGroundEl = document.createElement('a-entity');
     menuBackGroundEl.setAttribute('geometry', {
       primitive: 'box',
@@ -19,12 +14,7 @@ AFRAME.registerComponent('menuinicio', {
     });
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
     
-    // Ya no hacemos el fondo agarrable, sino todo el contenedor
-    // menuBackGroundEl.setAttribute('grabbable', '');
-    
     el.appendChild(menuBackGroundEl);
-    
-    // Los botones deberán ser añadidos como hijos del elemento principal (el)
-    // en tu código HTML o JavaScript donde creas los botones
+    el.setAttribute('class', 'grabbable');
   }
 });
