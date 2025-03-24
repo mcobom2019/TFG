@@ -41,7 +41,7 @@ AFRAME.registerComponent('createsons', {
             if (lastMenuPosition) {
                 newPosition = lastMenuPosition;
             } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z-0.5 };
             }
 
             console.log("Creando menú principal en posición:", newPosition);

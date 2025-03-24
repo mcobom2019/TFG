@@ -1,5 +1,5 @@
 /* global AFRAME */
-AFRAME.registerComponent('menu', {
+AFRAME.registerComponent('menuinicio', {
   init: function () {
     var el = this.el;
     var menuBackGroundEl = document.createElement('a-entity');
@@ -13,6 +13,7 @@ AFRAME.registerComponent('menu', {
       color: 'gray'
     });
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
+     menuBackGroundEl.setAttribute('grabbable', '');
     el.appendChild(menuBackGroundEl);
   }
 });
