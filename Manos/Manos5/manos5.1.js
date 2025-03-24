@@ -33,51 +33,72 @@ AFRAME.registerComponent('createsons', {
         });
         
         function crearMenuPrincipal() {
-            cerrarMenus();
+    cerrarMenus();
 
-            var parentPosition = el.getAttribute('position');
-            var isDragging = false;
-            var newPosition;
-            if (lastMenuPosition) {
-                newPosition = lastMenuPosition;
-            } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z-0.5 };
-            }
+    var parentPosition = el.getAttribute('position');
+    var newPosition;
+    if (lastMenuPosition) {
+        newPosition = lastMenuPosition;
+    } else {
+        newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z-0.5 };
+    }
 
-            console.log("Creando menú principal en posición:", newPosition);
+    console.log("Creando menú principal en posición:", newPosition);
 
-            menuPanel = document.createElement('a-box');
-            menuPanel.setAttribute('width', '0.5');
-            menuPanel.setAttribute('height', '0.35');
-            menuPanel.setAttribute('depth', '0.1');
-            menuPanel.setAttribute('color', '#333');
-            menuPanel.setAttribute('class',"clickable");
-            menuPanel.setAttribute('grabbable', '');
-            menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            menuPanel.setAttribute('detector', "distance: 0.15");
+    menuPanel = document.createElement('a-entity');
+    
+    // Usar a-entity en lugar de a-box para mejor compatibilidad
+    menuPanel.setAttribute('geometry', {
+      primitive: 'box',
+      width: 0.5,
+      height: 0.35,
+      depth: 0.1
+    });
+    
+    menuPanel.setAttribute('material', {
+      color: '#333'
+    });
+    
+    // Configuración clave para hacer el panel agarrable
+    menuPanel.setAttribute('class', 'clickable grabable');
+    menuPanel.setAttribute('dynamic-body', 'mass: 0');
+    menuPanel.setAttribute('grabbable', '');
+    
+    menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+    
+    // Añadir componentes para interacción
+    menuPanel.setAttribute('detector', "distance: 0.15");
+    
+    console.log("Configurando menú principal para ser agarrable");
 
-            var barChartButton = crearBoton("Barras", "-0.02 0.07 0.06", function () {
-                var posicion = el.getAttribute('position');
-                mostrarSubmenu("Barras", posicion);
-            });
+    var barChartButton = crearBoton("Barras", "-0.02 0.07 0.06", function () {
+        var posicion = el.getAttribute('position');
+        mostrarSubmenu("Barras", posicion);
+    });
 
-            var pieChartButton = crearBoton("Circular", "-0.02 -0.1 0.06", function () {
-                var posicion = el.getAttribute('position');
-                mostrarSubmenu("Circular", posicion);
-            });
+    var pieChartButton = crearBoton("Circular", "-0.02 -0.1 0.06", function () {
+        var posicion = el.getAttribute('position');
+        mostrarSubmenu("Circular", posicion);
+    });
 
-            var closeButton = crearBoton("X", "0.2 0.1 0.06", cerrarMenus, "red", "0.1");
-             
-            hacerArrastrable(menuPanel);
+    var closeButton = crearBoton("X", "0.2 0.1 0.06", cerrarMenus, "red", "0.1");
 
-            menuPanel.appendChild(barChartButton);
-            menuPanel.appendChild(pieChartButton);
-            menuPanel.appendChild(closeButton);
-            scene.appendChild(menuPanel);
-          //lastMenuPosition = menuPanel.getAttribute('position');
-            console.log("Menú principal creado y añadido a la escena");
-            
-        }
+    menuPanel.appendChild(barChartButton);
+    menuPanel.appendChild(pieChartButton);
+    menuPanel.appendChild(closeButton);
+    scene.appendChild(menuPanel);
+    
+    // Registrar explícitamente eventos de agarre
+    menuPanel.addEventListener('grab-start', function(evt) {
+      console.log("Menu principal: grab start");
+    });
+    
+    menuPanel.addEventListener('grab-end', function(evt) {
+      console.log("Menu principal: grab end");
+      // Guardar la posición cuando se suelta
+      lastMenuPosition = menuPanel.getAttribute('position');
+    });
+}
 
 
         function cerrarMenus() {
@@ -95,26 +116,39 @@ AFRAME.registerComponent('createsons', {
 
 
         function mostrarSubmenu(tipo, posicion) {
-            cerrarMenus();
-            var parentPosition = el.getAttribute('position');
-            var newPosition;
-            if (lastMenuPosition) {
-                newPosition = lastMenuPosition;
-            } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
-            }
+    cerrarMenus();
+    var parentPosition = el.getAttribute('position');
+    var newPosition;
+    if (lastMenuPosition) {
+        newPosition = lastMenuPosition;
+    } else {
+        newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
+    }
 
-            subMenu = document.createElement('a-box');
-            subMenu.setAttribute('width', '0.55');
-            subMenu.setAttribute('height', '0.65');
-            subMenu.setAttribute('depth', '0.1');
-            subMenu.setAttribute('color', '#333');
-            subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            subMenu.setAttribute('grabbable', '');
+    subMenu = document.createElement('a-box');
+    subMenu.setAttribute('width', '0.55');
+    subMenu.setAttribute('height', '0.65');
+    subMenu.setAttribute('depth', '0.1');
+    subMenu.setAttribute('color', '#333');
+    subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+    
+    // Aplicamos estos atributos para mejor agarre
+    subMenu.setAttribute('hand-tracking-grab-target', '');
+    subMenu.setAttribute('grabbable', '');
+    
+    // Registramos eventos para mantener la posición
+    subMenu.addEventListener('grabstart', function() {
+        console.log("Iniciando agarre de submenú");
+    });
+    
+    subMenu.addEventListener('grabend', function() {
+        console.log("Finalizando agarre de submenú");
+        lastMenuPosition = subMenu.getAttribute('position');
+    });
 
-            var backButton = crearBoton("<--", "-0.225 0.249 0.06", function () {
-                crearMenuPrincipal();
-            }, "orange", "0.1");
+    var backButton = crearBoton("<--", "-0.225 0.249 0.06", function () {
+        crearMenuPrincipal();
+    }, "orange", "0.1");
 
             var option1 = crearBoton("Motor", "0 0.25 0.06", function () {
                 //mostrarGrafico(tipo, "");
