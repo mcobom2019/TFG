@@ -28,28 +28,29 @@ AFRAME.registerComponent('detector', {
     var targetEl = evt.target;
     // Activa la función del componente createsons que mostrará el menú
     targetEl.components.createsons.crearMenuPrincipal();
+    targetEl.addState('pressed');
   },
   
-  // Nueva función para manejar específicamente el botón de Dark Mode
   onDarkModeClick: function (evt) {
-    console.log("Botón Dark Mode activado");
+    console.log("Botón Dark Mode presionado");
     var targetEl = evt.target;
     
-    // Acceder a la escena
-    var sceneEl = document.querySelector('a-scene');
-    
-    if (sceneEl.is('starry')) {
-      // Cambiar a modo claro
+    if (this.el.sceneEl.is('starry')) {
       targetEl.setAttribute('button', 'label', 'Dark Mode');
-      sceneEl.setAttribute('environment', {preset: 'default'});
-      sceneEl.removeState('starry');
-      console.log("Cambiado a modo claro");
+      this.el.sceneEl.setAttribute('environment', {preset: 'default'});
+      this.el.sceneEl.removeState('starry');
     } else {
-      // Cambiar a modo oscuro
       targetEl.setAttribute('button', 'label', 'Light Mode');
-      sceneEl.setAttribute('environment', {preset: 'starry'});
-      sceneEl.addState('starry');
-      console.log("Cambiado a modo oscuro");
+      this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+      this.el.sceneEl.addState('starry');
+    }
+    
+    if (targetEl.components.button.data.toggleable) {
+      if (targetEl.is('pressed')) {
+        targetEl.removeState('pressed');
+      } else {
+        targetEl.addState('pressed');
+      }
     }
   }
 });
