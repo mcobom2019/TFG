@@ -13,8 +13,8 @@ AFRAME.registerComponent('menuinicio', {
       color: 'gray'
     });
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
-     //menuBackGroundEl.setAttribute('grabbable', '');
+     menuBackGroundEl.setAttribute('grabbable', '');
     el.appendChild(menuBackGroundEl);
-    el.setAttribute('class', 'grabbable');
+    //el.setAttribute('class', 'grabbable');
   }
 });

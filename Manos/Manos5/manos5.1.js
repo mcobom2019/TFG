@@ -95,21 +95,22 @@ AFRAME.registerComponent('createsons', {
 
 
         function mostrarSubmenu(tipo, posicion) {
-          cerrarMenus();
+            cerrarMenus();
+            var parentPosition = el.getAttribute('position');
+            var newPosition;
+            if (lastMenuPosition) {
+                newPosition = lastMenuPosition;
+            } else {
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
+            }
 
-          // Obtener la posición actual del menú principal directamente
-          var menuPosition = menuPanel ? menuPanel.getAttribute('position') : 
-                            (lastMenuPosition ? lastMenuPosition : 
-                            { x: el.getAttribute('position').x, y: el.getAttribute('position').y + 1, z: el.getAttribute('position').z });
-
-          subMenu = document.createElement('a-box');
-          subMenu.setAttribute('width', '0.55');
-          subMenu.setAttribute('height', '0.65');
-          subMenu.setAttribute('depth', '0.1');
-          subMenu.setAttribute('color', '#333');
-          subMenu.setAttribute('position', `${menuPosition.x} ${menuPosition.y} ${menuPosition.z}`);
-          subMenu.setAttribute('grabbable', '');
-
+            subMenu = document.createElement('a-box');
+            subMenu.setAttribute('width', '0.55');
+            subMenu.setAttribute('height', '0.65');
+            subMenu.setAttribute('depth', '0.1');
+            subMenu.setAttribute('color', '#333');
+            subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+            subMenu.setAttribute('grabbable', '');
 
             var backButton = crearBoton("<--", "-0.225 0.249 0.06", function () {
                 crearMenuPrincipal();
