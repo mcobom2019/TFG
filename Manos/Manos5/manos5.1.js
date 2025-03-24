@@ -177,9 +177,17 @@ AFRAME.registerComponent('createsons', {
             var parentPosition = el.getAttribute('position');
             var newPosition;
             if (lastMenuPosition) {
-                newPosition = lastMenuPosition;
+                newPosition = {
+                    x: lastMenuPosition.x,
+                    y: lastMenuPosition.y,
+                    z: lastMenuPosition.z
+                };
             } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
+                newPosition = { 
+                    x: parentPosition.x, 
+                    y: parentPosition.y + 1, 
+                    z: parentPosition.z - 0.5 
+                };
             }
 
             subMenu = document.createElement('a-box');
@@ -188,21 +196,14 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            
-            // Aseguramos que sea agarrable
-            subMenu.setAttribute('hand-tracking-grab-target', '');
             subMenu.setAttribute('grabbable', '');
-            
-            // Registramos eventos para mantener la posición
-            subMenu.addEventListener('grabend', function() {
-                console.log("Finalizando agarre de submenú 2");
-                lastMenuPosition = subMenu.getAttribute('position');
-            });
+
+            //hacerArrastrable(subMenu);
 
             var backButton = crearBoton("<--", "-0.225 0.195 0.06", function () {
                 mostrarSubmenu(tipo)
             }, "orange", "0.1");
-          
+
             if(tipo2 == "Motor"){
               var option1 = crearBoton("Eléctrico", "0 0.175 0.06", function () {
                 mostrarSubmenu3(tipo, "Electrico");
@@ -213,13 +214,13 @@ AFRAME.registerComponent('createsons', {
               var option3 = crearBoton("Gasolina", "0 -0.06 0.06", function () {
                 mostrarSubmenu3(tipo, "Gasolina");
               });
-              
+
               subMenu.appendChild(backButton);
               subMenu.appendChild(option1);
               subMenu.appendChild(option2);
               subMenu.appendChild(option3);
               scene.appendChild(subMenu);
-              
+
             }if(tipo2 == "Color"){
               var option1 = crearBoton("Blanco", "0 0.175 0.06", function () {
                 mostrarSubmenu3(tipo, "Blanco");
@@ -233,14 +234,14 @@ AFRAME.registerComponent('createsons', {
               var option4 = crearBoton("Amarillo", "0 -0.175 0.06", function () {
                 mostrarSubmenu3(tipo, "Amarillo");
               });
-              
+
               subMenu.appendChild(backButton);
               subMenu.appendChild(option1);
               subMenu.appendChild(option2);
               subMenu.appendChild(option3);
               subMenu.appendChild(option4);
               scene.appendChild(subMenu);
-              
+
             }if(tipo2 == "Puertas"){
               var option1 = crearBoton("3 Puertas", "0 0.175 0.06", function () {
                 mostrarSubmenu3(tipo, "3puertas");
@@ -248,12 +249,12 @@ AFRAME.registerComponent('createsons', {
               var option2 = crearBoton("5 Puertas", "0 0.06 0.06", function () {
                 mostrarSubmenu3(tipo, "5puertas");
               });
-              
+
               subMenu.appendChild(backButton);
               subMenu.appendChild(option1);
               subMenu.appendChild(option2);
               scene.appendChild(subMenu);
-              
+
             }if(tipo2 == "Ventas"){
               var option1 = crearBoton("Alta Demanda", "0 0.175 0.06", function () {
                 mostrarSubmenu3(tipo, "alta");
@@ -273,9 +274,17 @@ AFRAME.registerComponent('createsons', {
             var parentPosition = el.getAttribute('position');
             var newPosition;
             if (lastMenuPosition) {
-                newPosition = lastMenuPosition;
+                newPosition = {
+                    x: lastMenuPosition.x,
+                    y: lastMenuPosition.y,
+                    z: lastMenuPosition.z
+                };
             } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
+                newPosition = { 
+                    x: parentPosition.x, 
+                    y: parentPosition.y + 1, 
+                    z: parentPosition.z - 0.5 
+                };
             }
 
             subMenu = document.createElement('a-box');
@@ -284,28 +293,21 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('depth', '0.1');
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-            
-            // Aseguramos que sea agarrable
-            subMenu.setAttribute('hand-tracking-grab-target', '');
             subMenu.setAttribute('grabbable', '');
-            
-            // Registramos eventos para mantener la posición
-            subMenu.addEventListener('grabend', function() {
-                console.log("Finalizando agarre de submenú 3");
-                lastMenuPosition = subMenu.getAttribute('position');
-            });
-          
+
+            //hacerArrastrable(subMenu);
+
             var backButton = crearBoton("<--", "-0.225 0.195 0.06", function () {
                 mostrarSubmenu(tipo)
             }, "orange", "0.1");
-          
+
             var option1 = crearBoton("Mostrar", "0 0.175 0.06", function () {
                 mostrarGrafico(tipo, tipo2);
             });
             var option2 = crearBoton("Borrar", "0 0.06 0.06", function () {
                 cerrarGraficoPrevio();
             });
-              
+
             subMenu.appendChild(backButton);
             subMenu.appendChild(option1);
             subMenu.appendChild(option2);
