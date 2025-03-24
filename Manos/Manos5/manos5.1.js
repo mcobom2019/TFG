@@ -74,7 +74,6 @@ AFRAME.registerComponent('createsons', {
             menuPanel.appendChild(pieChartButton);
             menuPanel.appendChild(closeButton);
             scene.appendChild(menuPanel);
-          //lastMenuPosition = menuPanel.getAttribute('position');
             console.log("Menú principal creado y añadido a la escena");
             
         }
