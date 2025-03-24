@@ -15,25 +15,22 @@ AFRAME.registerComponent('createsons', {
         this.crearMenuPrincipal = crearMenuPrincipal;
         
         // Asignar detector con distancia ajustada
-        el.setAttribute('pressable', 'pressDistance: 0.1');
+        el.setAttribute('detector', "distance: 0.15");
         
         // Escuchar clicks normales y eventos de presión de manos
         el.addEventListener('click', function () {
-            console.log("Click en botón cilindro");
+            console.log("Click en botón principal");
             if (!menuPanel) {
                 crearMenuPrincipal();
             }
         });
 
-        el.addEventListener('mousedown', function () {
-            console.log("Presión detectada en botón cilindro");
+        el.addEventListener('pressedended', function () {
+            console.log("Presión detectada en botón principal");
             if (!menuPanel) {
                 crearMenuPrincipal();
             }
         });
-        
-        // Resto del código sigue igual
-        // ...
         
         function crearMenuPrincipal() {
             cerrarMenus();
@@ -44,7 +41,7 @@ AFRAME.registerComponent('createsons', {
             if (lastMenuPosition) {
                 newPosition = lastMenuPosition;
             } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z-0.5 };
             }
 
             console.log("Creando menú principal en posición:", newPosition);
