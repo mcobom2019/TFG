@@ -52,25 +52,16 @@ AFRAME.registerComponent('createsons', {
             menuPanel.setAttribute('color', '#333');
             menuPanel.setAttribute('class', "clickable");
             
-            // Asegurarse de que tenga todos los atributos de agarre
+            // Aseguramos que sea agarrable
             menuPanel.setAttribute('hand-tracking-grab-target', '');
             menuPanel.setAttribute('grabbable', '');
-            menuPanel.setAttribute('drag-drop', '');
             
             menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             menuPanel.setAttribute('detector', "distance: 0.15");
 
-            // Eventos de agarre para debug y funcionalidad
-            menuPanel.addEventListener('grab', function(evt) {
-                console.log("Menú agarrado", evt);
-            });
-            
-            menuPanel.addEventListener('grabstart', function(evt) {
-                console.log("Grab start de menú principal", evt);
-            });
-            
-            menuPanel.addEventListener('grabend', function(evt) {
-                console.log("Grab end de menú principal", evt);
+            // Registramos eventos para mantener la posición
+            menuPanel.addEventListener('grabend', function() {
+                console.log("Finalizando agarre de menú principal");
                 lastMenuPosition = menuPanel.getAttribute('position');
             });
 
@@ -97,7 +88,6 @@ AFRAME.registerComponent('createsons', {
             if (menuPanel) {
                 scene.removeChild(menuPanel);
                 menuPanel = null;
-                //lastMenuPosition = null;
             }
             if (subMenu) {
                 scene.removeChild(subMenu);
@@ -105,15 +95,28 @@ AFRAME.registerComponent('createsons', {
             }
             cerrarGraficoPrevio();
         }
+
         function mostrarSubmenu(tipo, posicion) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
             var newPosition;
+            
+            // Use the last known menu position if available, otherwise use parent position
             if (lastMenuPosition) {
-                newPosition = lastMenuPosition;
+                newPosition = {
+                    x: lastMenuPosition.x,
+                    y: lastMenuPosition.y,
+                    z: lastMenuPosition.z
+                };
             } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
+                newPosition = { 
+                    x: parentPosition.x, 
+                    y: parentPosition.y + 1, 
+                    z: parentPosition.z - 0.5 
+                };
             }
+
+            console.log("Submenu Position:", newPosition);
 
             subMenu = document.createElement('a-box');
             subMenu.setAttribute('width', '0.55');
@@ -122,22 +125,17 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
-            // Asegurarse de que tenga todos los atributos de agarre
+            // Aplicamos estos atributos para mejor agarre
             subMenu.setAttribute('hand-tracking-grab-target', '');
             subMenu.setAttribute('grabbable', '');
-            subMenu.setAttribute('drag-drop', '');
             
-            // Eventos de agarre para debug y funcionalidad
-            subMenu.addEventListener('grab', function(evt) {
-                console.log("Submenú agarrado", evt);
+            // Registramos eventos para mantener la posición
+            subMenu.addEventListener('grabstart', function() {
+                console.log("Iniciando agarre de submenú");
             });
             
-            subMenu.addEventListener('grabstart', function(evt) {
-                console.log("Grab start de submenú", evt);
-            });
-            
-            subMenu.addEventListener('grabend', function(evt) {
-                console.log("Grab end de submenú", evt);
+            subMenu.addEventListener('grabend', function() {
+                console.log("Finalizando agarre de submenú");
                 lastMenuPosition = subMenu.getAttribute('position');
             });
 
@@ -164,7 +162,7 @@ AFRAME.registerComponent('createsons', {
             var option5 = crearBoton("Completo", "0 -0.25 0.06", function () {
                 mostrarGrafico(tipo, " ");
             });
-
+          
             subMenu.appendChild(backButton);
             subMenu.appendChild(option1);
             subMenu.appendChild(option2);
@@ -173,7 +171,7 @@ AFRAME.registerComponent('createsons', {
             subMenu.appendChild(option5);
             scene.appendChild(subMenu);
         }
-
+      
         function mostrarSubmenu2(tipo, tipo2) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
@@ -191,22 +189,13 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
-            // Asegurarse de que tenga todos los atributos de agarre
+            // Aseguramos que sea agarrable
             subMenu.setAttribute('hand-tracking-grab-target', '');
             subMenu.setAttribute('grabbable', '');
-            subMenu.setAttribute('drag-drop', '');
             
-            // Eventos de agarre para debug y funcionalidad
-            subMenu.addEventListener('grab', function(evt) {
-                console.log("Submenú 2 agarrado", evt);
-            });
-            
-            subMenu.addEventListener('grabstart', function(evt) {
-                console.log("Grab start de submenú 2", evt);
-            });
-            
-            subMenu.addEventListener('grabend', function(evt) {
-                console.log("Grab end de submenú 2", evt);
+            // Registramos eventos para mantener la posición
+            subMenu.addEventListener('grabend', function() {
+                console.log("Finalizando agarre de submenú 2");
                 lastMenuPosition = subMenu.getAttribute('position');
             });
 
@@ -278,7 +267,7 @@ AFRAME.registerComponent('createsons', {
               scene.appendChild(subMenu);
             }
         }
-
+      
         function mostrarSubmenu3(tipo, tipo2) {
             cerrarMenus();
             var parentPosition = el.getAttribute('position');
@@ -296,25 +285,16 @@ AFRAME.registerComponent('createsons', {
             subMenu.setAttribute('color', '#333');
             subMenu.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
             
-            // Asegurarse de que tenga todos los atributos de agarre
+            // Aseguramos que sea agarrable
             subMenu.setAttribute('hand-tracking-grab-target', '');
             subMenu.setAttribute('grabbable', '');
-            subMenu.setAttribute('drag-drop', '');
             
-            // Eventos de agarre para debug y funcionalidad
-            subMenu.addEventListener('grab', function(evt) {
-                console.log("Submenú 3 agarrado", evt);
-            });
-            
-            subMenu.addEventListener('grabstart', function(evt) {
-                console.log("Grab start de submenú 3", evt);
-            });
-            
-            subMenu.addEventListener('grabend', function(evt) {
-                console.log("Grab end de submenú 3", evt);
+            // Registramos eventos para mantener la posición
+            subMenu.addEventListener('grabend', function() {
+                console.log("Finalizando agarre de submenú 3");
                 lastMenuPosition = subMenu.getAttribute('position');
             });
-
+          
             var backButton = crearBoton("<--", "-0.225 0.195 0.06", function () {
                 mostrarSubmenu(tipo)
             }, "orange", "0.1");
@@ -325,7 +305,7 @@ AFRAME.registerComponent('createsons', {
             var option2 = crearBoton("Borrar", "0 0.06 0.06", function () {
                 cerrarGraficoPrevio();
             });
-            
+              
             subMenu.appendChild(backButton);
             subMenu.appendChild(option1);
             subMenu.appendChild(option2);
@@ -380,82 +360,28 @@ AFRAME.registerComponent('createsons', {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
                 }else if (filtro === "5puertas") {
                     filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
-                }//else if (filtro === "alta") {
-                 //   filterEntity.setAttribute('babia-filter', 'from: data; filter: sales<=10');
-                //}else if (filtro === "baja") {
-                //    filterEntity.setAttribute('babia-filter', 'from: data; filter: sales>=9');
-                //}
+                }
 
                 scene.appendChild(filterEntity);
                 dataSource = "filter-data"; // cuando hemos filtrado
             }
             
-            //if(!esVisible){
-                if (tipo === "Barras") {
-                    barChartEntity = document.createElement('a-entity');
-                    barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
-                    barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-                    barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
-                    scene.appendChild(barChartEntity);
-                }else if (tipo === "Circular") {
-                    pieChartEntity = document.createElement('a-entity');
-                    pieChartEntity.setAttribute('babia-pie', `from: ${dataSource}; legend: true; palette: blues; key: model; size: doors`);
-                    pieChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-                    pieChartEntity.setAttribute('scale', '0.8 0.8 0.8');
-                    pieChartEntity.setAttribute('rotation', '90 0 0');
-                    scene.appendChild(pieChartEntity);
-                }
-               // esVisible =  true;
-            //}else{
-             // cerrarGraficoPrevio();
-             // esVisible = false;
-            //}
+            if (tipo === "Barras") {
+                barChartEntity = document.createElement('a-entity');
+                barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
+                barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+                barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
+                scene.appendChild(barChartEntity);
+            }else if (tipo === "Circular") {
+                pieChartEntity = document.createElement('a-entity');
+                pieChartEntity.setAttribute('babia-pie', `from: ${dataSource}; legend: true; palette: blues; key: model; size: doors`);
+                pieChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+                pieChartEntity.setAttribute('scale', '0.8 0.8 0.8');
+                pieChartEntity.setAttribute('rotation', '90 0 0');
+                scene.appendChild(pieChartEntity);
+            }
         }
       
-        function hacerArrastrable(elemento) {
-            var isDragging = false;
-            var offset = new THREE.Vector3();
-            var mouse = new THREE.Vector3();
-            var raycaster = new THREE.Raycaster();
-
-            elemento.addEventListener('mousedown', function (event) {
-                isDragging = true;
-                let panelPos = elemento.object3D.position;
-                offset.set(
-                    event.detail.intersection.point.x - panelPos.x,
-                    event.detail.intersection.point.y - panelPos.y,
-                    event.detail.intersection.point.z - panelPos.z
-                );
-            });
-
-            scene.addEventListener('mousemove', function (event) {
-                if (isDragging) {
-                    let canvas = scene.renderer.domElement;
-                    mouse.x = (event.clientX / canvas.width) * 2 - 1;
-                    mouse.y = -(event.clientY / canvas.height) * 2 + 1;
-                    raycaster.setFromCamera(mouse, scene.camera);
-
-                    let intersects = raycaster.intersectObject(elemento.object3D, true);
-                    if (intersects.length > 0) {
-                        elemento.object3D.position.copy(intersects[0].point.clone().sub(offset));
-                    }
-                }
-            });
-
-            scene.addEventListener('mouseup', function () {
-                if (isDragging) {
-                    lastMenuPosition = {
-                        x: elemento.object3D.position.x,
-                        y: elemento.object3D.position.y,
-                        z: elemento.object3D.position.z
-                    };
-                }
-                isDragging = false;
-            });
-        }
-      
-      
-
         function cerrarGraficoPrevio() {
             if (barChartEntity) {
                 scene.removeChild(barChartEntity);
@@ -466,7 +392,6 @@ AFRAME.registerComponent('createsons', {
                 pieChartEntity = null;
             }
         }
-
 
         function crearBoton(texto, posicion, onClick, color = "blue", size = "0.3") {
             var button = document.createElement('a-plane');
