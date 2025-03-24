@@ -16,14 +16,14 @@
    <a-scene environment>
      
      <!--Creacion del menu Inicio-->
-     <a-entity id="menu" menu position="0 1.5 -0.5" rotation="-45 0 0" event-manager>
+     <a-entity id="menu" menuinicio position="0 1.5 -0.5" rotation="-45 0 0" detector grabbable>
         <!--<a-entity slider position="0 0.10 0"></a-entity>-->
-        <a-entity id="cylinderButon" button="label: Start" position="-0.15 0 0"></a-entity>
+        <a-entity id="cylinderButon" button="label: Start" position="-0.15 0 0" createsons></a-entity>
         <a-entity id="darkModeButton" button="label: Dark Mode; width: 0.20; toggleable: true" position="0 -0.10 0"></a-entity>
      </a-entity>
      
      <!--<a-cylinder position="0 0.5 -1" radius="0.7" height="0.1" color="silver"></a-cylinder>-->
-    <!--<a-cylinder id="cylinderButon" position="0 0.65 -1" radius="0.6" height="0.2" color="red" class="clickable" detector createsons></a-cylinder>
+    <!--<a-cylinder id="cylinderButon" position="0 0.65 -1" radius="0.6" height="0.2" color="red" class="clickable" detector createsons></a-cylinder>-->
     <!-- Modificar las entidades de manos para usar hand-tracking-grab-controls -->
     <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left"></a-entity>
     <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
