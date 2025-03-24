@@ -41,7 +41,7 @@ AFRAME.registerComponent('createsons', {
             if (lastMenuPosition) {
                 newPosition = lastMenuPosition;
             } else {
-                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z-0.5 };
+                newPosition = { x: parentPosition.x, y: parentPosition.y + 1, z: parentPosition.z };
             }
 
             console.log("Creando menú principal en posición:", newPosition);
@@ -74,8 +74,8 @@ AFRAME.registerComponent('createsons', {
             menuPanel.appendChild(pieChartButton);
             menuPanel.appendChild(closeButton);
             scene.appendChild(menuPanel);
-            console.log("Menú principal creado y añadido a la escena");
             
+            console.log("Menú principal creado y añadido a la escena");
         }
 
 

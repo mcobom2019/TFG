@@ -15,6 +15,6 @@ AFRAME.registerComponent('menuinicio', {
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
      //menuBackGroundEl.setAttribute('grabbable', '');
     el.appendChild(menuBackGroundEl);
-    el.setAttribute('class', 'grabbable');
+    //el.setAttribute('class', 'grabbable');
   }
 });
