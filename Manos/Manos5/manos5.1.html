@@ -22,6 +22,18 @@
         <a-entity id="darkModeButton" button="label: Dark Mode; width: 0.20; toggleable: true" position="0 -0.10 0"></a-entity>
      </a-entity>
      
+     <a-entity menuinicio position="0 1.5 -0.5" rotation="-45 0 0" detector grabbable>
+  <!-- El fondo se crea automáticamente por el componente menuinicio -->
+  
+  <!-- Botón Start -->
+  <a-entity button="label: Start; width: 0.11; toggleable: false"
+            position="-0.15 0.1 0" id="cylinderButon" button="label: Start" position="-0.15 0 0" createsons></a-entity>
+  
+  <!-- Botón Dark Mode -->
+  <a-entity button="label: Dark Mode; width: 0.11; toggleable: true"
+            position="0.15 0.1 0"></a-entity>
+</a-entity>
+     
      <!--<a-cylinder position="0 0.5 -1" radius="0.7" height="0.1" color="silver"></a-cylinder>-->
     <!--<a-cylinder id="cylinderButon" position="0 0.65 -1" radius="0.6" height="0.2" color="red" class="clickable" detector createsons></a-cylinder>-->
     <!-- Modificar las entidades de manos para usar hand-tracking-grab-controls -->
