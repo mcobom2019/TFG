@@ -36,6 +36,7 @@ AFRAME.registerComponent('createsons', {
     cerrarMenus();
 
     var parentPosition = el.getAttribute('position');
+    var isDragging = false;
     var newPosition;
     if (lastMenuPosition) {
         newPosition = lastMenuPosition;
@@ -45,31 +46,29 @@ AFRAME.registerComponent('createsons', {
 
     console.log("Creando menú principal en posición:", newPosition);
 
-    menuPanel = document.createElement('a-entity');
+    menuPanel = document.createElement('a-box');
+    menuPanel.setAttribute('width', '0.5');
+    menuPanel.setAttribute('height', '0.35');
+    menuPanel.setAttribute('depth', '0.1');
+    menuPanel.setAttribute('color', '#333');
+    menuPanel.setAttribute('class', "clickable");
     
-    // Usar a-entity en lugar de a-box para mejor compatibilidad
-    menuPanel.setAttribute('geometry', {
-      primitive: 'box',
-      width: 0.5,
-      height: 0.35,
-      depth: 0.1
-    });
-    
-    menuPanel.setAttribute('material', {
-      color: '#333'
-    });
-    
-    // Configuración clave para hacer el panel agarrable
-    menuPanel.setAttribute('class', 'clickable grabable');
-    menuPanel.setAttribute('dynamic-body', 'mass: 0');
+    // Aplicamos estos atributos para mejor agarre
+    menuPanel.setAttribute('hand-tracking-grab-target', '');
     menuPanel.setAttribute('grabbable', '');
     
     menuPanel.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-    
-    // Añadir componentes para interacción
     menuPanel.setAttribute('detector', "distance: 0.15");
+
+    // Registramos eventos para mantener la posición
+    menuPanel.addEventListener('grabstart', function() {
+        console.log("Iniciando agarre de menú principal");
+    });
     
-    console.log("Configurando menú principal para ser agarrable");
+    menuPanel.addEventListener('grabend', function() {
+        console.log("Finalizando agarre de menú principal");
+        lastMenuPosition = menuPanel.getAttribute('position');
+    });
 
     var barChartButton = crearBoton("Barras", "-0.02 0.07 0.06", function () {
         var posicion = el.getAttribute('position');
@@ -82,22 +81,15 @@ AFRAME.registerComponent('createsons', {
     });
 
     var closeButton = crearBoton("X", "0.2 0.1 0.06", cerrarMenus, "red", "0.1");
+     
+    // Ya no necesitamos esto ya que usamos el sistema de agarre nativo
+    // hacerArrastrable(menuPanel);
 
     menuPanel.appendChild(barChartButton);
     menuPanel.appendChild(pieChartButton);
     menuPanel.appendChild(closeButton);
     scene.appendChild(menuPanel);
-    
-    // Registrar explícitamente eventos de agarre
-    menuPanel.addEventListener('grab-start', function(evt) {
-      console.log("Menu principal: grab start");
-    });
-    
-    menuPanel.addEventListener('grab-end', function(evt) {
-      console.log("Menu principal: grab end");
-      // Guardar la posición cuando se suelta
-      lastMenuPosition = menuPanel.getAttribute('position');
-    });
+    console.log("Menú principal creado y añadido a la escena");
 }
 
 

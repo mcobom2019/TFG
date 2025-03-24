@@ -1,10 +1,8 @@
 AFRAME.registerComponent('menuinicio', {
   init: function () {
     var el = this.el;
-    var scene = document.querySelector("a-scene");
-    
-    // Crear fondo del menú
     var menuBackGroundEl = document.createElement('a-entity');
+    
     menuBackGroundEl.setAttribute('geometry', {
       primitive: 'box',
       width: 0.6,
@@ -15,24 +13,23 @@ AFRAME.registerComponent('menuinicio', {
       color: 'gray'
     });
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
+    
+    // El fondo no necesita ser grabbable
     el.appendChild(menuBackGroundEl);
     
-    // Hacer que el elemento principal sea agarrable explícitamente
-    el.setAttribute('class', 'grabable');
+    // Aplicamos grabbable solo al elemento principal
+    el.setAttribute('hand-tracking-grab-target', '');
     
-    // Estos atributos son clave para el componente de agarre
-    el.setAttribute('dynamic-body', 'mass: 0');
-    el.setAttribute('grabbable', '');
-    
-    console.log("Menu inicio configurado para ser agarrable");
-    
-    // Escuchar eventos de agarre
-    el.addEventListener('grab-start', function(evt) {
-      console.log("Menu inicio: grab start");
+    // Registramos eventos para mantener la posición
+    el.addEventListener('grabstart', function() {
+      console.log("Iniciando agarre de menú inicial");
     });
     
-    el.addEventListener('grab-end', function(evt) {
-      console.log("Menu inicio: grab end");
+    el.addEventListener('grabend', function() {
+      console.log("Finalizando agarre de menú inicial");
+      // Guardamos la posición actual
+      var position = el.getAttribute('position');
+      el.setAttribute('position', position);
     });
   }
 });
