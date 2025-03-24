@@ -10,47 +10,41 @@ AFRAME.registerComponent('detector', {
 
     // Añadimos listeners para ambos botones
     this.cylinderButtonEl.addEventListener('click', this.onClick);
-    this.darkModeButtonEl.addEventListener('click', this.onDarkModeClick);
+    this.darkModeButtonEl.addEventListener('click', this.onClick);
     
     // Añadimos eventos para la presión con manos
     this.cylinderButtonEl.addEventListener('pressedended', this.onClick);
-    this.darkModeButtonEl.addEventListener('pressedended', this.onDarkModeClick);
+    this.darkModeButtonEl.addEventListener('pressedended', this.onClick);
   },
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);
-    this.onDarkModeClick = this.onDarkModeClick.bind(this);
   },
 
   onClick: function (evt) {
-    console.log("Botón Start presionado");
-    // Mantenemos la funcionalidad original para el botón principal
-    var targetEl = evt.target;
-    // Activa la función del componente createsons que mostrará el menú
-    targetEl.components.createsons.crearMenuPrincipal();
-    targetEl.addState('pressed');
-  },
-  
-  onDarkModeClick: function (evt) {
-    console.log("Botón Dark Mode presionado");
     var targetEl = evt.target;
     
-    if (this.el.sceneEl.is('starry')) {
-      targetEl.setAttribute('button', 'label', 'Dark Mode');
-      this.el.sceneEl.setAttribute('environment', {preset: 'default'});
-      this.el.sceneEl.removeState('starry');
-    } else {
-      targetEl.setAttribute('button', 'label', 'Light Mode');
-      this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
-      this.el.sceneEl.addState('starry');
-    }
-    
-    if (targetEl.components.button.data.toggleable) {
-      if (targetEl.is('pressed')) {
-        targetEl.removeState('pressed');
+    // Si es el botón de Dark Mode
+    if (targetEl === this.darkModeButtonEl) {
+      if (this.el.sceneEl.is('starry')) {
+        // Cambia a modo claro
+        targetEl.setAttribute('button', 'label', 'Dark Mode');
+        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
+        this.el.sceneEl.removeState('starry');
       } else {
-        targetEl.addState('pressed');
+        // Cambia a modo oscuro
+        targetEl.setAttribute('button', 'label', 'Light Mode');
+        this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+        this.el.sceneEl.addState('starry');
       }
+    } 
+    
+    // Si es el botón de Start
+    if (targetEl === this.cylinderButtonEl) {
+      console.log("Botón Start presionado");
+      // Activa la función del componente createsons que mostrará el menú
+      targetEl.components.createsons.crearMenuPrincipal();
+      targetEl.addState('pressed');
     }
   }
 });
