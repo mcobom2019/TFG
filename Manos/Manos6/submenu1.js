@@ -34,9 +34,9 @@ AFRAME.registerComponent('controsubmenu1', {
     this.circularButtonEl.addEventListener('pressedended', this.onClick);
     
     //boton atras
-    this.circularButtonEl = document.querySelector('#circularButton');
-    this.circularButtonEl.addEventListener('click', this.onClick);
-    this.circularButtonEl.addEventListener('pressedended', this.onClick);
+    this.atrasButtonEl = document.querySelector('#atrasButton');
+    this.atrasButtonEl.addEventListener('click', this.onClick);
+    this.atrasButtonEl.addEventListener('pressedended', this.onClick);
     
   },
 
@@ -55,8 +55,9 @@ AFRAME.registerComponent('controsubmenu1', {
       this.menuInicio.visible = false;
     }
     
-    if (targetEl === this.startButtonEl || targetEl.xButtonEl) {
-      this.menuInicio.visible = false;
+    if (targetEl === this.atrasButtonEl) {
+      this.menuInicio.visible = true;
+      this.submenu1.visible = false;
     }
 
   }

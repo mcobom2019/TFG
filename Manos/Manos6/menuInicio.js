@@ -23,6 +23,10 @@ AFRAME.registerComponent('controlinicio', {
   init: function () {
     this.bindMethods();
   
+    // Referencias a los elementos
+    this.menuInicio = document.querySelector('#menuinicio');
+    this.submenu1 = document.querySelector('#subMenu1');
+  
     //boton start
     this.startButtonEl = document.querySelector('#startButton');
     this.startButtonEl.addEventListener('click', this.onClick);
@@ -41,14 +45,13 @@ AFRAME.registerComponent('controlinicio', {
 
   onClick: function (evt) {
     var targetEl = evt.target;
-    if (targetEl === this.startButtonEl || targetEl.xButtonEl) {
-      this.submenu1.visible = true;
-      this.menuInicio.visible = false;
+    if (targetEl === this.startButtonEl) {
+      this.submenu1.setAttribute('visible', true);
+      this.menuInicio.setAttribute('visible', false);
     }
     
-    if (targetEl === this.startButtonEl || targetEl.xButtonEl) {
-      this.menuInicio.visible = false;
+    if (targetEl === this.xButtonEl) {
+      this.menuInicio.setAttribute('visible', false);
     }
-
   }
 });
