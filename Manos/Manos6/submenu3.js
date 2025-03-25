@@ -88,10 +88,6 @@ AFRAME.registerComponent('controsubmenu2', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.backButtonEl2) {
-      this.el.setAttribute('controsubmenu2', 'Motor', false);
-      this.el.setAttribute('controsubmenu2', 'Color', false);
-      this.el.setAttribute('controsubmenu2', 'Puertas', false);
-      this.el.setAttribute('controsubmenu2', 'Completo', false);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', true);
       this.submenu3.setAttribute('visible', false);
