@@ -31,6 +31,11 @@ AFRAME.registerComponent('pressable', {
         
         distance = this.calculateFingerDistance(handEl.components['hand-tracking-controls'].indexTipPosition);
         
+        // Depuración opcional
+        // if (distance < 0.2) {
+        //   console.log("Distancia al dedo:", distance);
+        // }
+        
         if (distance < this.data.pressDistance) {
           if (!this.pressed) {
             console.log("Botón presionado con el dedo");
