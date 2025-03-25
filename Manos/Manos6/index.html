@@ -8,14 +8,16 @@
   <script src="button.js"></script>
   <script src="menu.js"></script>
   <script src="submenu.js"></script>
+  <script src="detector.js"></script>
+  <script src="pressable.js"></script>
 </head>
 <body>
-   <a-scene environment>
+   <a-scene environment detector>
      
      <!--Creacion del menu Inicio-->
      <a-entity id="menu" menu position="0 1.5 -0.5" rotation="0 0 0" grabbable>
-        <a-entity id="cylinderButon" button="label: Start" position="-0.15 0 0"></a-entity>
-        <a-entity id="darkModeButton" button="label: Dark Mode; width: 0.20; toggleable: true" position="0 -0.10 0"></a-entity>
+        <a-entity id="cylinderButon" button="label: Start" position="-0.15 0 0" pressable></a-entity>
+        <a-entity id="darkModeButton" button="label: Dark Mode; width: 0.20; toggleable: true" position="0 -0.10 0" pressable></a-entity>
      </a-entity>
      
      <!--Creacion del Submenu-->

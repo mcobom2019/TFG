@@ -21,35 +21,32 @@ AFRAME.registerComponent('submenu', {
 
     // Crear botones del submenú
     var button1 = document.createElement('a-entity');
+    button1.setAttribute('id', 'submenuButton1');
     button1.setAttribute('button', 'label: Opción 1');
     button1.setAttribute('position', '-0.15 0.10 0');
+    button1.setAttribute('pressable', '');
 
     var button2 = document.createElement('a-entity');
+    button2.setAttribute('id', 'submenuButton2');
     button2.setAttribute('button', 'label: Opción 2');
     button2.setAttribute('position', '0 0 0');
+    button2.setAttribute('pressable', '');
 
     var button3 = document.createElement('a-entity');
+    button3.setAttribute('id', 'submenuBackButton');
     button3.setAttribute('button', 'label: Volver');
     button3.setAttribute('position', '0 -0.10 0');
+    button3.setAttribute('pressable', '');
 
     // Añadir botones al submenú
     el.appendChild(button1);
     el.appendChild(button2);
     el.appendChild(button3);
 
-    // Ocultar submenú inicialmente
-    el.setAttribute('visible', false);
+    // Añadir atributo de visibilidad
+    el.setAttribute('visible', 'false');
 
-    // Evento para mostrar submenú al tocar botón Start
-    startButton.addEventListener('click', () => {
-      mainMenu.setAttribute('visible', false);
-      el.setAttribute('visible', true);
-    });
-
-    // Evento para volver al menú principal
-    button3.addEventListener('click', () => {
-      mainMenu.setAttribute('visible', true);
-      el.setAttribute('visible', false);
-    });
+    // Registro de eventos en el submenu
+    console.log('Submenu component initialized');
   }
 });
