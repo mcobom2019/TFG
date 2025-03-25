@@ -1,31 +1,28 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
-  <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
-  <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
-  <script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
-  <script src="button.js"></script>
-  <script src="menu.js"></script>
-  <script src="submenu.js"></script>
-  <script src="detector.js"></script>
-  <script src="pressable.js"></script>
-</head>
-<body>
-   <a-scene environment detector>
-     
-     <!--Creacion del menu Inicio-->
-     <a-entity id="menu" menu position="0 1.5 -0.5" rotation="0 0 0" grabbable>
-        <a-entity id="cylinderButon" button="label: Start" position="-0.15 0 0" pressable></a-entity>
-        <a-entity id="darkModeButton" button="label: Dark Mode; width: 0.20; toggleable: true" position="0 -0.10 0" pressable></a-entity>
-     </a-entity>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
+    <script src="menuinicio.js"></script>
     
-     <!--Submenu (inicialmente oculto)-->
-     <a-entity id="submenu" submenu position="0 1.5 -0.5" rotation="0 0 0" grabbable visible="false"></a-entity>
     
-    <!-- Manos para hand tracking -->
-    <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left"></a-entity>
-    <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
-   </a-scene>
-</body>
+    <script src="pinchable.js"></script>
+    <script src="color-change.js"></script>
+    <script src="slider.js"></script>
+    <script src="size-change.js"></script>
+    <script src="button.js"></script>
+    <script src="pressable.js"></script>
+    <script src="event-manager.js"></script>
+  </head>
+  <body>
+    <a-scene environment>
+      <a-entity id="menuinicio" menuinicio position="0 1.5 -0.5" rotation="-45 0 0">
+        <a-entity id="startButton" button="label: start" position="-0.15 0 0"></a-entity>
+        <a-entity id="xButton" button="label: X" position="0 0 0"></a-entity>
+      </a-entity>
+      <a-entity hand-tracking-controls="hand: left"></a-entity>
+      <a-entity hand-tracking-controls="hand: right"></a-entity>
+    </a-scene>
+  </body>
 </html>
