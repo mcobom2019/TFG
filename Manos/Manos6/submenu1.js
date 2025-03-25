@@ -22,21 +22,21 @@ AFRAME.registerComponent('controsubmenu1', {
 
   init: function () {
     this.bindMethods();
+    
+    this.menuInicio = document.querySelector('#menuinicio');
+    this.submenu1 = document.querySelector('#subMenu1');
   
     //boton barras
     this.barrasButtonEl = document.querySelector('#barrasButton');
     this.barrasButtonEl.addEventListener('click', this.onClick);
-    this.barrasButtonEl.addEventListener('pressedended', this.onClick);
     
     //boton circular
     this.circularButtonEl = document.querySelector('#circularButton');
     this.circularButtonEl.addEventListener('click', this.onClick);
-    this.circularButtonEl.addEventListener('pressedended', this.onClick);
     
     //boton atras
     this.atrasButtonEl = document.querySelector('#atrasButton');
     this.atrasButtonEl.addEventListener('click', this.onClick);
-    this.atrasButtonEl.addEventListener('pressedended', this.onClick);
     
   },
 
@@ -56,8 +56,8 @@ AFRAME.registerComponent('controsubmenu1', {
     }
     
     if (targetEl === this.atrasButtonEl) {
-      this.menuInicio.visible = true;
-      this.submenu1.visible = false;
+      this.submenu1.setAttribute('visible', false);
+      this.menuInicio.setAttribute('visible', true);
     }
 
   }
