@@ -47,24 +47,46 @@ AFRAME.registerComponent('controsubmenu4', {
   },
 
   onClick: function (evt) {
+    var scene = document.querySelector("a-scene");
     var targetEl = evt.target;
+    var submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
     var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
+    var submenu3Component = document.querySelector('#subMenu3').components.controsubmenu3;
+    var filtro = null;
+    
     if (targetEl === this.backButtonEl3) {
-      submenu2Component.resetValues();
+      submenu3Component.resetValues();
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
       this.submenu3.setAttribute('visible', true);
+      this.submenu4.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
     }
     
-    if (targetEl === this.electricoButton) {
-      this.el.setAttribute('controsubmenu3', 'Electrico', true);
+    if (targetEl === this.mostrarButtonEl) {
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      
+       var prevFilter = document.querySelector("#filter-data");
+            if (prevFilter) {
+                scene.removeChild(prevFilter);
+            }
+      if(submenu1Component.data.Barras){
+        if(submenu2Component.data.Motor){
+          if(submenu3Component.data.Electrico){
+              filtro = "Electrico";
+              const filterEntity = document.createElement('a-entity');
+              filterEntity.setAttribute('id', 'filter-data');
+              filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
+          }
+        
+      
+      
     }
 
   }
+  
 });
