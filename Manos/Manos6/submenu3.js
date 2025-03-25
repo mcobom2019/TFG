@@ -1,5 +1,5 @@
 /* global AFRAME */
-AFRAME.registerComponent('submenu2', {
+AFRAME.registerComponent('submenu3', {
   init: function () {
     var el = this.el;
     var menuBackGroundEl = document.createElement('a-entity');
@@ -18,7 +18,7 @@ AFRAME.registerComponent('submenu2', {
 });
 
 /* global AFRAME */
-AFRAME.registerComponent('controsubmenu2', {
+AFRAME.registerComponent('controsubmenu3', {
   schema: {
       Electrico: {default: false},
       Diesel: {default: false},
@@ -30,7 +30,18 @@ AFRAME.registerComponent('controsubmenu2', {
       Dos: {default: false},
       Cinco: {default: false},
   },
-
+  resetValues: function() {
+    this.data.Electrico = false;
+    this.data.Diesel = false;
+    this.data.Gasolina = false;
+    this.data.Blanco = false;
+    this.data.Negro = false;
+    this.data.Color = false;
+    this.data.Rojo = false;
+    this.data.Amarillo = false;
+    this.data.Dos = false;
+    this.data.Cinco = false;
+  },
   init: function () {
     this.bindMethods();
     
@@ -38,6 +49,7 @@ AFRAME.registerComponent('controsubmenu2', {
     this.submenu1 = document.querySelector('#subMenu1');
     this.submenu2 = document.querySelector('#subMenu2');
     this.submenu3 = document.querySelector('#subMenu3');
+    this.submenu4 = document.querySelector('#subMenu4');
     
     //boton atras
     this.backButtonEl2 = document.querySelector('#backButton2');
@@ -87,7 +99,9 @@ AFRAME.registerComponent('controsubmenu2', {
 
   onClick: function (evt) {
     var targetEl = evt.target;
+    var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
     if (targetEl === this.backButtonEl2) {
+      submenu2Component.resetValues();
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', true);
       this.submenu3.setAttribute('visible', false);
@@ -95,28 +109,76 @@ AFRAME.registerComponent('controsubmenu2', {
     }
     
     if (targetEl === this.electricoButton) {
+      this.el.setAttribute('controsubmenu3', 'Electrico', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
       this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', false);
+      this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
     }
     
-    if (targetEl === this.colorButtonEl) {
+     if (targetEl === this.dieselButtonEl) {
+      this.el.setAttribute('controsubmenu3', 'Diesel', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', false);
+      this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
     }
-    
-    if (targetEl === this.puertasButtonEl) {
+     if (targetEl === this.gasolinaButtonEl) {
+      this.el.setAttribute('controsubmenu3', 'Gasolina', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', false);
+      this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
     }
-    
-    if (targetEl === this.completoButtonEl) {
+     if (targetEl === this.blancoButtonEl) {
+      this.el.setAttribute('controsubmenu3', 'Blanco', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', false);
+      this.submenu4.setAttribute('visible', true);
+      this.menuInicio.setAttribute('visible', false);
+    }
+     if (targetEl === this.negroButtonEl) {
+      this.el.setAttribute('controsubmenu3', 'Negro', true);
+      this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', false);
+      this.submenu4.setAttribute('visible', true);
+      this.menuInicio.setAttribute('visible', false);
+    }
+     if (targetEl === this.rojoButtonEl) {
+      this.el.setAttribute('controsubmenu3', 'Rojo', true);
+      this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', false);
+      this.submenu4.setAttribute('visible', true);
+      this.menuInicio.setAttribute('visible', false);
+    }
+     if (targetEl === this.amarilloButtonEl) {
+      this.el.setAttribute('controsubmenu3', 'Amarillo', true);
+      this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', false);
+      this.submenu4.setAttribute('visible', true);
+      this.menuInicio.setAttribute('visible', false);
+    }
+     if (targetEl === this.dosButtonEl) {
+      this.el.setAttribute('controsubmenu3', 'Dos', true);
+      this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', false);
+      this.submenu4.setAttribute('visible', true);
+      this.menuInicio.setAttribute('visible', false);
+    }
+     if (targetEl === this.cincoButtonEl) {
+      this.el.setAttribute('controsubmenu3', 'Cinco', true);
+      this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', false);
+      this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
     }
 
