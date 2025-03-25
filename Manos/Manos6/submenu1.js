@@ -60,6 +60,7 @@ AFRAME.registerComponent('controsubmenu1', {
     
     if (targetEl === this.atrasButtonEl) {
       this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', true);
     }
 

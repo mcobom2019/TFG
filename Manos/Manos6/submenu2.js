@@ -25,7 +25,7 @@ AFRAME.registerComponent('controsubmenu2', {
     
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
-    this.submenu1 = document.querySelector('#subMenu2');
+    this.submenu2 = document.querySelector('#subMenu2');
   
     //boton atras
     this.backButtonEl = document.querySelector('#backButton');
@@ -55,18 +55,34 @@ AFRAME.registerComponent('controsubmenu2', {
 
   onClick: function (evt) {
     var targetEl = evt.target;
-    if (targetEl === this.barrasButtonEl) {
-      this.submenu1.visible = false;
-      this.menuInicio.visible = false;
-    }
-    if (targetEl === this.circularButtonEl) {
-      this.submenu1.visible = false;
-      this.menuInicio.visible = false;
+    if (targetEl === this.backButtonEl) {
+      this.submenu1.setAttribute('visible', true);
+      this.submenu2.setAttribute('visible', false);
+      this.menuInicio.setAttribute('visible', false);
     }
     
-    if (targetEl === this.atrasButtonEl) {
+    if (targetEl === this.motorButtonEl) {
       this.submenu1.setAttribute('visible', false);
-      this.menuInicio.setAttribute('visible', true);
+      this.submenu2.setAttribute('visible', false);
+      this.menuInicio.setAttribute('visible', false);
+    }
+    
+    if (targetEl === this.colorButtonEl) {
+      this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', false);
+      this.menuInicio.setAttribute('visible', false);
+    }
+    
+    if (targetEl === this.puertasButtonEl) {
+      this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', false);
+      this.menuInicio.setAttribute('visible', false);
+    }
+    
+    if (targetEl === this.completoButtonEl) {
+      this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', false);
+      this.menuInicio.setAttribute('visible', false);
     }
 
   }
