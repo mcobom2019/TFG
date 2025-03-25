@@ -18,11 +18,12 @@ AFRAME.registerComponent('button', {
     });
 
     el.setAttribute('material', {color: this.color});
-    if(el.getAttribute('visible') == true){
-      el.setAttribute('pressable', '');
-    }
-    // Añadimos pinchable para mejorar la interacción con manos
-    el.setAttribute('pinchable', '');  
+
+    // Debug log para visibilidad
+    console.log(`Botón ${this.data.label} - Visibilidad inicial: ${el.getAttribute('visible')}`);
+
+    // Añadir pressable y pinchable solo si está visible
+    this.updateInteractivity();
 
     labelEl.setAttribute('position', '0 0 0.02');
     labelEl.setAttribute('text', {
@@ -35,16 +36,59 @@ AFRAME.registerComponent('button', {
     this.el.appendChild(labelEl);
 
     this.bindMethods();
+
+    // Añadir observador de atributos
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes') {
+          console.log(`Cambio de atributo en ${this.data.label}:`, mutation.attributeName);
+          if (mutation.attributeName === 'visible') {
+            console.log(`Nueva visibilidad para ${this.data.label}: ${el.getAttribute('visible')}`);
+            this.updateInteractivity();
+          }
+        }
+      });
+    });
+
+    observer.observe(el, { 
+      attributes: true, 
+      attributeFilter: ['visible'] 
+    });
+
     this.el.addEventListener('stateadded', this.stateChanged);
     this.el.addEventListener('stateremoved', this.stateChanged);
     this.el.addEventListener('pressedstarted', this.onPressedStarted);
     this.el.addEventListener('pressedended', this.onPressedEnded);
   },
 
+  updateInteractivity: function() {
+    var el = this.el;
+    var isVisible = el.getAttribute('visible');
+    
+    console.log(`Actualizando interactividad para ${this.data.label} - Visible: ${isVisible}`);
+
+    if (isVisible) {
+      // Forzar añadir los atributos
+      el.setAttribute('pressable', '');
+      el.setAttribute('pinchable', '');
+      console.log(`Añadidos pressable y pinchable a ${this.data.label}`);
+    } else {
+      // Intentar remover los atributos
+      try {
+        el.removeAttribute('pressable');
+        el.removeAttribute('pinchable');
+        console.log(`Removidos pressable y pinchable de ${this.data.label}`);
+      } catch(error) {
+        console.error(`Error removiendo atributos de ${this.data.label}:`, error);
+      }
+    }
+  },
+
   bindMethods: function () {
     this.stateChanged = this.stateChanged.bind(this);
     this.onPressedStarted = this.onPressedStarted.bind(this);
     this.onPressedEnded = this.onPressedEnded.bind(this);
+    this.updateInteractivity = this.updateInteractivity.bind(this);
   },
 
   update: function (oldData) {
