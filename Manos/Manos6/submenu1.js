@@ -33,6 +33,7 @@ AFRAME.registerComponent('controsubmenu1', {
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
     this.submenu2 = document.querySelector('#subMenu2');
+    
   
     //boton barras
     this.barrasButtonEl = document.querySelector('#barrasButton');

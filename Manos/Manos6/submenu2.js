@@ -79,6 +79,7 @@ AFRAME.registerComponent('controsubmenu2', {
       this.el.setAttribute('controsubmenu2', 'Motor', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
     }
     
