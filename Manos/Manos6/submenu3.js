@@ -26,26 +26,47 @@ AFRAME.registerComponent('controsubmenu2', {
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
     this.submenu2 = document.querySelector('#subMenu2');
-  
+    this.submenu3 = document.querySelector('#subMenu3');
+    
     //boton atras
-    this.backButtonEl = document.querySelector('#backButton');
-    this.backButtonEl.addEventListener('click', this.onClick);
+    this.backButtonEl2 = document.querySelector('#backButton2');
+    this.backButtonEl2.addEventListener('click', this.onClick);
+  
+    //boton electrico
+    this.electricoButtonEl = document.querySelector('#electricoButton');
+    this.electricoButtonEl.addEventListener('click', this.onClick);
     
-    //boton Motor
-    this.motorButtonEl = document.querySelector('#motorButton');
-    this.motorButtonEl.addEventListener('click', this.onClick);
+    //boton diesel
+    this.dieselButtonEl = document.querySelector('#DieselButton');
+    this.dieselButtonEl.addEventListener('click', this.onClick);
     
-    //boton Color
-    this.colorButtonEl = document.querySelector('#colorButton');
-    this.colorButtonEl.addEventListener('click', this.onClick);
+    //boton gasolina
+    this.gasolinaButtonEl = document.querySelector('#GasolinaButton');
+    this.gasolinaButtonEl.addEventListener('click', this.onClick);
     
-    //boton Puertas
-    this.puertasButtonEl = document.querySelector('#puertasButton');
-    this.puertasButtonEl.addEventListener('click', this.onClick);
+    //boton blanco
+    this.blancoButtonEl = document.querySelector('#BlancoButton');
+    this.blancoButtonEl.addEventListener('click', this.onClick);
     
-    //boton Completo
-    this.completoButtonEl = document.querySelector('#completoButton');
-    this.completoButtonEl.addEventListener('click', this.onClick);
+    //boton negro
+    this.negroButtonEl = document.querySelector('#NegroButton');
+    this.negroButtonEl.addEventListener('click', this.onClick);
+    
+    //boton rojo
+    this.rojoButtonEl = document.querySelector('#RojoButton');
+    this.rojoButtonEl.addEventListener('click', this.onClick);
+    
+    //boton amarillo
+    this.amarilloButtonEl = document.querySelector('#AmarilloButton');
+    this.amarilloButtonEl.addEventListener('click', this.onClick);
+    
+    //boton dos puertas
+    this.dosButtonEl = document.querySelector('#dosButton');
+    this.dosButtonEl.addEventListener('click', this.onClick);
+    
+    //boton cinco puertas
+    this.cincoButtonEl = document.querySelector('#cincoButton');
+    this.cincoButtonEl.addEventListener('click', this.onClick);
     
   },
 
@@ -55,9 +76,10 @@ AFRAME.registerComponent('controsubmenu2', {
 
   onClick: function (evt) {
     var targetEl = evt.target;
-    if (targetEl === this.backButtonEl) {
-      this.submenu1.setAttribute('visible', true);
-      this.submenu2.setAttribute('visible', false);
+    if (targetEl === this.backButtonEl2) {
+      this.submenu1.setAttribute('visible', false);
+      this.submenu2.setAttribute('visible', true);
+      this.submenu3.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
     }
     

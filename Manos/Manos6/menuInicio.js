@@ -20,6 +20,10 @@ AFRAME.registerComponent('menuinicio', {
 /* global AFRAME */
 /* global AFRAME */
 AFRAME.registerComponent('controlinicio', {
+  schema: {
+    Barras: {default: false},
+    Circular: {default: false}
+  },
   init: function () {
     this.bindMethods();
   
