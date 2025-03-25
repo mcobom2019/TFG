@@ -109,7 +109,7 @@ AFRAME.registerComponent('controsubmenu3', {
       this.menuInicio.setAttribute('visible', false);
     }
     
-    if (targetEl === this.electricoButton) {
+    if (targetEl === this.electricoButtonEl) {
       this.el.setAttribute('controsubmenu3', 'Electrico', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
