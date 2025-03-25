@@ -19,7 +19,12 @@ AFRAME.registerComponent('submenu2', {
 
 /* global AFRAME */
 AFRAME.registerComponent('controsubmenu2', {
-
+  schema: {
+      Motor: {default: false},
+      Color: {default: false},
+      Puertas: {default: false},
+      Completo: {default: false},
+  },
   init: function () {
     this.bindMethods();
     
@@ -56,30 +61,36 @@ AFRAME.registerComponent('controsubmenu2', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.backButtonEl) {
+      this.el.setAttribute('controsubmenu1', 'Circular', false);
+      this.el.setAttribute('controsubmenu1', 'Barras', false);
       this.submenu1.setAttribute('visible', true);
       this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
     }
     
     if (targetEl === this.motorButtonEl) {
+      this.el.setAttribute('controsubmenu2', 'Motor', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
     }
     
     if (targetEl === this.colorButtonEl) {
+      this.el.setAttribute('controsubmenu2', 'Color', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
     }
     
     if (targetEl === this.puertasButtonEl) {
+      this.el.setAttribute('controsubmenu2', 'Puertas', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
     }
     
     if (targetEl === this.completoButtonEl) {
+      this.el.setAttribute('controsubmenu2', 'Completo', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);

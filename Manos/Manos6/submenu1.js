@@ -19,7 +19,10 @@ AFRAME.registerComponent('submenu1', {
 
 /* global AFRAME */
 AFRAME.registerComponent('controsubmenu1', {
-
+  schema: {
+      Barras: {default: false},
+      Circular: {default: false}
+  },
   init: function () {
     this.bindMethods();
     
@@ -51,14 +54,18 @@ AFRAME.registerComponent('controsubmenu1', {
       this.menuInicio.setAttribute('visible', false);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', true);
+      this.el.setAttribute('controsubmenu1', 'Circular', true);
     }
     if (targetEl === this.circularButtonEl) {
       this.menuInicio.setAttribute('visible', false);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', true);
+      this.el.setAttribute('controsubmenu1', 'Barras', true);
     }
     
     if (targetEl === this.atrasButtonEl) {
+      this.el.setAttribute('controsubmenu1', 'Circular', false);
+      this.el.setAttribute('controsubmenu1', 'Barras', false);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', true);

@@ -19,6 +19,17 @@ AFRAME.registerComponent('submenu2', {
 
 /* global AFRAME */
 AFRAME.registerComponent('controsubmenu2', {
+  schema: {
+      Electrico: {default: false},
+      Diesel: {default: false},
+      Gasolina: {default: false},
+      Blanco: {default: false},
+      Negro: {default: false},
+      Rojo: {default: false},
+      Amarillo: {default: false},
+      Dos: {default: false},
+      Cinco: {default: false},
+  },
 
   init: function () {
     this.bindMethods();
