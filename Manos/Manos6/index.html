@@ -5,21 +5,19 @@
     <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
     <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
     <script src="menuinicio.js"></script>
-    
-    
+    <script src="submenu1.js"></script>
     <script src="pinchable.js"></script>
-    <script src="color-change.js"></script>
-    <script src="slider.js"></script>
-    <script src="size-change.js"></script>
     <script src="button.js"></script>
-    <script src="pressable.js"></script>
-    <script src="event-manager.js"></script>
   </head>
   <body>
     <a-scene environment>
-      <a-entity id="menuinicio" menuinicio position="0 1.5 -0.5" rotation="-45 0 0">
+      <a-entity id="menuinicio" menuinicio controlinicio position="0 1.5 -0.5" rotation="-45 0 0">
         <a-entity id="startButton" button="label: start" position="-0.15 0 0"></a-entity>
         <a-entity id="xButton" button="label: X" position="0 0 0"></a-entity>
+      </a-entity>
+      <a-entity id="subMenu1" submenu1 controsubmenu1 position="0 1.5 -0.5" rotation="-45 0 0">
+        <a-entity id="barrasButton" button="label: Barras" position="-0.15 0 0"></a-entity>
+        <a-entity id="circularButton" button="label: Circular" position="0 0 0"></a-entity>
       </a-entity>
       <a-entity hand-tracking-controls="hand: left"></a-entity>
       <a-entity hand-tracking-controls="hand: right"></a-entity>
