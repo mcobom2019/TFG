@@ -47,7 +47,42 @@ AFRAME.registerComponent('controsubmenu4', {
   },
 
   onClick: function (evt) {
-    var parentPosition = document.getAttribute('position');
+    var scene = document.querySelector("a-scene");
+    var barChartEntity = document.querySelector('#data');
+    var barsEntity = document.querySelector('#bars');
+    var targetEl = evt.target;
+
+    if (targetEl === this.mostrarButtonEl) {
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        
+        // Si ya existe, lo eliminamos
+        if (barChartEntity) {
+            scene.removeChild(barChartEntity);
+        }
+        if (barsEntity) {
+            scene.removeChild(barsEntity);
+        }
+
+        // Creamos nuevamente los elementos
+        barChartEntity = document.createElement('a-entity');
+        barChartEntity.setAttribute('id', 'data');
+        barChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
+
+        barsEntity = document.createElement('a-entity');
+        barsEntity.setAttribute('id', 'bars');
+        barsEntity.setAttribute('babia-barsmap', 'from: data; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales');
+        barsEntity.setAttribute('position', '0 0.5 -1');
+        barsEntity.setAttribute('scale', '0.2 0.2 0.2');
+
+        scene.appendChild(barChartEntity);
+        scene.appendChild(barsEntity);
+    }
+}
+    /*var parentPosition = document.getAttribute('position');
     var newPosition;
     newPosition = { x: parentPosition.x + 2, y: parentPosition.y - 1 , z: parentPosition.z };
     
@@ -108,8 +143,8 @@ AFRAME.registerComponent('controsubmenu4', {
       
       
       
-    }
+    }*/
 
-  }
+  
   
 });
