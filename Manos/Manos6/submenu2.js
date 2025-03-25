@@ -95,6 +95,10 @@ AFRAME.registerComponent('controsubmenu2', {
       document.getElementById('electricoButton').setAttribute('visible', true);
       document.getElementById('DieselButton').setAttribute('visible', true);
       document.getElementById('GasolinaButton').setAttribute('visible', true);
+      document.getElementById('backButton2').setAttribute('pressable', '');
+      document.getElementById('electricoButton').setAttribute('pressable', '');
+      document.getElementById('DieselButton').setAttribute('pressable', '');
+      document.getElementById('backButton').setAttribute('pressable', '');
     }
     
     if (targetEl === this.colorButtonEl) {
@@ -108,6 +112,11 @@ AFRAME.registerComponent('controsubmenu2', {
       document.getElementById('NegroButton').setAttribute('visible', true);
       document.getElementById('RojoButton').setAttribute('visible', true);
       document.getElementById('AmarilloButton').setAttribute('visible', true);
+      document.getElementById('backButton2').setAttribute('pressable', '');
+      document.getElementById('BlancoButton').setAttribute('pressable', '');
+      document.getElementById('NegroButton').setAttribute('pressable', '');
+      document.getElementById('RojoButton').setAttribute('pressable', '');
+      document.getElementById('AmarilloButton').setAttribute('pressable', '');
       
     }
     
@@ -120,6 +129,8 @@ AFRAME.registerComponent('controsubmenu2', {
       this.menuInicio.setAttribute('visible', false);
       document.getElementById('dosButton').setAttribute('visible', true);
       document.getElementById('cincoButton').setAttribute('visible', true);
+      document.getElementById('dosButton').setAttribute('pressable', '');
+      document.getElementById('cincoButton').setAttribute('pressable', '');
     }
     
     if (targetEl === this.completoButtonEl) {
@@ -129,6 +140,7 @@ AFRAME.registerComponent('controsubmenu2', {
       this.submenu2.setAttribute('visible', false);
       this.submenu3.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton2').setAttribute('pressable', '');
     }
 
   }

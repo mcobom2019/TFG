@@ -115,6 +115,12 @@ AFRAME.registerComponent('controsubmenu3', {
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton3').setAttribute('visible', true);
+      document.getElementById('mostrarButton').setAttribute('visible', true);
+      document.getElementById('borrarButton').setAttribute('visible', true);
+      document.getElementById('backButton3').setAttribute('pressable', '');
+      document.getElementById('mostrarButton').setAttribute('pressable', '');
+      document.getElementById('borrarButton').setAttribute('pressable', '');
     }
     
      if (targetEl === this.dieselButtonEl) {
@@ -124,6 +130,12 @@ AFRAME.registerComponent('controsubmenu3', {
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton3').setAttribute('visible', true);
+      document.getElementById('mostrarButton').setAttribute('visible', true);
+      document.getElementById('borrarButton').setAttribute('visible', true);
+      document.getElementById('backButton3').setAttribute('pressable', '');
+      document.getElementById('mostrarButton').setAttribute('pressable', '');
+      document.getElementById('borrarButton').setAttribute('pressable', '');
     }
      if (targetEl === this.gasolinaButtonEl) {
       this.el.setAttribute('controsubmenu3', 'Gasolina', true);
@@ -132,6 +144,12 @@ AFRAME.registerComponent('controsubmenu3', {
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton3').setAttribute('visible', true);
+      document.getElementById('mostrarButton').setAttribute('visible', true);
+      document.getElementById('borrarButton').setAttribute('visible', true);
+      document.getElementById('backButton3').setAttribute('pressable', '');
+      document.getElementById('mostrarButton').setAttribute('pressable', '');
+      document.getElementById('borrarButton').setAttribute('pressable', '');
     }
      if (targetEl === this.blancoButtonEl) {
       this.el.setAttribute('controsubmenu3', 'Blanco', true);
@@ -140,6 +158,12 @@ AFRAME.registerComponent('controsubmenu3', {
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton3').setAttribute('visible', true);
+      document.getElementById('mostrarButton').setAttribute('visible', true);
+      document.getElementById('borrarButton').setAttribute('visible', true);
+      document.getElementById('backButton3').setAttribute('pressable', '');
+      document.getElementById('mostrarButton').setAttribute('pressable', '');
+      document.getElementById('borrarButton').setAttribute('pressable', '');
     }
      if (targetEl === this.negroButtonEl) {
       this.el.setAttribute('controsubmenu3', 'Negro', true);
@@ -148,6 +172,12 @@ AFRAME.registerComponent('controsubmenu3', {
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton3').setAttribute('visible', true);
+      document.getElementById('mostrarButton').setAttribute('visible', true);
+      document.getElementById('borrarButton').setAttribute('visible', true);
+      document.getElementById('backButton3').setAttribute('pressable', '');
+      document.getElementById('mostrarButton').setAttribute('pressable', '');
+      document.getElementById('borrarButton').setAttribute('pressable', '');
     }
      if (targetEl === this.rojoButtonEl) {
       this.el.setAttribute('controsubmenu3', 'Rojo', true);
@@ -156,6 +186,12 @@ AFRAME.registerComponent('controsubmenu3', {
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton3').setAttribute('visible', true);
+      document.getElementById('mostrarButton').setAttribute('visible', true);
+      document.getElementById('borrarButton').setAttribute('visible', true);
+      document.getElementById('backButton3').setAttribute('pressable', '');
+      document.getElementById('mostrarButton').setAttribute('pressable', '');
+      document.getElementById('borrarButton').setAttribute('pressable', '');
     }
      if (targetEl === this.amarilloButtonEl) {
       this.el.setAttribute('controsubmenu3', 'Amarillo', true);
@@ -164,6 +200,12 @@ AFRAME.registerComponent('controsubmenu3', {
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton3').setAttribute('visible', true);
+      document.getElementById('mostrarButton').setAttribute('visible', true);
+      document.getElementById('borrarButton').setAttribute('visible', true);
+      document.getElementById('backButton3').setAttribute('pressable', '');
+      document.getElementById('mostrarButton').setAttribute('pressable', '');
+      document.getElementById('borrarButton').setAttribute('pressable', '');
     }
      if (targetEl === this.dosButtonEl) {
       this.el.setAttribute('controsubmenu3', 'Dos', true);
@@ -172,6 +214,12 @@ AFRAME.registerComponent('controsubmenu3', {
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton3').setAttribute('visible', true);
+      document.getElementById('mostrarButton').setAttribute('visible', true);
+      document.getElementById('borrarButton').setAttribute('visible', true);
+      document.getElementById('backButton3').setAttribute('pressable', '');
+      document.getElementById('mostrarButton').setAttribute('pressable', '');
+      document.getElementById('borrarButton').setAttribute('pressable', '');
     }
      if (targetEl === this.cincoButtonEl) {
       this.el.setAttribute('controsubmenu3', 'Cinco', true);
@@ -180,6 +228,12 @@ AFRAME.registerComponent('controsubmenu3', {
       this.submenu3.setAttribute('visible', false);
       this.submenu4.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton3').setAttribute('visible', true);
+      document.getElementById('mostrarButton').setAttribute('visible', true);
+      document.getElementById('borrarButton').setAttribute('visible', true);
+      document.getElementById('backButton3').setAttribute('pressable', '');
+      document.getElementById('mostrarButton').setAttribute('pressable', '');
+      document.getElementById('borrarButton').setAttribute('pressable', '');
     }
 
   }
