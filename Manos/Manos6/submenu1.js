@@ -23,6 +23,10 @@ AFRAME.registerComponent('controsubmenu1', {
       Barras: {default: false},
       Circular: {default: false}
   },
+  resetValues: function() {
+    this.data.Barras = false;
+    this.data.Circular = false;
+  },
   init: function () {
     this.bindMethods();
     

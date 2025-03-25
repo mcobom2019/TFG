@@ -25,6 +25,12 @@ AFRAME.registerComponent('controsubmenu2', {
       Puertas: {default: false},
       Completo: {default: false},
   },
+  resetValues: function() {
+    this.data.Motor = false;
+    this.data.Color = false;
+    this.data.Puertas = false;
+    this.data.Completo = false;
+  },
   init: function () {
     this.bindMethods();
     
@@ -61,9 +67,9 @@ AFRAME.registerComponent('controsubmenu2', {
 
   onClick: function (evt) {
     var targetEl = evt.target;
+    var submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
     if (targetEl === this.backButtonEl) {
-      this.el.setAttribute('controsubmenu1', 'Circular', false);
-      this.el.setAttribute('controsubmenu1', 'Barras', false);
+      submenu1Component.resetValues();
       this.submenu1.setAttribute('visible', true);
       this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
