@@ -100,7 +100,6 @@ AFRAME.registerComponent('controsubmenu3', {
   onClick: function (evt) {
     var targetEl = evt.target;
     var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
-    document.getElementById('electricoButton').setAttribute('visible', true);
     if (targetEl === this.backButtonEl2) {
       submenu2Component.resetValues();
       this.submenu1.setAttribute('visible', false);

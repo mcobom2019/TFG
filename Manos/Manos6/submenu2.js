@@ -81,6 +81,9 @@ AFRAME.registerComponent('controsubmenu2', {
       this.submenu2.setAttribute('visible', false);
       this.submenu3.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('electricoButton').setAttribute('visible', true);
+      document.getElementById('DieselButton').setAttribute('visible', true);
+      document.getElementById('GasolinaButton').setAttribute('visible', true);
     }
     
     if (targetEl === this.colorButtonEl) {
@@ -89,6 +92,11 @@ AFRAME.registerComponent('controsubmenu2', {
       this.submenu2.setAttribute('visible', false);
       this.submenu3.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('BlancoButton').setAttribute('visible', true);
+      document.getElementById('NegroButton').setAttribute('visible', true);
+      document.getElementById('RojoButton').setAttribute('visible', true);
+      document.getElementById('AmarilloButton').setAttribute('visible', true);
+      
     }
     
     if (targetEl === this.puertasButtonEl) {
@@ -97,6 +105,8 @@ AFRAME.registerComponent('controsubmenu2', {
       this.submenu2.setAttribute('visible', false);
       this.submenu3.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('dosButton').setAttribute('visible', true);
+      document.getElementById('cincoButton').setAttribute('visible', true);
     }
     
     if (targetEl === this.completoButtonEl) {
