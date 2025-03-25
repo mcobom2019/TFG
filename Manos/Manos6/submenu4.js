@@ -47,7 +47,13 @@ AFRAME.registerComponent('controsubmenu4', {
   },
 
   onClick: function (evt) {
+    var parentPosition = document.getAttribute('position');
+    var newPosition;
+    newPosition = { x: parentPosition.x + 2, y: parentPosition.y - 1 , z: parentPosition.z };
+    
     var scene = document.querySelector("a-scene");
+    var barChartEntity = null;
+    var pieChartEntity = null;
     var targetEl = evt.target;
     var submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
     var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
@@ -74,15 +80,32 @@ AFRAME.registerComponent('controsubmenu4', {
             if (prevFilter) {
                 scene.removeChild(prevFilter);
             }
-      if(submenu1Component.data.Barras){
-        if(submenu2Component.data.Motor){
-          if(submenu3Component.data.Electrico){
-              filtro = "Electrico";
-              const filterEntity = document.createElement('a-entity');
-              filterEntity.setAttribute('id', 'filter-data');
-              filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
-          }
+      
+      const filterEntity = document.createElement('a-entity');
+      var dataSource = "data";
+      if (!document.querySelector("#data")) {
+                var dataEntity = document.createElement('a-entity');
+                dataEntity.setAttribute('id', 'data');
+                dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
+                scene.appendChild(dataEntity);
+      }
+      if(submenu3Component.data.Electrico){
+          filtro = "Electrico";
+          filterEntity.setAttribute('id', 'filter-data');
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
+      }
         
+       scene.appendChild(filterEntity);
+       dataSource = "filter-data";
+      
+      if (submenu3Component.data.Electrico) {
+          barChartEntity = document.createElement('a-entity');
+          barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
+          barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
+          barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
+          scene.appendChild(barChartEntity);
+      }
+      
       
       
     }
