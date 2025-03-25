@@ -98,9 +98,9 @@ AFRAME.registerComponent('controsubmenu4', {
        scene.appendChild(filterEntity);
        dataSource = "filter-data";
       
-      if (submenu3Component.data.Electrico) {
+      if (submenu1Component.data.Barras) {
           barChartEntity = document.createElement('a-entity');
-          barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors`);
+          barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; z_axis: motor`);
           barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
           barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
           scene.appendChild(barChartEntity);
