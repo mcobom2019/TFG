@@ -2,24 +2,13 @@
 AFRAME.registerComponent('submenu', {
   init: function () {
     var el = this.el;
-    var mainMenu = document.getElementById('menu');
-    var startButton = document.getElementById('cylinderButon');
-
-    // Crear el fondo del submenú (similar al menú principal)
+    
+    // Aplicar el componente menu para crear el fondo gris
     var submenuBackgroundEl = document.createElement('a-entity');
-    submenuBackgroundEl.setAttribute('geometry', {
-      primitive: 'box',
-      width: 0.6,
-      height: 0.40,
-      depth: 0.01
-    });
-    submenuBackgroundEl.setAttribute('material', {
-      color: 'darkgray'
-    });
+    submenuBackgroundEl.setAttribute('menu', '');
     submenuBackgroundEl.setAttribute('position', '0 0 -0.025');
-    el.appendChild(submenuBackgroundEl);
-
-    // Crear botones del submenú
+    
+    // Crear los botones del submenú
     var button1 = document.createElement('a-entity');
     button1.setAttribute('id', 'submenuButton1');
     button1.setAttribute('button', 'label: Opción 1');
@@ -32,21 +21,16 @@ AFRAME.registerComponent('submenu', {
     button2.setAttribute('position', '0 0 0');
     button2.setAttribute('pressable', '');
 
-    var button3 = document.createElement('a-entity');
-    button3.setAttribute('id', 'submenuBackButton');
-    button3.setAttribute('button', 'label: Volver');
-    button3.setAttribute('position', '0 -0.10 0');
-    button3.setAttribute('pressable', '');
+    var backButton = document.createElement('a-entity');
+    backButton.setAttribute('id', 'submenuBackButton');
+    backButton.setAttribute('button', 'label: Volver');
+    backButton.setAttribute('position', '0 -0.10 0');
+    backButton.setAttribute('pressable', '');
 
-    // Añadir botones al submenú
+    // Añadir fondo y botones al submenú
+    el.appendChild(submenuBackgroundEl);
     el.appendChild(button1);
     el.appendChild(button2);
-    el.appendChild(button3);
-
-    // Añadir atributo de visibilidad
-    el.setAttribute('visible', 'false');
-
-    // Registro de eventos en el submenu
-    console.log('Submenu component initialized');
+    el.appendChild(backButton);
   }
 });

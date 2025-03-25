@@ -19,9 +19,9 @@
         <a-entity id="cylinderButon" button="label: Start" position="-0.15 0 0" pressable></a-entity>
         <a-entity id="darkModeButton" button="label: Dark Mode; width: 0.20; toggleable: true" position="0 -0.10 0" pressable></a-entity>
      </a-entity>
-     
-     <!--Creacion del Submenu-->
-     <a-entity id="submenu" submenu position="0 1.5 -0.5" rotation="0 0 0" grabbable></a-entity>
+    
+     <!--Submenu (inicialmente oculto)-->
+     <a-entity id="submenu" submenu position="0 1.5 -0.5" rotation="0 0 0" grabbable visible="false"></a-entity>
     
     <!-- Manos para hand tracking -->
     <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left"></a-entity>
