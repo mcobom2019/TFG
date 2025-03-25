@@ -31,6 +31,7 @@ AFRAME.registerComponent('controsubmenu2', {
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
     this.submenu2 = document.querySelector('#subMenu2');
+    this.submenu3 = document.querySelector('#subMenu3');
   
     //boton atras
     this.backButtonEl = document.querySelector('#backButton');
