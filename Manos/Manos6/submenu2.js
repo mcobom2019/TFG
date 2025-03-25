@@ -1,5 +1,5 @@
 /* global AFRAME */
-AFRAME.registerComponent('submenu1', {
+AFRAME.registerComponent('submenu2', {
   init: function () {
     var el = this.el;
     var menuBackGroundEl = document.createElement('a-entity');
@@ -18,26 +18,34 @@ AFRAME.registerComponent('submenu1', {
 });
 
 /* global AFRAME */
-AFRAME.registerComponent('controsubmenu1', {
+AFRAME.registerComponent('controsubmenu2', {
 
   init: function () {
     this.bindMethods();
     
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
-    this.submenu2 = document.querySelector('#subMenu2');
+    this.submenu1 = document.querySelector('#subMenu2');
   
-    //boton barras
-    this.barrasButtonEl = document.querySelector('#barrasButton');
-    this.barrasButtonEl.addEventListener('click', this.onClick);
-    
-    //boton circular
-    this.circularButtonEl = document.querySelector('#circularButton');
-    this.circularButtonEl.addEventListener('click', this.onClick);
-    
     //boton atras
-    this.atrasButtonEl = document.querySelector('#atrasButton');
-    this.atrasButtonEl.addEventListener('click', this.onClick);
+    this.backButtonEl = document.querySelector('#backButton');
+    this.backButtonEl.addEventListener('click', this.onClick);
+    
+    //boton Motor
+    this.motorButtonEl = document.querySelector('#motorButton');
+    this.motorButtonEl.addEventListener('click', this.onClick);
+    
+    //boton Color
+    this.colorButtonEl = document.querySelector('#colorButton');
+    this.colorButtonEl.addEventListener('click', this.onClick);
+    
+    //boton Puertas
+    this.puertasButtonEl = document.querySelector('#puertasButton');
+    this.puertasButtonEl.addEventListener('click', this.onClick);
+    
+    //boton Completo
+    this.completoButtonEl = document.querySelector('#completoButton');
+    this.completoButtonEl.addEventListener('click', this.onClick);
     
   },
 
@@ -48,14 +56,12 @@ AFRAME.registerComponent('controsubmenu1', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.barrasButtonEl) {
-      this.menuInicio.setAttribute('visible', false);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', true);
+      this.submenu1.visible = false;
+      this.menuInicio.visible = false;
     }
     if (targetEl === this.circularButtonEl) {
-      this.menuInicio.setAttribute('visible', false);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', true);
+      this.submenu1.visible = false;
+      this.menuInicio.visible = false;
     }
     
     if (targetEl === this.atrasButtonEl) {
