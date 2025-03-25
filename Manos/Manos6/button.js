@@ -19,6 +19,8 @@ AFRAME.registerComponent('button', {
 
     el.setAttribute('material', {color: this.color});
     el.setAttribute('pressable', '');
+    // Añadimos pinchable para mejorar la interacción con manos
+    el.setAttribute('pinchable', '');  
 
     labelEl.setAttribute('position', '0 0 0.02');
     labelEl.setAttribute('text', {

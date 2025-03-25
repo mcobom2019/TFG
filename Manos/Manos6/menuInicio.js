@@ -18,8 +18,8 @@ AFRAME.registerComponent('menuinicio', {
 });
 
 /* global AFRAME */
+/* global AFRAME */
 AFRAME.registerComponent('controlinicio', {
-
   init: function () {
     this.bindMethods();
   
@@ -30,13 +30,10 @@ AFRAME.registerComponent('controlinicio', {
     //boton start
     this.startButtonEl = document.querySelector('#startButton');
     this.startButtonEl.addEventListener('click', this.onClick);
-    this.startButtonEl.addEventListener('pressedended', this.onClick);
     
     //boton X
     this.xButtonEl = document.querySelector('#xButton');
     this.xButtonEl.addEventListener('click', this.onClick);
-    this.xButtonEl.addEventListener('pressedended', this.onClick);
-    
   },
 
   bindMethods: function () {

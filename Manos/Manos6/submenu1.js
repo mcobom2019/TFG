@@ -1,5 +1,5 @@
 /* global AFRAME */
-AFRAME.registerComponent('subMenu1', {
+AFRAME.registerComponent('submenu1', {
   init: function () {
     var el = this.el;
     var menuBackGroundEl = document.createElement('a-entity');
