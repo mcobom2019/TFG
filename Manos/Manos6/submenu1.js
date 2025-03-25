@@ -60,12 +60,22 @@ AFRAME.registerComponent('controsubmenu1', {
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', true);
       this.el.setAttribute('controsubmenu1', 'Circular', true);
+      document.getElementById('backButton').setAttribute('visible', true);
+      document.getElementById('motorButton').setAttribute('visible', true);
+      document.getElementById('colorButton').setAttribute('visible', true);
+      document.getElementById('puertasButton').setAttribute('visible', true);
+      document.getElementById('completoButton').setAttribute('visible', true);
     }
     if (targetEl === this.circularButtonEl) {
       this.menuInicio.setAttribute('visible', false);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', true);
       this.el.setAttribute('controsubmenu1', 'Barras', true);
+      document.getElementById('backButton').setAttribute('visible', true);
+      document.getElementById('motorButton').setAttribute('visible', true);
+      document.getElementById('colorButton').setAttribute('visible', true);
+      document.getElementById('puertasButton').setAttribute('visible', true);
+      document.getElementById('completoButton').setAttribute('visible', true);
     }
     
     if (targetEl === this.atrasButtonEl) {
@@ -74,6 +84,11 @@ AFRAME.registerComponent('controsubmenu1', {
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', true);
+      document.getElementById('backButton').setAttribute('visible', false);
+      document.getElementById('motorButton').setAttribute('visible', false);
+      document.getElementById('colorButton').setAttribute('visible', false);
+      document.getElementById('puertasButton').setAttribute('visible', false);
+      document.getElementById('completoButton').setAttribute('visible', false);
     }
 
   }

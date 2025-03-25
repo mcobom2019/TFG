@@ -45,6 +45,9 @@ AFRAME.registerComponent('controlinicio', {
     if (targetEl === this.startButtonEl) {
       this.submenu1.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('atrasButton').setAttribute('visible', true);
+      document.getElementById('barrasButton').setAttribute('visible', true);
+      document.getElementById('circularButton').setAttribute('visible', true);
     }
     
     if (targetEl === this.xButtonEl) {

@@ -18,7 +18,9 @@ AFRAME.registerComponent('button', {
     });
 
     el.setAttribute('material', {color: this.color});
-    el.setAttribute('pressable', '');
+    if(el.getAttribute('visible') == true){
+      el.setAttribute('pressable', '');
+    }
     // Añadimos pinchable para mejorar la interacción con manos
     el.setAttribute('pinchable', '');  
 

@@ -73,6 +73,16 @@ AFRAME.registerComponent('controsubmenu2', {
       this.submenu1.setAttribute('visible', true);
       this.submenu2.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton2').setAttribute('visible', false);
+      document.getElementById('electricoButton').setAttribute('visible', false);
+      document.getElementById('DieselButton').setAttribute('visible', false);
+      document.getElementById('GasolinaButton').setAttribute('visible', false);
+      document.getElementById('BlancoButton').setAttribute('visible', false);
+      document.getElementById('NegroButton').setAttribute('visible', false);
+      document.getElementById('RojoButton').setAttribute('visible', false);
+      document.getElementById('AmarilloButton').setAttribute('visible', false);
+      document.getElementById('dosButton').setAttribute('visible', false);
+      document.getElementById('cincoButton').setAttribute('visible', false);
     }
     
     if (targetEl === this.motorButtonEl) {
@@ -81,6 +91,7 @@ AFRAME.registerComponent('controsubmenu2', {
       this.submenu2.setAttribute('visible', false);
       this.submenu3.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton2').setAttribute('visible', true);
       document.getElementById('electricoButton').setAttribute('visible', true);
       document.getElementById('DieselButton').setAttribute('visible', true);
       document.getElementById('GasolinaButton').setAttribute('visible', true);
@@ -92,6 +103,7 @@ AFRAME.registerComponent('controsubmenu2', {
       this.submenu2.setAttribute('visible', false);
       this.submenu3.setAttribute('visible', true);
       this.menuInicio.setAttribute('visible', false);
+      document.getElementById('backButton2').setAttribute('visible', true);
       document.getElementById('BlancoButton').setAttribute('visible', true);
       document.getElementById('NegroButton').setAttribute('visible', true);
       document.getElementById('RojoButton').setAttribute('visible', true);
@@ -100,6 +112,7 @@ AFRAME.registerComponent('controsubmenu2', {
     }
     
     if (targetEl === this.puertasButtonEl) {
+      document.getElementById('backButton2').setAttribute('visible', true);
       this.el.setAttribute('controsubmenu2', 'Puertas', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
@@ -110,6 +123,7 @@ AFRAME.registerComponent('controsubmenu2', {
     }
     
     if (targetEl === this.completoButtonEl) {
+      document.getElementById('backButton2').setAttribute('visible', true);
       this.el.setAttribute('controsubmenu2', 'Completo', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
