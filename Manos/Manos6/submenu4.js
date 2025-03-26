@@ -49,6 +49,7 @@ AFRAME.registerComponent('controsubmenu4', {
   onClick: function (evt) {
     var scene = document.querySelector("a-scene");
     var targetEl = evt.target;
+    console.log("HOLAAAAA");
     
     if (targetEl === this.mostrarButtonEl) {
         // Ocultar otros menús
