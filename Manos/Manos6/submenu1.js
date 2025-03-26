@@ -10,7 +10,7 @@ AFRAME.registerComponent('submenu1', {
       depth: 0.01
     });
     menuBackGroundEl.setAttribute('material', {
-      color: 'gray'
+      color: 'red'
     });
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
     el.appendChild(menuBackGroundEl);
