@@ -95,7 +95,7 @@ AFRAME.registerComponent('controsubmenu2', {
       document.getElementById('electricoButton').setAttribute('visible', true);
       document.getElementById('DieselButton').setAttribute('visible', true);
       document.getElementById('GasolinaButton').setAttribute('visible', true);
-      document.getElementById('backButton2').setAttribute('pressable', '');
+      document.getElementById('GasolinaButton').setAttribute('pressable', '');
       document.getElementById('electricoButton').setAttribute('pressable', '');
       document.getElementById('DieselButton').setAttribute('pressable', '');
       document.getElementById('backButton').setAttribute('pressable', '');

@@ -49,7 +49,6 @@ AFRAME.registerComponent('controsubmenu4', {
   onClick: function (evt) {
     var scene = document.querySelector("a-scene");
     var targetEl = evt.target;
-    print("Holaaaaa");
     
     if (targetEl === this.mostrarButtonEl) {
         // Ocultar otros menús
@@ -112,6 +111,7 @@ AFRAME.registerComponent('controsubmenu4', {
             scene.appendChild(pieChartEntity);
         }
       }
+    
       if (targetEl === this.borrarButtonEl) {
             // Eliminar diagrama de barras si existe
             var barChart = document.querySelector('#bar-chart');
@@ -131,8 +131,30 @@ AFRAME.registerComponent('controsubmenu4', {
                 scene.removeChild(prevFilter);
             }
         }
-      if (targetEl === this.borrarButtonEl) {
-        
+    
+      if (targetEl === this.backButtonEl3) {
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', true);
+        this.submenu4.setAttribute('visible', false);
+        this.menuInicio.setAttribute('visible', false);
+        // Eliminar diagrama de barras si existe
+            var barChart = document.querySelector('#bar-chart');
+            if (barChart) {
+                scene.removeChild(barChart);
+            }
+
+            // Eliminar diagrama circular si existe
+            var pieChart = document.querySelector('#pie-chart');
+            if (pieChart) {
+                scene.removeChild(pieChart);
+            }
+
+            // Eliminar filtro de datos si existe
+            var prevFilter = document.querySelector('#filter-data');
+            if (prevFilter) {
+                scene.removeChild(prevFilter);
+            }
       }
     },
 });
