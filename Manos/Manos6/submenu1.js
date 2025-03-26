@@ -59,7 +59,7 @@ AFRAME.registerComponent('controsubmenu1', {
       this.menuInicio.setAttribute('visible', false);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', true);
-      this.el.setAttribute('controsubmenu1', 'Circular', true);
+      this.el.setAttribute('controsubmenu1', 'Barras', true);
       document.getElementById('backButton').setAttribute('visible', true);
       document.getElementById('motorButton').setAttribute('visible', true);
       document.getElementById('colorButton').setAttribute('visible', true);
@@ -75,7 +75,7 @@ AFRAME.registerComponent('controsubmenu1', {
       this.menuInicio.setAttribute('visible', false);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', true);
-      this.el.setAttribute('controsubmenu1', 'Barras', true);
+      this.el.setAttribute('controsubmenu1', 'Circular', true);
       document.getElementById('backButton').setAttribute('visible', true);
       document.getElementById('motorButton').setAttribute('visible', true);
       document.getElementById('colorButton').setAttribute('visible', true);
