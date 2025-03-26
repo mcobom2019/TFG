@@ -169,6 +169,11 @@ AFRAME.registerComponent('controsubmenu4', {
   document.getElementById('puertasButton').setAttribute('pressable', '');
   document.getElementById('completoButton').setAttribute('visible', true);
   document.getElementById('completoButton').setAttribute('pressable', '');
+document.getElementById('backButton3').removeAttribute('pressable');
+        document.getElementById('mostrarButton').removeAttribute('pressable');
+        document.getElementById('borrarButton').removeAttribute('pressable');
+        
+  submenu3Component.resetValues();
 }
     },
 });

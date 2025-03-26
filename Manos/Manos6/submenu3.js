@@ -134,6 +134,16 @@ AFRAME.registerComponent('controsubmenu3', {
   document.getElementById('AmarilloButton').setAttribute('visible', false);
   document.getElementById('dosButton').setAttribute('visible', false);
   document.getElementById('cincoButton').setAttribute('visible', false);
+      document.getElementById('backButton2').removeAttribute('pressable');
+      document.getElementById('electricoButton').removeAttribute('pressable');
+      document.getElementById('DieselButton').removeAttribute('pressable');
+      document.getElementById('GasolinaButton').removeAttribute('pressable');
+      document.getElementById('BlancoButton').removeAttribute('pressable');
+      document.getElementById('NegroButton').removeAttribute('pressable');
+      document.getElementById('RojoButton').removeAttribute('pressable');
+      document.getElementById('AmarilloButton').removeAttribute('pressable');
+      document.getElementById('dosButton').removeAttribute('pressable');
+      document.getElementById('cincoButton').removeAttribute('pressable');
 }
     
     if (targetEl === this.electricoButtonEl) {
