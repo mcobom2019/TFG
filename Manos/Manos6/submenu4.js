@@ -48,8 +48,10 @@ AFRAME.registerComponent('controsubmenu4', {
 
   onClick: function (evt) {
     var scene = document.querySelector("a-scene");
-    var barChartEntity = document.querySelector('#data');
-    var barsEntity = document.querySelector('#bars');
+    //var barChartEntity = document.querySelector('#data');
+    //var barsEntity = document.querySelector('#bars');
+    var barChartEntity = null;
+    var barsEntity = null;
     var targetEl = evt.target;
 
     if (targetEl === this.mostrarButtonEl) {
@@ -81,70 +83,5 @@ AFRAME.registerComponent('controsubmenu4', {
         scene.appendChild(barChartEntity);
         scene.appendChild(barsEntity);
     }
-}
-    /*var parentPosition = document.getAttribute('position');
-    var newPosition;
-    newPosition = { x: parentPosition.x + 2, y: parentPosition.y - 1 , z: parentPosition.z };
-    
-    var scene = document.querySelector("a-scene");
-    var barChartEntity = null;
-    var pieChartEntity = null;
-    var targetEl = evt.target;
-    var submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
-    var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
-    var submenu3Component = document.querySelector('#subMenu3').components.controsubmenu3;
-    var filtro = null;
-    
-    if (targetEl === this.backButtonEl3) {
-      submenu3Component.resetValues();
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', true);
-      this.submenu4.setAttribute('visible', false);
-      this.menuInicio.setAttribute('visible', false);
-    }
-    
-    if (targetEl === this.mostrarButtonEl) {
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      
-       var prevFilter = document.querySelector("#filter-data");
-            if (prevFilter) {
-                scene.removeChild(prevFilter);
-            }
-      
-      const filterEntity = document.createElement('a-entity');
-      var dataSource = "data";
-      if (!document.querySelector("#data")) {
-                var dataEntity = document.createElement('a-entity');
-                dataEntity.setAttribute('id', 'data');
-                dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
-                scene.appendChild(dataEntity);
-      }
-      if(submenu3Component.data.Electrico){
-          filtro = "Electrico";
-          filterEntity.setAttribute('id', 'filter-data');
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
-      }
-        
-       scene.appendChild(filterEntity);
-       dataSource = "filter-data";
-      
-      if (submenu1Component.data.Barras) {
-          barChartEntity = document.createElement('a-entity');
-          barChartEntity.setAttribute('babia-barsmap', `from: ${dataSource}; legend: true; palette: foxy; x_axis: model; height: sales; z_axis: motor`);
-          barChartEntity.setAttribute('position', `${newPosition.x} ${newPosition.y} ${newPosition.z}`);
-          barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
-          scene.appendChild(barChartEntity);
-      }
-      
-      
-      
-    }*/
-
-  
-  
+  }
 });
