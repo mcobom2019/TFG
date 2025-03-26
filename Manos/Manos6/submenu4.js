@@ -47,6 +47,7 @@ AFRAME.registerComponent('controsubmenu4', {
   },
 
   onClick: function (evt) {
+    
     var scene = document.querySelector("a-scene");
     var targetEl = evt.target;
     
@@ -115,21 +116,21 @@ AFRAME.registerComponent('controsubmenu4', {
       if (targetEl === this.borrarButtonEl) {
             // Eliminar diagrama de barras si existe
             var barChart = document.querySelector('#bar-chart');
-            if (barChart) {
+            
                 scene.removeChild(barChart);
-            }
+            
 
             // Eliminar diagrama circular si existe
             var pieChart = document.querySelector('#pie-chart');
-            if (pieChart) {
+            
                 scene.removeChild(pieChart);
-            }
+            
 
             // Eliminar filtro de datos si existe
             var prevFilter = document.querySelector('#filter-data');
-            if (prevFilter) {
+            
                 scene.removeChild(prevFilter);
-            }
+            
         }
     
       if (targetEl === this.backButtonEl3) {
@@ -140,21 +141,18 @@ AFRAME.registerComponent('controsubmenu4', {
         this.menuInicio.setAttribute('visible', false);
         // Eliminar diagrama de barras si existe
             var barChart = document.querySelector('#bar-chart');
-            if (barChart) {
                 scene.removeChild(barChart);
-            }
+            
 
             // Eliminar diagrama circular si existe
             var pieChart = document.querySelector('#pie-chart');
-            if (pieChart) {
                 scene.removeChild(pieChart);
-            }
+
 
             // Eliminar filtro de datos si existe
             var prevFilter = document.querySelector('#filter-data');
-            if (prevFilter) {
-                scene.removeChild(prevFilter);
-            }
+              scene.removeChild(prevFilter);
+            
       }
     },
 });
