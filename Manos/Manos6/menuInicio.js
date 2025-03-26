@@ -42,16 +42,17 @@ AFRAME.registerComponent('controlinicio', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.startButtonEl) {
-      this.submenu1.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('atrasButton').setAttribute('visible', true);
-      document.getElementById('atrasButton').setAttribute('pressable', '');
-      document.getElementById('barrasButton').setAttribute('visible', true);
-      document.getElementById('barrasButton').setAttribute('pressable', '');
-      document.getElementById('circularButton').setAttribute('visible', true);
-      document.getElementById('circularButton').setAttribute('pressable', '');
+      setTimeout(() => {
+        this.submenu1.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('atrasButton').setAttribute('visible', true);
+        document.getElementById('atrasButton').setAttribute('pressable', '');
+        document.getElementById('barrasButton').setAttribute('visible', true);
+        document.getElementById('barrasButton').setAttribute('pressable', '');
+        document.getElementById('circularButton').setAttribute('visible', true);
+        document.getElementById('circularButton').setAttribute('pressable', '');
+      }, 500); // 500 milisegundos = 0.5 segundos
     }
-    
     if (targetEl === this.xButtonEl) {
       this.menuInicio.setAttribute('visible', false);
     }

@@ -101,276 +101,296 @@ AFRAME.registerComponent('controsubmenu3', {
     var targetEl = evt.target;
     var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
     if (targetEl === this.backButtonEl2) {
-  // Resetear valores de submenu2
-  var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
-  submenu2Component.resetValues();
-  
-  // Resetear valores propios
-  this.resetValues();
-  
-  this.submenu1.setAttribute('visible', false);
-  this.submenu2.setAttribute('visible', true);
-  this.submenu3.setAttribute('visible', false);
-  this.menuInicio.setAttribute('visible', false);
-  
-  document.getElementById('backButton').setAttribute('visible', true);
-  
-  document.getElementById('motorButton').setAttribute('visible', true);
-  
-  document.getElementById('colorButton').setAttribute('visible', true);
-  
-  document.getElementById('puertasButton').setAttribute('visible', true);
-  
-  document.getElementById('completoButton').setAttribute('visible', true);
-  
-  
-  document.getElementById('backButton2').setAttribute('visible', false);
-  document.getElementById('electricoButton').setAttribute('visible', false);
-  document.getElementById('DieselButton').setAttribute('visible', false);
-  document.getElementById('GasolinaButton').setAttribute('visible', false);
-  document.getElementById('BlancoButton').setAttribute('visible', false);
-  document.getElementById('NegroButton').setAttribute('visible', false);
-  document.getElementById('RojoButton').setAttribute('visible', false);
-  document.getElementById('AmarilloButton').setAttribute('visible', false);
-  document.getElementById('dosButton').setAttribute('visible', false);
-  document.getElementById('cincoButton').setAttribute('visible', false);
-      document.getElementById('backButton2').removeAttribute('pressable');
-      document.getElementById('electricoButton').removeAttribute('pressable');
-      document.getElementById('DieselButton').removeAttribute('pressable');
-      document.getElementById('GasolinaButton').removeAttribute('pressable');
-      document.getElementById('BlancoButton').removeAttribute('pressable');
-      document.getElementById('NegroButton').removeAttribute('pressable');
-      document.getElementById('RojoButton').removeAttribute('pressable');
-      document.getElementById('AmarilloButton').removeAttribute('pressable');
-      document.getElementById('dosButton').removeAttribute('pressable');
-      document.getElementById('cincoButton').removeAttribute('pressable');
-}
+      setTimeout(() => {
+        // Resetear valores de submenu2
+        var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
+        submenu2Component.resetValues();
+
+        // Resetear valores propios
+        this.resetValues();
+
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', true);
+        this.submenu3.setAttribute('visible', false);
+        this.menuInicio.setAttribute('visible', false);
+
+        document.getElementById('backButton').setAttribute('visible', true);
+
+        document.getElementById('motorButton').setAttribute('visible', true);
+
+        document.getElementById('colorButton').setAttribute('visible', true);
+
+        document.getElementById('puertasButton').setAttribute('visible', true);
+
+        document.getElementById('completoButton').setAttribute('visible', true);
+
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+        document.getElementById('backButton2').removeAttribute('pressable');
+        document.getElementById('electricoButton').removeAttribute('pressable');
+        document.getElementById('DieselButton').removeAttribute('pressable');
+        document.getElementById('GasolinaButton').removeAttribute('pressable');
+        document.getElementById('BlancoButton').removeAttribute('pressable');
+        document.getElementById('NegroButton').removeAttribute('pressable');
+        document.getElementById('RojoButton').removeAttribute('pressable');
+        document.getElementById('AmarilloButton').removeAttribute('pressable');
+        document.getElementById('dosButton').removeAttribute('pressable');
+        document.getElementById('cincoButton').removeAttribute('pressable');
+      }, 500);
+    }
     
     if (targetEl === this.electricoButtonEl) {
-      this.el.setAttribute('controsubmenu3', 'Electrico', true);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton3').setAttribute('visible', true);
-      document.getElementById('mostrarButton').setAttribute('visible', true);
-      document.getElementById('borrarButton').setAttribute('visible', true);
-      document.getElementById('backButton3').setAttribute('pressable', '');
-      document.getElementById('mostrarButton').setAttribute('pressable', '');
-      document.getElementById('borrarButton').setAttribute('pressable', '');
-      
-      document.getElementById('backButton2').setAttribute('visible', false);
-      document.getElementById('electricoButton').setAttribute('visible', false);
-      document.getElementById('DieselButton').setAttribute('visible', false);
-      document.getElementById('GasolinaButton').setAttribute('visible', false);
-      document.getElementById('BlancoButton').setAttribute('visible', false);
-      document.getElementById('NegroButton').setAttribute('visible', false);
-      document.getElementById('RojoButton').setAttribute('visible', false);
-      document.getElementById('AmarilloButton').setAttribute('visible', false);
-      document.getElementById('dosButton').setAttribute('visible', false);
-      document.getElementById('cincoButton').setAttribute('visible', false);
+      setTimeout(() => {
+        this.el.setAttribute('controsubmenu3', 'Electrico', true);
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+      }, 500);
     }
     
      if (targetEl === this.dieselButtonEl) {
-      this.el.setAttribute('controsubmenu3', 'Diesel', true);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton3').setAttribute('visible', true);
-      document.getElementById('mostrarButton').setAttribute('visible', true);
-      document.getElementById('borrarButton').setAttribute('visible', true);
-      document.getElementById('backButton3').setAttribute('pressable', '');
-      document.getElementById('mostrarButton').setAttribute('pressable', '');
-      document.getElementById('borrarButton').setAttribute('pressable', '');
-       
-      document.getElementById('backButton2').setAttribute('visible', false);
-      document.getElementById('electricoButton').setAttribute('visible', false);
-      document.getElementById('DieselButton').setAttribute('visible', false);
-      document.getElementById('GasolinaButton').setAttribute('visible', false);
-      document.getElementById('BlancoButton').setAttribute('visible', false);
-      document.getElementById('NegroButton').setAttribute('visible', false);
-      document.getElementById('RojoButton').setAttribute('visible', false);
-      document.getElementById('AmarilloButton').setAttribute('visible', false);
-      document.getElementById('dosButton').setAttribute('visible', false);
-      document.getElementById('cincoButton').setAttribute('visible', false);
+      setTimeout(() => {
+        this.el.setAttribute('controsubmenu3', 'Diesel', true);
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+      }, 500);
     }
      if (targetEl === this.gasolinaButtonEl) {
-      this.el.setAttribute('controsubmenu3', 'Gasolina', true);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton3').setAttribute('visible', true);
-      document.getElementById('mostrarButton').setAttribute('visible', true);
-      document.getElementById('borrarButton').setAttribute('visible', true);
-      document.getElementById('backButton3').setAttribute('pressable', '');
-      document.getElementById('mostrarButton').setAttribute('pressable', '');
-      document.getElementById('borrarButton').setAttribute('pressable', '');
-      
-      document.getElementById('backButton2').setAttribute('visible', false);
-      document.getElementById('electricoButton').setAttribute('visible', false);
-      document.getElementById('DieselButton').setAttribute('visible', false);
-      document.getElementById('GasolinaButton').setAttribute('visible', false);
-      document.getElementById('BlancoButton').setAttribute('visible', false);
-      document.getElementById('NegroButton').setAttribute('visible', false);
-      document.getElementById('RojoButton').setAttribute('visible', false);
-      document.getElementById('AmarilloButton').setAttribute('visible', false);
-      document.getElementById('dosButton').setAttribute('visible', false);
-      document.getElementById('cincoButton').setAttribute('visible', false);
+      setTimeout(() => {
+        this.el.setAttribute('controsubmenu3', 'Gasolina', true);
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+      }, 500);
     }
      if (targetEl === this.blancoButtonEl) {
-      this.el.setAttribute('controsubmenu3', 'Blanco', true);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton3').setAttribute('visible', true);
-      document.getElementById('mostrarButton').setAttribute('visible', true);
-      document.getElementById('borrarButton').setAttribute('visible', true);
-      document.getElementById('backButton3').setAttribute('pressable', '');
-      document.getElementById('mostrarButton').setAttribute('pressable', '');
-      document.getElementById('borrarButton').setAttribute('pressable', '');
-       
-      document.getElementById('backButton2').setAttribute('visible', false);
-      document.getElementById('electricoButton').setAttribute('visible', false);
-      document.getElementById('DieselButton').setAttribute('visible', false);
-      document.getElementById('GasolinaButton').setAttribute('visible', false);
-      document.getElementById('BlancoButton').setAttribute('visible', false);
-      document.getElementById('NegroButton').setAttribute('visible', false);
-      document.getElementById('RojoButton').setAttribute('visible', false);
-      document.getElementById('AmarilloButton').setAttribute('visible', false);
-      document.getElementById('dosButton').setAttribute('visible', false);
-      document.getElementById('cincoButton').setAttribute('visible', false);
+      setTimeout(() => {
+        this.el.setAttribute('controsubmenu3', 'Blanco', true);
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+      }, 500);
     }
      if (targetEl === this.negroButtonEl) {
-      this.el.setAttribute('controsubmenu3', 'Negro', true);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton3').setAttribute('visible', true);
-      document.getElementById('mostrarButton').setAttribute('visible', true);
-      document.getElementById('borrarButton').setAttribute('visible', true);
-      document.getElementById('backButton3').setAttribute('pressable', '');
-      document.getElementById('mostrarButton').setAttribute('pressable', '');
-      document.getElementById('borrarButton').setAttribute('pressable', '');
-       
-      document.getElementById('backButton2').setAttribute('visible', false);
-      document.getElementById('electricoButton').setAttribute('visible', false);
-      document.getElementById('DieselButton').setAttribute('visible', false);
-      document.getElementById('GasolinaButton').setAttribute('visible', false);
-      document.getElementById('BlancoButton').setAttribute('visible', false);
-      document.getElementById('NegroButton').setAttribute('visible', false);
-      document.getElementById('RojoButton').setAttribute('visible', false);
-      document.getElementById('AmarilloButton').setAttribute('visible', false);
-      document.getElementById('dosButton').setAttribute('visible', false);
-      document.getElementById('cincoButton').setAttribute('visible', false);
+      setTimeout(() => {
+        this.el.setAttribute('controsubmenu3', 'Negro', true);
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+      }, 500);
     }
      if (targetEl === this.rojoButtonEl) {
-      this.el.setAttribute('controsubmenu3', 'Rojo', true);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton3').setAttribute('visible', true);
-      document.getElementById('mostrarButton').setAttribute('visible', true);
-      document.getElementById('borrarButton').setAttribute('visible', true);
-      document.getElementById('backButton3').setAttribute('pressable', '');
-      document.getElementById('mostrarButton').setAttribute('pressable', '');
-      document.getElementById('borrarButton').setAttribute('pressable', '');
-       
-      document.getElementById('backButton2').setAttribute('visible', false);
-      document.getElementById('electricoButton').setAttribute('visible', false);
-      document.getElementById('DieselButton').setAttribute('visible', false);
-      document.getElementById('GasolinaButton').setAttribute('visible', false);
-      document.getElementById('BlancoButton').setAttribute('visible', false);
-      document.getElementById('NegroButton').setAttribute('visible', false);
-      document.getElementById('RojoButton').setAttribute('visible', false);
-      document.getElementById('AmarilloButton').setAttribute('visible', false);
-      document.getElementById('dosButton').setAttribute('visible', false);
-      document.getElementById('cincoButton').setAttribute('visible', false);
+      setTimeout(() => {
+        this.el.setAttribute('controsubmenu3', 'Rojo', true);
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+      }, 500);
     }
      if (targetEl === this.amarilloButtonEl) {
-      this.el.setAttribute('controsubmenu3', 'Amarillo', true);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton3').setAttribute('visible', true);
-      document.getElementById('mostrarButton').setAttribute('visible', true);
-      document.getElementById('borrarButton').setAttribute('visible', true);
-      document.getElementById('backButton3').setAttribute('pressable', '');
-      document.getElementById('mostrarButton').setAttribute('pressable', '');
-      document.getElementById('borrarButton').setAttribute('pressable', '');
-       
-      document.getElementById('backButton2').setAttribute('visible', false);
-      document.getElementById('electricoButton').setAttribute('visible', false);
-      document.getElementById('DieselButton').setAttribute('visible', false);
-      document.getElementById('GasolinaButton').setAttribute('visible', false);
-      document.getElementById('BlancoButton').setAttribute('visible', false);
-      document.getElementById('NegroButton').setAttribute('visible', false);
-      document.getElementById('RojoButton').setAttribute('visible', false);
-      document.getElementById('AmarilloButton').setAttribute('visible', false);
-      document.getElementById('dosButton').setAttribute('visible', false);
-      document.getElementById('cincoButton').setAttribute('visible', false);
+      setTimeout(() => {
+        this.el.setAttribute('controsubmenu3', 'Amarillo', true);
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+      }, 500);
     }
      if (targetEl === this.dosButtonEl) {
-      this.el.setAttribute('controsubmenu3', 'Dos', true);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton3').setAttribute('visible', true);
-      document.getElementById('mostrarButton').setAttribute('visible', true);
-      document.getElementById('borrarButton').setAttribute('visible', true);
-      document.getElementById('backButton3').setAttribute('pressable', '');
-      document.getElementById('mostrarButton').setAttribute('pressable', '');
-      document.getElementById('borrarButton').setAttribute('pressable', '');
-       
-      document.getElementById('backButton2').setAttribute('visible', false);
-      document.getElementById('electricoButton').setAttribute('visible', false);
-      document.getElementById('DieselButton').setAttribute('visible', false);
-      document.getElementById('GasolinaButton').setAttribute('visible', false);
-      document.getElementById('BlancoButton').setAttribute('visible', false);
-      document.getElementById('NegroButton').setAttribute('visible', false);
-      document.getElementById('RojoButton').setAttribute('visible', false);
-      document.getElementById('AmarilloButton').setAttribute('visible', false);
-      document.getElementById('dosButton').setAttribute('visible', false);
-      document.getElementById('cincoButton').setAttribute('visible', false);
+      setTimeout(() => {
+        this.el.setAttribute('controsubmenu3', 'Dos', true);
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+      }, 500);
     }
      if (targetEl === this.cincoButtonEl) {
-      this.el.setAttribute('controsubmenu3', 'Cinco', true);
-      this.submenu1.setAttribute('visible', false);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.submenu4.setAttribute('visible', true);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton3').setAttribute('visible', true);
-      document.getElementById('mostrarButton').setAttribute('visible', true);
-      document.getElementById('borrarButton').setAttribute('visible', true);
-      document.getElementById('backButton3').setAttribute('pressable', '');
-      document.getElementById('mostrarButton').setAttribute('pressable', '');
-      document.getElementById('borrarButton').setAttribute('pressable', '');
-       
-      document.getElementById('backButton2').setAttribute('visible', false);
-      document.getElementById('electricoButton').setAttribute('visible', false);
-      document.getElementById('DieselButton').setAttribute('visible', false);
-      document.getElementById('GasolinaButton').setAttribute('visible', false);
-      document.getElementById('BlancoButton').setAttribute('visible', false);
-      document.getElementById('NegroButton').setAttribute('visible', false);
-      document.getElementById('RojoButton').setAttribute('visible', false);
-      document.getElementById('AmarilloButton').setAttribute('visible', false);
-      document.getElementById('dosButton').setAttribute('visible', false);
-      document.getElementById('cincoButton').setAttribute('visible', false);
+      setTimeout(() => {
+        this.el.setAttribute('controsubmenu3', 'Cinco', true);
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+
+        document.getElementById('backButton2').setAttribute('visible', false);
+        document.getElementById('electricoButton').setAttribute('visible', false);
+        document.getElementById('DieselButton').setAttribute('visible', false);
+        document.getElementById('GasolinaButton').setAttribute('visible', false);
+        document.getElementById('BlancoButton').setAttribute('visible', false);
+        document.getElementById('NegroButton').setAttribute('visible', false);
+        document.getElementById('RojoButton').setAttribute('visible', false);
+        document.getElementById('AmarilloButton').setAttribute('visible', false);
+        document.getElementById('dosButton').setAttribute('visible', false);
+        document.getElementById('cincoButton').setAttribute('visible', false);
+      }, 500);
     }
 
   }
