@@ -116,24 +116,26 @@ AFRAME.registerComponent('controsubmenu4', {
       if (targetEl === this.borrarButtonEl) {
             // Eliminar diagrama de barras si existe
             var barChart = document.querySelector('#bar-chart');
-            
+            if (barChart) {
                 scene.removeChild(barChart);
-            
+            }
 
             // Eliminar diagrama circular si existe
             var pieChart = document.querySelector('#pie-chart');
-            
+            if (pieChart) {
                 scene.removeChild(pieChart);
-            
+            }
 
             // Eliminar filtro de datos si existe
             var prevFilter = document.querySelector('#filter-data');
-            
+            if (prevFilter) {
                 scene.removeChild(prevFilter);
-            
+            }
         }
     
       if (targetEl === this.backButtonEl3) {
+        var submenu3Component = document.querySelector('#subMenu3').components.controsubmenu3;
+        submenu3Component.resetValues();
         this.submenu1.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', false);
         this.submenu3.setAttribute('visible', true);
@@ -141,18 +143,21 @@ AFRAME.registerComponent('controsubmenu4', {
         this.menuInicio.setAttribute('visible', false);
         // Eliminar diagrama de barras si existe
             var barChart = document.querySelector('#bar-chart');
+            if (barChart) {
                 scene.removeChild(barChart);
-            
+            }
 
             // Eliminar diagrama circular si existe
             var pieChart = document.querySelector('#pie-chart');
+            if (pieChart) {
                 scene.removeChild(pieChart);
-
+            }
 
             // Eliminar filtro de datos si existe
             var prevFilter = document.querySelector('#filter-data');
-              scene.removeChild(prevFilter);
-            
+            if (prevFilter) {
+                scene.removeChild(prevFilter);
+            }
       }
     },
 });
