@@ -10,7 +10,7 @@ AFRAME.registerComponent('submenu2', {
       depth: 0.01
     });
     menuBackGroundEl.setAttribute('material', {
-      color: 'gray'
+      color: 'yellow'
     });
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
     el.appendChild(menuBackGroundEl);
@@ -72,6 +72,7 @@ AFRAME.registerComponent('controsubmenu2', {
       submenu1Component.resetValues();
       this.submenu1.setAttribute('visible', true);
       this.submenu2.setAttribute('visible', false);
+      this.submenu3.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
       document.getElementById('backButton2').setAttribute('visible', false);
       document.getElementById('electricoButton').setAttribute('visible', false);
@@ -138,7 +139,7 @@ AFRAME.registerComponent('controsubmenu2', {
       this.el.setAttribute('controsubmenu2', 'Completo', true);
       this.submenu1.setAttribute('visible', false);
       this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', true);
+      this.submenu3.setAttribute('visible', false);
       this.menuInicio.setAttribute('visible', false);
       document.getElementById('backButton2').setAttribute('pressable', '');
     }
