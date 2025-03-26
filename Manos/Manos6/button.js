@@ -67,12 +67,12 @@ AFRAME.registerComponent('button', {
     
     console.log(`Actualizando interactividad para ${this.data.label} - Visible: ${isVisible}`);
 
-    
+    if (isVisible) {
       // Forzar añadir los atributos
       el.setAttribute('pressable', '');
       el.setAttribute('pinchable', '');
       console.log(`Añadidos pressable y pinchable a ${this.data.label}`);
-    
+    } else {
       // Intentar remover los atributos
       try {
         el.removeAttribute('pressable');
@@ -81,7 +81,7 @@ AFRAME.registerComponent('button', {
       } catch(error) {
         console.error(`Error removiendo atributos de ${this.data.label}:`, error);
       }
-    
+    }
   },
 
   bindMethods: function () {
