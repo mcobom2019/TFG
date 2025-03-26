@@ -61,15 +61,18 @@ AFRAME.registerComponent('controsubmenu1', {
       this.submenu2.setAttribute('visible', true);
       this.el.setAttribute('controsubmenu1', 'Barras', true);
       document.getElementById('backButton').setAttribute('visible', true);
-      document.getElementById('motorButton').setAttribute('visible', true);
-      document.getElementById('colorButton').setAttribute('visible', true);
-      document.getElementById('puertasButton').setAttribute('visible', true);
-      document.getElementById('completoButton').setAttribute('visible', true);
       document.getElementById('backButton').setAttribute('pressable', '');
+      document.getElementById('motorButton').setAttribute('visible', true);
       document.getElementById('motorButton').setAttribute('pressable', '');
+      document.getElementById('colorButton').setAttribute('visible', true);
       document.getElementById('colorButton').setAttribute('pressable', '');
+      document.getElementById('puertasButton').setAttribute('visible', true);
       document.getElementById('puertasButton').setAttribute('pressable', '');
+      document.getElementById('completoButton').setAttribute('visible', true);
       document.getElementById('completoButton').setAttribute('pressable', '');
+      document.getElementById('barrasButton').setAttribute('visible', false);
+      document.getElementById('circularButton').setAttribute('visible', false);
+      document.getElementById('atrasButton').setAttribute('visible', false);
     }
     if (targetEl === this.circularButtonEl) {
       this.menuInicio.setAttribute('visible', false);
@@ -77,15 +80,18 @@ AFRAME.registerComponent('controsubmenu1', {
       this.submenu2.setAttribute('visible', true);
       this.el.setAttribute('controsubmenu1', 'Circular', true);
       document.getElementById('backButton').setAttribute('visible', true);
-      document.getElementById('motorButton').setAttribute('visible', true);
-      document.getElementById('colorButton').setAttribute('visible', true);
-      document.getElementById('puertasButton').setAttribute('visible', true);
-      document.getElementById('completoButton').setAttribute('visible', true);
       document.getElementById('backButton').setAttribute('pressable', '');
+      document.getElementById('motorButton').setAttribute('visible', true);
       document.getElementById('motorButton').setAttribute('pressable', '');
+      document.getElementById('colorButton').setAttribute('visible', true);
       document.getElementById('colorButton').setAttribute('pressable', '');
+      document.getElementById('puertasButton').setAttribute('visible', true);
       document.getElementById('puertasButton').setAttribute('pressable', '');
+      document.getElementById('completoButton').setAttribute('visible', true);
       document.getElementById('completoButton').setAttribute('pressable', '');
+      document.getElementById('barrasButton').setAttribute('visible', false);
+      document.getElementById('circularButton').setAttribute('visible', false);
+      document.getElementById('atrasButton').setAttribute('visible', false);
     }
     
     if (targetEl === this.atrasButtonEl) {
