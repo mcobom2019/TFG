@@ -75,6 +75,11 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('barrasButton').setAttribute('visible', false);
         document.getElementById('circularButton').setAttribute('visible', false);
         document.getElementById('atrasButton').setAttribute('visible', false);
+        
+        document.getElementById('barrasButton').removeAttribute('pressable');
+        document.getElementById('circularButton').removeAttribute('pressable');
+        document.getElementById('atrasButton').removeAttribute('pressable');
+        
       }, 500);
     }
     if (targetEl === this.circularButtonEl) {
@@ -97,6 +102,10 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('barrasButton').setAttribute('visible', false);
         document.getElementById('circularButton').setAttribute('visible', false);
         document.getElementById('atrasButton').setAttribute('visible', false);
+        
+        document.getElementById('barrasButton').removeAttribute('pressable');
+        document.getElementById('circularButton').removeAttribute('pressable');
+        document.getElementById('atrasButton').removeAttribute('pressable');
       }, 500);
     }
     
@@ -107,11 +116,13 @@ AFRAME.registerComponent('controsubmenu1', {
         this.submenu1.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', false);
         this.menuInicio.setAttribute('visible', true);
-        document.getElementById('backButton').setAttribute('visible', false);
-        document.getElementById('motorButton').setAttribute('visible', false);
-        document.getElementById('colorButton').setAttribute('visible', false);
-        document.getElementById('puertasButton').setAttribute('visible', false);
-        document.getElementById('completoButton').setAttribute('visible', false);
+        document.getElementById('atrasButton').setAttribute('visible', false);
+        document.getElementById('circularButton').setAttribute('visible', false);
+        document.getElementById('atrasButton').setAttribute('visible', false);
+        
+        document.getElementById('barrasButton').removeAttribute('pressable');
+        document.getElementById('circularButton').removeAttribute('pressable');
+        document.getElementById('atrasButton').removeAttribute('pressable');
       }, 500);
     }
 

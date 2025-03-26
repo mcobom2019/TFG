@@ -51,6 +51,8 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('barrasButton').setAttribute('pressable', '');
         document.getElementById('circularButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('pressable', '');
+        document.getElementById('startButton').removeAttribute('pressable');
+        document.getElementById('xButton').removeAttribute('pressable');
       }, 500); // 500 milisegundos = 0.5 segundos
     }
     if (targetEl === this.xButtonEl) {
