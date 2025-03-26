@@ -50,10 +50,6 @@ AFRAME.registerComponent('controsubmenu4', {
     var scene = document.querySelector("a-scene");
     var targetEl = evt.target;
     
-    var submenu2El = document.querySelector('#subMenu2');
-    var motorState = submenu2El.getAttribute('controsubmenu2').Motor;
-    console.log(motorState); // true o false
-    
     if (targetEl === this.mostrarButtonEl) {
         // Ocultar otros menús
         this.submenu1.setAttribute('visible', false);
@@ -62,7 +58,6 @@ AFRAME.registerComponent('controsubmenu4', {
         this.submenu4.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);
       
-
         var dataEntity = document.createElement('a-entity');
         dataEntity.setAttribute('id', 'data');
         dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
@@ -72,36 +67,40 @@ AFRAME.registerComponent('controsubmenu4', {
         var filterEntity = document.createElement('a-entity');
         filterEntity.setAttribute('id', 'filter-data');
       
-        if(this.submenu3El.getAttribute('controsubmenu3').Electrico){
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
-        }else if(this.submenu3El.getAttribute('controsubmenu3').Diesel){
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
-        }else if(this.submenu3El.getAttribute('controsubmenu3').Gasolina){
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=gasoline');
-        }else if(this.submenu3El.getAttribute('controsubmenu3').Blanco){
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
-        }else if(this.submenu3El.getAttribute('controsubmenu3').Negro){
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: color=black');
-        }else if(this.submenu3El.getAttribute('controsubmenu3').Rojo){
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
-        }else if(this.submenu3El.getAttribute('controsubmenu3').Amarillo){
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: color=yellow');
-        }else if(this.submenu3El.getAttribute('controsubmenu3').Dos){
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=2');
-        }else if(this.submenu3El.getAttribute('controsubmenu3').Cinco){
-          filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
+        var submenu3 = document.querySelector('#subMenu3').components.controsubmenu3;
+        var submenu1 = document.querySelector('#subMenu1').components.controsubmenu1;
+      
+        // Lógica de filtrado
+        if(submenu3.data.Electrico){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
+        } else if(submenu3.data.Diesel){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
+        } else if(submenu3.data.Gasolina){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=gasoline');
+        } else if(submenu3.data.Blanco){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
+        } else if(submenu3.data.Negro){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=black');
+        } else if(submenu3.data.Rojo){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
+        } else if(submenu3.data.Amarillo){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=yellow');
+        } else if(submenu3.data.Dos){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
+        } else if(submenu3.data.Cinco){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
         }
         scene.appendChild(filterEntity);
         
         // Crear diagrama de barras
-        if(this.submenu1El.getAttribute('controsubmenu1').Barras)
-        var barChartEntity = document.createElement('a-entity');
-        barChartEntity.setAttribute('id', 'bar-chart');
-        barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
-        barChartEntity.setAttribute('position', '0 0.5 -1');
-        barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
-        scene.appendChild(barChartEntity);
-    }
-
-  }
+        if(submenu1.data.Barras) {
+            var barChartEntity = document.createElement('a-entity');
+            barChartEntity.setAttribute('id', 'bar-chart');
+            barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
+            barChartEntity.setAttribute('position', '0 0.5 -1');
+            barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
+            scene.appendChild(barChartEntity);
+        }
+      }
+    },
 });
