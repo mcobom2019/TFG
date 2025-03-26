@@ -48,40 +48,44 @@ AFRAME.registerComponent('controsubmenu4', {
 
   onClick: function (evt) {
     var scene = document.querySelector("a-scene");
-    //var barChartEntity = document.querySelector('#data');
-    //var barsEntity = document.querySelector('#bars');
-    var barChartEntity = null;
-    var barsEntity = null;
     var targetEl = evt.target;
-
+    
     if (targetEl === this.mostrarButtonEl) {
+        // Ocultar otros menús
         this.submenu1.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', false);
         this.submenu3.setAttribute('visible', false);
         this.submenu4.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);
+      
+        // Eliminar entidades existentes si las hay
+        var existingDataEntity = document.querySelector("#data");
+        var existingFilterEntity = document.querySelector("#filter-data");
+        var existingBarChartEntity = document.querySelector("#bar-chart");
         
-        // Si ya existe, lo eliminamos
-        if (barChartEntity) {
-            scene.removeChild(barChartEntity);
-        }
-        if (barsEntity) {
-            scene.removeChild(barsEntity);
-        }
-
-        // Creamos nuevamente los elementos
-        barChartEntity = document.createElement('a-entity');
-        barChartEntity.setAttribute('id', 'data');
-        barChartEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
-
-        barsEntity = document.createElement('a-entity');
-        barsEntity.setAttribute('id', 'bars');
-        barsEntity.setAttribute('babia-barsmap', 'from: data; legend: true; palette: ubuntu; x_axis: model; z_axis: color; height: sales');
-        barsEntity.setAttribute('position', '0 0.5 -1');
-        barsEntity.setAttribute('scale', '0.2 0.2 0.2');
-
+        if (existingDataEntity) scene.removeChild(existingDataEntity);
+        if (existingFilterEntity) scene.removeChild(existingFilterEntity);
+        if (existingBarChartEntity) scene.removeChild(existingBarChartEntity);
+        
+        // Crear entidad de datos
+        var dataEntity = document.createElement('a-entity');
+        dataEntity.setAttribute('id', 'data');
+        dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
+        scene.appendChild(dataEntity);
+        
+        // Crear entidad de filtro
+        var filterEntity = document.createElement('a-entity');
+        filterEntity.setAttribute('id', 'filter-data');
+        filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
+        scene.appendChild(filterEntity);
+        
+        // Crear diagrama de barras
+        var barChartEntity = document.createElement('a-entity');
+        barChartEntity.setAttribute('id', 'bar-chart');
+        barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
+        barChartEntity.setAttribute('position', '0 0.5 -1');
+        barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
         scene.appendChild(barChartEntity);
-        scene.appendChild(barsEntity);
     }
   }
 });
