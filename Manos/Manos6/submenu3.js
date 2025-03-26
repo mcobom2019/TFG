@@ -113,16 +113,7 @@ AFRAME.registerComponent('controsubmenu3', {
   this.submenu3.setAttribute('visible', false);
   this.menuInicio.setAttribute('visible', false);
   
-  document.getElementById('backButton').setAttribute('visible', true);
-  document.getElementById('backButton').setAttribute('pressable', '');
-  document.getElementById('motorButton').setAttribute('visible', true);
-  document.getElementById('motorButton').setAttribute('pressable', '');
-  document.getElementById('colorButton').setAttribute('visible', true);
-  document.getElementById('colorButton').setAttribute('pressable', '');
-  document.getElementById('puertasButton').setAttribute('visible', true);
-  document.getElementById('puertasButton').setAttribute('pressable', '');
-  document.getElementById('completoButton').setAttribute('visible', true);
-  document.getElementById('completoButton').setAttribute('pressable', '');
+  
   
   document.getElementById('backButton2').setAttribute('visible', false);
   document.getElementById('electricoButton').setAttribute('visible', false);

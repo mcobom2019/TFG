@@ -88,16 +88,16 @@ AFRAME.registerComponent('controsubmenu2', {
   document.getElementById('completoButton').setAttribute('visible', false);
   
   document.getElementById('barrasButton').setAttribute('visible', true);
-  document.getElementById('barrasButton').setAttribute('pressable', '');
+  
   document.getElementById('circularButton').setAttribute('visible', true);
-  document.getElementById('circularButton').setAttribute('pressable', '');
+  
   document.getElementById('atrasButton').setAttribute('visible', true);
-  document.getElementById('atrasButton').setAttribute('pressable', '');
+
       document.getElementById('backButton').removeAttribute('pressable');
       document.getElementById('motorButton').removeAttribute('pressable');
       document.getElementById('colorButton').removeAttribute('pressable');
-      document.getElementById('backButton2').removeAttribute('pressable');
-      document.getElementById('backButton2').removeAttribute('pressable');
+      document.getElementById('puertasButton').removeAttribute('pressable');
+      document.getElementById('completoButton').removeAttribute('pressable');
 }
     
     if (targetEl === this.motorButtonEl) {
