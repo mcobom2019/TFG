@@ -134,101 +134,41 @@ AFRAME.registerComponent('controsubmenu4', {
         }
     
       if (targetEl === this.backButtonEl3) {
-        var submenu3Component = document.querySelector('#subMenu3').components.controsubmenu3;
-        submenu3Component.resetValues();
-        this.submenu1.setAttribute('visible', false);
-        this.submenu2.setAttribute('visible', false);
-        this.submenu3.setAttribute('visible', true);
-        this.submenu4.setAttribute('visible', false);
-        this.menuInicio.setAttribute('visible', false);
-        // Eliminar diagrama de barras si existe
-            var barChart = document.querySelector('#bar-chart');
-            if (barChart) {
-                scene.removeChild(barChart);
-            }
-
-            // Eliminar diagrama circular si existe
-            var pieChart = document.querySelector('#pie-chart');
-            if (pieChart) {
-                scene.removeChild(pieChart);
-            }
-
-            // Eliminar filtro de datos si existe
-            var prevFilter = document.querySelector('#filter-data');
-            if (prevFilter) {
-                scene.removeChild(prevFilter);
-            }
-        document.getElementById('backButton3').setAttribute('visible', true);
-        document.getElementById('mostrarButton').setAttribute('visible', true);
-        document.getElementById('borrarButton').setAttribute('visible', true);
-        document.getElementById('backButton3').setAttribute('pressable', '');
-        document.getElementById('mostrarButton').setAttribute('pressable', '');
-        document.getElementById('borrarButton').setAttribute('pressable', '');
-        
-        if(submenu3.data.Electrico){
-            document.getElementById('backButton3').setAttribute('visible', true);
-            document.getElementById('mostrarButton').setAttribute('visible', true);
-            document.getElementById('borrarButton').setAttribute('visible', true);
-            document.getElementById('backButton3').setAttribute('pressable', '');
-            document.getElementById('mostrarButton').setAttribute('pressable', '');
-            document.getElementById('borrarButton').setAttribute('pressable', '');
-        } else if(submenu3.data.Diesel){
-            document.getElementById('backButton3').setAttribute('visible', true);
-            document.getElementById('mostrarButton').setAttribute('visible', true);
-            document.getElementById('borrarButton').setAttribute('visible', true);
-            document.getElementById('backButton3').setAttribute('pressable', '');
-            document.getElementById('mostrarButton').setAttribute('pressable', '');
-            document.getElementById('borrarButton').setAttribute('pressable', '');
-        } else if(submenu3.data.Gasolina){
-            document.getElementById('backButton3').setAttribute('visible', true);
-            document.getElementById('mostrarButton').setAttribute('visible', true);
-            document.getElementById('borrarButton').setAttribute('visible', true);
-            document.getElementById('backButton3').setAttribute('pressable', '');
-            document.getElementById('mostrarButton').setAttribute('pressable', '');
-            document.getElementById('borrarButton').setAttribute('pressable', '');
-        } else if(submenu3.data.Blanco){
-            document.getElementById('backButton3').setAttribute('visible', true);
-            document.getElementById('mostrarButton').setAttribute('visible', true);
-            document.getElementById('borrarButton').setAttribute('visible', true);
-            document.getElementById('backButton3').setAttribute('pressable', '');
-            document.getElementById('mostrarButton').setAttribute('pressable', '');
-            document.getElementById('borrarButton').setAttribute('pressable', '');
-        } else if(submenu3.data.Negro){
-            document.getElementById('backButton3').setAttribute('visible', true);
-            document.getElementById('mostrarButton').setAttribute('visible', true);
-            document.getElementById('borrarButton').setAttribute('visible', true);
-            document.getElementById('backButton3').setAttribute('pressable', '');
-            document.getElementById('mostrarButton').setAttribute('pressable', '');
-            document.getElementById('borrarButton').setAttribute('pressable', '');
-        } else if(submenu3.data.Rojo){
-            document.getElementById('backButton3').setAttribute('visible', true);
-            document.getElementById('mostrarButton').setAttribute('visible', true);
-            document.getElementById('borrarButton').setAttribute('visible', true);
-            document.getElementById('backButton3').setAttribute('pressable', '');
-            document.getElementById('mostrarButton').setAttribute('pressable', '');
-            document.getElementById('borrarButton').setAttribute('pressable', '');
-        } else if(submenu3.data.Amarillo){
-            document.getElementById('backButton3').setAttribute('visible', true);
-            document.getElementById('mostrarButton').setAttribute('visible', true);
-            document.getElementById('borrarButton').setAttribute('visible', true);
-            document.getElementById('backButton3').setAttribute('pressable', '');
-            document.getElementById('mostrarButton').setAttribute('pressable', '');
-            document.getElementById('borrarButton').setAttribute('pressable', '');
-        } else if(submenu3.data.Dos){
-            document.getElementById('backButton3').setAttribute('visible', true);
-            document.getElementById('mostrarButton').setAttribute('visible', true);
-            document.getElementById('borrarButton').setAttribute('visible', true);
-            document.getElementById('backButton3').setAttribute('pressable', '');
-            document.getElementById('mostrarButton').setAttribute('pressable', '');
-            document.getElementById('borrarButton').setAttribute('pressable', '');
-        } else if(submenu3.data.Cinco){
-            document.getElementById('backButton3').setAttribute('visible', true);
-            document.getElementById('mostrarButton').setAttribute('visible', true);
-            document.getElementById('borrarButton').setAttribute('visible', true);
-            document.getElementById('backButton3').setAttribute('pressable', '');
-            document.getElementById('mostrarButton').setAttribute('pressable', '');
-            document.getElementById('borrarButton').setAttribute('pressable', '');
-        }
-      }
+  var submenu3Component = document.querySelector('#subMenu3').components.controsubmenu3;
+  var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
+  
+  // Resetear valores de submenu3 y submenu2
+  submenu3Component.resetValues();
+  submenu2Component.resetValues();
+  
+  this.submenu1.setAttribute('visible', false);
+  this.submenu2.setAttribute('visible', true);
+  this.submenu3.setAttribute('visible', false);
+  this.submenu4.setAttribute('visible', false);
+  this.menuInicio.setAttribute('visible', false);
+  
+  // Eliminar elementos generados
+  var scene = document.querySelector("a-scene");
+  var barChart = document.querySelector('#bar-chart');
+  var pieChart = document.querySelector('#pie-chart');
+  var prevFilter = document.querySelector('#filter-data');
+  var dataEntity = document.querySelector('#data');
+  
+  if (barChart) scene.removeChild(barChart);
+  if (pieChart) scene.removeChild(pieChart);
+  if (prevFilter) scene.removeChild(prevFilter);
+  if (dataEntity) scene.removeChild(dataEntity);
+  
+  document.getElementById('backButton').setAttribute('visible', true);
+  document.getElementById('backButton').setAttribute('pressable', '');
+  document.getElementById('motorButton').setAttribute('visible', true);
+  document.getElementById('motorButton').setAttribute('pressable', '');
+  document.getElementById('colorButton').setAttribute('visible', true);
+  document.getElementById('colorButton').setAttribute('pressable', '');
+  document.getElementById('puertasButton').setAttribute('visible', true);
+  document.getElementById('puertasButton').setAttribute('pressable', '');
+  document.getElementById('completoButton').setAttribute('visible', true);
+  document.getElementById('completoButton').setAttribute('pressable', '');
+}
     },
 });

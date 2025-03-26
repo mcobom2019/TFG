@@ -23,7 +23,10 @@ AFRAME.registerComponent('button', {
     console.log(`Botón ${this.data.label} - Visibilidad inicial: ${el.getAttribute('visible')}`);
 
     // Añadir pressable y pinchable solo si está visible
-    this.updateInteractivity();
+    var isVisible = el.getAttribute('visible');
+    if(isVisible){
+      el.setAttribute('pressable', '');
+    }
 
     labelEl.setAttribute('position', '0 0 0.02');
     labelEl.setAttribute('text', {
@@ -61,17 +64,14 @@ AFRAME.registerComponent('button', {
     this.el.addEventListener('pressedended', this.onPressedEnded);
   },
 
-  updateInteractivity: function() {
+  /*updateInteractivity: function() {
     var el = this.el;
     var isVisible = el.getAttribute('visible');
-    
-    console.log(`Actualizando interactividad para ${this.data.label} - Visible: ${isVisible}`);
 
     if (isVisible) {
       // Forzar añadir los atributos
       el.setAttribute('pressable', '');
       el.setAttribute('pinchable', '');
-      console.log(`Añadidos pressable y pinchable a ${this.data.label}`);
     } else {
       // Intentar remover los atributos
       try {
@@ -82,7 +82,7 @@ AFRAME.registerComponent('button', {
         console.error(`Error removiendo atributos de ${this.data.label}:`, error);
       }
     }
-  },
+  },*/
 
   bindMethods: function () {
     this.stateChanged = this.stateChanged.bind(this);

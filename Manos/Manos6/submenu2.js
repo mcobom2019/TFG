@@ -69,25 +69,31 @@ AFRAME.registerComponent('controsubmenu2', {
     var targetEl = evt.target;
     var submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
     if (targetEl === this.backButtonEl) {
-      submenu1Component.resetValues();
-      this.submenu1.setAttribute('visible', true);
-      this.submenu2.setAttribute('visible', false);
-      this.submenu3.setAttribute('visible', false);
-      this.menuInicio.setAttribute('visible', false);
-      document.getElementById('backButton').setAttribute('visible', false);
-      document.getElementById('motorButton').setAttribute('visible', false);
-      document.getElementById('colorButton').setAttribute('visible', false);
-      document.getElementById('puertasButton').setAttribute('visible', false);
-      document.getElementById('completoButton').setAttribute('visible', false);
-      
-      
-      document.getElementById('barrasButton').setAttribute('visible', true);
-      document.getElementById('barrasButton').setAttribute('pressable', '');
-      document.getElementById('circularButton').setAttribute('visible', true);
-      document.getElementById('circularButton').setAttribute('pressable', '');
-      document.getElementById('atrasButton').setAttribute('visible', true);
-      document.getElementById('atrasButton').setAttribute('pressable', '');
-    }
+  // Resetear valores de submenu1
+  var submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
+  submenu1Component.resetValues();
+  
+  // Resetear valores propios
+  this.resetValues();
+  
+  this.submenu1.setAttribute('visible', true);
+  this.submenu2.setAttribute('visible', false);
+  this.submenu3.setAttribute('visible', false);
+  this.menuInicio.setAttribute('visible', false);
+  
+  document.getElementById('backButton').setAttribute('visible', false);
+  document.getElementById('motorButton').setAttribute('visible', false);
+  document.getElementById('colorButton').setAttribute('visible', false);
+  document.getElementById('puertasButton').setAttribute('visible', false);
+  document.getElementById('completoButton').setAttribute('visible', false);
+  
+  document.getElementById('barrasButton').setAttribute('visible', true);
+  document.getElementById('barrasButton').setAttribute('pressable', '');
+  document.getElementById('circularButton').setAttribute('visible', true);
+  document.getElementById('circularButton').setAttribute('pressable', '');
+  document.getElementById('atrasButton').setAttribute('visible', true);
+  document.getElementById('atrasButton').setAttribute('pressable', '');
+}
     
     if (targetEl === this.motorButtonEl) {
       this.el.setAttribute('controsubmenu2', 'Motor', true);
