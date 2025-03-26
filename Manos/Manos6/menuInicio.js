@@ -18,7 +18,6 @@ AFRAME.registerComponent('menuinicio', {
 });
 
 /* global AFRAME */
-/* global AFRAME */
 AFRAME.registerComponent('controlinicio', {
   init: function () {
     this.bindMethods();
