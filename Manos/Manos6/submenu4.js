@@ -49,10 +49,10 @@ AFRAME.registerComponent('controsubmenu4', {
   onClick: function (evt) {
     var scene = document.querySelector("a-scene");
     var targetEl = evt.target;
-    // En otro archivo .js
-  var submenu2El = document.querySelector('#subMenu2');
-var motorState = submenu2El.getAttribute('controsubmenu2').Motor;
-console.log(motorState); // true o false
+    
+    var submenu2El = document.querySelector('#subMenu2');
+    var motorState = submenu2El.getAttribute('controsubmenu2').Motor;
+    console.log(motorState); // true o false
     
     if (targetEl === this.mostrarButtonEl) {
         // Ocultar otros menús
@@ -71,12 +71,30 @@ console.log(motorState); // true o false
         // Crear entidad de filtro
         var filterEntity = document.createElement('a-entity');
         filterEntity.setAttribute('id', 'filter-data');
-        filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
-        scene.appendChild(filterEntity);
       
-        if()
+        if(this.submenu3El.getAttribute('controsubmenu3').Electrico){
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
+        }else if(this.submenu3El.getAttribute('controsubmenu3').Diesel){
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
+        }else if(this.submenu3El.getAttribute('controsubmenu3').Gasolina){
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=gasoline');
+        }else if(this.submenu3El.getAttribute('controsubmenu3').Blanco){
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
+        }else if(this.submenu3El.getAttribute('controsubmenu3').Negro){
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: color=black');
+        }else if(this.submenu3El.getAttribute('controsubmenu3').Rojo){
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
+        }else if(this.submenu3El.getAttribute('controsubmenu3').Amarillo){
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: color=yellow');
+        }else if(this.submenu3El.getAttribute('controsubmenu3').Dos){
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=2');
+        }else if(this.submenu3El.getAttribute('controsubmenu3').Cinco){
+          filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
+        }
+        scene.appendChild(filterEntity);
         
         // Crear diagrama de barras
+        if(this.submenu1El.getAttribute('controsubmenu1').Barras)
         var barChartEntity = document.createElement('a-entity');
         barChartEntity.setAttribute('id', 'bar-chart');
         barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
