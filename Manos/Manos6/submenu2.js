@@ -103,6 +103,7 @@ AFRAME.registerComponent('controsubmenu2', {
       document.getElementById('DieselButton').setAttribute('pressable', '');
       document.getElementById('GasolinaButton').setAttribute('visible', true);
       document.getElementById('GasolinaButton').setAttribute('pressable', '');
+      
       document.getElementById('backButton').setAttribute('visible', false);
       document.getElementById('motorButton').setAttribute('visible', false);
       document.getElementById('colorButton').setAttribute('visible', false);
@@ -126,6 +127,7 @@ AFRAME.registerComponent('controsubmenu2', {
       document.getElementById('RojoButton').setAttribute('pressable', '');
       document.getElementById('AmarilloButton').setAttribute('visible', true);
       document.getElementById('AmarilloButton').setAttribute('pressable', '');
+      
       document.getElementById('backButton').setAttribute('visible', false);
       document.getElementById('motorButton').setAttribute('visible', false);
       document.getElementById('colorButton').setAttribute('visible', false);
@@ -146,6 +148,7 @@ AFRAME.registerComponent('controsubmenu2', {
       document.getElementById('dosButton').setAttribute('pressable', '');
       document.getElementById('cincoButton').setAttribute('visible', true);
       document.getElementById('cincoButton').setAttribute('pressable', '');
+      
       document.getElementById('backButton').setAttribute('visible', false);
       document.getElementById('motorButton').setAttribute('visible', false);
       document.getElementById('colorButton').setAttribute('visible', false);

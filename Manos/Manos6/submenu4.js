@@ -158,6 +158,77 @@ AFRAME.registerComponent('controsubmenu4', {
             if (prevFilter) {
                 scene.removeChild(prevFilter);
             }
+        document.getElementById('backButton3').setAttribute('visible', true);
+        document.getElementById('mostrarButton').setAttribute('visible', true);
+        document.getElementById('borrarButton').setAttribute('visible', true);
+        document.getElementById('backButton3').setAttribute('pressable', '');
+        document.getElementById('mostrarButton').setAttribute('pressable', '');
+        document.getElementById('borrarButton').setAttribute('pressable', '');
+        
+        if(submenu3.data.Electrico){
+            document.getElementById('backButton3').setAttribute('visible', true);
+            document.getElementById('mostrarButton').setAttribute('visible', true);
+            document.getElementById('borrarButton').setAttribute('visible', true);
+            document.getElementById('backButton3').setAttribute('pressable', '');
+            document.getElementById('mostrarButton').setAttribute('pressable', '');
+            document.getElementById('borrarButton').setAttribute('pressable', '');
+        } else if(submenu3.data.Diesel){
+            document.getElementById('backButton3').setAttribute('visible', true);
+            document.getElementById('mostrarButton').setAttribute('visible', true);
+            document.getElementById('borrarButton').setAttribute('visible', true);
+            document.getElementById('backButton3').setAttribute('pressable', '');
+            document.getElementById('mostrarButton').setAttribute('pressable', '');
+            document.getElementById('borrarButton').setAttribute('pressable', '');
+        } else if(submenu3.data.Gasolina){
+            document.getElementById('backButton3').setAttribute('visible', true);
+            document.getElementById('mostrarButton').setAttribute('visible', true);
+            document.getElementById('borrarButton').setAttribute('visible', true);
+            document.getElementById('backButton3').setAttribute('pressable', '');
+            document.getElementById('mostrarButton').setAttribute('pressable', '');
+            document.getElementById('borrarButton').setAttribute('pressable', '');
+        } else if(submenu3.data.Blanco){
+            document.getElementById('backButton3').setAttribute('visible', true);
+            document.getElementById('mostrarButton').setAttribute('visible', true);
+            document.getElementById('borrarButton').setAttribute('visible', true);
+            document.getElementById('backButton3').setAttribute('pressable', '');
+            document.getElementById('mostrarButton').setAttribute('pressable', '');
+            document.getElementById('borrarButton').setAttribute('pressable', '');
+        } else if(submenu3.data.Negro){
+            document.getElementById('backButton3').setAttribute('visible', true);
+            document.getElementById('mostrarButton').setAttribute('visible', true);
+            document.getElementById('borrarButton').setAttribute('visible', true);
+            document.getElementById('backButton3').setAttribute('pressable', '');
+            document.getElementById('mostrarButton').setAttribute('pressable', '');
+            document.getElementById('borrarButton').setAttribute('pressable', '');
+        } else if(submenu3.data.Rojo){
+            document.getElementById('backButton3').setAttribute('visible', true);
+            document.getElementById('mostrarButton').setAttribute('visible', true);
+            document.getElementById('borrarButton').setAttribute('visible', true);
+            document.getElementById('backButton3').setAttribute('pressable', '');
+            document.getElementById('mostrarButton').setAttribute('pressable', '');
+            document.getElementById('borrarButton').setAttribute('pressable', '');
+        } else if(submenu3.data.Amarillo){
+            document.getElementById('backButton3').setAttribute('visible', true);
+            document.getElementById('mostrarButton').setAttribute('visible', true);
+            document.getElementById('borrarButton').setAttribute('visible', true);
+            document.getElementById('backButton3').setAttribute('pressable', '');
+            document.getElementById('mostrarButton').setAttribute('pressable', '');
+            document.getElementById('borrarButton').setAttribute('pressable', '');
+        } else if(submenu3.data.Dos){
+            document.getElementById('backButton3').setAttribute('visible', true);
+            document.getElementById('mostrarButton').setAttribute('visible', true);
+            document.getElementById('borrarButton').setAttribute('visible', true);
+            document.getElementById('backButton3').setAttribute('pressable', '');
+            document.getElementById('mostrarButton').setAttribute('pressable', '');
+            document.getElementById('borrarButton').setAttribute('pressable', '');
+        } else if(submenu3.data.Cinco){
+            document.getElementById('backButton3').setAttribute('visible', true);
+            document.getElementById('mostrarButton').setAttribute('visible', true);
+            document.getElementById('borrarButton').setAttribute('visible', true);
+            document.getElementById('backButton3').setAttribute('pressable', '');
+            document.getElementById('mostrarButton').setAttribute('pressable', '');
+            document.getElementById('borrarButton').setAttribute('pressable', '');
+        }
       }
     },
 });

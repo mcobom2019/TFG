@@ -70,6 +70,7 @@ AFRAME.registerComponent('controsubmenu1', {
       document.getElementById('puertasButton').setAttribute('pressable', '');
       document.getElementById('completoButton').setAttribute('visible', true);
       document.getElementById('completoButton').setAttribute('pressable', '');
+      
       document.getElementById('barrasButton').setAttribute('visible', false);
       document.getElementById('circularButton').setAttribute('visible', false);
       document.getElementById('atrasButton').setAttribute('visible', false);
@@ -89,6 +90,7 @@ AFRAME.registerComponent('controsubmenu1', {
       document.getElementById('puertasButton').setAttribute('pressable', '');
       document.getElementById('completoButton').setAttribute('visible', true);
       document.getElementById('completoButton').setAttribute('pressable', '');
+      
       document.getElementById('barrasButton').setAttribute('visible', false);
       document.getElementById('circularButton').setAttribute('visible', false);
       document.getElementById('atrasButton').setAttribute('visible', false);
