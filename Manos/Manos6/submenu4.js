@@ -101,7 +101,38 @@ AFRAME.registerComponent('controsubmenu4', {
             barChartEntity.setAttribute('position', '0 0.5 -1');
             barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
             scene.appendChild(barChartEntity);
+          
+        }else if(submenu1.data.Circular){
+            var pieChartEntity = document.createElement('a-entity');
+            pieChartEntity.setAttribute('id', 'pie-chart');
+            pieChartEntity.setAttribute('babia-pie', 'from: filter-data; legend: true; palette: blues; key: model; size: doors');
+            pieChartEntity.setAttribute('position', '0 0.5 -1');
+            pieChartEntity.setAttribute('scale', '0.2 0.2 0.2');
+            pieChartEntity.setAttribute('rotation', '90 0 0');
+            scene.appendChild(pieChartEntity);
         }
+      }
+      if (targetEl === this.borrarButtonEl) {
+            // Eliminar diagrama de barras si existe
+            var barChart = document.querySelector('#bar-chart');
+            if (barChart) {
+                scene.removeChild(barChart);
+            }
+
+            // Eliminar diagrama circular si existe
+            var pieChart = document.querySelector('#pie-chart');
+            if (pieChart) {
+                scene.removeChild(pieChart);
+            }
+
+            // Eliminar filtro de datos si existe
+            var prevFilter = document.querySelector('#filter-data');
+            if (prevFilter) {
+                scene.removeChild(prevFilter);
+            }
+        }
+      if (targetEl === this.borrarButtonEl) {
+        
       }
     },
 });
