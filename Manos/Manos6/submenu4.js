@@ -49,6 +49,10 @@ AFRAME.registerComponent('controsubmenu4', {
   onClick: function (evt) {
     var scene = document.querySelector("a-scene");
     var targetEl = evt.target;
+    // En otro archivo .js
+  var submenu2El = document.querySelector('#subMenu2');
+var motorState = submenu2El.getAttribute('controsubmenu2').Motor;
+console.log(motorState); // true o false
     
     if (targetEl === this.mostrarButtonEl) {
         // Ocultar otros menús
@@ -58,16 +62,7 @@ AFRAME.registerComponent('controsubmenu4', {
         this.submenu4.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);
       
-        // Eliminar entidades existentes si las hay
-        var existingDataEntity = document.querySelector("#data");
-        var existingFilterEntity = document.querySelector("#filter-data");
-        var existingBarChartEntity = document.querySelector("#bar-chart");
-        
-        if (existingDataEntity) scene.removeChild(existingDataEntity);
-        if (existingFilterEntity) scene.removeChild(existingFilterEntity);
-        if (existingBarChartEntity) scene.removeChild(existingBarChartEntity);
-        
-        // Crear entidad de datos
+
         var dataEntity = document.createElement('a-entity');
         dataEntity.setAttribute('id', 'data');
         dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
@@ -78,6 +73,8 @@ AFRAME.registerComponent('controsubmenu4', {
         filterEntity.setAttribute('id', 'filter-data');
         filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
         scene.appendChild(filterEntity);
+      
+        if()
         
         // Crear diagrama de barras
         var barChartEntity = document.createElement('a-entity');
@@ -87,5 +84,6 @@ AFRAME.registerComponent('controsubmenu4', {
         barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
         scene.appendChild(barChartEntity);
     }
+
   }
 });
