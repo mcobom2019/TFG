@@ -132,6 +132,14 @@ AFRAME.registerComponent('controsubmenu3', {
       document.getElementById('backButton3').setAttribute('pressable', '');
       document.getElementById('mostrarButton').setAttribute('pressable', '');
       document.getElementById('borrarButton').setAttribute('pressable', '');
+      console.log("HOLAA");
+      console.log("HOLAA");
+      console.log("HOLAA");
+      console.log("HOLAA");
+      console.log("HOLAA");
+      javascript:console.log("Prueba de consola");
+
+      
     }
     
      if (targetEl === this.dieselButtonEl) {
