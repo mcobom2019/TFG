@@ -189,11 +189,11 @@ AFRAME.registerComponent('controsubmenu4', {
           document.getElementById('backButton3').setAttribute('visible', false);
           document.getElementById('mostrarButton').setAttribute('visible', false);
           document.getElementById('borrarButton').setAttribute('visible', false);
-          document.getElementById('backButton3').removeAttribute('pressable', '');
-          document.getElementById('mostrarButton').removeAttribute('pressable', '');
+          document.getElementById('backButton3').removeAttribute('pressable');
+          document.getElementById('mostrarButton').removeAttribute('pressable');
           document.getElementById('borrarButton').removeAttribute('pressable');
 
-          //submenu3Component.resetValues();
+          submenu3Component.resetValues();
         }, 500);
       }
     },
