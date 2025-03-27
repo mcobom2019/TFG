@@ -29,10 +29,12 @@ AFRAME.registerComponent('controlinicio', {
     //boton start
     this.startButtonEl = document.querySelector('#startButton');
     this.startButtonEl.addEventListener('click', this.onClick);
+    document.getElementById('startButton').setAttribute('pressable', '');
     
     //boton X
     this.xButtonEl = document.querySelector('#xButton');
     this.xButtonEl.addEventListener('click', this.onClick);
+    document.getElementById('xButton').setAttribute('pressable', '');
   },
 
   bindMethods: function () {
