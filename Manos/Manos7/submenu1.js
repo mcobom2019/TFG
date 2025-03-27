@@ -57,7 +57,6 @@ AFRAME.registerComponent('controsubmenu1', {
     var targetEl = evt.target;
     if (targetEl === this.barrasButtonEl) {
       setTimeout(() => {
-        this.menuInicio.setAttribute('visible', false);
         this.submenu1.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
         this.el.setAttribute('controsubmenu1', 'Barras', true);
@@ -69,9 +68,7 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('colorButton').setAttribute('pressable', '');
         document.getElementById('puertasButton').setAttribute('visible', true);
         document.getElementById('puertasButton').setAttribute('pressable', '');
-        document.getElementById('completoButton').setAttribute('visible', true);
-        document.getElementById('completoButton').setAttribute('pressable', '');
-
+        
         document.getElementById('barrasButton').setAttribute('visible', false);
         document.getElementById('circularButton').setAttribute('visible', false);
         document.getElementById('atrasButton').setAttribute('visible', false);
@@ -84,7 +81,6 @@ AFRAME.registerComponent('controsubmenu1', {
     }
     if (targetEl === this.circularButtonEl) {
       setTimeout(() => {
-        this.menuInicio.setAttribute('visible', false);
         this.submenu1.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
         this.el.setAttribute('controsubmenu1', 'Circular', true);
@@ -96,8 +92,6 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('colorButton').setAttribute('pressable', '');
         document.getElementById('puertasButton').setAttribute('visible', true);
         document.getElementById('puertasButton').setAttribute('pressable', '');
-        document.getElementById('completoButton').setAttribute('visible', true);
-        document.getElementById('completoButton').setAttribute('pressable', '');
 
         document.getElementById('barrasButton').setAttribute('visible', false);
         document.getElementById('circularButton').setAttribute('visible', false);
@@ -114,15 +108,19 @@ AFRAME.registerComponent('controsubmenu1', {
         this.el.setAttribute('controsubmenu1', 'Circular', false);
         this.el.setAttribute('controsubmenu1', 'Barras', false);
         this.submenu1.setAttribute('visible', false);
-        this.submenu2.setAttribute('visible', false);
         this.menuInicio.setAttribute('visible', true);
-        document.getElementById('atrasButton').setAttribute('visible', false);
+        document.getElementById('barrasButton').setAttribute('visible', false);
         document.getElementById('circularButton').setAttribute('visible', false);
         document.getElementById('atrasButton').setAttribute('visible', false);
         
         document.getElementById('barrasButton').removeAttribute('pressable');
         document.getElementById('circularButton').removeAttribute('pressable');
         document.getElementById('atrasButton').removeAttribute('pressable');
+        
+        document.getElementById('startButton').setAttribute('visible', true);
+        document.getElementById('startButton').setAttribute('pressable', '');
+        document.getElementById('xButton').setAttribute('visible', true);
+        document.getElementById('xButton').setAttribute('pressable', '');
       }, 500);
     }
 
