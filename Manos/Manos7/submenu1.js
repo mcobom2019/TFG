@@ -105,6 +105,8 @@ AFRAME.registerComponent('controsubmenu1', {
     
     if (targetEl === this.atrasButtonEl) {
       setTimeout(() => {
+        this.submenu1 = document.querySelector('#subMenu1');
+        this.menuInicio = document.querySelector('#menuinicio');
         this.el.setAttribute('controsubmenu1', 'Circular', false);
         this.el.setAttribute('controsubmenu1', 'Barras', false);
         this.submenu1.setAttribute('visible', false);
