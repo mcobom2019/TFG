@@ -111,6 +111,7 @@ AFRAME.registerComponent('controsubmenu4', {
             barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
             scene.appendChild(barChartEntity);
             //pieChartEntity.setAttribute('grabbable', '');
+            barChartEntity.setAttribute('size-change', '');
           
         }else if(submenu1.data.Circular){
             var pieChartEntity = document.createElement('a-entity');
@@ -121,6 +122,7 @@ AFRAME.registerComponent('controsubmenu4', {
             pieChartEntity.setAttribute('rotation', '90 0 0');
             scene.appendChild(pieChartEntity);
             //pieChartEntity.setAttribute('grabbable', '');
+            pieChartEntity.setAttribute('size-change', '');
         }
       }
     
