@@ -139,7 +139,9 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('startButton').setAttribute('visible', true);
         document.getElementById('startButton').setAttribute('pressable', '');
         document.getElementById('xButton').setAttribute('visible', true);
-        document.getElementById('xButton').setAttribute('pressable', '');        
+        document.getElementById('xButton').setAttribute('pressable', '');
+        document.getElementById('darkButton').setAttribute('visible', true);
+        document.getElementById('darkButton').setAttribute('pressable', '');
       }, 500);
     }
 

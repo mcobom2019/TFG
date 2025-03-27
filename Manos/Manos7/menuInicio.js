@@ -37,7 +37,6 @@ AFRAME.registerComponent('controlinicio', {
     // Referencias a los elementos
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
-    //this.menuInicio.setAttribute('grabbable', '');
   
     //boton start
     this.startButtonEl = document.querySelector('#startButton');
@@ -53,6 +52,9 @@ AFRAME.registerComponent('controlinicio', {
     this.darkButtonEl = document.querySelector('#darkButton');
     this.darkButtonEl.addEventListener('click', this.onClick);
     document.getElementById('darkButton').setAttribute('pressable', '');
+
+    // Estado inicial del modo oscuro
+    this.isDarkMode = false;
   },
 
   bindMethods: function () {
@@ -62,37 +64,41 @@ AFRAME.registerComponent('controlinicio', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.startButtonEl) {
-      //this.menuInicio.removeAttribute('grabbable');
-      //this.submenu1.setAttribute('grabbable', '');
       setTimeout(() => {
         this.submenu1.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);
+        
+        document.getElementById('startButton').setAttribute('visible', false);
+        document.getElementById('xButton').setAttribute('visible', false);
+        document.getElementById('darkButton').setAttribute('visible', false);
+        document.getElementById('startButton').removeAttribute('pressable');
+        document.getElementById('xButton').removeAttribute('pressable');
+        document.getElementById('darkButton').removeAttribute('pressable');
+        
         document.getElementById('atrasButton').setAttribute('visible', true);
         document.getElementById('atrasButton').setAttribute('pressable', '');
         document.getElementById('barrasButton').setAttribute('visible', true);
         document.getElementById('barrasButton').setAttribute('pressable', '');
         document.getElementById('circularButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('pressable', '');
-        document.getElementById('startButton').removeAttribute('pressable');
-        document.getElementById('xButton').removeAttribute('pressable');
-      }, 500); // 500 milisegundos = 0.5 segundos
+      }, 500);
     }
-    if (targetEl === this.xButtonEl) {
+    else if (targetEl === this.xButtonEl) {
       this.menuInicio.setAttribute('visible', false);
     }
-    if (targetEl === this.darkButtonEl) {
-      if (this.el.sceneEl.is('starry')) {
-        targetEl.setAttribute('button', 'label', 'Dark Mode');
-        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
-        this.el.sceneEl.removeState('starry');
-      } else {
-        targetEl.setAttribute('button', 'label', 'Light Mode');
+    else if (targetEl === this.darkButtonEl) {
+      // Alternar entre modo oscuro y claro
+      this.isDarkMode = !this.isDarkMode;
+      
+      if (this.isDarkMode) {
+        targetEl.setAttribute('button', 'label: Light Mode');
         this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
         this.el.sceneEl.addState('starry');
+      } else {
+        targetEl.setAttribute('button', 'label: Dark Mode');
+        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
+        this.el.sceneEl.removeState('starry');
       }
-    } else {
-      targetEl.addState('pressed');
-    }
     }
   }
 });
