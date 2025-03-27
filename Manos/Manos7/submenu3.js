@@ -22,7 +22,7 @@ AFRAME.registerComponent('submenu3', {
     }else{
       this.submenu3.removeAttribute('grabbable');
     }
-  },*/
+  },*/ 
 });
 
 /* global AFRAME */
@@ -109,7 +109,8 @@ AFRAME.registerComponent('controsubmenu3', {
     var targetEl = evt.target;
     var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
     if (targetEl === this.backButtonEl2) {
-      
+      this.submenu3.removeAttribute('grabbable');
+      this.submenu2.setAttribute('grabbable', '');
       setTimeout(() => {
         // Resetear valores de submenu2
         var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
@@ -154,7 +155,8 @@ AFRAME.registerComponent('controsubmenu3', {
     }
     
     if (targetEl === this.electricoButtonEl) {
-      
+      //this.submenu3.removeAttribute('grabbable');
+      //this.submenu4.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu3', 'Electrico', true);
         
@@ -180,7 +182,8 @@ AFRAME.registerComponent('controsubmenu3', {
     }
     
      if (targetEl === this.dieselButtonEl) {
-      
+      //this.submenu3.removeAttribute('grabbable');
+      //this.submenu4.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu3', 'Diesel', true);
         
@@ -205,7 +208,8 @@ AFRAME.registerComponent('controsubmenu3', {
       }, 500);
     }
      if (targetEl === this.gasolinaButtonEl) {
-     
+      //this.submenu3.removeAttribute('grabbable');
+      //this.submenu4.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu3', 'Gasolina', true);
         
@@ -230,7 +234,8 @@ AFRAME.registerComponent('controsubmenu3', {
       }, 500);
     }
      if (targetEl === this.blancoButtonEl) {
-      
+      //this.submenu3.removeAttribute('grabbable');
+      //this.submenu4.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu3', 'Blanco', true);
         
@@ -257,7 +262,8 @@ AFRAME.registerComponent('controsubmenu3', {
       }, 500);
     }
      if (targetEl === this.negroButtonEl) {
-      
+      //this.submenu3.removeAttribute('grabbable');
+      //this.submenu4.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu3', 'Negro', true);
         
@@ -284,7 +290,8 @@ AFRAME.registerComponent('controsubmenu3', {
       }, 500);
     }
      if (targetEl === this.rojoButtonEl) {
-      
+      //this.submenu3.removeAttribute('grabbable');
+      //this.submenu4.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu3', 'Rojo', true);
         
@@ -311,7 +318,8 @@ AFRAME.registerComponent('controsubmenu3', {
       }, 500);
     }
      if (targetEl === this.amarilloButtonEl) {
-      
+      //this.submenu3.removeAttribute('grabbable');
+      //this.submenu4.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu3', 'Amarillo', true);
         
@@ -338,7 +346,8 @@ AFRAME.registerComponent('controsubmenu3', {
       }, 500);
     }
      if (targetEl === this.dosButtonEl) {
-      
+      //this.submenu3.removeAttribute('grabbable');
+      //this.submenu4.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu3', 'Dos', true);
         
@@ -361,7 +370,8 @@ AFRAME.registerComponent('controsubmenu3', {
       }, 500);
     }
      if (targetEl === this.cincoButtonEl) {
-      
+      //this.submenu3.removeAttribute('grabbable');
+      //this.submenu4.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu3', 'Cinco', true);
         

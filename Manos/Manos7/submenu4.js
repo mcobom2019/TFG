@@ -145,7 +145,8 @@ AFRAME.registerComponent('controsubmenu4', {
         }
     
       if (targetEl === this.backButtonEl3) {
-        
+        //this.submenu4.removeAttribute('grabbable');
+        //this.submenu3.setAttribute('grabbable', '');
         setTimeout(() => {
           var submenu3Component = document.querySelector('#subMenu3').components.controsubmenu3;
           var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
