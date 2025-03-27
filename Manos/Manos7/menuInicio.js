@@ -14,7 +14,20 @@ AFRAME.registerComponent('menuinicio', {
     });
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
     el.appendChild(menuBackGroundEl);
-  }
+  },
+  tick: function (){
+    this.menuInicio = document.querySelector('#menuinicio');
+    if(this.menuInicio.getAttribute('visible') == true){
+      this.menuInicio.setAttribute('grabbable', '');
+      this.menuInicio.removeAttribute('grabbable');
+      this.menuInicio.removeAttribute('grabbable');
+      this.menuInicio.removeAttribute('grabbable');
+      this.menuInicio.removeAttribute('grabbable');
+    
+    }else{
+      this.menuInicio.removeAttribute('grabbable');
+    }
+  }, 
 });
 
 /* global AFRAME */
@@ -37,15 +50,6 @@ AFRAME.registerComponent('controlinicio', {
     this.xButtonEl.addEventListener('click', this.onClick);
     document.getElementById('xButton').setAttribute('pressable', '');
   },
-  
-  tick: function (){
-    this.menuInicio = document.querySelector('#menuinicio');
-    if(this.menuInicio.getAttribute('visible') == true){
-      this.menuInicio.setAttribute('grabbable', '');
-    }else{
-      this.menuInicio.removeAttribute('grabbable');
-    }
-  }, 
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);

@@ -14,7 +14,15 @@ AFRAME.registerComponent('submenu3', {
     });
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
     el.appendChild(menuBackGroundEl);
-  }
+  },
+  tick: function (){
+    this.submenu3 = document.querySelector('#subMenu3');
+    if(this.submenu3.getAttribute('visible') == true){
+      this.submenu3.setAttribute('grabbable', '');
+    }else{
+      this.submenu3.removeAttribute('grabbable');
+    }
+  }, 
 });
 
 /* global AFRAME */
@@ -92,15 +100,6 @@ AFRAME.registerComponent('controsubmenu3', {
     this.cincoButtonEl.addEventListener('click', this.onClick);
     
   },
-  
-  tick: function (){
-    this.submenu3 = document.querySelector('#menuinicio');
-    if(this.submenu3.getAttribute('visible') == true){
-      this.submenu3.setAttribute('grabbable', '');
-    }else{
-      this.submenu3.removeAttribute('grabbable');
-    }
-  }, 
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);
