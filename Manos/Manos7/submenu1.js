@@ -17,10 +17,6 @@ AFRAME.registerComponent('submenu1', {
   },
   tick: function (){
     this.submenu1 = document.querySelector('#subMenu1');
-    this.submenu2 = document.querySelector('#subMenu2');
-    this.submenu3 = document.querySelector('#subMenu3');
-    this.submenu4 = document.querySelector('#subMenu4');
-    this.menuInicio = document.querySelector('#menuInicio');
     if(this.submenu1.getAttribute('visible') == true){
       this.submenu1.setAttribute('grabbable', '');
     }else{
