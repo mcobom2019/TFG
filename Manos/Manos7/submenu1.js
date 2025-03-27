@@ -63,8 +63,7 @@ AFRAME.registerComponent('controsubmenu1', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.barrasButtonEl) {
-      this.submenu1.removeAttribute('grabbable');
-      this.submenu2.setAttribute('grabbable', '');
+      
       setTimeout(() => {
         this.submenu1.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
@@ -89,8 +88,7 @@ AFRAME.registerComponent('controsubmenu1', {
       }, 500);
     }
     if (targetEl === this.circularButtonEl) {
-      this.submenu1.removeAttribute('grabbable');
-      this.submenu2.setAttribute('grabbable', '');
+      
       setTimeout(() => {
         this.submenu1.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
@@ -115,8 +113,7 @@ AFRAME.registerComponent('controsubmenu1', {
     }
     
     if (targetEl === this.atrasButtonEl) {
-      this.submenu1.removeAttribute('grabbable');
-      this.menuInicio.setAttribute('grabbable', '');
+      
       setTimeout(() => {
         this.submenu1 = document.querySelector('#subMenu1');
         this.menuInicio = document.querySelector('#menuinicio');

@@ -60,8 +60,7 @@ AFRAME.registerComponent('controlinicio', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.startButtonEl) {
-      this.submenu1.setAttribute('grabbable', '');
-      this.menuInicio.removeAttribute('grabbable');
+      
       setTimeout(() => {
         this.submenu1.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);

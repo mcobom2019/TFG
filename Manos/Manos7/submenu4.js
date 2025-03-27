@@ -15,7 +15,7 @@ AFRAME.registerComponent('submenu4', {
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
     el.appendChild(menuBackGroundEl);
   },
-  tick: function (){
+  /*tick: function (){
     this.submenu4 = document.querySelector('#subMenu4');
     if(this.submenu4.getAttribute('visible') == true){
       this.submenu4.setAttribute('grabbable', '');
@@ -23,7 +23,7 @@ AFRAME.registerComponent('submenu4', {
     }else{
       this.submenu4.removeAttribute('grabbable');
     }
-  },
+  },*/
 });
 
 /* global AFRAME */
@@ -145,8 +145,7 @@ AFRAME.registerComponent('controsubmenu4', {
         }
     
       if (targetEl === this.backButtonEl3) {
-        this.submenu4.removeAttribute('grabbable');
-        this.submenu3.setAttribute('grabbable', '');
+        
         setTimeout(() => {
           var submenu3Component = document.querySelector('#subMenu3').components.controsubmenu3;
           var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
