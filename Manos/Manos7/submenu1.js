@@ -33,7 +33,6 @@ AFRAME.registerComponent('controsubmenu1', {
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
     this.submenu2 = document.querySelector('#subMenu2');
-    
   
     //boton barras
     this.barrasButtonEl = document.querySelector('#barrasButton');
@@ -104,6 +103,7 @@ AFRAME.registerComponent('controsubmenu1', {
     }
     
     if (targetEl === this.atrasButtonEl) {
+      this.submenu1.removeAttribute('grabbable', '');
       setTimeout(() => {
         this.submenu1 = document.querySelector('#subMenu1');
         this.menuInicio = document.querySelector('#menuinicio');
@@ -123,6 +123,7 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('startButton').setAttribute('pressable', '');
         document.getElementById('xButton').setAttribute('visible', true);
         document.getElementById('xButton').setAttribute('pressable', '');
+        this.menuInicio.setAttribute('grabbable', '');
       }, 500);
     }
 

@@ -25,6 +25,7 @@ AFRAME.registerComponent('controlinicio', {
     // Referencias a los elementos
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
+    this.menuInicio.setAttribute('grabbable', '');
   
     //boton start
     this.startButtonEl = document.querySelector('#startButton');
@@ -44,6 +45,8 @@ AFRAME.registerComponent('controlinicio', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.startButtonEl) {
+      this.menuInicio.removeAttribute('grabbable');
+      this.submenu1.setAttribute('grabbable', '');
       setTimeout(() => {
         this.submenu1.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);
