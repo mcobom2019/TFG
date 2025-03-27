@@ -25,7 +25,7 @@ AFRAME.registerComponent('controlinicio', {
     // Referencias a los elementos
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
-    this.menuInicio.setAttribute('grabbable', '');
+    //this.menuInicio.setAttribute('grabbable', '');
   
     //boton start
     this.startButtonEl = document.querySelector('#startButton');
@@ -37,6 +37,15 @@ AFRAME.registerComponent('controlinicio', {
     this.xButtonEl.addEventListener('click', this.onClick);
     document.getElementById('xButton').setAttribute('pressable', '');
   },
+  
+  tick: function (){
+    this.menuInicio = document.querySelector('#menuinicio');
+    if(this.menuInicio.getAttribute('visible') == true){
+      this.menuInicio.setAttribute('grabbable', '');
+    }else{
+      this.menuInicio.removeAttribute('grabbable');
+    }
+  }, 
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);
@@ -45,8 +54,8 @@ AFRAME.registerComponent('controlinicio', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.startButtonEl) {
-      this.menuInicio.removeAttribute('grabbable');
-      this.submenu1.setAttribute('grabbable', '');
+      //this.menuInicio.removeAttribute('grabbable');
+      //this.submenu1.setAttribute('grabbable', '');
       setTimeout(() => {
         this.submenu1.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);

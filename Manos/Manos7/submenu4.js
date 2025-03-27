@@ -45,6 +45,15 @@ AFRAME.registerComponent('controsubmenu4', {
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);
   },
+  
+  tick: function (){
+    this.submenu4 = document.querySelector('#menuinicio');
+    if(this.submenu4.getAttribute('visible') == true){
+      this.submenu4.setAttribute('grabbable', '');
+    }else{
+      this.submenu4.removeAttribute('grabbable');
+    }
+  }, 
 
   onClick: function (evt) {
     
