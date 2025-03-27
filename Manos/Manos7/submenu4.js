@@ -194,9 +194,9 @@ AFRAME.registerComponent('controsubmenu4', {
             document.getElementById('backButton2').setAttribute('visible', true);
             document.getElementById('dosButton').setAttribute('visible', true);
             document.getElementById('cincoButton').setAttribute('visible', true);
-            document.getElementById('backButton2').setAttribute('pressable');
-            document.getElementById('dosButton').setAttribute('pressable');
-            document.getElementById('cincoButton').setAttribute('pressable');
+            document.getElementById('backButton2').setAttribute('pressable', '');
+            document.getElementById('dosButton').setAttribute('pressable', '');
+            document.getElementById('cincoButton').setAttribute('pressable', '');
           }
           
           document.getElementById('backButton3').setAttribute('visible', false);

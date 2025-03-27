@@ -15,14 +15,14 @@ AFRAME.registerComponent('menuinicio', {
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
     el.appendChild(menuBackGroundEl);
   },
-  tick: function (){
+  /*tick: function (){
     this.menuInicio = document.querySelector('#menuinicio');
     if(this.menuInicio.getAttribute('visible') == true){
       this.menuInicio.setAttribute('grabbable', '');
     }else{
       this.menuInicio.removeAttribute('grabbable');
     }
-  }, 
+  },*/
 });
 
 /* global AFRAME */
