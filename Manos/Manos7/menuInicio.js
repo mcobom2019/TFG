@@ -48,6 +48,11 @@ AFRAME.registerComponent('controlinicio', {
     this.xButtonEl = document.querySelector('#xButton');
     this.xButtonEl.addEventListener('click', this.onClick);
     document.getElementById('xButton').setAttribute('pressable', '');
+    
+    //Boton darkMode 
+    this.darkButtonEl = document.querySelector('#darkButton');
+    this.darkButtonEl.addEventListener('click', this.onClick);
+    document.getElementById('darkButton').setAttribute('pressable', '');
   },
 
   bindMethods: function () {
@@ -74,6 +79,20 @@ AFRAME.registerComponent('controlinicio', {
     }
     if (targetEl === this.xButtonEl) {
       this.menuInicio.setAttribute('visible', false);
+    }
+    if (targetEl === this.darkButtonEl) {
+      if (this.el.sceneEl.is('starry')) {
+        targetEl.setAttribute('button', 'label', 'Dark Mode');
+        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
+        this.el.sceneEl.removeState('starry');
+      } else {
+        targetEl.setAttribute('button', 'label', 'Light Mode');
+        this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+        this.el.sceneEl.addState('starry');
+      }
+    } else {
+      targetEl.addState('pressed');
+    }
     }
   }
 });
