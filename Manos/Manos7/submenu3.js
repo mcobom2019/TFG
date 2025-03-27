@@ -16,6 +16,11 @@ AFRAME.registerComponent('submenu3', {
     el.appendChild(menuBackGroundEl);
   },
   tick: function (){
+    this.submenu1 = document.querySelector('#subMenu1');
+    this.submenu2 = document.querySelector('#subMenu2');
+    this.submenu3 = document.querySelector('#subMenu3');
+    this.submenu4 = document.querySelector('#subMenu4');
+    this.menuInicio = document.querySelector('#menuInicio');
     this.submenu3 = document.querySelector('#subMenu3');
     if(this.submenu3.getAttribute('visible') == true){
       this.submenu3.setAttribute('grabbable', '');

@@ -16,14 +16,13 @@ AFRAME.registerComponent('menuinicio', {
     el.appendChild(menuBackGroundEl);
   },
   tick: function (){
+    this.submenu1 = document.querySelector('#subMenu1');
+    this.submenu2 = document.querySelector('#subMenu2');
+    this.submenu3 = document.querySelector('#subMenu3');
+    this.submenu4 = document.querySelector('#subMenu4');
     this.menuInicio = document.querySelector('#menuinicio');
     if(this.menuInicio.getAttribute('visible') == true){
       this.menuInicio.setAttribute('grabbable', '');
-      this.menuInicio.removeAttribute('grabbable');
-      this.menuInicio.removeAttribute('grabbable');
-      this.menuInicio.removeAttribute('grabbable');
-      this.menuInicio.removeAttribute('grabbable');
-    
     }else{
       this.menuInicio.removeAttribute('grabbable');
     }
