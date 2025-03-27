@@ -101,6 +101,7 @@ AFRAME.registerComponent('controsubmenu4', {
             barChartEntity.setAttribute('position', '0 0.5 -1');
             barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
             scene.appendChild(barChartEntity);
+            barChartEntity.setAttribute('grabbable', '');
           
         }else if(submenu1.data.Circular){
             var pieChartEntity = document.createElement('a-entity');
@@ -110,6 +111,7 @@ AFRAME.registerComponent('controsubmenu4', {
             pieChartEntity.setAttribute('scale', '0.2 0.2 0.2');
             pieChartEntity.setAttribute('rotation', '90 0 0');
             scene.appendChild(pieChartEntity);
+            pieChartEntity.setAttribute('grabbable', '');
         }
       }
     
@@ -134,6 +136,8 @@ AFRAME.registerComponent('controsubmenu4', {
         }
     
       if (targetEl === this.backButtonEl3) {
+        this.submenu4.removeAttribute('grabbable');
+        this.submenu3.setAttribute('grabbable', '');
         setTimeout(() => {
           var submenu3Component = document.querySelector('#subMenu3').components.controsubmenu3;
           var submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
