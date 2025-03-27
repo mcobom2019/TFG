@@ -15,14 +15,14 @@ AFRAME.registerComponent('submenu2', {
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
     el.appendChild(menuBackGroundEl);
   },
-  tick: function (){
+  /*tick: function (){
     this.submenu2 = document.querySelector('#subMenu2');
     if(this.submenu2.getAttribute('visible') == true){
       this.submenu2.setAttribute('grabbable', '');
     }else{
       this.submenu2.removeAttribute('grabbable');
     }
-  }, 
+  },*/ 
 });
 
 /* global AFRAME */
@@ -78,8 +78,8 @@ AFRAME.registerComponent('controsubmenu2', {
     var submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
     if (targetEl === this.backButtonEl) {
       
-      //this.submenu2.removeAttribute('grabbable');
-      //this.submenu1.setAttribute('grabbable', '');
+      this.submenu2.removeAttribute('grabbable');
+      this.submenu1.setAttribute('grabbable', '');
       // Resetear valores de submenu1
       setTimeout(() => {
         var submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
@@ -112,8 +112,8 @@ AFRAME.registerComponent('controsubmenu2', {
     }
     
     if (targetEl === this.motorButtonEl) {
-      //this.submenu2.removeAttribute('grabbable');
-      //this.submenu3.setAttribute('grabbable', '');
+      this.submenu2.removeAttribute('grabbable');
+      this.submenu3.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu2', 'Motor', true);
         this.submenu2.setAttribute('visible', false);
@@ -144,8 +144,8 @@ AFRAME.registerComponent('controsubmenu2', {
     }
     
     if (targetEl === this.colorButtonEl) {
-      //this.submenu2.removeAttribute('grabbable');
-      //this.submenu3.setAttribute('grabbable', '');
+      this.submenu2.removeAttribute('grabbable');
+      this.submenu3.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu2', 'Color', true);
         this.submenu1.setAttribute('visible', false);
@@ -180,8 +180,8 @@ AFRAME.registerComponent('controsubmenu2', {
     }
     
     if (targetEl === this.puertasButtonEl) {
-      //this.submenu2.removeAttribute('grabbable');
-      //this.submenu3.setAttribute('grabbable', '');
+      this.submenu2.removeAttribute('grabbable');
+      this.submenu3.setAttribute('grabbable', '');
       setTimeout(() => {
         this.el.setAttribute('controsubmenu2', 'Puertas', true);
         this.submenu2.setAttribute('visible', false);
