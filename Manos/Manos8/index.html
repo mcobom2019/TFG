@@ -19,7 +19,7 @@
   </head>
   <body>
     <a-scene environment>
-      <a-entity id="menuinicio" menuinicio controlinicio position="0 1.5 -0.5" rotation="0 0 0" visible="true">
+      <a-entity id="menuinicio" menuinicio controlinicio position="0 1.5 -0.5" rotation="0 0 0" visible="true" class="clickable">
         <a-entity id="startButton" button="label: start" position="0 0 0" ></a-entity>
         <a-entity id="darkButton" button="label: Dark Mode; width: 0.20; toggleable: true" position="0 -0.10 0"></a-entity>
         <a-entity id="xButton" button="label: X" position="-0.2 0.15 0"></a-entity>
@@ -56,7 +56,7 @@
       </a-entity>
       <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left"></a-entity>
       <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
-      
+      <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
     </a-scene>
   </body>
 </html>

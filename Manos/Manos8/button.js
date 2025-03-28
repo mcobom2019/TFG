@@ -19,6 +19,11 @@ AFRAME.registerComponent('button', {
 
     el.setAttribute('material', {color: this.color});
     //el.setAttribute('pressable', '');
+    if(el.getAttribute('visible')){
+      el.setAttribute('clickable', '');
+    }else{
+      el.removeAttribute('clickable');
+    }
 
     labelEl.setAttribute('position', '0 0 0.02');
     labelEl.setAttribute('text', {

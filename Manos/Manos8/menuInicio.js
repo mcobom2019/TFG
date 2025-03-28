@@ -3,6 +3,7 @@ AFRAME.registerComponent('menuinicio', {
   init: function () {
     var el = this.el;
     var menuBackGroundEl = document.createElement('a-entity');
+    
     menuBackGroundEl.setAttribute('geometry', {
       primitive: 'box',
       width: 0.6,
@@ -33,6 +34,8 @@ AFRAME.registerComponent('controlinicio', {
     // Referencias a los elementos
     this.menuInicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
+    
+    //this.menuInicio.addEventListener('click', this.onClick);
   
     //boton start
     this.startButtonEl = document.querySelector('#startButton');
