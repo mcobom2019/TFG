@@ -77,7 +77,7 @@ AFRAME.registerComponent('controsubmenu2', {
     var targetEl = evt.target;
     var submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
     if (targetEl === this.backButtonEl) {
-      
+      console.log("click en <-- del submenu2");
       //this.submenu2.removeAttribute('grabbable');
       //this.submenu1.setAttribute('grabbable', '');
       // Resetear valores de submenu1
