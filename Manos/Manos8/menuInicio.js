@@ -48,6 +48,8 @@ AFRAME.registerComponent('controlinicio', {
     this.darkButtonEl = document.querySelector('#darkButton');
     this.darkButtonEl.addEventListener('click', this.onClick);
     document.getElementById('darkButton').setAttribute('pressable', '');
+    
+    document.getElementById('darkButton').components.button.enable();
 
     // Estado inicial del modo oscuro
     this.isDarkMode = false;
@@ -81,9 +83,13 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('circularButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('pressable', '');
         
-        document.getElementById('startButton').removeAttribute('clickable');
-        document.getElementById('xButton').removeAttribute('clickable');
-        document.getElementById('darkButton').removeAttribute('clickable');
+        // Para deshabilitar
+        document.getElementById('darkButton').components.button.disable();
+        document.getElementById('xButton').components.button.disable();
+        document.getElementById('startButton').components.button.disable();
+
+// Para habilitar nuevamente
+        //document.getElementById('darkButton').components.button.enable();
       }, 500);
     }
     else if (targetEl === this.xButtonEl) {

@@ -35,9 +35,9 @@ AFRAME.registerComponent('button', {
     this.el.addEventListener('stateremoved', this.stateChanged);
     this.el.addEventListener('pressedstarted', this.onPressedStarted);
     this.el.addEventListener('pressedended', this.onPressedEnded);
-    this.el.addEventListener('mouseenter', this.onMouseEnter.bind(this));
-    this.el.addEventListener('mouseleave', this.onMouseLeave.bind(this));
-    this.el.addEventListener('click', this.onClick.bind(this));
+    //this.el.addEventListener('mouseenter', this.onMouseEnter.bind(this));
+    //this.el.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+    //this.el.addEventListener('click', this.onClick.bind(this));
   },
 
   bindMethods: function () {
@@ -94,5 +94,32 @@ AFRAME.registerComponent('button', {
         this.onPressedEnded();
       }
     }, 150);
+  },
+  disable: function() {
+    // Eliminar todos los event listeners
+    this.el.removeEventListener('stateadded', this.stateChanged);
+    this.el.removeEventListener('stateremoved', this.stateChanged);
+    this.el.removeEventListener('pressedstarted', this.onPressedStarted);
+    this.el.removeEventListener('pressedended', this.onPressedEnded);
+    this.el.removeEventListener('mouseenter', this.onMouseEnter);
+    this.el.removeEventListener('mouseleave', this.onMouseLeave);
+    this.el.removeEventListener('click', this.onClick);
+    
+    // Cambiar visualmente para indicar que está deshabilitado
+    this.el.setAttribute('material', {color: '#888888'});  // Gris para indicar deshabilitado
+  },
+  
+  enable: function() {
+    // Volver a añadir los event listeners
+    this.el.addEventListener('stateadded', this.stateChanged);
+    this.el.addEventListener('stateremoved', this.stateChanged);
+    this.el.addEventListener('pressedstarted', this.onPressedStarted);
+    this.el.addEventListener('pressedended', this.onPressedEnded);
+    this.el.addEventListener('mouseenter', this.onMouseEnter.bind(this));
+    this.el.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+    this.el.addEventListener('click', this.onClick.bind(this));
+    
+    // Restaurar el color original
+    this.el.setAttribute('material', {color: this.color});
   }
 });
