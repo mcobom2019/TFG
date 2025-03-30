@@ -35,6 +35,9 @@ AFRAME.registerComponent('button', {
     this.el.addEventListener('stateremoved', this.stateChanged);
     this.el.addEventListener('pressedstarted', this.onPressedStarted);
     this.el.addEventListener('pressedended', this.onPressedEnded);
+    this.el.addEventListener('mouseenter', this.onMouseEnter.bind(this));
+    this.el.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+    this.el.addEventListener('click', this.onClick.bind(this));
   },
 
   bindMethods: function () {
@@ -70,5 +73,26 @@ AFRAME.registerComponent('button', {
   onPressedEnded: function () {
     if (this.el.is('pressed')) { return; }
     this.el.setAttribute('material', {color: this.color});
+  },
+  
+  onMouseEnter: function () {
+    if (!this.el.is('pressed')) {
+      this.el.setAttribute('material', {color: '#4a60d5'});  // Color más claro al pasar el ratón
+    }
+  },
+  
+  onMouseLeave: function () {
+    if (!this.el.is('pressed')) {
+      this.el.setAttribute('material', {color: this.color});
+    }
+  },
+  
+  onClick: function () {
+    this.onPressedStarted();
+    setTimeout(() => {
+      if (!this.data.toggleable) {
+        this.onPressedEnded();
+      }
+    }, 150);
   }
 });
