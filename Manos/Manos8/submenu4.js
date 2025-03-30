@@ -195,7 +195,7 @@ AFRAME.registerComponent('controsubmenu4', {
           } else if(submenu2Component.data.Puertas){
             document.getElementById('backButton2').setAttribute('visible', true);
             document.getElementById('dosButton').setAttribute('visible', true);
-            document.getElementById('cincoButton').setAttribute('visible', true);
+            document.getElezmentById('cincoButton').setAttribute('visible', true);
             document.getElementById('backButton2').setAttribute('pressable', '');
             document.getElementById('dosButton').setAttribute('pressable', '');
             document.getElementById('cincoButton').setAttribute('pressable', '');
