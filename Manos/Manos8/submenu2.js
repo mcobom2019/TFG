@@ -49,23 +49,23 @@ AFRAME.registerComponent('controsubmenu2', {
   
     //boton atras
     this.backButtonEl = document.querySelector('#backButton');
-    this.backButtonEl.addEventListener('click', this.onClick);
+    //this.backButtonEl.addEventListener('click', this.onClick);
     
     //boton Motor
     this.motorButtonEl = document.querySelector('#motorButton');
-    this.motorButtonEl.addEventListener('click', this.onClick);
+    //this.motorButtonEl.addEventListener('click', this.onClick);
     
     //boton Color
     this.colorButtonEl = document.querySelector('#colorButton');
-    this.colorButtonEl.addEventListener('click', this.onClick);
+    //this.colorButtonEl.addEventListener('click', this.onClick);
     
     //boton Puertas
     this.puertasButtonEl = document.querySelector('#puertasButton');
-    this.puertasButtonEl.addEventListener('click', this.onClick);
+    //this.puertasButtonEl.addEventListener('click', this.onClick);
     
     //boton Completo
     this.completoButtonEl = document.querySelector('#completoButton');
-    this.completoButtonEl.addEventListener('click', this.onClick);
+    //this.completoButtonEl.addEventListener('click', this.onClick);
     
   },
 
@@ -107,7 +107,19 @@ AFRAME.registerComponent('controsubmenu2', {
         document.getElementById('barrasButton').setAttribute('pressable', '');
         document.getElementById('circularButton').setAttribute('pressable', '');
         document.getElementById('atrasButton').setAttribute('pressable', '');
-
+        
+        this.backButtonEl.removeEventListener('click', this.onClick);
+        this.motorButtonEl.removeEventListener('click', this.onClick);
+        this.colorButtonEl.removeEventListener('click', this.onClick);
+        this.puertasButtonEl.removeEventListener('click', this.onClick);
+        this.completoButtonEl.removeEventListener('click', this.onClick);
+        
+        this.barrasButtonEl = document.querySelector('#barrasButton');
+        this.barrasButtonEl.addEventListener('click', this.onClick);
+        this.circularButtonEl = document.querySelector('#circularButton');
+        this.circularButtonEl.addEventListener('click', this.onClick);
+        this.atrasButtonEl = document.querySelector('#atrasButton');
+        this.atrasButtonEl.addEventListener('click', this.onClick);
       }, 500);
     }
     
@@ -140,6 +152,28 @@ AFRAME.registerComponent('controsubmenu2', {
         document.getElementById('colorButton').removeAttribute('pressable');
         document.getElementById('puertasButton').removeAttribute('pressable');
         document.getElementById('completoButton').removeAttribute('pressable');
+        
+        this.backButtonEl.removeEventListener('click', this.onClick);
+        this.motorButtonEl.removeEventListener('click', this.onClick);
+        this.colorButtonEl.removeEventListener('click', this.onClick);
+        this.puertasButtonEl.removeEventListener('click', this.onClick);
+        this.completoButtonEl.removeEventListener('click', this.onClick);
+        
+        //boton atras
+        this.backButtonEl2 = document.querySelector('#backButton2');
+        this.backButtonEl2.addEventListener('click', this.onClick);
+
+        //boton electrico
+        this.electricoButtonEl = document.querySelector('#electricoButton');
+        this.electricoButtonEl.addEventListener('click', this.onClick);
+
+        //boton diesel
+        this.dieselButtonEl = document.querySelector('#DieselButton');
+        this.dieselButtonEl.addEventListener('click', this.onClick);
+
+        //boton gasolina
+        this.gasolinaButtonEl = document.querySelector('#GasolinaButton');
+        this.gasolinaButtonEl.addEventListener('click', this.onClick);
       }, 500);
     }
     
@@ -175,6 +209,32 @@ AFRAME.registerComponent('controsubmenu2', {
         document.getElementById('colorButton').removeAttribute('pressable');
         document.getElementById('puertasButton').removeAttribute('pressable');
         document.getElementById('completoButton').removeAttribute('pressable');
+        
+        this.backButtonEl.removeEventListener('click', this.onClick);
+        this.motorButtonEl.removeEventListener('click', this.onClick);
+        this.colorButtonEl.removeEventListener('click', this.onClick);
+        this.puertasButtonEl.removeEventListener('click', this.onClick);
+        this.completoButtonEl.removeEventListener('click', this.onClick);
+        
+        //boton atras
+        this.backButtonEl2 = document.querySelector('#backButton2');
+        this.backButtonEl2.addEventListener('click', this.onClick);
+
+        //boton blanco
+        this.blancoButtonEl = document.querySelector('#BlancoButton');
+        this.blancoButtonEl.addEventListener('click', this.onClick);
+
+        //boton negro
+        this.negroButtonEl = document.querySelector('#NegroButton');
+        this.negroButtonEl.addEventListener('click', this.onClick);
+
+        //boton rojo
+        this.rojoButtonEl = document.querySelector('#RojoButton');
+        this.rojoButtonEl.addEventListener('click', this.onClick);
+
+        //boton amarillo
+        this.amarilloButtonEl = document.querySelector('#AmarilloButton');
+        this.amarilloButtonEl.addEventListener('click', this.onClick);
       }, 500);
       
     }
@@ -205,6 +265,24 @@ AFRAME.registerComponent('controsubmenu2', {
         document.getElementById('colorButton').removeAttribute('pressable');
         document.getElementById('puertasButton').removeAttribute('pressable');
         document.getElementById('completoButton').removeAttribute('pressable');
+        
+        this.backButtonEl.removeEventListener('click', this.onClick);
+        this.motorButtonEl.removeEventListener('click', this.onClick);
+        this.colorButtonEl.removeEventListener('click', this.onClick);
+        this.puertasButtonEl.removeEventListener('click', this.onClick);
+        this.completoButtonEl.removeEventListener('click', this.onClick);
+        
+        //boton atras
+        this.backButtonEl2 = document.querySelector('#backButton2');
+        this.backButtonEl2.addEventListener('click', this.onClick);
+
+        //boton dos puertas
+        this.dosButtonEl = document.querySelector('#dosButton');
+        this.dosButtonEl.addEventListener('click', this.onClick);
+
+        //boton cinco puertas
+        this.cincoButtonEl = document.querySelector('#cincoButton');
+        this.cincoButtonEl.addEventListener('click', this.onClick);
       }, 500);
     }
   }
