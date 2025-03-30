@@ -44,15 +44,15 @@ AFRAME.registerComponent('controsubmenu1', {
   
     //boton barras
     this.barrasButtonEl = document.querySelector('#barrasButton');
-    //this.barrasButtonEl.addEventListener('click', this.onClick);
+    this.barrasButtonEl.addEventListener('click', this.onClick);
     
     //boton circular
     this.circularButtonEl = document.querySelector('#circularButton');
-    //this.circularButtonEl.addEventListener('click', this.onClick);
+    this.circularButtonEl.addEventListener('click', this.onClick);
     
     //boton atras
     this.atrasButtonEl = document.querySelector('#atrasButton');
-    //this.atrasButtonEl.addEventListener('click', this.onClick);
+    this.atrasButtonEl.addEventListener('click', this.onClick);
     
   },
 
@@ -86,21 +86,6 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('circularButton').removeAttribute('pressable');
         document.getElementById('atrasButton').removeAttribute('pressable');
         
-        this.barrasButtonEl.removeEventListener('click', this.onClick);
-        this.circularButtonEl.removeEventListener('click', this.onClick);
-        this.atrasButtonEl.removeEventListener('click', this.onClick);
-        
-        this.backButtonEl = document.querySelector('#backButton');
-        this.backButtonEl.addEventListener('click', this.onClick);
-        this.motorButtonEl = document.querySelector('#motorButton');
-        this.motorButtonEl.addEventListener('click', this.onClick);
-        this.colorButtonEl = document.querySelector('#colorButton');
-        this.colorButtonEl.addEventListener('click', this.onClick);
-        this.puertasButtonEl = document.querySelector('#puertasButton');
-        this.puertasButtonEl.addEventListener('click', this.onClick);
-        this.completoButtonEl = document.querySelector('#completoButton');
-        this.completoButtonEl.addEventListener('click', this.onClick);
-        
       }, 500);
     }
     if (targetEl === this.circularButtonEl) {
@@ -126,21 +111,6 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('barrasButton').removeAttribute('pressable');
         document.getElementById('circularButton').removeAttribute('pressable');
         document.getElementById('atrasButton').removeAttribute('pressable');
-        
-        this.barrasButtonEl.removeEventListener('click', this.onClick);
-        this.circularButtonEl.removeEventListener('click', this.onClick);
-        this.atrasButtonEl.removeEventListener('click', this.onClick);
-        
-        this.backButtonEl = document.querySelector('#backButton');
-        this.backButtonEl.addEventListener('click', this.onClick);
-        this.motorButtonEl = document.querySelector('#motorButton');
-        this.motorButtonEl.addEventListener('click', this.onClick);
-        this.colorButtonEl = document.querySelector('#colorButton');
-        this.colorButtonEl.addEventListener('click', this.onClick);
-        this.puertasButtonEl = document.querySelector('#puertasButton');
-        this.puertasButtonEl.addEventListener('click', this.onClick);
-        this.completoButtonEl = document.querySelector('#completoButton');
-        this.completoButtonEl.addEventListener('click', this.onClick);
       }, 500);
     }
     
@@ -168,17 +138,6 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('xButton').setAttribute('pressable', '');
         document.getElementById('darkButton').setAttribute('visible', true);
         document.getElementById('darkButton').setAttribute('pressable', '');
-        
-        this.barrasButtonEl.removeEventListener('click', this.onClick);
-        this.circularButtonEl.removeEventListener('click', this.onClick);
-        this.atrasButtonEl.removeEventListener('click', this.onClick);
-        
-        this.startButtonEl = document.querySelector('#startButton');
-        this.startButtonEl.addEventListener('click', this.onClick);
-        this.xButtonEl = document.querySelector('#xButton');
-        this.xButtonEl.addEventListener('click', this.onClick);
-        this.darkButtonEl = document.querySelector('#darkButton');
-        this.darkButtonEl.addEventListener('click', this.onClick);
       }, 500);
     }
 

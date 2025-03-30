@@ -51,7 +51,6 @@ AFRAME.registerComponent('controlinicio', {
 
     // Estado inicial del modo oscuro
     this.isDarkMode = false;
-    
   },
 
   bindMethods: function () {
@@ -80,17 +79,6 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('barrasButton').setAttribute('pressable', '');
         document.getElementById('circularButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('pressable', '');
-        
-        this.startButtonEl.removeEventListener('click', this.onClick);
-        this.xButtonEl.removeEventListener('click', this.onClick);
-        this.darkButtonEl.removeEventListener('click', this.onClick);
-        
-        this.barrasButtonEl = document.querySelector('#barrasButton');
-        this.barrasButtonEl.addEventListener('click', this.onClick);
-        this.circularButtonEl = document.querySelector('#circularButton');
-        this.circularButtonEl.addEventListener('click', this.onClick);
-        this.atrasButtonEl = document.querySelector('#atrasButton');
-        this.atrasButtonEl.addEventListener('click', this.onClick);
       }, 500);
     }
     else if (targetEl === this.xButtonEl) {
