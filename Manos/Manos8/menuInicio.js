@@ -80,6 +80,10 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('barrasButton').setAttribute('pressable', '');
         document.getElementById('circularButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('pressable', '');
+        
+        document.getElementById('startButton').removeAttribute('clickable');
+        document.getElementById('xButton').removeAttribute('clickable');
+        document.getElementById('darkButton').removeAttribute('clickable');
       }, 500);
     }
     else if (targetEl === this.xButtonEl) {
