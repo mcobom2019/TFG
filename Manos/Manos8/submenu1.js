@@ -85,10 +85,6 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('barrasButton').removeAttribute('pressable');
         document.getElementById('circularButton').removeAttribute('pressable');
         document.getElementById('atrasButton').removeAttribute('pressable');
-    
-        document.getElementById('barrasButton').removeAttribute('cursor-listener');
-        document.getElementById('circularButton').removeAttribute('cursor-listener');
-        document.getElementById('atrasButton').removeAttribute('cursor-listener');
         
       }, 500);
     }

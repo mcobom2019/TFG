@@ -48,8 +48,6 @@ AFRAME.registerComponent('controlinicio', {
     this.darkButtonEl = document.querySelector('#darkButton');
     this.darkButtonEl.addEventListener('click', this.onClick);
     document.getElementById('darkButton').setAttribute('pressable', '');
-    
-    document.getElementById('darkButton').components.button.enable();
 
     // Estado inicial del modo oscuro
     this.isDarkMode = false;
@@ -62,7 +60,6 @@ AFRAME.registerComponent('controlinicio', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.startButtonEl) {
-      console.log("Boton start tocado");
       //this.submenu1.setAttribute('grabbable', '');
       //this.menuInicio.removeAttribute('grabbable');
       setTimeout(() => {
@@ -82,14 +79,6 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('barrasButton').setAttribute('pressable', '');
         document.getElementById('circularButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('pressable', '');
-        
-        // Para deshabilitar
-        document.getElementById('darkButton').components.button.disable();
-        document.getElementById('xButton').components.button.disable();
-        document.getElementById('startButton').components.button.disable();
-
-// Para habilitar nuevamente
-        //document.getElementById('darkButton').components.button.enable();
       }, 500);
     }
     else if (targetEl === this.xButtonEl) {
