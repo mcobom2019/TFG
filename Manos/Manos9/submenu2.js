@@ -68,6 +68,17 @@ AFRAME.registerComponent('controsubmenu2', {
     this.completoButtonEl.addEventListener('click', this.onClick);
     
   },
+  
+  tick: function (){
+    //var es = this.subemnu2.getAttribute('visible');
+    //console.log("subemenu2:", es);
+    this.submenu2 = document.querySelector('#subMenu2');
+    if(this.submenu2.getAttribute('visible') == true){
+      this.submenu2.setAttribute('grabbable', '');
+    }else{
+      this.submenu2.removeAttribute('grabbable');
+    }
+  },
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);

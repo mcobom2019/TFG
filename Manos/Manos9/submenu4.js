@@ -50,6 +50,17 @@ AFRAME.registerComponent('controsubmenu4', {
     this.borrarButtonEl.addEventListener('click', this.onClick);
     
   },
+  
+  tick: function (){
+    //var es = this.subemnu4.getAttribute('visible');
+    //console.log("subemenu4:", es);
+    this.submenu4 = document.querySelector('#subMenu4');
+    if(this.submenu4.getAttribute('visible') == true){
+      this.submenu4.setAttribute('grabbable', '');
+    }else{
+      this.submenu4.removeAttribute('grabbable');
+    }
+  },
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);

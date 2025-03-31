@@ -51,6 +51,8 @@ AFRAME.registerComponent('controlinicio', {
   },
   
   tick: function (){
+    var es = this.menuInicio.getAttribute('visible');
+    console.log("MenuInicio:", es);
     this.menuInicio = document.querySelector('#menuinicio');
     if(this.menuInicio.getAttribute('visible') == true){
       this.menuInicio.setAttribute('grabbable', '');
