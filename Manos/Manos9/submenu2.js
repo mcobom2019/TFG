@@ -1,6 +1,7 @@
 /* global AFRAME */
 AFRAME.registerComponent('submenu2', {
   init: function () {
+    this.lastTime=0;
     var el = this.el;
     var menuBackGroundEl = document.createElement('a-entity');
     menuBackGroundEl.setAttribute('geometry', {
@@ -69,15 +70,18 @@ AFRAME.registerComponent('controsubmenu2', {
     
   },
   
-  tick: function (){
-    //var es = this.subemnu2.getAttribute('visible');
-    //console.log("subemenu2:", es);
-    this.submenu2 = document.querySelector('#subMenu2');
-    if(this.submenu2.getAttribute('visible') == true){
-      this.submenu2.setAttribute('grabbable', '');
-    }else{
-      this.submenu2.removeAttribute('grabbable');
+  tick: function (time){
+    if (time - this.lastTime < 1000){
+      return;
     }
+      this.lastTime = time;
+      //this.submenu1 = document.querySelector('#subMenu1');
+      console.log("submenu2:", this.submenu2.getAttribute('visible'));
+      if(this.submenu2.getAttribute('visible') == true){
+        this.submenu2.setAttribute('grabbable', '');
+      }else{
+        this.submenu2.removeAttribute('grabbable');
+      }
   },
 
   bindMethods: function () {

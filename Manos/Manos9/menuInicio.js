@@ -1,6 +1,7 @@
 /* global AFRAME */
 AFRAME.registerComponent('menuinicio', {
   init: function () {
+    this.lastTime=0;
     var el = this.el;
     var menuBackGroundEl = document.createElement('a-entity');
     menuBackGroundEl.setAttribute('geometry', {
@@ -50,15 +51,18 @@ AFRAME.registerComponent('controlinicio', {
     this.isDarkMode = false;
   },
   
-  tick: function (){
-    var es = this.menuInicio.getAttribute('visible');
-    console.log("MenuInicio:", es);
-    this.menuInicio = document.querySelector('#menuinicio');
-    if(this.menuInicio.getAttribute('visible') == true){
-      this.menuInicio.setAttribute('grabbable', '');
-    }else{
-      this.menuInicio.removeAttribute('grabbable');
+  tick: function (time){
+    if (time - this.lastTime < 1000){
+      return;
     }
+      this.lastTime = time;
+      //this.submenu1 = document.querySelector('#subMenu1');
+      console.log("menuInicio:", this.menuInicio.getAttribute('visible'));
+      if(this.menuInicio.getAttribute('visible') == true){
+        this.menuInicio.setAttribute('grabbable', '');
+      }else{
+        this.menuInicio.removeAttribute('grabbable');
+      }
   },
 
   bindMethods: function () {
