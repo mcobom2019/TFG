@@ -74,8 +74,6 @@ AFRAME.registerComponent('controlinicio', {
       this.menuInicio.setAttribute('visible', false);
     }
     else if (targetEl === this.darkButtonEl) {
-      // El botón ya maneja su propio estado toggleable, solo necesitamos 
-      // verificar si está presionado para cambiar el entorno
       this.isDarkMode = targetEl.is('pressed');
       
       if (this.isDarkMode) {
