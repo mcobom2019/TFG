@@ -37,17 +37,14 @@ AFRAME.registerComponent('controlinicio', {
     //boton start
     this.startButtonEl = document.querySelector('#startButton');
     this.startButtonEl.addEventListener('click', this.onClick);
-    //document.getElementById('startButton').setAttribute('pressable', '');
     
     //boton X
     this.xButtonEl = document.querySelector('#xButton');
     this.xButtonEl.addEventListener('click', this.onClick);
-    //document.getElementById('xButton').setAttribute('pressable', '');
     
     //Boton darkMode 
     this.darkButtonEl = document.querySelector('#darkButton');
     this.darkButtonEl.addEventListener('click', this.onClick);
-    //document.getElementById('darkButton').setAttribute('pressable', '');
 
     // Estado inicial del modo oscuro
     this.isDarkMode = false;
@@ -60,8 +57,6 @@ AFRAME.registerComponent('controlinicio', {
   onClick: function (evt) {
     var targetEl = evt.target;
     if (targetEl === this.startButtonEl) {
-      //this.submenu1.setAttribute('grabbable', '');
-      //this.menuInicio.removeAttribute('grabbable');
       setTimeout(() => {
         this.submenu1.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);
@@ -69,24 +64,19 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('startButton').setAttribute('visible', false);
         document.getElementById('xButton').setAttribute('visible', false);
         document.getElementById('darkButton').setAttribute('visible', false);
-        //document.getElementById('startButton').removeAttribute('pressable');
-        //document.getElementById('xButton').removeAttribute('pressable');
-        //document.getElementById('darkButton').removeAttribute('pressable');
         
         document.getElementById('atrasButton').setAttribute('visible', true);
-        //document.getElementById('atrasButton').setAttribute('pressable', '');
         document.getElementById('barrasButton').setAttribute('visible', true);
-        //document.getElementById('barrasButton').setAttribute('pressable', '');
         document.getElementById('circularButton').setAttribute('visible', true);
-        //document.getElementById('circularButton').setAttribute('pressable', '');
       }, 500);
     }
     else if (targetEl === this.xButtonEl) {
       this.menuInicio.setAttribute('visible', false);
     }
     else if (targetEl === this.darkButtonEl) {
-      // Alternar entre modo oscuro y claro
-      this.isDarkMode = !this.isDarkMode;
+      // El botón ya maneja su propio estado toggleable, solo necesitamos 
+      // verificar si está presionado para cambiar el entorno
+      this.isDarkMode = targetEl.is('pressed');
       
       if (this.isDarkMode) {
         targetEl.setAttribute('button', 'label: Light Mode');
