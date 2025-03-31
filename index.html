@@ -1,54 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Proyecto Fin de Grado</title>
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<style>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #cbe7fb !important;
+        }
+
+        .titulo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #cbe7fb;
+        }
+
         h1 {
             font-family: 'Poppins', sans-serif;
             font-size: 48px;
             color: #2c3e50;
-            text-align: left;
+            margin: 0;
         }
+
         .logo {
             width: 100px;
             height: 150px;
         }
+
+        .accordion {
+            max-width: 800px;
+            margin: 20px auto;
+        }
     </style>
-<body style="background-color: #cbe7fb;">
-    <div>
-      <h1>¡Bienvenido a mi TFG! <img class="logo" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/images%2F17MAR-00641.jpg?v=1743411426432" align="right"></h1>
+</head>
+<body>
+
+    <!-- Contenedor del título y la imagen -->
+    <div class="titulo-container">
+        <h1>¡Bienvenido a mi TFG!</h1>
+        <img class="logo" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/images%2F17MAR-00641.jpg?v=1743411426432" alt="Logo">
     </div>
-    
-  <div>
+
+    <!-- Acordeón Bootstrap -->
     <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        ¿Quién Soy?
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>Soy Mario Cobo Martínez</strong> Alumno en último año de Ingeniería Telemática en la Universidas Rey Juan Carlos. <code>.accordion-body</code> 
-      </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    ¿Quién Soy?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>Soy Mario Cobo Martínez</strong>, alumno en último año de Ingeniería Telemática en la Universidad Rey Juan Carlos.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                    ¿En qué consiste este TFG?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>Extender BabiaXR con menú para añadir visualizaciones</strong> es el tema de mi TFG. Se resume en crear escenas en A-Frame en las que tenga menús interactuables con los que poder filtrar información y crear diagramas gracias a BabiaXR.  
+                    Si quieres ver el código que voy haciendo, puedes entrar en mi GitHub:  
+                    <a href="https://github.com/mcobom2019/TFG" target="_blank">Mi GitHub</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        ¿En qué consiste este TFG?
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>Extender BabiaXR con menú para añadir visualizaciones</strong> es el tema de mi TFG. Se resume en crear escenas en A-Frame en las que tenga menús interactuables con los que poder filtrar información y crear diagramas gracias a BabiaXR. Si quieres ver el código que voy haciendo puesdes entrar en mi github:<code>.accordion-body</code>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
