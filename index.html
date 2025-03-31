@@ -41,6 +41,30 @@
             max-width: 800px;
             margin: 20px auto;
         }
+        
+        .ejercicios-container {
+            display: grid;
+            grid-template-columns: 1fr; /* Una sola columna para la mayoría */
+            gap: 10px;
+            justify-items: center; /* Centra los enlaces en la columna */
+        }
+
+        /* Para los subejercicios (Ejercicio 4.1 y 4.2) */
+        .subejercicios {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dos columnas */
+            gap: 30px; /* Espacio entre los subejercicios */
+            justify-content: center; /* Centra el bloque */
+            width: 50%;
+        }
+
+        .subejercicios a:first-child {
+            justify-self: center; /* Centra el primer subejercicio */
+        }
+
+        .subejercicios a:last-child {
+            justify-self: start; /* Mueve el segundo subejercicio un poco a la izquierda */
+        }
     </style>
 </head>
 <body>
@@ -88,34 +112,38 @@
         </div>
     </div>
   
-    <h2>
-      Escenas
-    </h2>
-    
+    <h2>Escenas</h2>
+
     <div class="accordion" id="accordionExample2">
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                    ¿Quién Soy?
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2">
+                    Ejercicios de Prueba
                 </button>
-
             </h2>
-           <div id="collapseOne2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body text-center">
-                  <strong>Soy Mario Cobo Martínez</strong>, alumno en último año de Ingeniería Telemática en la Universidad Rey Juan Carlos.  
-                  <br><br>
-                  <img class="logo mt-3" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/images%2F17MAR-00641.jpg?v=1743411426432" alt="Foto de Mario">
-              </div>
-          </div>
+            <div class="ejercicios-container">
+                <a href="Ejercicios/Ejercicio1/index.html">Ejercicio 1</a>
+                <a href="Ejercicios/Ejercicio2/index.html">Ejercicio 2</a>
+                <a href="Ejercicios/Ejercicio3/index.html">Ejercicio 3</a>
+
+                <div class="subejercicios">
+                    <a href="Ejercicios/Ejercicio4/chivato.html">Ejercicio 4.1</a>
+                    <a href="Ejercicios/Ejercicio4/chivato2.html">Ejercicio 4.2</a>
+                </div>
+
+                <a href="Ejercicios/Ejercicio5/chivato_din.html">Ejercicio 5.1</a>
+                <a href="Ejercicios/Ejercicio5/chivato_din2.html">Ejercicio 5.2</a>
+                <a href="Ejercicios/Ejercicio5/chivato2_din2.html">Ejercicio 5.3</a>
+            </div>
         </div>
 
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo2">
                     ¿En qué consiste este TFG?
                 </button>
             </h2>
-            <div id="collapseTwo2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div id="collapseTwo2" class="accordion-collapse collapse">
                 <div class="accordion-body">
                     <strong>Extender BabiaXR con menú para añadir visualizaciones</strong> es el tema de mi TFG. Se resume en crear escenas en A-Frame en las que tenga menús interactuables con los que poder filtrar información y crear diagramas gracias a BabiaXR.  
                     Si quieres ver el código que voy haciendo, puedes entrar en mi GitHub:  
@@ -124,6 +152,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
