@@ -70,7 +70,7 @@ AFRAME.registerComponent('controsubmenu2', {
     
   },
   
-  tick: function (time){
+  /*tick: function (time){
     if (time - this.lastTime < 1000){
       return;
     }
@@ -82,7 +82,7 @@ AFRAME.registerComponent('controsubmenu2', {
       }else{
         this.submenu2.removeAttribute('grabbable');
       }
-  },
+  },*/
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);
@@ -122,6 +122,8 @@ AFRAME.registerComponent('controsubmenu2', {
         //document.getElementById('barrasButton').setAttribute('pressable', '');
         //document.getElementById('circularButton').setAttribute('pressable', '');
         //document.getElementById('atrasButton').setAttribute('pressable', '');
+        this.submenu1.setAttribute('grabbable', '');
+        this.submenu2.removeAttribute('grabbable');
 
       }, 500);
     }
@@ -155,6 +157,8 @@ AFRAME.registerComponent('controsubmenu2', {
         //document.getElementById('colorButton').removeAttribute('pressable');
         //document.getElementById('puertasButton').removeAttribute('pressable');
         //document.getElementById('completoButton').removeAttribute('pressable');
+        this.submenu1.setAttribute('grabbable', '');
+        this.submenu2.removeAttribute('grabbable');
       }, 500);
     }
     

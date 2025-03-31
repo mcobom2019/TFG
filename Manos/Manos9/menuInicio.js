@@ -51,7 +51,7 @@ AFRAME.registerComponent('controlinicio', {
     this.isDarkMode = false;
   },
   
-  tick: function (time){
+  /*tick: function (time){
     if (time - this.lastTime < 1000){
       return;
     }
@@ -63,7 +63,7 @@ AFRAME.registerComponent('controlinicio', {
       }else{
         this.menuInicio.removeAttribute('grabbable');
       }
-  },
+  },*/
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);
@@ -83,6 +83,8 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('atrasButton').setAttribute('visible', true);
         document.getElementById('barrasButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('visible', true);
+        this.submenu1.setAttribute('grabbable', '');
+        this.menuInicio.removeAttribute('grabbable');
       }, 500);
     }
     else if (targetEl === this.xButtonEl) {

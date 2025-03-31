@@ -102,7 +102,7 @@ AFRAME.registerComponent('controsubmenu3', {
     
   },
   
-  tick: function (time){
+  /*tick: function (time){
     if (time - this.lastTime < 1000){
       return;
     }
@@ -114,7 +114,7 @@ AFRAME.registerComponent('controsubmenu3', {
       }else{
         this.submenu3.removeAttribute('grabbable');
       }
-  },
+  },*/
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);

@@ -52,7 +52,7 @@ AFRAME.registerComponent('controsubmenu4', {
     
   },
   
-  tick: function (time){
+  /*tick: function (time){
     if (time - this.lastTime < 1000){
       return;
     }
@@ -62,9 +62,9 @@ AFRAME.registerComponent('controsubmenu4', {
       if(this.submenu4.getAttribute('visible') == true){
         this.submenu4.setAttribute('grabbable', '');
       }else{
-        this.submenu3.removeAttribute('grabbable');
+        this.submenu4.removeAttribute('grabbable');
       }
-  },
+  },*/
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);
