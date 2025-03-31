@@ -69,16 +69,16 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('startButton').setAttribute('visible', false);
         document.getElementById('xButton').setAttribute('visible', false);
         document.getElementById('darkButton').setAttribute('visible', false);
-        document.getElementById('startButton').removeAttribute('pressable');
-        document.getElementById('xButton').removeAttribute('pressable');
-        document.getElementById('darkButton').removeAttribute('pressable');
+        //document.getElementById('startButton').removeAttribute('pressable');
+        //document.getElementById('xButton').removeAttribute('pressable');
+        //document.getElementById('darkButton').removeAttribute('pressable');
         
         document.getElementById('atrasButton').setAttribute('visible', true);
-        document.getElementById('atrasButton').setAttribute('pressable', '');
+        //document.getElementById('atrasButton').setAttribute('pressable', '');
         document.getElementById('barrasButton').setAttribute('visible', true);
-        document.getElementById('barrasButton').setAttribute('pressable', '');
+        //document.getElementById('barrasButton').setAttribute('pressable', '');
         document.getElementById('circularButton').setAttribute('visible', true);
-        document.getElementById('circularButton').setAttribute('pressable', '');
+        //document.getElementById('circularButton').setAttribute('pressable', '');
       }, 500);
     }
     else if (targetEl === this.xButtonEl) {

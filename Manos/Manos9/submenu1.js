@@ -70,21 +70,21 @@ AFRAME.registerComponent('controsubmenu1', {
         this.submenu2.setAttribute('visible', true);
         this.el.setAttribute('controsubmenu1', 'Barras', true);
         document.getElementById('backButton').setAttribute('visible', true);
-        document.getElementById('backButton').setAttribute('pressable', '');
+        //document.getElementById('backButton').setAttribute('pressable', '');
         document.getElementById('motorButton').setAttribute('visible', true);
-        document.getElementById('motorButton').setAttribute('pressable', '');
+        //document.getElementById('motorButton').setAttribute('pressable', '');
         document.getElementById('colorButton').setAttribute('visible', true);
-        document.getElementById('colorButton').setAttribute('pressable', '');
+        //document.getElementById('colorButton').setAttribute('pressable', '');
         document.getElementById('puertasButton').setAttribute('visible', true);
-        document.getElementById('puertasButton').setAttribute('pressable', '');
+        //document.getElementById('puertasButton').setAttribute('pressable', '');
         
         document.getElementById('barrasButton').setAttribute('visible', false);
         document.getElementById('circularButton').setAttribute('visible', false);
         document.getElementById('atrasButton').setAttribute('visible', false);
         
-        document.getElementById('barrasButton').removeAttribute('pressable');
-        document.getElementById('circularButton').removeAttribute('pressable');
-        document.getElementById('atrasButton').removeAttribute('pressable');
+        //document.getElementById('barrasButton').removeAttribute('pressable');
+        //document.getElementById('circularButton').removeAttribute('pressable');
+        //document.getElementById('atrasButton').removeAttribute('pressable');
         
       }, 500);
     }
@@ -96,21 +96,21 @@ AFRAME.registerComponent('controsubmenu1', {
         this.submenu2.setAttribute('visible', true);
         this.el.setAttribute('controsubmenu1', 'Circular', true);
         document.getElementById('backButton').setAttribute('visible', true);
-        document.getElementById('backButton').setAttribute('pressable', '');
+        //document.getElementById('backButton').setAttribute('pressable', '');
         document.getElementById('motorButton').setAttribute('visible', true);
-        document.getElementById('motorButton').setAttribute('pressable', '');
+        //document.getElementById('motorButton').setAttribute('pressable', '');
         document.getElementById('colorButton').setAttribute('visible', true);
-        document.getElementById('colorButton').setAttribute('pressable', '');
+        //document.getElementById('colorButton').setAttribute('pressable', '');
         document.getElementById('puertasButton').setAttribute('visible', true);
-        document.getElementById('puertasButton').setAttribute('pressable', '');
+        //document.getElementById('puertasButton').setAttribute('pressable', '');
 
         document.getElementById('barrasButton').setAttribute('visible', false);
         document.getElementById('circularButton').setAttribute('visible', false);
         document.getElementById('atrasButton').setAttribute('visible', false);
         
-        document.getElementById('barrasButton').removeAttribute('pressable');
-        document.getElementById('circularButton').removeAttribute('pressable');
-        document.getElementById('atrasButton').removeAttribute('pressable');
+        //document.getElementById('barrasButton').removeAttribute('pressable');
+        //document.getElementById('circularButton').removeAttribute('pressable');
+        //document.getElementById('atrasButton').removeAttribute('pressable');
       }, 500);
     }
     
@@ -128,16 +128,16 @@ AFRAME.registerComponent('controsubmenu1', {
         document.getElementById('circularButton').setAttribute('visible', false);
         document.getElementById('atrasButton').setAttribute('visible', false);
         
-        document.getElementById('barrasButton').removeAttribute('pressable');
-        document.getElementById('circularButton').removeAttribute('pressable');
-        document.getElementById('atrasButton').removeAttribute('pressable');
+        //document.getElementById('barrasButton').removeAttribute('pressable');
+        //document.getElementById('circularButton').removeAttribute('pressable');
+        //document.getElementById('atrasButton').removeAttribute('pressable');
         
         document.getElementById('startButton').setAttribute('visible', true);
-        document.getElementById('startButton').setAttribute('pressable', '');
+        //document.getElementById('startButton').setAttribute('pressable', '');
         document.getElementById('xButton').setAttribute('visible', true);
-        document.getElementById('xButton').setAttribute('pressable', '');
+        //document.getElementById('xButton').setAttribute('pressable', '');
         document.getElementById('darkButton').setAttribute('visible', true);
-        document.getElementById('darkButton').setAttribute('pressable', '');
+        //document.getElementById('darkButton').setAttribute('pressable', '');
       }, 500);
     }
 

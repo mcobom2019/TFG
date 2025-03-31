@@ -177,36 +177,36 @@ AFRAME.registerComponent('controsubmenu4', {
             document.getElementById('electricoButton').setAttribute('visible', true);
             document.getElementById('DieselButton').setAttribute('visible', true);
             document.getElementById('GasolinaButton').setAttribute('visible', true);
-            document.getElementById('backButton2').setAttribute('pressable', '');
-            document.getElementById('electricoButton').setAttribute('pressable', '');
-            document.getElementById('DieselButton').setAttribute('pressable', '');
-            document.getElementById('GasolinaButton').setAttribute('pressable', '');
+            //document.getElementById('backButton2').setAttribute('pressable', '');
+            //document.getElementById('electricoButton').setAttribute('pressable', '');
+            //document.getElementById('DieselButton').setAttribute('pressable', '');
+            //document.getElementById('GasolinaButton').setAttribute('pressable', '');
           } else if(submenu2Component.data.Color){
             document.getElementById('backButton2').setAttribute('visible', true);
             document.getElementById('BlancoButton').setAttribute('visible', true);
             document.getElementById('NegroButton').setAttribute('visible', true);
             document.getElementById('RojoButton').setAttribute('visible', true);
             document.getElementById('AmarilloButton').setAttribute('visible', true);
-            document.getElementById('backButton2').setAttribute('pressable', '');
-            document.getElementById('BlancoButton').setAttribute('pressable', '');
-            document.getElementById('NegroButton').setAttribute('pressable', '');
-            document.getElementById('RojoButton').setAttribute('pressable', '');
-            document.getElementById('AmarilloButton').setAttribute('pressable', '');
+            //document.getElementById('backButton2').setAttribute('pressable', '');
+            //document.getElementById('BlancoButton').setAttribute('pressable', '');
+            //document.getElementById('NegroButton').setAttribute('pressable', '');
+            //document.getElementById('RojoButton').setAttribute('pressable', '');
+            //document.getElementById('AmarilloButton').setAttribute('pressable', '');
           } else if(submenu2Component.data.Puertas){
             document.getElementById('backButton2').setAttribute('visible', true);
             document.getElementById('dosButton').setAttribute('visible', true);
             document.getElementById('cincoButton').setAttribute('visible', true);
-            document.getElementById('backButton2').setAttribute('pressable', '');
-            document.getElementById('dosButton').setAttribute('pressable', '');
-            document.getElementById('cincoButton').setAttribute('pressable', '');
+            //document.getElementById('backButton2').setAttribute('pressable', '');
+            //document.getElementById('dosButton').setAttribute('pressable', '');
+            //document.getElementById('cincoButton').setAttribute('pressable', '');
           }
           
           document.getElementById('backButton3').setAttribute('visible', false);
           document.getElementById('mostrarButton').setAttribute('visible', false);
           document.getElementById('borrarButton').setAttribute('visible', false);
-          document.getElementById('backButton3').removeAttribute('pressable');
-          document.getElementById('mostrarButton').removeAttribute('pressable');
-          document.getElementById('borrarButton').removeAttribute('pressable');
+          //document.getElementById('backButton3').removeAttribute('pressable');
+          //document.getElementById('mostrarButton').removeAttribute('pressable');
+          //document.getElementById('borrarButton').removeAttribute('pressable');
 
           submenu3Component.resetValues();
         }, 500);

@@ -95,18 +95,18 @@ AFRAME.registerComponent('controsubmenu2', {
         document.getElementById('colorButton').setAttribute('visible', false);
         document.getElementById('puertasButton').setAttribute('visible', false);
         document.getElementById('completoButton').setAttribute('visible', false);
-        document.getElementById('backButton').removeAttribute('pressable');
-        document.getElementById('motorButton').removeAttribute('pressable');
-        document.getElementById('colorButton').removeAttribute('pressable');
-        document.getElementById('puertasButton').removeAttribute('pressable');
-        document.getElementById('completoButton').removeAttribute('pressable');
+        //document.getElementById('backButton').removeAttribute('pressable');
+        //document.getElementById('motorButton').removeAttribute('pressable');
+        //document.getElementById('colorButton').removeAttribute('pressable');
+        //document.getElementById('puertasButton').removeAttribute('pressable');
+        //document.getElementById('completoButton').removeAttribute('pressable');
 
         document.getElementById('barrasButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('visible', true);
         document.getElementById('atrasButton').setAttribute('visible', true);
-        document.getElementById('barrasButton').setAttribute('pressable', '');
-        document.getElementById('circularButton').setAttribute('pressable', '');
-        document.getElementById('atrasButton').setAttribute('pressable', '');
+        //document.getElementById('barrasButton').setAttribute('pressable', '');
+        //document.getElementById('circularButton').setAttribute('pressable', '');
+        //document.getElementById('atrasButton').setAttribute('pressable', '');
 
       }, 500);
     }
@@ -121,13 +121,13 @@ AFRAME.registerComponent('controsubmenu2', {
         this.menuInicio.setAttribute('visible', false);
         
         document.getElementById('backButton2').setAttribute('visible', true);
-        document.getElementById('backButton2').setAttribute('pressable', '');
+        //document.getElementById('backButton2').setAttribute('pressable', '');
         document.getElementById('electricoButton').setAttribute('visible', true);
-        document.getElementById('electricoButton').setAttribute('pressable', '');
+        //document.getElementById('electricoButton').setAttribute('pressable', '');
         document.getElementById('DieselButton').setAttribute('visible', true);
-        document.getElementById('DieselButton').setAttribute('pressable', '');
+        //document.getElementById('DieselButton').setAttribute('pressable', '');
         document.getElementById('GasolinaButton').setAttribute('visible', true);
-        document.getElementById('GasolinaButton').setAttribute('pressable', '');
+        //document.getElementById('GasolinaButton').setAttribute('pressable', '');
 
         document.getElementById('backButton').setAttribute('visible', false);
         document.getElementById('motorButton').setAttribute('visible', false);
@@ -135,11 +135,11 @@ AFRAME.registerComponent('controsubmenu2', {
         document.getElementById('puertasButton').setAttribute('visible', false);
         document.getElementById('completoButton').setAttribute('visible', false);
         
-        document.getElementById('backButton').removeAttribute('pressable');
-        document.getElementById('motorButton').removeAttribute('pressable');
-        document.getElementById('colorButton').removeAttribute('pressable');
-        document.getElementById('puertasButton').removeAttribute('pressable');
-        document.getElementById('completoButton').removeAttribute('pressable');
+        //document.getElementById('backButton').removeAttribute('pressable');
+        //document.getElementById('motorButton').removeAttribute('pressable');
+        //document.getElementById('colorButton').removeAttribute('pressable');
+        //document.getElementById('puertasButton').removeAttribute('pressable');
+        //document.getElementById('completoButton').removeAttribute('pressable');
       }, 500);
     }
     
@@ -154,15 +154,15 @@ AFRAME.registerComponent('controsubmenu2', {
         this.menuInicio.setAttribute('visible', false);
         
         document.getElementById('backButton2').setAttribute('visible', true);
-        document.getElementById('backButton2').setAttribute('pressable', '');
+        //document.getElementById('backButton2').setAttribute('pressable', '');
         document.getElementById('BlancoButton').setAttribute('visible', true);
-        document.getElementById('BlancoButton').setAttribute('pressable', '');
+        //document.getElementById('BlancoButton').setAttribute('pressable', '');
         document.getElementById('NegroButton').setAttribute('visible', true);
-        document.getElementById('NegroButton').setAttribute('pressable', '');
+        //document.getElementById('NegroButton').setAttribute('pressable', '');
         document.getElementById('RojoButton').setAttribute('visible', true);
-        document.getElementById('RojoButton').setAttribute('pressable', '');
+        //document.getElementById('RojoButton').setAttribute('pressable', '');
         document.getElementById('AmarilloButton').setAttribute('visible', true);
-        document.getElementById('AmarilloButton').setAttribute('pressable', '');
+        //document.getElementById('AmarilloButton').setAttribute('pressable', '');
 
         document.getElementById('backButton').setAttribute('visible', false);
         document.getElementById('motorButton').setAttribute('visible', false);
@@ -170,11 +170,11 @@ AFRAME.registerComponent('controsubmenu2', {
         document.getElementById('puertasButton').setAttribute('visible', false);
         document.getElementById('completoButton').setAttribute('visible', false);
         
-        document.getElementById('backButton').removeAttribute('pressable');
-        document.getElementById('motorButton').removeAttribute('pressable');
-        document.getElementById('colorButton').removeAttribute('pressable');
-        document.getElementById('puertasButton').removeAttribute('pressable');
-        document.getElementById('completoButton').removeAttribute('pressable');
+        //document.getElementById('backButton').removeAttribute('pressable');
+        //document.getElementById('motorButton').removeAttribute('pressable');
+        //document.getElementById('colorButton').removeAttribute('pressable');
+        //document.getElementById('puertasButton').removeAttribute('pressable');
+        //document.getElementById('completoButton').removeAttribute('pressable');
       }, 500);
       
     }
@@ -188,11 +188,11 @@ AFRAME.registerComponent('controsubmenu2', {
         this.submenu3.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);
         document.getElementById('backButton2').setAttribute('visible', true);
-        document.getElementById('backButton2').setAttribute('pressable', '');
+        //document.getElementById('backButton2').setAttribute('pressable', '');
         document.getElementById('dosButton').setAttribute('visible', true);
-        document.getElementById('dosButton').setAttribute('pressable', '');
+        //document.getElementById('dosButton').setAttribute('pressable', '');
         document.getElementById('cincoButton').setAttribute('visible', true);
-        document.getElementById('cincoButton').setAttribute('pressable', '');
+        //document.getElementById('cincoButton').setAttribute('pressable', '');
 
         document.getElementById('backButton').setAttribute('visible', false);
         document.getElementById('motorButton').setAttribute('visible', false);
@@ -200,11 +200,11 @@ AFRAME.registerComponent('controsubmenu2', {
         document.getElementById('puertasButton').setAttribute('visible', false);
         document.getElementById('completoButton').setAttribute('visible', false);
         
-        document.getElementById('backButton').removeAttribute('pressable');
-        document.getElementById('motorButton').removeAttribute('pressable');
-        document.getElementById('colorButton').removeAttribute('pressable');
-        document.getElementById('puertasButton').removeAttribute('pressable');
-        document.getElementById('completoButton').removeAttribute('pressable');
+        //document.getElementById('backButton').removeAttribute('pressable');
+        //document.getElementById('motorButton').removeAttribute('pressable');
+        //document.getElementById('colorButton').removeAttribute('pressable');
+        //document.getElementById('puertasButton').removeAttribute('pressable');
+        //document.getElementById('completoButton').removeAttribute('pressable');
       }, 500);
     }
   }
