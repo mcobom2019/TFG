@@ -49,6 +49,15 @@ AFRAME.registerComponent('controlinicio', {
     // Estado inicial del modo oscuro
     this.isDarkMode = false;
   },
+  
+  tick: function (){
+    this.menuInicio = document.querySelector('#menuinicio');
+    if(this.menuInicio.getAttribute('visible') == true){
+      this.menuInicio.setAttribute('grabbable', '');
+    }else{
+      this.menuInicio.removeAttribute('grabbable');
+    }
+  },
 
   bindMethods: function () {
     this.onClick = this.onClick.bind(this);

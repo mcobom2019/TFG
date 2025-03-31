@@ -19,7 +19,7 @@
   </head>
   <body>
     <a-scene environment>
-      <a-entity id="menuinicio" menuinicio controlinicio position="0 1.5 -0.5" rotation="0 0 0" visible="true">
+      <a-entity id="menuinicio" menuinicio controlinicio position="0 1.5 -0.5" rotation="0 0 0" visible="true" grabbable>
         <a-entity id="startButton" button="label: start" position="0 0 0" ></a-entity>
         <a-entity id="darkButton" button="label: Dark Mode; width: 0.20; toggleable: true" position="0 -0.10 0"></a-entity>
         <a-entity id="xButton" button="label: X" position="-0.2 0.15 0"></a-entity>
@@ -37,7 +37,7 @@
         <a-entity id="completoButton" button="label: Completo" position="0.1 -0.09 0" visible="false"></a-entity>
       </a-entity>
       <a-entity id="subMenu3" submenu3 controsubmenu3 position="0 1.5 -0.5" rotation="0 0 0" visible="false" grabbable>
-        <a-entity id="backButton2" button="label: <--" position="-0.2 0.15 0" visible="true"></a-entity>
+        <a-entity id="backButton2" button="label: <--" position="-0.2 0.15 0" visible="false"></a-entity>
         <a-entity id="electricoButton" button="label: Electrico" position="-0.15 0 0" visible="false"></a-entity>
         <a-entity id="DieselButton" button="label: Diesel" position="0 0 0" visible="false"></a-entity>
         <a-entity id="GasolinaButton" button="label: Gasolina" position="0.15 0 0" visible="false"></a-entity>
