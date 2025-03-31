@@ -17,18 +17,19 @@
         }
 
         .titulo-container {
+            text-align: center; /* Centra todo el contenido */
             display: flex;
+            flex-direction: column; /* Asegura que el logo esté debajo si es necesario */
             align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: #cbe7fb;
         }
+
 
         h1 {
             font-family: 'Poppins', sans-serif;
             font-size: 48px;
             color: #2c3e50;
             margin: 0;
+            text-align: center;
         }
 
         .logo {
@@ -47,9 +48,9 @@
     <!-- Contenedor del título y la imagen -->
     <div class="titulo-container">
         <h1>¡Bienvenido a mi TFG!</h1>
-        <img class="logo" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/images%2F17MAR-00641.jpg?v=1743411426432" alt="Logo">
     </div>
-
+    
+  <br><br>
     <!-- Acordeón Bootstrap -->
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
@@ -58,11 +59,13 @@
                     ¿Quién Soy?
                 </button>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>Soy Mario Cobo Martínez</strong>, alumno en último año de Ingeniería Telemática en la Universidad Rey Juan Carlos.
-                </div>
-            </div>
+           <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body text-center">
+                  <strong>Soy Mario Cobo Martínez</strong>, alumno en último año de Ingeniería Telemática en la Universidad Rey Juan Carlos.  
+                  <br><br>
+                  <img class="logo mt-3" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/images%2F17MAR-00641.jpg?v=1743411426432" alt="Foto de Mario">
+              </div>
+          </div>
         </div>
 
         <div class="accordion-item">
