@@ -157,7 +157,7 @@ AFRAME.registerComponent('controsubmenu2', {
         //document.getElementById('colorButton').removeAttribute('pressable');
         //document.getElementById('puertasButton').removeAttribute('pressable');
         //document.getElementById('completoButton').removeAttribute('pressable');
-        this.submenu1.setAttribute('grabbable', '');
+        this.submenu3.setAttribute('grabbable', '');
         this.submenu2.removeAttribute('grabbable');
       }, 500);
     }
@@ -194,6 +194,8 @@ AFRAME.registerComponent('controsubmenu2', {
         //document.getElementById('colorButton').removeAttribute('pressable');
         //document.getElementById('puertasButton').removeAttribute('pressable');
         //document.getElementById('completoButton').removeAttribute('pressable');
+        this.submenu3.setAttribute('grabbable', '');
+        this.submenu2.removeAttribute('grabbable');
       }, 500);
       
     }
@@ -224,6 +226,8 @@ AFRAME.registerComponent('controsubmenu2', {
         //document.getElementById('colorButton').removeAttribute('pressable');
         //document.getElementById('puertasButton').removeAttribute('pressable');
         //document.getElementById('completoButton').removeAttribute('pressable');
+        this.submenu3.setAttribute('grabbable', '');
+        this.submenu2.removeAttribute('grabbable');
       }, 500);
     }
   }

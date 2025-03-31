@@ -222,6 +222,8 @@ AFRAME.registerComponent('controsubmenu4', {
           //document.getElementById('backButton3').removeAttribute('pressable');
           //document.getElementById('mostrarButton').removeAttribute('pressable');
           //document.getElementById('borrarButton').removeAttribute('pressable');
+          this.submenu3.setAttribute('grabbable', '');
+          this.submenu4.removeAttribute('grabbable');
 
           submenu3Component.resetValues();
         }, 500);

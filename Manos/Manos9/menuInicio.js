@@ -84,7 +84,7 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('barrasButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('visible', true);
         this.submenu1.setAttribute('grabbable', '');
-        this.menuInicio.removeAttribute('grabbable');
+        this.menuInicio.removeAttribute('grabbable', '');
       }, 500);
     }
     else if (targetEl === this.xButtonEl) {

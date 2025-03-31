@@ -165,6 +165,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('motorButton').setAttribute('pressable', '');
         //document.getElementById('colorButton').setAttribute('pressable', '');
         //document.getElementById('puertasButton').setAttribute('pressable', '');
+        this.submenu2.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
 
       }, 500);
     }
@@ -193,6 +195,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        this.submenu4.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
       }, 500);
     }
     
@@ -220,6 +224,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        this.submenu4.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
       }, 500);
     }
      if (targetEl === this.gasolinaButtonEl) {
@@ -246,6 +252,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        this.submenu4.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
       }, 500);
     }
      if (targetEl === this.blancoButtonEl) {
@@ -274,6 +282,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        this.submenu4.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
       }, 500);
     }
      if (targetEl === this.negroButtonEl) {
@@ -302,6 +312,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        this.submenu4.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
       }, 500);
     }
      if (targetEl === this.rojoButtonEl) {
@@ -330,6 +342,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        this.submenu4.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
       }, 500);
     }
      if (targetEl === this.amarilloButtonEl) {
@@ -358,6 +372,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        this.submenu4.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
       }, 500);
     }
      if (targetEl === this.dosButtonEl) {
@@ -382,6 +398,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        this.submenu4.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
       }, 500);
     }
      if (targetEl === this.cincoButtonEl) {
@@ -406,6 +424,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        this.submenu4.setAttribute('grabbable', '');
+        this.submenu3.removeAttribute('grabbable');
       }, 500);
     }
   }
