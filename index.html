@@ -43,27 +43,11 @@
         }
         
         .ejercicios-container {
-            display: grid;
-            grid-template-columns: 1fr; /* Una sola columna para la mayoría */
-            gap: 10px;
-            justify-items: center; /* Centra los enlaces en la columna */
-        }
-
-        /* Para los subejercicios (Ejercicio 4.1 y 4.2) */
-        .subejercicios {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Dos columnas */
-            gap: 30px; /* Espacio entre los subejercicios */
-            justify-content: center; /* Centra el bloque */
-            width: 50%;
-        }
-
-        .subejercicios a:first-child {
-            justify-self: center; /* Centra el primer subejercicio */
-        }
-
-        .subejercicios a:last-child {
-            justify-self: start; /* Mueve el segundo subejercicio un poco a la izquierda */
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 15px; 
+            justify-content: center; 
+            padding: 10px 0;
         }
     </style>
 </head>
@@ -121,33 +105,156 @@
                     Ejercicios de Prueba
                 </button>
             </h2>
-            <div class="ejercicios-container">
-                <a href="Ejercicios/Ejercicio1/index.html">Ejercicio 1</a>
-                <a href="Ejercicios/Ejercicio2/index.html">Ejercicio 2</a>
-                <a href="Ejercicios/Ejercicio3/index.html">Ejercicio 3</a>
-
-                <div class="subejercicios">
-                    <a href="Ejercicios/Ejercicio4/chivato.html">Ejercicio 4.1</a>
-                    <a href="Ejercicios/Ejercicio4/chivato2.html">Ejercicio 4.2</a>
+            <div id="collapseOne2" class="accordion-collapse collapse">
+                <div class="accordion-body text-center">
+                    <p><a href="Ejercicios/Ejercicio1/index.html">Ejercicio 1</a></p>
+                    <p><a href="Ejercicios/Ejercicio2/index.html">Ejercicio 2</a></p>
+                    <p><a href="Ejercicios/Ejercicio3/index.html">Ejercicio 3</a></p>
+                    <span><a href="Ejercicios/Ejercicio4/chivato.html">Ejercicio 4.1</a></span>
+                    <span><a href="Ejercicios/Ejercicio4/chivato2.html">Ejercicio 4.2</a></span>
+                    <br><br>
+                    <span><a href="Ejercicios/Ejercicio5/chivato_din.html">Ejercicio 5.1</a></span>
+                    &nbsp;&nbsp
+                    <span><a href="Ejercicios/Ejercicio5/chivato_din2.html">Ejercicio 5.2</a></span>
+                    &nbsp;&nbsp
+                    <span><a href="Ejercicios/Ejercicio5/chivato2_din2.html">Ejercicio 5.3</a></span>
+                    <br><br>
+                    <span><a href="Ejercicios/Ejercicio6/compgestor.html">Ejercicio 6.1</a></span>
+                    &nbsp;&nbsp
+                    <span><a href="Ejercicios/Ejercicio6/compgestor2.html">Ejercicio 6.2</a></span>
+                    &nbsp;&nbsp
+                    <span><a href="Ejercicios/Ejercicio6/compgestor3.html">Ejercicio 6.3</a></span>
+                    &nbsp;&nbsp
+                    <span><a href="Ejercicios/Ejercicio6/compgestor4.html">Ejercicio 6.4</a></span>
+                    <br><br>
+                    <p><a href="Ejercicios/Ejercicio7/CambioColorPosicion.html">Ejercicio 7</a></p>
+                    <p><a href="Ejercicios/Ejercicio8/cambiarCilindro.html">Ejercicio 8</a></p>
+                    <span><a href="Ejercicios/Ejercicio9/crearHijos.html">Ejercicio 9.1</a></span>
+                    &nbsp;&nbsp
+                    <span><a href="Ejercicios/Ejercicio9/colorEhijos2.html">Ejercicio 9.2</a></span>
+                    <br><br>
+                    <span><a href="Ejercicios/Ejercicio10/animacionColor.html">Ejercicio 10.1</a></span>
+                    &nbsp;
+                    <span><a href="Ejercicios/Ejercicio10/animacionHijoColor.html">Ejercicio 10.2</a></span>
+                    &nbsp;
+                    <span><a href="Ejercicios/Ejercicio10/animacionHijoColor2.html">Ejercicio 10.3</a></span>
                 </div>
-
-                <a href="Ejercicios/Ejercicio5/chivato_din.html">Ejercicio 5.1</a>
-                <a href="Ejercicios/Ejercicio5/chivato_din2.html">Ejercicio 5.2</a>
-                <a href="Ejercicios/Ejercicio5/chivato2_din2.html">Ejercicio 5.3</a>
             </div>
         </div>
 
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo2">
-                    ¿En qué consiste este TFG?
+                    Menús
                 </button>
             </h2>
             <div id="collapseTwo2" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                    <strong>Extender BabiaXR con menú para añadir visualizaciones</strong> es el tema de mi TFG. Se resume en crear escenas en A-Frame en las que tenga menús interactuables con los que poder filtrar información y crear diagramas gracias a BabiaXR.  
-                    Si quieres ver el código que voy haciendo, puedes entrar en mi GitHub:  
-                    <a href="https://github.com/mcobom2019/TFG" target="_blank">GitHub</a>
+                    <span><a href="Menus/Menu1/menu1.1.html">Menú 1.1</a></span>
+                    &nbsp;
+                    <span><a href="Menus/Menu1/menu1.2.html">Menú 1.2</a></span>
+                    &nbsp;
+                    <span><a href="Menus/Menu1/menu1.3.html">Menú 1.3</a></span>
+                    &nbsp;
+                    <span><a href="Menus/Menu1/menu1.4.html">Menú 1.4</a></span>
+                    <br><br>
+                    <span><a href="Menus/Menu2/menu2.1.html">Menú 2.1</a></span>
+                    &nbsp;
+                    <span><a href="Menus/Menu2/menu2.2.html">Menú 2.2</a></span>
+                    &nbsp;
+                    <span><a href="Menus/Menu2/menu2.3.html">Menú 2.3</a></span>
+                    &nbsp;
+                    <span><a href="Menus/Menu2/menu2.4.html">Menú 2.4</a></span>
+                    &nbsp;
+                    <span><a href="Menus/Menu2/menu2.5.html">Menú 2.5</a></span>
+                    &nbsp;
+                    <span><a href="Menus/Menu2/menu2.6.html">Menú 2.6</a></span>
+                    <br><br>
+                    <span><a href="Menus/Menu3/menu3.1.html">Menú 3.1</a></span>
+                    <br><br>
+                    <span><a href="Menus/Menu4/menu4.html">Menú 4</a></span>
+                    &nbsp;
+                    <span><a href="Menus/Menu4/menu4.2.html">Menú 4.2</a></span>
+                </div>
+            </div>
+        </div>
+      
+      <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree2">
+                    Pruebas con Gafas VR
+                </button>
+            </h2>
+            <div id="collapseThree2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Pruebas con Mandos
+                          </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                            <span><a href="Prueba/prueba.html">Prueba 1</a></span>
+                            &nbsp;
+                            <span><a href="Prueba/prueba2.html">Prueba 2</a></span>
+                            &nbsp;
+                            <span><a href="Prueba/prueba3.html">Prueba 3</a></span>
+                            &nbsp;
+                            <span><a href="VR/VR1/vr3.html">Prueba 5</a></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Pruebas con Manos
+                          </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                            <span><a href="Manos/Manos1/manos1.html">Prueba 1.1</a></span>
+                            &nbsp;
+                            <span><a href="Manos/Manos1/manos2.html">Prueba 1.2</a></span>
+                            &nbsp;
+                            <span><a href="Manos/Manos1/manos3.html">Prueba 1.3</a></span>
+                            <br><br>
+                            <span><a href="Manos/Manos2/manos2.1.html">Prueba 2.1</a></span>
+                            &nbsp;
+                            <span><a href="Manos/Manos2/manos2.2.html">Prueba 2.2</a></span>
+                            <br><br>
+                            <span><a href="Manos/Manos3/manos3.1.html">Prueba 3</a></span>
+                            <br><br>
+                            <span><a href="Manos/Manos4/manos4.1.html">Prueba 3</a></span>
+                            <br><br>
+                            <span><a href="Manos/Prueba/index.html">Prueba 5</a></span>
+                            <br><br>
+                            <span><a href="Manos/Prueba2/index.html">Prueba 6</a></span>
+                            <br><br>
+                            <span><a href="Manos/Manos5/manos5.1.html">Prueba 7</a></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                            Demo
+                          </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                            <span><a href="Manos/Manos6/index.html">Demo 1</a></span>
+                              &nbsp;
+                              <span><a href="Manos/Manos7/index.html">Demo 1.2</a></span>
+                              &nbsp;
+                              <span><a href="Manos/Manos8/index.html">Demo 1.3</a></span>
+                              &nbsp;
+                              <span><a href="Manos/Manos9/index.html">Demo 1.4</a></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
