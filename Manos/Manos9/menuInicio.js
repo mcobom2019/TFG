@@ -1,15 +1,3 @@
-AFRAME.registerComponent('rounded-box', {
-  init: function () {
-    let el = this.el;
-    let scene = el.sceneEl.object3D;
-
-    let geometry = new THREE.RoundedBoxGeometry(1, 0.1, 0.01, 5, 0.05);
-    let material = new THREE.MeshStandardMaterial({ color: "blue" });
-    let mesh = new THREE.Mesh(geometry, material);
-
-    el.setObject3D('mesh', mesh);
-  }
-});
 /* global AFRAME */
 AFRAME.registerComponent('menuinicio', {
   init: function () {
