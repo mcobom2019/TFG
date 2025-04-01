@@ -86,10 +86,12 @@ AFRAME.registerComponent('controlinicio', {
         document.getElementById('startButton').setAttribute('visible', false);
         document.getElementById('xButton').setAttribute('visible', false);
         document.getElementById('darkButton').setAttribute('visible', false);
+        document.getElementById('minButton1').setAttribute('visible', false);
         
         document.getElementById('atrasButton').setAttribute('visible', true);
         document.getElementById('barrasButton').setAttribute('visible', true);
         document.getElementById('circularButton').setAttribute('visible', true);
+        document.getElementById('minButton2').setAttribute('visible', true);
         this.submenu1.setAttribute('grabbable', '');
         this.menuInicio.removeAttribute('grabbable', '');
       }, 500);

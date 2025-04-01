@@ -33,7 +33,7 @@ AFRAME.registerComponent('button', {
     // el.setAttribute('pressable', '');
     
     if (this.data.primitive === 'cylinder'){
-      labelEl.setAttribute('position', '0 0. 0.02');
+      labelEl.setAttribute('position', '0.01 0 0.02');
       labelEl.setAttribute('text', {
         value: this.data.label,
         color: 'white',
