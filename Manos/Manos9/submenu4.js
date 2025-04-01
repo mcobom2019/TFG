@@ -34,9 +34,6 @@ AFRAME.registerComponent('controsubmenu4', {
   schema: {
     Minimizar: {default: false}
   },
-  resetValues: function() {
-    this.data.Minimizar = false;
-  },
   init: function () {
     this.bindMethods();
     
@@ -227,6 +224,8 @@ AFRAME.registerComponent('controsubmenu4', {
           document.getElementById('backButton3').setAttribute('visible', false);
           document.getElementById('mostrarButton').setAttribute('visible', false);
           document.getElementById('borrarButton').setAttribute('visible', false);
+          document.getElementById('minButton5').setAttribute('visible', false);
+          document.getElementById('minButton4').setAttribute('visible', true);
           //document.getElementById('backButton3').removeAttribute('pressable');
           //document.getElementById('mostrarButton').removeAttribute('pressable');
           //document.getElementById('borrarButton').removeAttribute('pressable');

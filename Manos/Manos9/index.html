@@ -19,7 +19,7 @@
     <script src="minimize-button.js"></script>
   </head>
   <body>
-    <a-scene environment>
+    <a-scene environment controlminimizar>
       <a-entity id="menuinicio" menuinicio controlinicio position="0 1.5 -0.5" rotation="0 0 0" visible="true" grabbable>
         <a-entity id="startButton" button="label: start" position="0 0 0" ></a-entity>
         <a-entity id="darkButton" button="label: Dark Mode; width: 0.20; toggleable: true" position="0 -0.10 0"></a-entity>
@@ -61,7 +61,7 @@
         <a-entity id="minButton5" button="label: -" position="0.2 0.15 0" visible="false"></a-entity>
       </a-entity>
       <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
-       <a-entity id="maximizeButton" button="label: .; primitive: cylinder" position="0 0.015 -0.01" visible="true" controlminimizar></a-entity>
+       <a-entity id="maximizeButton" button="label: .; primitive: cylinder" position="0 0.015 -0.01" visible="false"></a-entity>
       </a-entity>
       <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
       <a-entity>

@@ -31,9 +31,6 @@ AFRAME.registerComponent('controlinicio', {
   schema: {
       Minimizar: {default: false},
   },
-  resetValues: function() {
-    this.data.Minimizar = false;
-  },
   init: function () {
     this.bindMethods();
   

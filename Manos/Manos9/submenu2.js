@@ -40,7 +40,6 @@ AFRAME.registerComponent('controsubmenu2', {
     this.data.Color = false;
     this.data.Puertas = false;
     this.data.Completo = false;
-    this.data.Minimizar = false;
   },
   init: function () {
     this.bindMethods();

@@ -51,7 +51,6 @@ AFRAME.registerComponent('controsubmenu3', {
     this.data.Amarillo = false;
     this.data.Dos = false;
     this.data.Cinco = false;
-    this.data.Minimizar = false;
   },
   init: function () {
     this.bindMethods();

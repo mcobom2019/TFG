@@ -36,7 +36,6 @@ AFRAME.registerComponent('controsubmenu1', {
   resetValues: function() {
     this.data.Barras = false;
     this.data.Circular = false;
-    this.data.Minimizar = false;
   },
   init: function () {
     this.bindMethods();
