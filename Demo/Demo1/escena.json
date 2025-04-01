@@ -1,22 +1,49 @@
-{
-  "id": "menuinicio",
-  "position": "0 1.5 -0.5",
-  "visible": "true",
-  "grabbable": "true",
-  "buttons": [
-      {
-        "label": "start",
-        "id": "startButton",
-        "position": "0 1.5 -0.5",
-        "visible": "true",
-        
-        
-      },
-    {
-      "label": "dark Mode",
-      "id": "startButton",
-      "position": "0 1.5 -0.5",
-      "visible": "true"
-    }
-  ]
+{"menuPadre":{
+    "id": "menuinicio",
+    "position": "0 1.5 -0.5",
+    "visible": "true",
+    "grabbable": "true",
+    "buttons": [
+        {
+          "label": "start",
+          "id": "startButton",
+          "position": "0 0 0",
+          "visible": "true",
+          "menuHijo1":{
+              "id": "subMenu1",
+              "position": "0 1.5 -0.5",
+              "visible": "false",
+              "grabbable": "true",
+              "buttons": [
+                {
+                  "label": "Barras",
+                  "id": "barrasButton",
+                  "position": "0 0 0",
+                  "visible": "true"
+                }
+              ]
+          }
+        },
+        {
+          "label": "dark Mode",
+          "id": "darkButton",
+          "position": "0 -0.1 0",
+          "visible": "true",
+          "width": "0.20",
+          "toggleable": "true"
+        },
+        {
+          "label": "-",
+          "id": "minButton1",
+          "position": "0.2 0.15 0",
+          "visible": "true"
+        },
+        {
+          "label": "X",
+          "id": "xButton",
+          "position": "-0.2 0.15 0",
+          "visible": "true"
+        }
+    ]
+  }
 }
