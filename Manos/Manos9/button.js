@@ -11,15 +11,26 @@ AFRAME.registerComponent('button', {
     var labelEl = this.labelEl = document.createElement('a-entity');
 
     this.color = '#3a50c5';
-    el.setAttribute('geometry', {
-      primitive: this.data.primitive,
-      width: this.data.width,
-      height: 0.05,
-      depth: 0.04
-    });
+
+    // Configurar geometría según el tipo de primitiva
+    if (this.data.primitive === 'cylinder') {
+      el.setAttribute('geometry', {
+        primitive: 'cylinder',
+        radius: this.data.width / 5, // Convertir ancho a radio
+        height: 0.05,
+        segmentsRadial: 10
+      });
+    } else {
+      // Para cajas y otras primitivas
+      el.setAttribute('geometry', {
+        primitive: this.data.primitive,
+        width: this.data.width,
+        height: 0.05,
+        depth: 0.04
+      });
+    }
 
     el.setAttribute('material', {color: this.color});
-    // No añadir pressable inicialmente
     // el.setAttribute('pressable', '');
 
     labelEl.setAttribute('position', '0 0 0.02');
