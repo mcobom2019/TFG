@@ -47,14 +47,35 @@
                                 "label": "<--",
                                 "id": "backButton2",
                                 "position": "-0.2 0.15 0",
+                                "visible": "false"
+                              },
+                              {
+                                "label": "Electrico",
+                                "id": "electricoButton",
+                                "position": "-0.15 0 0",
                                 "visible": "false",
-                                "menuHijo3":{
-                                  "id": "subMenu4",
-                                  "position": "0 1.5 -0.5",
-                                  "visible": "false",
-                                  "grabbable": "true",
-                                  "buttons": []
-                                }
+                                "buttons": []
+                              },
+                              {
+                                "label": "Diesel",
+                                "id": "DieselButton",
+                                "position": "0 0 0",
+                                "visible": "false",
+                                "buttons": []
+                              },
+                              {
+                                "label": "Gasolina",
+                                "id": "GasolinaButton",
+                                "position": "0.15 0 0",
+                                "visible": "false",
+                                "buttons": []
+                              },
+                              {
+                                "label": "-",
+                                "id": "minButton4",
+                                "position": "0.2 0.15 0",
+                                "visible": "false",
+                                "buttons": []
                               }
                             ]
                           }
@@ -69,11 +90,53 @@
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "true",
-                            "buttons": []
+                            "buttons": [
+                              {
+                                "label": "<--",
+                                "id": "backButton2",
+                                "position": "-0.2 0.15 0",
+                                "visible": "false"
+                              },
+                              {
+                                "label": "White",
+                                "id": "BlancoButton",
+                                "position": "-0.1 0.03 0",
+                                "visible": "false",
+                                "buttons": []
+                              },
+                              {
+                                "label": "Black",
+                                "id": "NegroButton",
+                                "position": "-0.1 -0.09 0",
+                                "visible": "false",
+                                "buttons": []
+                              },
+                              {
+                                "label": "Red",
+                                "id": "RojoButton",
+                                "position": "0.1 0.03 0",
+                                "visible": "false",
+                                "buttons": []
+                              },
+                              {
+                                "label": "Yellow",
+                                "id": "AmarilloButton",
+                                "position": "0.1 0.03 0",
+                                "visible": "false",
+                                "buttons": []
+                              },
+                              {
+                                "label": "-",
+                                "id": "minButton4",
+                                "position": "0.2 0.15 0",
+                                "visible": "false",
+                                "buttons": []
+                              }
+                            ]
                           }
                         },
                         {
-                          "label": "Puertas",
+                          "label": "Doors",
                           "id": "puertasButton",
                           "position": "0.1 0.03 0",
                           "visible": "false",
@@ -82,7 +145,29 @@
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "true",
-                            "buttons": []
+                            "buttons": [
+                              {
+                                "label": "3 Doors",
+                                "id": "dosButton",
+                                "position": "0.1 -0.02 0",
+                                "visible": "false",
+                                "buttons": []
+                              },
+                              {
+                                "label": "5 Doors",
+                                "id": "cincoButton",
+                                "position": "-0.1 -0.02 0",
+                                "visible": "false",
+                                "buttons": []
+                              },
+                              {
+                                "label": "-",
+                                "id": "minButton4",
+                                "position": "0.2 0.15 0",
+                                "visible": "false",
+                                "buttons": []
+                              }
+                            ]
                           }
                         },
                         {
