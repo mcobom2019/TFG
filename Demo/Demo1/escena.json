@@ -18,8 +18,29 @@
                 {
                   "label": "Barras",
                   "id": "barrasButton",
-                  "position": "0 0 0",
-                  "visible": "true"
+                  "position": "0.1 -0.02 0",
+                  "visible": "false",
+                  "menuHijo2":{
+                    
+                  }
+                },
+                {
+                  "label": "Circular",
+                  "id": "circularButton",
+                  "position": "-0.1 -0.02 0",
+                  "visible": "false"
+                },
+                {
+                  "label": "<--",
+                  "id": "atrasButton",
+                  "position": "-0.2 0.15 0",
+                  "visible": "false"
+                },
+                {
+                  "label": "-",
+                  "id": "minButton2",
+                  "position": "0.2 0.15 0",
+                  "visible": "false"
                 }
               ]
           }
