@@ -3,7 +3,8 @@ AFRAME.registerComponent('button', {
   schema: {
     label: {default: 'label'},
     width: {default: 0.11},
-    toggleable: {default: false}
+    toggleable: {default: false},
+    primitive: {default: 'box'}
   },
   init: function () {
     var el = this.el;
@@ -11,7 +12,7 @@ AFRAME.registerComponent('button', {
 
     this.color = '#3a50c5';
     el.setAttribute('geometry', {
-      primitive: 'box',
+      primitive: this.data.primitive,
       width: this.data.width,
       height: 0.05,
       depth: 0.04
