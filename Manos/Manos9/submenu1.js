@@ -30,11 +30,13 @@ AFRAME.registerComponent('submenu1', {
 AFRAME.registerComponent('controsubmenu1', {
   schema: {
       Barras: {default: false},
-      Circular: {default: false}
+      Circular: {default: false},
+      Minimizar: {default: false}
   },
   resetValues: function() {
     this.data.Barras = false;
     this.data.Circular = false;
+    this.data.Minimizar = false;
   },
   init: function () {
     this.bindMethods();

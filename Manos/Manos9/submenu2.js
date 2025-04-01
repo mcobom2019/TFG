@@ -33,12 +33,14 @@ AFRAME.registerComponent('controsubmenu2', {
       Color: {default: false},
       Puertas: {default: false},
       Completo: {default: false},
+      Minimizar: {default: false}
   },
   resetValues: function() {
     this.data.Motor = false;
     this.data.Color = false;
     this.data.Puertas = false;
     this.data.Completo = false;
+    this.data.Minimizar = false;
   },
   init: function () {
     this.bindMethods();

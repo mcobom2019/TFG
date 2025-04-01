@@ -27,8 +27,16 @@ AFRAME.registerComponent('submenu4', {
   },*/
 });
 
+
+
 /* global AFRAME */
 AFRAME.registerComponent('controsubmenu4', {
+  schema: {
+    Minimizar: {default: false}
+  },
+  resetValues: function() {
+    this.data.Minimizar = false;
+  },
   init: function () {
     this.bindMethods();
     

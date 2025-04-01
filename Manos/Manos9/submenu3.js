@@ -38,6 +38,7 @@ AFRAME.registerComponent('controsubmenu3', {
       Amarillo: {default: false},
       Dos: {default: false},
       Cinco: {default: false},
+      Minimizar: {default: false}
   },
   resetValues: function() {
     this.data.Electrico = false;
@@ -50,6 +51,7 @@ AFRAME.registerComponent('controsubmenu3', {
     this.data.Amarillo = false;
     this.data.Dos = false;
     this.data.Cinco = false;
+    this.data.Minimizar = false;
   },
   init: function () {
     this.bindMethods();
