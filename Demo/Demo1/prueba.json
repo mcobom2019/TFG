@@ -1,0 +1,65 @@
+{
+  "scene": {
+    "background": {
+      "color": "#87CEEB"
+    },
+    "entities": [
+      {
+        "id": "suelo",
+        "type": "plane",
+        "position": {"x": 0, "y": 0, "z": 0},
+        "rotation": {"x": -90, "y": 0, "z": 0},
+        "width": 20,
+        "height": 20,
+        "color": "#8B4513"
+      },
+      {
+        "id": "cubo",
+        "type": "box",
+        "position": {"x": -2, "y": 1, "z": -3},
+        "rotation": {"x": 0, "y": 45, "z": 0},
+        "width": 1,
+        "height": 1,
+        "depth": 1,
+        "color": "#4CC3D9"
+      },
+      {
+        "id": "esfera",
+        "type": "sphere",
+        "position": {"x": 0, "y": 1.25, "z": -5},
+        "radius": 1.25,
+        "color": "#EF2D5E"
+      },
+      {
+        "id": "cilindro",
+        "type": "cylinder",
+        "position": {"x": 2, "y": 0.75, "z": -3},
+        "radius": 0.5,
+        "height": 1.5,
+        "color": "#FFC65D"
+      },
+      {
+        "id": "texto",
+        "type": "text",
+        "position": {"x": 0, "y": 3, "z": -3},
+        "value": "¡Hola Mundo!",
+        "color": "#FFFFFF",
+        "width": 10,
+        "align": "center"
+      }
+    ],
+    "lights": [
+      {
+        "type": "ambient",
+        "color": "#BBB",
+        "intensity": 0.5
+      },
+      {
+        "type": "directional",
+        "color": "#FFF",
+        "intensity": 0.6,
+        "position": {"x": -1, "y": 1, "z": 1}
+      }
+    ]
+  }
+}
