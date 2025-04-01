@@ -147,6 +147,7 @@ AFRAME.registerComponent('controsubmenu3', {
         document.getElementById('AmarilloButton').setAttribute('visible', false);
         document.getElementById('dosButton').setAttribute('visible', false);
         document.getElementById('cincoButton').setAttribute('visible', false);
+        document.getElementById('minButton4').setAttribute('visible', false);
         
         //document.getElementById('backButton2').removeAttribute('pressable');
         //document.getElementById('electricoButton').removeAttribute('pressable');
@@ -163,6 +164,7 @@ AFRAME.registerComponent('controsubmenu3', {
         document.getElementById('motorButton').setAttribute('visible', true);
         document.getElementById('colorButton').setAttribute('visible', true);
         document.getElementById('puertasButton').setAttribute('visible', true);
+        document.getElementById('minButton3').setAttribute('visible', true);
         //document.getElementById('backButton').setAttribute('pressable', '');
         //document.getElementById('motorButton').setAttribute('pressable', '');
         //document.getElementById('colorButton').setAttribute('pressable', '');
@@ -197,6 +199,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        document.getElementById('minButton5').setAttribute('visible', true);
+        document.getElementById('minButton4').setAttribute('visible', false);
         this.submenu4.setAttribute('grabbable', '');
         this.submenu3.removeAttribute('grabbable');
       }, 500);
@@ -226,6 +230,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        document.getElementById('minButton5').setAttribute('visible', true);
+        document.getElementById('minButton4').setAttribute('visible', false);
         this.submenu4.setAttribute('grabbable', '');
         this.submenu3.removeAttribute('grabbable');
       }, 500);
@@ -254,6 +260,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        document.getElementById('minButton5').setAttribute('visible', true);
+        document.getElementById('minButton4').setAttribute('visible', false);
         this.submenu4.setAttribute('grabbable', '');
         this.submenu3.removeAttribute('grabbable');
       }, 500);
@@ -284,6 +292,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        document.getElementById('minButton5').setAttribute('visible', true);
+        document.getElementById('minButton4').setAttribute('visible', false);
         this.submenu4.setAttribute('grabbable', '');
         this.submenu3.removeAttribute('grabbable');
       }, 500);
@@ -314,6 +324,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        document.getElementById('minButton5').setAttribute('visible', true);
+        document.getElementById('minButton4').setAttribute('visible', false);
         this.submenu4.setAttribute('grabbable', '');
         this.submenu3.removeAttribute('grabbable');
       }, 500);
@@ -344,6 +356,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        document.getElementById('minButton5').setAttribute('visible', true);
+        document.getElementById('minButton4').setAttribute('visible', false);
         this.submenu4.setAttribute('grabbable', '');
         this.submenu3.removeAttribute('grabbable');
       }, 500);
@@ -374,6 +388,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        document.getElementById('minButton5').setAttribute('visible', true);
+        document.getElementById('minButton4').setAttribute('visible', false);
         this.submenu4.setAttribute('grabbable', '');
         this.submenu3.removeAttribute('grabbable');
       }, 500);
@@ -400,6 +416,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        document.getElementById('minButton5').setAttribute('visible', true);
+        document.getElementById('minButton4').setAttribute('visible', false);
         this.submenu4.setAttribute('grabbable', '');
         this.submenu3.removeAttribute('grabbable');
       }, 500);
@@ -426,6 +444,8 @@ AFRAME.registerComponent('controsubmenu3', {
         //document.getElementById('backButton3').setAttribute('pressable', '');
         //document.getElementById('mostrarButton').setAttribute('pressable', '');
         //document.getElementById('borrarButton').setAttribute('pressable', '');
+        document.getElementById('minButton5').setAttribute('visible', true);
+        document.getElementById('minButton4').setAttribute('visible', false);
         this.submenu4.setAttribute('grabbable', '');
         this.submenu3.removeAttribute('grabbable');
       }, 500);
