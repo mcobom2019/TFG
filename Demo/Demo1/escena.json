@@ -1,4 +1,22 @@
 {
   "id": "menuinicio",
-  "position": "0 1.5 "
+  "position": "0 1.5 -0.5",
+  "visible": "true",
+  "grabbable": "true",
+  "buttons": [
+      {
+        "label": "start",
+        "id": "startButton",
+        "position": "0 1.5 -0.5",
+        "visible": "true",
+        
+        
+      },
+    {
+      "label": "dark Mode",
+      "id": "startButton",
+      "position": "0 1.5 -0.5",
+      "visible": "true"
+    }
+  ]
 }
