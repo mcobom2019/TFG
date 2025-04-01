@@ -16,9 +16,8 @@ AFRAME.registerComponent('button', {
     if (this.data.primitive === 'cylinder') {
       el.setAttribute('geometry', {
         primitive: 'cylinder',
-        radius: this.data.width / 5, // Convertir ancho a radio
-        height: 0.05,
-        segmentsRadial: 10
+        radius: this.data.width / 6, // Convertir ancho a radio
+        height: 0.01
       });
     } else {
       // Para cajas y otras primitivas
@@ -32,13 +31,22 @@ AFRAME.registerComponent('button', {
 
     el.setAttribute('material', {color: this.color});
     // el.setAttribute('pressable', '');
-
-    labelEl.setAttribute('position', '0 0 0.02');
-    labelEl.setAttribute('text', {
-      value: this.data.label,
-      color: 'white',
-      align: 'center'
-    });
+    
+    if (this.data.primitive === 'cylinder'){
+      labelEl.setAttribute('position', '0 0. 0.02');
+      labelEl.setAttribute('text', {
+        value: this.data.label,
+        color: 'white',
+        align: 'center'
+      });
+    }else{
+      labelEl.setAttribute('position', '0 0 0.02');
+      labelEl.setAttribute('text', {
+        value: this.data.label,
+        color: 'white',
+        align: 'center'
+      });
+    }
 
     labelEl.setAttribute('scale', '0.75 0.75 0.75');
     this.el.appendChild(labelEl);
