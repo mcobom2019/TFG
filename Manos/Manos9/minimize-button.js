@@ -28,6 +28,12 @@ AFRAME.registerComponent('controlminimizar', {
     
     this.maxButtonEl = document.querySelector('#maximizeButton');
     this.maxButtonEl.addEventListener('click', this.onClick);
+    
+    this.menuInicioComponent = document.querySelector('#menuinicio').components.controlinicio;
+    this.submenu1Component = document.querySelector('#subMenu1').components.controsubmenu1;
+    this.submenu2Component = document.querySelector('#subMenu2').components.controsubmenu2;
+    this.submenu3Component = document.querySelector('#subMenu3').components.controsubmenu3;
+    this.submenu4Component = document.querySelector('#subMenu4').components.controsubmenu4;
   },
 
   bindMethods: function () {
@@ -40,30 +46,61 @@ AFRAME.registerComponent('controlminimizar', {
       setTimeout(() => {
         this.menuInicio.setAttribute('visible', false);
         this.maxButtonEl.setAttribute('visible', true);
+        this.menuInicioComponent.data.Minimizar = true;
       }, 500);
     
     }else if (targetEl === this.minButtonEl2) {
       setTimeout(() => {
         this.submenu1.setAttribute('visible', false);
         this.maxButtonEl.setAttribute('visible', true);
+        this.submenu1Component.data.Minimizar = true;
       }, 500);
     
     }else if (targetEl === this.minButtonEl3) {
       setTimeout(() => {
         this.submenu2.setAttribute('visible', false);
         this.maxButtonEl.setAttribute('visible', true);
+        this.submenu2Component.data.Minimizar = true;
       }, 500);
     
     }else if (targetEl === this.minButtonEl4) {
       setTimeout(() => {
         this.submenu3.setAttribute('visible', false);
         this.maxButtonEl.setAttribute('visible', true);
+        this.submenu3Component.data.Minimizar = true;
       }, 500);
     
     }else if (targetEl === this.minButtonEl5) {
       setTimeout(() => {
         this.submenu4.setAttribute('visible', false);
         this.maxButtonEl.setAttribute('visible', true);
+        this.submenu4Component.data.Minimizar = true;
+      }, 500);
+    
+    }else if (targetEl === this.maxButtonEl) {
+      setTimeout(() => {
+        this.maxButtonEl.setAttribute('visible', false);
+        
+        if(this.menuInicioComponent.data.Minimizar){
+          this.menuInicio.setAttribute('visible', true);
+          this.menuInicioComponent.data.Minimizar = false;
+        }
+        if(this.submenu1Component.data.Minimizar){
+          this.submenu1.setAttribute('visible', true);
+          this.submenu1Component.data.Minimizar = false;
+        }
+        if(this.submenu2Component.data.Minimizar){
+          this.submenu2.setAttribute('visible', true);
+          this.submenu2Component.data.Minimizar = false;
+        }
+        if(this.submenu3Component.data.Minimizar){
+          this.submenu3.setAttribute('visible', true);
+          this.submenu3Component.data.Minimizar = false;
+        }
+        if(this.submenu4Component.data.Minimizar){
+          this.submenu4.setAttribute('visible', true);
+          this.submenu4Component.data.Minimizar = false;
+        }
       }, 500);
     }
   }

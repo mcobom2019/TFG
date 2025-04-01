@@ -16,6 +16,7 @@
     <script src="slider.js"></script>
     <script src="size-change.js"></script>
     <script src="button.js"></script>
+    <script src="minimize-button.js"></script>
   </head>
   <body>
     <a-scene environment>
@@ -60,7 +61,7 @@
         <a-entity id="minButton5" button="label: -" position="0.2 0.15 0" visible="false"></a-entity>
       </a-entity>
       <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
-       <a-entity id="maximizeButton" button="label: .; primitive: cylinder" position="0 0.015 -0.01" visible="true"></a-entity>
+       <a-entity id="maximizeButton" button="label: .; primitive: cylinder" position="0 0.015 -0.01" visible="true" controlminimizar></a-entity>
       </a-entity>
       <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
       <a-entity>
