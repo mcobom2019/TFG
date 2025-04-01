@@ -21,7 +21,77 @@
                   "position": "0.1 -0.02 0",
                   "visible": "false",
                   "menuHijo2":{
-                    
+                    "id": "subMenu2",
+                    "position": "0 1.5 -0.5",
+                    "visible": "false",
+                    "grabbable": "true",
+                    "buttons": [
+                        {
+                          "label": "<--",
+                          "id": "backButton",
+                          "position": "-0.2 0.15 0",
+                          "visible": "false"
+                        },
+                        {
+                          "label": "Motor",
+                          "id": "motorButton",
+                          "position": "-0.1 0.03 0",
+                          "visible": "false",
+                          "menuHijo3":{
+                            "id": "subMenu3",
+                            "position": "0 1.5 -0.5",
+                            "visible": "false",
+                            "grabbable": "true",
+                            "buttons": [
+                              {
+                                "label": "<--",
+                                "id": "backButton2",
+                                "position": "-0.2 0.15 0",
+                                "visible": "false",
+                                "menuHijo3":{
+                                  "id": "subMenu4",
+                                  "position": "0 1.5 -0.5",
+                                  "visible": "false",
+                                  "grabbable": "true",
+                                  "buttons": []
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "label": "Color",
+                          "id": "colorButton",
+                          "position": "-0.1 -0.09 0",
+                          "visible": "false",
+                          "menuHijo3":{
+                            "id": "subMenu3",
+                            "position": "0 1.5 -0.5",
+                            "visible": "false",
+                            "grabbable": "true",
+                            "buttons": []
+                          }
+                        },
+                        {
+                          "label": "Puertas",
+                          "id": "puertasButton",
+                          "position": "0.1 0.03 0",
+                          "visible": "false",
+                          "menuHijo3":{
+                            "id": "subMenu3",
+                            "position": "0 1.5 -0.5",
+                            "visible": "false",
+                            "grabbable": "true",
+                            "buttons": []
+                          }
+                        },
+                        {
+                          "label": "-",
+                          "id": "minButton3",
+                          "position": "0.2 0.15 0",
+                          "visible": "false"
+                        }
+                    ]
                   }
                 },
                 {
