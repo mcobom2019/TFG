@@ -24,8 +24,8 @@ AFRAME.registerComponent('loader', {
         this.createMenu(subMenu33);
       
         //submenu4
-        var subMenu41 = subMenu31.buttons[1].menuHijo31;
-        this.createMenu(subMenu31);
+        var subMenu41 = subMenu31.buttons[0].menuHijo41;
+        this.createMenu(subMenu41);
         
         // Después de crear los menús, ahora configuramos los eventos
         this.setupEvents();
@@ -43,6 +43,7 @@ AFRAME.registerComponent('loader', {
     this.submenu31 = document.querySelector('#subMenu31');
     this.submenu32 = document.querySelector('#subMenu32');
     this.submenu33 = document.querySelector('#subMenu33');
+    this.submenu41 = document.querySelector('#subMenu41');
 
     // Botones menuInicio
     this.startButtonEl = document.querySelector('#startButton');
@@ -60,6 +61,7 @@ AFRAME.registerComponent('loader', {
     
     //Botones submenu31
     this.backButtonEl21 = document.querySelector('#backButton21');
+    this.electricoButtonEl = document.querySelector('#electricoButton');
     
     //Botones submenu32
     this.backButtonEl22 = document.querySelector('#backButton22');
@@ -184,6 +186,19 @@ AFRAME.registerComponent('loader', {
           button.setAttribute('visible', false);
         });
         const buttons2 = this.submenu2.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
+    this.electricoButtonEl.addEventListener('click', () => {
+        this.submenu31.setAttribute('visible', false);
+        this.submenu41.setAttribute('visible', true);
+        
+        const buttons = this.submenu31.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.submenu41.querySelectorAll('[id]');
         buttons2.forEach(button => {
           button.setAttribute('visible', true);
         });

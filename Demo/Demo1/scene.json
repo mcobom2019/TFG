@@ -61,7 +61,32 @@
                                     "position": "0 1.5 -0.5",
                                     "visible": "false",
                                     "grabbable": "true",
-                                    "buttons": []
+                                    "buttons": [
+                                      {
+                                        "label": "<--",
+                                        "id": "backButton31",
+                                        "position": "-0.2 0.15 0",
+                                        "visible": "false"
+                                      },
+                                      {
+                                        "label": "Show",
+                                        "id": "mostrarButton1",
+                                        "position": "-0.2 0.15 0",
+                                        "visible": "false"
+                                      },
+                                      {
+                                        "label": "Delete",
+                                        "id": "mostrarButton12",
+                                        "position": "-0.2 0.15 0",
+                                        "visible": "false"
+                                      },
+                                      {
+                                        "label": "-",
+                                        "id": "minButton5",
+                                        "position": "-0.2 0.15 0",
+                                        "visible": "false"
+                                      }
+                                    ]
                                     }
                                   }
                                 ]
