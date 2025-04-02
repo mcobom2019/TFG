@@ -38,7 +38,7 @@
                           "position": "-0.1 0.03 0",
                           "visible": "false",
                           "menuHijo31":{
-                            "id": "subMenu3",
+                            "id": "subMenu31",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "true",
@@ -86,7 +86,7 @@
                           "position": "-0.1 -0.09 0",
                           "visible": "false",
                           "menuHijo32":{
-                            "id": "subMenu3",
+                            "id": "subMenu32",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "true",
@@ -121,7 +121,7 @@
                               {
                                 "label": "Yellow",
                                 "id": "AmarilloButton",
-                                "position": "0.1 0.03 0",
+                                "position": "0.1 -0.09 0",
                                 "visible": "false",
                                 "buttons": []
                               },
@@ -141,7 +141,7 @@
                           "position": "0.1 0.03 0",
                           "visible": "false",
                           "menuHijo33":{
-                            "id": "subMenu3",
+                            "id": "subMenu33",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "true",
