@@ -13,9 +13,23 @@ AFRAME.registerComponent('loader', {
         //sceneEl.appendChild(skyEl);
         
         // Crear entidades
-        data.scene.menuPadre.forEach(entity => {
-          
-        });
+        //data.scene.menuPadre.forEach(entity => {
+        const pMenu = data.menuPadre;
+        const menuEl = document.createElement('a-entity');
+        
+        if(pMenu.id){
+          menuEl.setAttribute('id', pMenu.id);
+        }
+        if(pMenu.position){
+          menuEl.setAttribute('position', pMenu.position);
+        }
+        if(pMenu.visible){
+          menuEl.setAttribute('visible', pMenu.visible);
+        }
+        if(pMenu.grabbable){
+          menuEl.setAttribute('grababble', '');
+        }
+        //});
         data.scene.entities.forEach(entity => {
           // Crear el elemento según su tipo
           const entityEl = document.createElement('a-' + entity.type);
