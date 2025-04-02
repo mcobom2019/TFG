@@ -19,7 +19,7 @@ AFRAME.registerComponent('loader', {
         
         if(pMenu.id){
           menuEl.setAttribute('id', pMenu.id);
-           menuEl.setAttribute('menuinicio', '');
+          menuEl.setAttribute('menuinicio', '');
         }
         if(pMenu.position){
           menuEl.setAttribute('position', pMenu.position);
@@ -30,8 +30,39 @@ AFRAME.registerComponent('loader', {
         if(pMenu.grabbable){
           menuEl.setAttribute('grababble', '');
         }
+        
+        if(pMenu.buttons && pMenu.buttons.length>0){
+          this.createButtons(menuEl, pMenu.buttons);
+        }
       
         sceneEl.appendChild(menuEl);
       })
+  },
+  createButtons: function(parentEl, buttons) {
+    buttons.forEach((button, index) => { 
+      const buttonEl = document.createElement('a-entity');
+      
+      if(button.label){
+        buttonEl.setAttribute('label', button.label);
+        buttonEl.setAttribute('button', '');
+      }
+      if(button.id){
+        buttonEl.setAttribute('id', button.id);
+      }
+      if(button.position){
+        buttonEl.setAttribute('position', button.position);
+      }
+      if(button.visible){
+        buttonEl.setAttribute('visible', button.visible);
+      }
+      if(button.width){
+        buttonEl.setAttribute('width', button.width);
+      }
+      if(button.toggleable){
+        buttonEl.setAttribute('toggleable', button.toggleable);
+      }
+      
+      parentEl.appendChild(buttonEl);
+    })
   }
 });
