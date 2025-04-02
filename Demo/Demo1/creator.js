@@ -7,11 +7,16 @@ AFRAME.registerComponent('loader', {
     fetch('scene.json')
       .then(response => response.json())
       .then(data => {
-        const pMenu = data.menuPadre;
+        var pMenu = data.menuPadre;
         this.createMenu(pMenu);
     })
         
   },
+  
+  bindMethods: function () {
+    this.onClick = this.onClick.bind(this);
+  },
+  
   createMenu: function(pMenu){
       const sceneEl = this.el;
       const menuEl = document.createElement('a-entity');
