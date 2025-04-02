@@ -9,7 +9,10 @@ AFRAME.registerComponent('loader', {
         var menuPadre = data.menuPadre;
         this.createMenu(menuPadre);
         
-        var subMenu1 = data.subMenu1 || menuPadre.buttons[0].menuHijo1;
+        var subMenu1 = menuPadre.buttons[0].menuHijo1;
+        this.createMenu(subMenu1);
+      
+        var subMenu2 = subMenu1.buttons[0].menuHijo2;
         this.createMenu(subMenu1);
         
         // Después de crear los menús, ahora configuramos los eventos
@@ -25,18 +28,13 @@ AFRAME.registerComponent('loader', {
   this.menuInicio = document.querySelector('#menuinicio');
   this.submenu1 = document.querySelector('#subMenu1');
   
-  // Si el submenu1 existe, configuramos su visibilidad inicial
-  if (this.submenu1) {
-    this.submenu1.setAttribute('visible', false);
-  }
-  
   // Botón de inicio
   this.startButtonEl = document.querySelector('#startButton');
+  this.xButtonEl = document.querySelector('#xButton');
   
   if (this.startButtonEl) {
     // En lugar de addEventListener, usamos .on() para escuchar eventos A-Frame
     this.startButtonEl.addEventListener('click', () => {
-      console.log("Evento click detectado en startButton");
       if (this.submenu1 && this.menuInicio) {
         this.submenu1.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);
@@ -51,6 +49,15 @@ AFRAME.registerComponent('loader', {
           button.setAttribute('visible', false);
         });
       }
+    });
+    this.xButtonEl.addEventListener('click', () => {
+        this.submenu1.setAttribute('visible', false);
+        this.menuInicio.setAttribute('visible', false);
+        
+        const buttons2 = this.menuInicio.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', false);
+        });
     });
   }
 },
