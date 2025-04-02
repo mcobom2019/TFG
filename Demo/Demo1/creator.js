@@ -1,14 +1,20 @@
 /* global AFRAME */
 AFRAME.registerComponent('loader', {
   init: function() {
-    const sceneEl = this.el;
+    
     
     // Cargar el JSON
     fetch('scene.json')
       .then(response => response.json())
       .then(data => {
         const pMenu = data.menuPadre;
-        const menuEl = document.createElement('a-entity');
+        this.createMenu(pMenu);
+    })
+        
+  },
+  createMenu: function(pMenu){
+      const sceneEl = this.el;
+      const menuEl = document.createElement('a-entity');
         
         if(pMenu.id){
           menuEl.setAttribute('id', pMenu.id);
@@ -29,8 +35,7 @@ AFRAME.registerComponent('loader', {
         }
       
         sceneEl.appendChild(menuEl);
-      })
-  },
+    },          
   createButtons: function(parentEl, buttons) {
     buttons.forEach((button, index) => { 
       const buttonEl = document.createElement('a-entity');
