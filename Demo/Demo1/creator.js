@@ -66,8 +66,11 @@ AFRAME.registerComponent('loader', {
     this.GasolinaButtonEl = document.querySelector('#GasolinaButton');
     
     //Botones submenu32
-    this.BlancoButtonEl22 = document.querySelector('#BlancoButton');
-    this.NegroButtonEl22 = document.querySelector('#NegroButton');
+    this.backButtonEl22 = document.querySelector('#backButton22');
+    this.BlancoButtonEl = document.querySelector('#BlancoButton');
+    this.NegroButtonEl = document.querySelector('#NegroButton');
+    this.RojoButtonEl = document.querySelector('#RojoButton');
+    this.AmarilloButtonEl = document.querySelector('#AmarilloButton');
     
     //Botones submenu33
     this.backButtonEl23 = document.querySelector('#backButton23');
@@ -250,11 +253,11 @@ AFRAME.registerComponent('loader', {
           button.setAttribute('visible', true);
         });
     });
-    this.electricoButtonEl.addEventListener('click', () => {
-        this.submenu31.setAttribute('visible', false);
+    this.BlancoButtonEl.addEventListener('click', () => {
+        this.submenu32.setAttribute('visible', false);
         this.submenu41.setAttribute('visible', true);
         
-        const buttons = this.submenu31.querySelectorAll('[id]');
+        const buttons = this.submenu32.querySelectorAll('[id]');
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
@@ -263,11 +266,11 @@ AFRAME.registerComponent('loader', {
           button.setAttribute('visible', true);
         });
     });
-    this.DieselButtonEl.addEventListener('click', () => {
-        this.submenu31.setAttribute('visible', false);
+    this.NegroButtonEl.addEventListener('click', () => {
+        this.submenu32.setAttribute('visible', false);
         this.submenu41.setAttribute('visible', true);
         
-        const buttons = this.submenu31.querySelectorAll('[id]');
+        const buttons = this.submenu32.querySelectorAll('[id]');
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
@@ -276,11 +279,24 @@ AFRAME.registerComponent('loader', {
           button.setAttribute('visible', true);
         });
     });
-    this.GasolinaButtonEl.addEventListener('click', () => {
-        this.submenu31.setAttribute('visible', false);
+    this.RojoButtonEl.addEventListener('click', () => {
+        this.submenu32.setAttribute('visible', false);
         this.submenu41.setAttribute('visible', true);
         
-        const buttons = this.submenu31.querySelectorAll('[id]');
+        const buttons = this.submenu32.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.submenu41.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
+    this.AmarilloButtonEl.addEventListener('click', () => {
+        this.submenu32.setAttribute('visible', false);
+        this.submenu41.setAttribute('visible', true);
+        
+        const buttons = this.submenu32.querySelectorAll('[id]');
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
