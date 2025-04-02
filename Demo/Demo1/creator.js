@@ -51,6 +51,7 @@ AFRAME.registerComponent('loader', {
       }
       
       parentEl.appendChild(buttonEl);
+      
     })
   }
 });
