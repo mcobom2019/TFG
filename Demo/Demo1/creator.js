@@ -13,7 +13,7 @@ AFRAME.registerComponent('loader', {
         this.createMenu(subMenu1);
       
         var subMenu2 = subMenu1.buttons[0].menuHijo2;
-        this.createMenu(subMenu1);
+        this.createMenu(subMenu2);
         
         // Después de crear los menús, ahora configuramos los eventos
         this.setupEvents();
@@ -27,13 +27,17 @@ AFRAME.registerComponent('loader', {
   // Referencia a los elementos del menú
   this.menuInicio = document.querySelector('#menuinicio');
   this.submenu1 = document.querySelector('#subMenu1');
+  this.submenu2 = document.querySelector('#subMenu2');
   
-  // Botón de inicio
+  // Botones menuInicio
   this.startButtonEl = document.querySelector('#startButton');
   this.xButtonEl = document.querySelector('#xButton');
-  
-  if (this.startButtonEl) {
-    // En lugar de addEventListener, usamos .on() para escuchar eventos A-Frame
+    
+  //Botones Submenu1
+  this.barrasButtonEl = document.querySelector('#barrasButton');
+  this.atrasButtonEl = document.querySelector('#atrasButton');
+    
+    //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
       if (this.submenu1 && this.menuInicio) {
         this.submenu1.setAttribute('visible', true);
@@ -59,7 +63,34 @@ AFRAME.registerComponent('loader', {
           button.setAttribute('visible', false);
         });
     });
-  }
+    
+    //controladores botones submenu1
+    this.atrasButtonEl.addEventListener('click', () => {
+        this.submenu1.setAttribute('visible', false);
+        this.menuInicio.setAttribute('visible', true);
+        
+        const buttons = this.submenu1.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.menuInicio.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
+    this.barrasButtonEl.addEventListener('click', () => {
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', true);
+        
+        const buttons = this.submenu1.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.submenu2.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
 },
   
   createMenu: function(pMenu) {
