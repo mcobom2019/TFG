@@ -9,13 +9,31 @@ AFRAME.registerComponent('loader', {
       .then(data => {
         var pMenu = data.menuPadre;
         this.createMenu(pMenu);
+        this.bindMethods(pMenu);
+        pMenu = data.subMenu1;
+        this.createMenu(pMenu);
     })
         
   },
   
-  bindMethods: function () {
-    this.onClick = this.onClick.bind(this);
+  bindMethods: function (pMenu) {
+    this.onClick = this.onClick.bind(this, pMenu);
   },
+  
+  onClick: function (evt, pMenu) {
+    var targetEl = evt.target;
+    if(pMenu.id == "menuinicio"){
+      this.menuInicio = document.querySelector('#menuinicio');
+      this.submenu1 = document.querySelector('#subMenu1');
+      this.startButtonEl = document.querySelector('#startButton');
+      this.startButtonEl.addEventListener('click', this.onClick);
+      if (targetEl === this.startButtonEl) {
+        this.submenu1.setAttribute('visible', true);
+        this.menuInicio.setAttribute('visible', false);
+      }
+    }
+  },
+  
   
   createMenu: function(pMenu){
       const sceneEl = this.el;
