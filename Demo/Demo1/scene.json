@@ -37,7 +37,7 @@
                           "id": "motorButton",
                           "position": "-0.1 0.03 0",
                           "visible": "false",
-                          "menuHijo3":{
+                          "menuHijo31":{
                             "id": "subMenu3",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
@@ -85,7 +85,7 @@
                           "id": "colorButton",
                           "position": "-0.1 -0.09 0",
                           "visible": "false",
-                          "menuHijo3":{
+                          "menuHijo32":{
                             "id": "subMenu3",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
@@ -140,7 +140,7 @@
                           "id": "puertasButton",
                           "position": "0.1 0.03 0",
                           "visible": "false",
-                          "menuHijo3":{
+                          "menuHijo33":{
                             "id": "subMenu3",
                             "position": "0 1.5 -0.5",
                             "visible": "false",

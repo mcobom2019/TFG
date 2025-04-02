@@ -15,6 +15,13 @@ AFRAME.registerComponent('loader', {
         var subMenu2 = subMenu1.buttons[0].menuHijo2;
         this.createMenu(subMenu2);
         
+        var subMenu31 = subMenu2.buttons[1].menuHijo31;
+        this.createMenu(subMenu31);
+        var subMenu32 = subMenu2.buttons[1].menuHijo32;
+        this.createMenu(subMenu32);
+        var subMenu33 = subMenu2.buttons[1].menuHijo33;
+        this.createMenu(subMenu33);
+        
         // Después de crear los menús, ahora configuramos los eventos
         this.setupEvents();
       })
@@ -24,18 +31,25 @@ AFRAME.registerComponent('loader', {
   },
   
   setupEvents: function() {
-  // Referencia a los elementos del menú
-  this.menuInicio = document.querySelector('#menuinicio');
-  this.submenu1 = document.querySelector('#subMenu1');
-  this.submenu2 = document.querySelector('#subMenu2');
-  
-  // Botones menuInicio
-  this.startButtonEl = document.querySelector('#startButton');
-  this.xButtonEl = document.querySelector('#xButton');
-    
-  //Botones Submenu1
-  this.barrasButtonEl = document.querySelector('#barrasButton');
-  this.atrasButtonEl = document.querySelector('#atrasButton');
+    // Referencia a los elementos del menú
+    this.menuInicio = document.querySelector('#menuinicio');
+    this.submenu1 = document.querySelector('#subMenu1');
+    this.submenu2 = document.querySelector('#subMenu2');
+    this.submenu3 = document.querySelector('#subMenu3');
+
+    // Botones menuInicio
+    this.startButtonEl = document.querySelector('#startButton');
+    this.xButtonEl = document.querySelector('#xButton');
+
+    //Botones Submenu1
+    this.barrasButtonEl = document.querySelector('#barrasButton');
+    this.atrasButtonEl = document.querySelector('#atrasButton');
+
+    //Botones submenu2
+    this.backButtonEl = document.querySelector('#backButton');
+    this.motorButtonEl = document.querySelector('#motorButton');
+    this.colorButtonEl = document.querySelector('#colorButton');
+    this.puertasButtonEl = document.querySelector('#puertasButton');
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
@@ -87,6 +101,46 @@ AFRAME.registerComponent('loader', {
           button.setAttribute('visible', false);
         });
         const buttons2 = this.submenu2.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
+    //controladores botones submenu2
+    this.backButtonEl.addEventListener('click', () => {
+        this.submenu2.setAttribute('visible', false);
+        this.submenu1.setAttribute('visible', true);
+        
+        const buttons = this.submenu2.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.submenu1.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
+    this.motorButtonEl.addEventListener('click', () => {
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', true);
+        
+        const buttons = this.submenu2.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.submenu3.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
+    this.colorButtonEl.addEventListener('click', () => {
+        this.submenu2.setAttribute('visible', false);
+        this.submenu3.setAttribute('visible', true);
+        
+        const buttons = this.submenu2.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.submenu3.querySelectorAll('[id]');
         buttons2.forEach(button => {
           button.setAttribute('visible', true);
         });
