@@ -76,7 +76,7 @@
                                       },
                                       {
                                         "label": "Delete",
-                                        "id": "mostrarButton12",
+                                        "id": "borrarButton1",
                                         "position": "-0.2 0.15 0",
                                         "visible": "false"
                                       },

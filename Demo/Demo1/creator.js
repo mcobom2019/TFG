@@ -24,7 +24,7 @@ AFRAME.registerComponent('loader', {
         this.createMenu(subMenu33);
       
         //submenu4
-        var subMenu41 = subMenu31.buttons[0].menuHijo41;
+        var subMenu41 = subMenu31.buttons[1].menuHijo41;
         this.createMenu(subMenu41);
         
         // Después de crear los menús, ahora configuramos los eventos
