@@ -7,13 +7,6 @@ AFRAME.registerComponent('loader', {
     fetch('scene.json')
       .then(response => response.json())
       .then(data => {
-        // Establecer el color de fondo
-        //const skyEl = document.createElement('a-sky');
-        //skyEl.setAttribute('color', data.scene.background.color);
-        //sceneEl.appendChild(skyEl);
-        
-        // Crear entidades
-        //data.scene.menuPadre.forEach(entity => {
         const pMenu = data.menuPadre;
         const menuEl = document.createElement('a-entity');
         
