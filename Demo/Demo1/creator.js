@@ -15,12 +15,17 @@ AFRAME.registerComponent('loader', {
         var subMenu2 = subMenu1.buttons[0].menuHijo2;
         this.createMenu(subMenu2);
         
+        //submenu3
         var subMenu31 = subMenu2.buttons[1].menuHijo31;
         this.createMenu(subMenu31);
         var subMenu32 = subMenu2.buttons[2].menuHijo32;
         this.createMenu(subMenu32);
         var subMenu33 = subMenu2.buttons[3].menuHijo33;
         this.createMenu(subMenu33);
+      
+        //submenu4
+        var subMenu41 = subMenu31.buttons[1].menuHijo31;
+        this.createMenu(subMenu31);
         
         // Después de crear los menús, ahora configuramos los eventos
         this.setupEvents();
@@ -54,7 +59,13 @@ AFRAME.registerComponent('loader', {
     this.puertasButtonEl = document.querySelector('#puertasButton');
     
     //Botones submenu31
-    this.backButtonEl2 = document.querySelector('#backButton2');
+    this.backButtonEl21 = document.querySelector('#backButton21');
+    
+    //Botones submenu32
+    this.backButtonEl22 = document.querySelector('#backButton22');
+    
+    //Botones submenu33
+    this.backButtonEl23 = document.querySelector('#backButton23');
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
@@ -164,7 +175,7 @@ AFRAME.registerComponent('loader', {
         });
     });
     //controladores botones submenu3.1
-    this.backButtonEl2.addEventListener('click', () => {
+    this.backButtonEl21.addEventListener('click', () => {
         this.submenu31.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
         
@@ -179,7 +190,7 @@ AFRAME.registerComponent('loader', {
     });
     
     //controladores botones submenu3.2
-    this.backButtonEl2.addEventListener('click', () => {
+    this.backButtonEl22.addEventListener('click', () => {
         this.submenu32.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
         
@@ -194,7 +205,7 @@ AFRAME.registerComponent('loader', {
     });
     
     //controladores botones submenu3.3
-    this.backButtonEl2.addEventListener('click', () => {
+    this.backButtonEl23.addEventListener('click', () => {
         this.submenu33.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
         
