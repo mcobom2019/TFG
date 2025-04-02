@@ -4,11 +4,16 @@
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
   <script src="creator.js"></script>
   <script src="initMenu.js"></script>
+  <script src="button.js"></script>
 </head>
 <body>
   <!-- Aplicamos el componente escena-loader a la escena -->
   <a-scene environment loader>
-    <!-- La escena se cargará desde el JSON usando el componente personalizado -->
+      <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
+      <a-entity>
+        <a-entity cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
+      </a-entity>
   </a-scene>
 </body>
 </html>

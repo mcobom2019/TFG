@@ -42,24 +42,19 @@ AFRAME.registerComponent('loader', {
     buttons.forEach((button, index) => { 
       const buttonEl = document.createElement('a-entity');
       
-      if(button.label){
-        buttonEl.setAttribute('label', button.label);
-        buttonEl.setAttribute('button', '');
-      }
       if(button.id){
         buttonEl.setAttribute('id', button.id);
+        buttonEl.setAttribute('button', {
+          label: button.label,
+          width: button.width,
+          toggeable: button.toggeable
+        });
       }
       if(button.position){
         buttonEl.setAttribute('position', button.position);
       }
       if(button.visible){
         buttonEl.setAttribute('visible', button.visible);
-      }
-      if(button.width){
-        buttonEl.setAttribute('width', button.width);
-      }
-      if(button.toggleable){
-        buttonEl.setAttribute('toggleable', button.toggleable);
       }
       
       parentEl.appendChild(buttonEl);
