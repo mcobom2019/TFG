@@ -18,8 +18,11 @@ AFRAME.registerComponent('loader', {
       .then(response => response.json())
       .then(data => {
         
-        //var maximizeButton
-        // Primero creamos todos los menús
+        //creo el boton de maximizar
+        var maximizeButton = data.maximizeButton;
+        this.createButton(maximizeButton);
+        
+        // creo todos los menús
         var menuPadre = data.menuPadre;
         this.createMenu(menuPadre);
         
@@ -644,6 +647,30 @@ AFRAME.registerComponent('loader', {
       }
       
       parentEl.appendChild(buttonEl);
+    });
+  },
+  createButton: function(buttons) {
+    var scene = document.querySelector("a-scene");
+    buttons.forEach((button, index) => { 
+      const buttonEl = document.createElement('a-entity');
+      
+      if (button.id) {
+        buttonEl.setAttribute('id', button.id);
+        buttonEl.setAttribute('button', {
+          label: button.label,
+          width: button.width || 0.11,
+          toggleable: button.toggleable || false,
+          primitive: button.primitive || 'box'
+        });
+      }
+      if (button.position) {
+        buttonEl.setAttribute('position', button.position);
+      }
+      if (button.visible !== undefined) {
+        buttonEl.setAttribute('visible', button.visible);
+      }
+      
+      scene.appendChild(buttonEl);
     });
   }
 });

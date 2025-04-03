@@ -2,7 +2,7 @@
 {  "maximizeButton":{
       "id": "maximizeButton",
       "position": "0 0.015 -0.01",
-      "visible": "false",
+      "visible": "true",
       "label": ".",
       "primitive": "cylinder"
   },

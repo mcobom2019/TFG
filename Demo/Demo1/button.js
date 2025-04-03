@@ -12,7 +12,7 @@ AFRAME.registerComponent('button', {
 
     this.color = '#3a50c5';
 
-    // Configurar geometría según el tipo de primitiva
+    // primitiva para el maximizeButton
     if (this.data.primitive === 'cylinder') {
       el.setAttribute('geometry', {
         primitive: 'cylinder',
