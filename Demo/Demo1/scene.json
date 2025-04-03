@@ -54,8 +54,8 @@
                                 "id": "electricoButton",
                                 "position": "-0.15 0 0",
                                 "visible": "false",
-                                    "menuHijo41":{
-                                    "id": "subMenu41",
+                                    "menuHijo4":{
+                                    "id": "subMenu4",
                                     "position": "0 1.5 -0.5",
                                     "visible": "false",
                                     "grabbable": "true",
