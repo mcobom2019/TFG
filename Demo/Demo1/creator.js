@@ -13,19 +13,7 @@ AFRAME.registerComponent('loader', {
     this.yellow = false;
     this.threedoors = false;
     this.fivedoors = false;
-    console.log("electrholaaaaaico");
-    if(this.electric){
-      console.log("electrico");
-    }
     
-        console.log("diesel", this.diesel);
-        console.log("gasolina", this.gasoline);
-        console.log("blanco", this.white);
-        console.log("negro", this.black);
-        console.log("rojo", this.red);
-        console.log("amarillo", this.yellow);
-        console.log("tres", this.threedoors);
-        console.log("cinco", this.fivedoors);
     fetch('scene.json')
       .then(response => response.json())
       .then(data => {
@@ -99,6 +87,8 @@ AFRAME.registerComponent('loader', {
     
     //Botones submenu33
     this.backButtonEl23 = document.querySelector('#backButton23');
+    this.tresButtonEl = document.querySelector('#tresButton');
+    this.cincoButtonEl = document.querySelector('#cincoButton');
     
     //botones submenu4
     this.backButtonEl31 = document.querySelector('#backButton31');
@@ -372,6 +362,34 @@ AFRAME.registerComponent('loader', {
           button.setAttribute('visible', false);
         });
         const buttons2 = this.submenu2.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
+    this.tresButtonEl.addEventListener('click', () => {
+        this.threedoors = true;
+        this.submenu33.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        
+        const buttons = this.submenu33.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.submenu4.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
+    this.cincoButtonEl.addEventListener('click', () => {
+        this.fivedoors = true;
+        this.submenu33.setAttribute('visible', false);
+        this.submenu4.setAttribute('visible', true);
+        
+        const buttons = this.submenu33.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.submenu4.querySelectorAll('[id]');
         buttons2.forEach(button => {
           button.setAttribute('visible', true);
         });
