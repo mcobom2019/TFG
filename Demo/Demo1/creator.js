@@ -2,9 +2,9 @@
 AFRAME.registerComponent('loader', {
   init: function() {
     // Cargar el JSON
-    this.pie = true;
+    this.pie = false;
     this.bar = false;
-    this.electric = true;
+    this.electric = false;
     this.diesel = false;
     this.gasoline = false;
     this.white = false;
@@ -87,11 +87,13 @@ AFRAME.registerComponent('loader', {
     
     //Botones submenu33
     this.backButtonEl23 = document.querySelector('#backButton23');
-    this.tresButtonEl = document.querySelector('#tresButton');
+    this.tresButtonEl = document.querySelector('#dosButton');
     this.cincoButtonEl = document.querySelector('#cincoButton');
     
     //botones submenu4
     this.backButtonEl31 = document.querySelector('#backButton31');
+    this.mostrarButtonEl = document.querySelector('#mostrarButton1');
+    this.borrarButton1El = document.querySelector('#borrarButton1');
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
@@ -122,6 +124,8 @@ AFRAME.registerComponent('loader', {
     
     //controladores botones submenu1
     this.atrasButtonEl.addEventListener('click', () => {
+        this.pie = false;
+        this.bar = false;
         this.submenu1.setAttribute('visible', false);
         this.menuInicio.setAttribute('visible', true);
         
@@ -446,6 +450,39 @@ AFRAME.registerComponent('loader', {
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
+    });
+    this.mostrarButtonEl.addEventListener('click', () => {
+        var scene = document.querySelector("a-scene");
+        var dataEntity = document.createElement('a-entity');
+        dataEntity.setAttribute('id', 'data');
+        dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
+        scene.appendChild(dataEntity);
+      
+        // Crear entidad de filtro
+        var filterEntity = document.createElement('a-entity');
+        filterEntity.setAttribute('id', 'filter-data');
+      
+        // Lógica de filtrado
+        if(this.){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
+        } else if(submenu3.data.Diesel){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
+        } else if(submenu3.data.Gasolina){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=gasoline');
+        } else if(submenu3.data.Blanco){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
+        } else if(submenu3.data.Negro){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=black');
+        } else if(submenu3.data.Rojo){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
+        } else if(submenu3.data.Amarillo){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=yellow');
+        } else if(submenu3.data.Dos){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
+        } else if(submenu3.data.Cinco){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
+        }
+        scene.appendChild(filterEntity);
     });
 },
   
