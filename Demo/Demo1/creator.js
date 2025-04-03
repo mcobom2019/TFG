@@ -17,6 +17,8 @@ AFRAME.registerComponent('loader', {
     fetch('scene.json')
       .then(response => response.json())
       .then(data => {
+        
+        //var maximizeButton
         // Primero creamos todos los menús
         var menuPadre = data.menuPadre;
         this.createMenu(menuPadre);
