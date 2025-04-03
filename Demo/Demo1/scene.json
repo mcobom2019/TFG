@@ -1,4 +1,12 @@
-{"menuPadre":{
+
+{  "maximizeButton":{
+      "id": "maximizeButton",
+      "position": "0 0.015 -0.01",
+      "visible": "false",
+      "label": ".",
+      "primitive": "cylinder"
+  },
+  "menuPadre":{
     "id": "menuinicio",
     "position": "0 1.5 -0.5",
     "visible": "true",
