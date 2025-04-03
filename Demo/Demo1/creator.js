@@ -2,9 +2,9 @@
 AFRAME.registerComponent('loader', {
   init: function() {
     // Cargar el JSON
-    this.pie = false;
+    this.pie = true;
     this.bar = false;
-    this.electric = false;
+    this.electric = true;
     this.diesel = false;
     this.gasoline = false;
     this.white = false;
@@ -13,6 +13,19 @@ AFRAME.registerComponent('loader', {
     this.yellow = false;
     this.threedoors = false;
     this.fivedoors = false;
+    console.log("electrholaaaaaico");
+    if(this.electric){
+      console.log("electrico");
+    }
+    
+        console.log("diesel", this.diesel);
+        console.log("gasolina", this.gasoline);
+        console.log("blanco", this.white);
+        console.log("negro", this.black);
+        console.log("rojo", this.red);
+        console.log("amarillo", this.yellow);
+        console.log("tres", this.threedoors);
+        console.log("cinco", this.fivedoors);
     fetch('scene.json')
       .then(response => response.json())
       .then(data => {
@@ -216,6 +229,9 @@ AFRAME.registerComponent('loader', {
     
     //controladores botones submenu3.1
     this.backButtonEl21.addEventListener('click', () => {
+        this.electric = false;
+        this.diesel = false;
+        this.gasoline = false;
         this.submenu31.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
         
@@ -273,6 +289,10 @@ AFRAME.registerComponent('loader', {
     
     //controladores botones submenu3.2
     this.backButtonEl22.addEventListener('click', () => {
+        this.white = false;
+        this.black = false;
+        this.red = false;
+        this.yellow = false;
         this.submenu32.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
         
@@ -359,9 +379,49 @@ AFRAME.registerComponent('loader', {
     
     //controladores botones submenu4
     this.backButtonEl31.addEventListener('click', () => {
+        console.log("electrico", this.electric);
+        console.log("diesel", this.diesel);
+        console.log("gasolina", this.gasoline);
+        console.log("blanco", this.white);
+        console.log("negro", this.black);
+        console.log("rojo", this.red);
+        console.log("amarillo", this.yellow);
+        console.log("tres", this.threedoors);
+        console.log("cinco", this.fivedoors);
+        
         if(this.electric || this.diesel || this.gasoline){
+          this.electric = false;
+          this.diesel = false;
+          this.gasoline = false;
           this.submenu4.setAttribute('visible', false);
           this.submenu31.setAttribute('visible', true);
+          
+          const buttons2 = this.submenu31.querySelectorAll('[id]');
+            buttons2.forEach(button => {
+            button.setAttribute('visible', true);
+          });
+        }else if(this.white || this.black || this.red || this.yellow){
+          this.white = false;
+          this.black = false;
+          this.red = false;
+          this.yellow = false;
+          this.submenu4.setAttribute('visible', false);
+          this.submenu32.setAttribute('visible', true);
+          
+          const buttons2 = this.submenu32.querySelectorAll('[id]');
+            buttons2.forEach(button => {
+            button.setAttribute('visible', true);
+          });
+        }else if(this.threedoors || this.fivedoors){
+          this.threedoors = false;
+          this.fivedoors = false;
+          this.submenu4.setAttribute('visible', false);
+          this.submenu33.setAttribute('visible', true);
+          
+          const buttons2 = this.submenu33.querySelectorAll('[id]');
+            buttons2.forEach(button => {
+            button.setAttribute('visible', true);
+          });
         }
         
         const buttons = this.submenu4.querySelectorAll('[id]');
