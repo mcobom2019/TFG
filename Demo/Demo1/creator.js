@@ -2,6 +2,17 @@
 AFRAME.registerComponent('loader', {
   init: function() {
     // Cargar el JSON
+    this.pie = false;
+    this.bar = false;
+    this.electric = false;
+    this.diesel = false;
+    this.gasoline = false;
+    this.white = false;
+    this.black = false;
+    this.red = false;
+    this.yellow = false;
+    this.threedoors = false;
+    this.fivedoors = false;
     fetch('scene.json')
       .then(response => response.json())
       .then(data => {
@@ -51,6 +62,7 @@ AFRAME.registerComponent('loader', {
 
     //Botones Submenu1
     this.barrasButtonEl = document.querySelector('#barrasButton');
+    this.circularButtonEl = document.querySelector('#circularButton');
     this.atrasButtonEl = document.querySelector('#atrasButton');
 
     //Botones submenu2
@@ -120,6 +132,21 @@ AFRAME.registerComponent('loader', {
         });
     });
     this.barrasButtonEl.addEventListener('click', () => {
+        this.bar = true;
+        this.submenu1.setAttribute('visible', false);
+        this.submenu2.setAttribute('visible', true);
+        
+        const buttons = this.submenu1.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        const buttons2 = this.submenu2.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    });
+    this.circularButtonEl.addEventListener('click', () => {
+        this.pie = true;
         this.submenu1.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
         
@@ -200,6 +227,7 @@ AFRAME.registerComponent('loader', {
         });
     });
     this.electricoButtonEl.addEventListener('click', () => {
+        this.elect
         this.submenu31.setAttribute('visible', false);
         this.submenu41.setAttribute('visible', true);
         
