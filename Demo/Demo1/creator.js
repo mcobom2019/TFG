@@ -93,7 +93,7 @@ AFRAME.registerComponent('loader', {
     //botones submenu4
     this.backButtonEl31 = document.querySelector('#backButton31');
     this.mostrarButtonEl = document.querySelector('#mostrarButton1');
-    this.borrarButton1El = document.querySelector('#borrarButton1');
+    this.borrarButtonEl = document.querySelector('#borrarButton1');
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
@@ -124,8 +124,6 @@ AFRAME.registerComponent('loader', {
     
     //controladores botones submenu1
     this.atrasButtonEl.addEventListener('click', () => {
-        this.pie = false;
-        this.bar = false;
         this.submenu1.setAttribute('visible', false);
         this.menuInicio.setAttribute('visible', true);
         
@@ -169,6 +167,8 @@ AFRAME.registerComponent('loader', {
     
     //controladores botones submenu2
     this.backButtonEl.addEventListener('click', () => {
+        this.pie = false;
+        this.bar = false;
         this.submenu2.setAttribute('visible', false);
         this.submenu1.setAttribute('visible', true);
         
@@ -401,6 +401,15 @@ AFRAME.registerComponent('loader', {
     
     //controladores botones submenu4
     this.backButtonEl31.addEventListener('click', () => {
+        var scene = document.querySelector("a-scene");
+        var barChart = document.querySelector('#bar-chart');
+        var pieChart = document.querySelector('#pie-chart');
+        var prevFilter = document.querySelector('#filter-data');
+        var dataEntity = document.querySelector('#data');
+        if (barChart) scene.removeChild(barChart);
+        if (pieChart) scene.removeChild(pieChart);
+        if (prevFilter) scene.removeChild(prevFilter);
+        if (dataEntity) scene.removeChild(dataEntity);
         console.log("electrico", this.electric);
         console.log("diesel", this.diesel);
         console.log("gasolina", this.gasoline);
@@ -463,26 +472,68 @@ AFRAME.registerComponent('loader', {
         filterEntity.setAttribute('id', 'filter-data');
       
         // Lógica de filtrado
-        if(this.){
+        if(this.electric){
             filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
-        } else if(submenu3.data.Diesel){
+        } else if(this.diesel){
             filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
-        } else if(submenu3.data.Gasolina){
+        } else if(this.gasoline){
             filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=gasoline');
-        } else if(submenu3.data.Blanco){
+        } else if(this.white){
             filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
-        } else if(submenu3.data.Negro){
+        } else if(this.black){
             filterEntity.setAttribute('babia-filter', 'from: data; filter: color=black');
-        } else if(submenu3.data.Rojo){
+        } else if(this.red){
             filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
-        } else if(submenu3.data.Amarillo){
+        } else if(this.yellow){
             filterEntity.setAttribute('babia-filter', 'from: data; filter: color=yellow');
-        } else if(submenu3.data.Dos){
+        } else if(this.threedoors){
             filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
-        } else if(submenu3.data.Cinco){
+        } else if(this.fivedoors){
             filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
         }
         scene.appendChild(filterEntity);
+      
+        // Crear diagrama de barras
+        if(this.bar) {
+            var barChartEntity = document.createElement('a-entity');
+            barChartEntity.setAttribute('id', 'bar-chart');
+            barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
+            barChartEntity.setAttribute('position', '0 0.5 -1');
+            barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
+            scene.appendChild(barChartEntity);
+            //pieChartEntity.setAttribute('grabbable', '');
+            //barChartEntity.setAttribute('size-change', '');
+          
+        }else if(this.pie){
+            var pieChartEntity = document.createElement('a-entity');
+            pieChartEntity.setAttribute('id', 'pie-chart');
+            pieChartEntity.setAttribute('babia-pie', 'from: filter-data; legend: true; palette: blues; key: model; size: doors');
+            pieChartEntity.setAttribute('position', '0 0.5 -1');
+            pieChartEntity.setAttribute('scale', '0.2 0.2 0.2');
+            pieChartEntity.setAttribute('rotation', '90 0 0');
+            scene.appendChild(pieChartEntity);
+            //pieChartEntity.setAttribute('grabbable', '');
+            //pieChartEntity.setAttribute('size-change', '');
+        }
+    });
+    this.borrarButtonEl.addEventListener('click', () => {
+        var scene = document.querySelector("a-scene");
+        var barChart = document.querySelector('#bar-chart');
+        if (barChart) {
+            scene.removeChild(barChart);
+        }
+
+        // Eliminar diagrama circular si existe
+        var pieChart = document.querySelector('#pie-chart');
+        if (pieChart) {
+            scene.removeChild(pieChart);
+        }
+
+       // Eliminar filtro de datos si existe
+        var prevFilter = document.querySelector('#filter-data');
+        if (prevFilter) {
+            scene.removeChild(prevFilter);
+        }
     });
 },
   
