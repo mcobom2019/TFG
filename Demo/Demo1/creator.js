@@ -18,10 +18,6 @@ AFRAME.registerComponent('loader', {
       .then(response => response.json())
       .then(data => {
         
-        //creo el boton de maximizar
-        var maximizeButton = data.maximizeButton;
-        this.createButton(maximizeButton);
-        
         // creo todos los menús
         var menuPadre = data.menuPadre;
         this.createMenu(menuPadre);
@@ -104,19 +100,17 @@ AFRAME.registerComponent('loader', {
     this.startButtonEl.addEventListener('click', () => {
       if (this.submenu1 && this.menuInicio) {
         this.menuInicio.setAttribute('visible', false);
-        setTimeout(() => {
-          this.submenu1.setAttribute('visible', true);
-        }, 500);
-        
-        // Hacer visibles los botones del submenu1
-        const buttons = this.submenu1.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', true);
-        });
         const buttons2 = this.menuInicio.querySelectorAll('[id]');
         buttons2.forEach(button => {
           button.setAttribute('visible', false);
         });
+        setTimeout(() => {
+          this.submenu1.setAttribute('visible', true);
+          const buttons = this.submenu1.querySelectorAll('[id]');
+          buttons.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+        }, 500);
       }
     });
     this.xButtonEl.addEventListener('click', () => {
@@ -132,33 +126,32 @@ AFRAME.registerComponent('loader', {
     //controladores botones submenu1
     this.atrasButtonEl.addEventListener('click', () => {
         this.submenu1.setAttribute('visible', false);
-        setTimeout(() => {
-          this.menuInicio.setAttribute('visible', true);
-        }, 500);
-        
         const buttons = this.submenu1.querySelectorAll('[id]');
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
-        const buttons2 = this.menuInicio.querySelectorAll('[id]');
-        buttons2.forEach(button => {
+        setTimeout(() => {
+          this.menuInicio.setAttribute('visible', true);
+          const buttons2 = this.menuInicio.querySelectorAll('[id]');
+          buttons2.forEach(button => {
           button.setAttribute('visible', true);
         });
+        }, 500);
     });
     this.barrasButtonEl.addEventListener('click', () => {
         this.bar = true;
         this.submenu1.setAttribute('visible', false);
         setTimeout(() => {
           this.submenu2.setAttribute('visible', true);
+          const buttons2 = this.submenu2.querySelectorAll('[id]');
+          buttons2.forEach(button => {
+          button.setAttribute('visible', true);
+        });
         }, 500);
         
         const buttons = this.submenu1.querySelectorAll('[id]');
         buttons.forEach(button => {
           button.setAttribute('visible', false);
-        });
-        const buttons2 = this.submenu2.querySelectorAll('[id]');
-        buttons2.forEach(button => {
-          button.setAttribute('visible', true);
         });
     });
     this.circularButtonEl.addEventListener('click', () => {
@@ -649,28 +642,4 @@ AFRAME.registerComponent('loader', {
       parentEl.appendChild(buttonEl);
     });
   },
-  createButton: function(buttons) {
-    var scene = document.querySelector("a-scene");
-    buttons.forEach((button, index) => { 
-      const buttonEl = document.createElement('a-entity');
-      
-      if (button.id) {
-        buttonEl.setAttribute('id', button.id);
-        buttonEl.setAttribute('button', {
-          label: button.label,
-          width: button.width || 0.11,
-          toggleable: button.toggleable || false,
-          primitive: button.primitive || 'box'
-        });
-      }
-      if (button.position) {
-        buttonEl.setAttribute('position', button.position);
-      }
-      if (button.visible !== undefined) {
-        buttonEl.setAttribute('visible', button.visible);
-      }
-      
-      scene.appendChild(buttonEl);
-    });
-  }
 });
