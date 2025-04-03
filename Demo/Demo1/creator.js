@@ -444,13 +444,22 @@ AFRAME.registerComponent('loader', {
     this.backButtonEl31.addEventListener('click', () => {
         var scene = document.querySelector("a-scene");
         var barChart = document.querySelector('#bar-chart');
+        if (barChart) {
+            scene.removeChild(barChart);
+        }
+
+        // Eliminar diagrama circular si existe
         var pieChart = document.querySelector('#pie-chart');
+        if (pieChart) {
+            scene.removeChild(pieChart);
+        }
+
+       // Eliminar filtro de datos si existe
         var prevFilter = document.querySelector('#filter-data');
-        var dataEntity = document.querySelector('#data');
-        if (barChart) scene.removeChild(barChart);
-        if (pieChart) scene.removeChild(pieChart);
-        if (prevFilter) scene.removeChild(prevFilter);
-        if (dataEntity) scene.removeChild(dataEntity);
+        if (prevFilter) {
+            scene.removeChild(prevFilter);
+        }
+        setTimeout(() => {
         console.log("electrico", this.electric);
         console.log("diesel", this.diesel);
         console.log("gasolina", this.gasoline);
@@ -466,7 +475,6 @@ AFRAME.registerComponent('loader', {
           this.diesel = false;
           this.gasoline = false;
           this.submenu4.setAttribute('visible', false);
-          this.submenu31.setAttribute('visible', true);
           setTimeout(() => {
             this.submenu31.setAttribute('visible', true);
           }, 500);
@@ -507,6 +515,7 @@ AFRAME.registerComponent('loader', {
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
+        }, 500);
     });
     this.mostrarButtonEl.addEventListener('click', () => {
         var scene = document.querySelector("a-scene");
