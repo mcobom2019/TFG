@@ -98,8 +98,10 @@ AFRAME.registerComponent('loader', {
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
       if (this.submenu1 && this.menuInicio) {
-        this.submenu1.setAttribute('visible', true);
         this.menuInicio.setAttribute('visible', false);
+        setTimeout(() => {
+          this.submenu1.setAttribute('visible', true);
+        }, 500);
         
         // Hacer visibles los botones del submenu1
         const buttons = this.submenu1.querySelectorAll('[id]');
@@ -125,7 +127,9 @@ AFRAME.registerComponent('loader', {
     //controladores botones submenu1
     this.atrasButtonEl.addEventListener('click', () => {
         this.submenu1.setAttribute('visible', false);
-        this.menuInicio.setAttribute('visible', true);
+        setTimeout(() => {
+          this.menuInicio.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu1.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -139,7 +143,9 @@ AFRAME.registerComponent('loader', {
     this.barrasButtonEl.addEventListener('click', () => {
         this.bar = true;
         this.submenu1.setAttribute('visible', false);
-        this.submenu2.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu2.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu1.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -153,7 +159,9 @@ AFRAME.registerComponent('loader', {
     this.circularButtonEl.addEventListener('click', () => {
         this.pie = true;
         this.submenu1.setAttribute('visible', false);
-        this.submenu2.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu2.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu1.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -170,7 +178,9 @@ AFRAME.registerComponent('loader', {
         this.pie = false;
         this.bar = false;
         this.submenu2.setAttribute('visible', false);
-        this.submenu1.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu1.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu2.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -183,7 +193,9 @@ AFRAME.registerComponent('loader', {
     });
     this.motorButtonEl.addEventListener('click', () => {
         this.submenu2.setAttribute('visible', false);
-        this.submenu31.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu31.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu2.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -196,7 +208,9 @@ AFRAME.registerComponent('loader', {
     });
     this.colorButtonEl.addEventListener('click', () => {
         this.submenu2.setAttribute('visible', false);
-        this.submenu32.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu32.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu2.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -209,7 +223,9 @@ AFRAME.registerComponent('loader', {
     });
     this.puertasButtonEl.addEventListener('click', () => {
         this.submenu2.setAttribute('visible', false);
-        this.submenu33.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu33.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu2.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -227,7 +243,9 @@ AFRAME.registerComponent('loader', {
         this.diesel = false;
         this.gasoline = false;
         this.submenu31.setAttribute('visible', false);
-        this.submenu2.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu2.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu31.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -241,7 +259,9 @@ AFRAME.registerComponent('loader', {
     this.electricoButtonEl.addEventListener('click', () => {
         this.electric = true;
         this.submenu31.setAttribute('visible', false);
-        this.submenu4.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu4.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu31.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -255,7 +275,9 @@ AFRAME.registerComponent('loader', {
     this.DieselButtonEl.addEventListener('click', () => {
         this.diesel = true;
         this.submenu31.setAttribute('visible', false);
-        this.submenu4.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu4.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu31.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -269,7 +291,9 @@ AFRAME.registerComponent('loader', {
     this.GasolinaButtonEl.addEventListener('click', () => {
         this.gasoline = true;
         this.submenu31.setAttribute('visible', false);
-        this.submenu4.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu4.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu31.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -288,7 +312,9 @@ AFRAME.registerComponent('loader', {
         this.red = false;
         this.yellow = false;
         this.submenu32.setAttribute('visible', false);
-        this.submenu2.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu2.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu32.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -302,7 +328,9 @@ AFRAME.registerComponent('loader', {
     this.BlancoButtonEl.addEventListener('click', () => {
         this.white = true;
         this.submenu32.setAttribute('visible', false);
-        this.submenu4.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu4.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu32.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -316,7 +344,9 @@ AFRAME.registerComponent('loader', {
     this.NegroButtonEl.addEventListener('click', () => {
         this.black = true;
         this.submenu32.setAttribute('visible', false);
-        this.submenu4.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu4.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu32.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -330,7 +360,9 @@ AFRAME.registerComponent('loader', {
     this.RojoButtonEl.addEventListener('click', () => {
         this.red = true;
         this.submenu32.setAttribute('visible', false);
-        this.submenu4.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu4.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu32.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -344,7 +376,9 @@ AFRAME.registerComponent('loader', {
     this.AmarilloButtonEl.addEventListener('click', () => {
         this.yellow = true;
         this.submenu32.setAttribute('visible', false);
-        this.submenu4.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu4.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu32.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -360,6 +394,9 @@ AFRAME.registerComponent('loader', {
     this.backButtonEl23.addEventListener('click', () => {
         this.submenu33.setAttribute('visible', false);
         this.submenu2.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu2.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu33.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -373,7 +410,9 @@ AFRAME.registerComponent('loader', {
     this.tresButtonEl.addEventListener('click', () => {
         this.threedoors = true;
         this.submenu33.setAttribute('visible', false);
-        this.submenu4.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu4.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu33.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -387,7 +426,9 @@ AFRAME.registerComponent('loader', {
     this.cincoButtonEl.addEventListener('click', () => {
         this.fivedoors = true;
         this.submenu33.setAttribute('visible', false);
-        this.submenu4.setAttribute('visible', true);
+        setTimeout(() => {
+          this.submenu4.setAttribute('visible', true);
+        }, 500);
         
         const buttons = this.submenu33.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -426,6 +467,9 @@ AFRAME.registerComponent('loader', {
           this.gasoline = false;
           this.submenu4.setAttribute('visible', false);
           this.submenu31.setAttribute('visible', true);
+          setTimeout(() => {
+            this.submenu31.setAttribute('visible', true);
+          }, 500);
           
           const buttons2 = this.submenu31.querySelectorAll('[id]');
             buttons2.forEach(button => {
@@ -437,7 +481,9 @@ AFRAME.registerComponent('loader', {
           this.red = false;
           this.yellow = false;
           this.submenu4.setAttribute('visible', false);
-          this.submenu32.setAttribute('visible', true);
+          setTimeout(() => {
+            this.submenu32.setAttribute('visible', true);
+          }, 500);
           
           const buttons2 = this.submenu32.querySelectorAll('[id]');
             buttons2.forEach(button => {
@@ -447,7 +493,9 @@ AFRAME.registerComponent('loader', {
           this.threedoors = false;
           this.fivedoors = false;
           this.submenu4.setAttribute('visible', false);
-          this.submenu33.setAttribute('visible', true);
+          setTimeout(() => {
+            this.submenu33.setAttribute('visible', true);
+          }, 500);
           
           const buttons2 = this.submenu33.querySelectorAll('[id]');
             buttons2.forEach(button => {
