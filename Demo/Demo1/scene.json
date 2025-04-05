@@ -104,7 +104,7 @@
                               },
                               {
                                 "label": "-",
-                                "id": "minButton4",
+                                "id": "minButton41",
                                 "position": "0.2 0.15 0",
                                 "visible": "false",
                                 "buttons": []
@@ -159,7 +159,7 @@
                               },
                               {
                                 "label": "-",
-                                "id": "minButton4",
+                                "id": "minButton42",
                                 "position": "0.2 0.15 0",
                                 "visible": "false",
                                 "buttons": []
@@ -200,7 +200,7 @@
                               },
                               {
                                 "label": "-",
-                                "id": "minButton4",
+                                "id": "minButton43",
                                 "position": "0.2 0.15 0",
                                 "visible": "false",
                                 "buttons": []
@@ -257,13 +257,6 @@
           "id": "xButton",
           "position": "-0.2 0.15 0",
           "visible": "true"
-        },
-        {
-          "label": ".",
-          "id": "maximizeButton",
-          "position": "0 0.015 -0.01",
-          "visible": "true"
-          
         }
     ]
   }

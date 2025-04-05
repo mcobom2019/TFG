@@ -14,7 +14,9 @@
 <body>
   <!-- Aplicamos el componente escena-loader a la escena -->
   <a-scene environment loader>
-      <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left"></a-entity>
+      <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
+        <a-entity id="maximizeButton" button="label: .; primitive: cylinder" position="0 0.015 -0.01" visible="false"></a-entity>
+      </a-entity>
       <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
       <a-entity>
         <a-entity cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>

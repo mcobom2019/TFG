@@ -57,27 +57,34 @@ AFRAME.registerComponent('loader', {
     this.submenu32 = document.querySelector('#subMenu32');
     this.submenu33 = document.querySelector('#subMenu33');
     this.submenu4 = document.querySelector('#subMenu4');
+    
+    //boton de la mano izquierda Maximizar
+    this.maximizeButtonEl = document.querySelector('#maximizeButton');
 
     // Botones menuInicio
     this.startButtonEl = document.querySelector('#startButton');
     this.xButtonEl = document.querySelector('#xButton');
+    this.minButton1El = document.querySelector('#minButton1');
 
     //Botones Submenu1
     this.barrasButtonEl = document.querySelector('#barrasButton');
     this.circularButtonEl = document.querySelector('#circularButton');
     this.atrasButtonEl = document.querySelector('#atrasButton');
+    this.minButton2El = document.querySelector('#minButton2');
 
     //Botones submenu2
     this.backButtonEl = document.querySelector('#backButton');
     this.motorButtonEl = document.querySelector('#motorButton');
     this.colorButtonEl = document.querySelector('#colorButton');
     this.puertasButtonEl = document.querySelector('#puertasButton');
+    this.minButton3El = document.querySelector('#minButton3');
     
     //Botones submenu31
     this.backButtonEl21 = document.querySelector('#backButton21');
     this.electricoButtonEl = document.querySelector('#electricoButton');
     this.DieselButtonEl = document.querySelector('#DieselButton');
     this.GasolinaButtonEl = document.querySelector('#GasolinaButton');
+    this.minButton41El = document.querySelector('#minButton41');
     
     //Botones submenu32
     this.backButtonEl22 = document.querySelector('#backButton22');
@@ -85,19 +92,38 @@ AFRAME.registerComponent('loader', {
     this.NegroButtonEl = document.querySelector('#NegroButton');
     this.RojoButtonEl = document.querySelector('#RojoButton');
     this.AmarilloButtonEl = document.querySelector('#AmarilloButton');
+    this.minButton42El = document.querySelector('#minButton42');
     
     //Botones submenu33
     this.backButtonEl23 = document.querySelector('#backButton23');
     this.tresButtonEl = document.querySelector('#dosButton');
     this.cincoButtonEl = document.querySelector('#cincoButton');
+    this.minButton43El = document.querySelector('#minButton43');
     
     //botones submenu4
     this.backButtonEl31 = document.querySelector('#backButton31');
     this.mostrarButtonEl = document.querySelector('#mostrarButton1');
     this.borrarButtonEl = document.querySelector('#borrarButton1');
+    this.minButton5El = document.querySelector('#minButton5');
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
+      if (this.submenu1 && this.menuInicio) {
+        this.menuInicio.setAttribute('visible', false);
+        const buttons2 = this.menuInicio.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.submenu1.setAttribute('visible', true);
+          const buttons = this.submenu1.querySelectorAll('[id]');
+          buttons.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+        }, 500);
+      }
+    });
+    this.minButton1.addEventListener('click', () => {
       if (this.submenu1 && this.menuInicio) {
         this.menuInicio.setAttribute('visible', false);
         const buttons2 = this.menuInicio.querySelectorAll('[id]');
