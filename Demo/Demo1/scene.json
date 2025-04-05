@@ -257,6 +257,13 @@
           "id": "xButton",
           "position": "-0.2 0.15 0",
           "visible": "true"
+        },
+        {
+          "label": ".",
+          "id": "maximizeButton",
+          "position": "0 0.015 -0.01",
+          "visible": "true",
+          
         }
     ]
   }
