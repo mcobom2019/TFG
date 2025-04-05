@@ -679,7 +679,7 @@ AFRAME.registerComponent('loader', {
             buttons.forEach(button => {
               button.setAttribute('visible', true);
             });
-            this.m1 = false;
+            this.minitmenu = false;
           }, 500);
         }else if(this.m1){
           setTimeout(() => {
