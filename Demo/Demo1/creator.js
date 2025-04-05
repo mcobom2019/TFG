@@ -132,6 +132,7 @@ AFRAME.registerComponent('loader', {
       }
     });
     this.minButton1El.addEventListener('click', () => {
+        this.initmenu = true;
         this.menuInicio.setAttribute('visible', false);
         const buttons2 = this.menuInicio.querySelectorAll('[id]');
         buttons2.forEach(button => {
@@ -654,6 +655,86 @@ AFRAME.registerComponent('loader', {
         var prevFilter = document.querySelector('#filter-data');
         if (prevFilter) {
             scene.removeChild(prevFilter);
+        }
+    });
+    this.minButton5El.addEventListener('click', () => {
+        this.m3 = true;
+        this.submenu4.setAttribute('visible', false);
+        const buttons = this.submenu4.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.maximizeButtonEl.setAttribute('visible', true);
+        }, 500);
+    });
+    
+    //controlador boton maximizar
+    this.maximizeButtonEl.addEventListener('click', () => {
+        this.maximizeButtonEl.setAttribute('visible', false);
+        if(this.initmenu){
+          setTimeout(() => {
+            this.menuInicio.setAttribute('visible', true);
+            const buttons = this.menuInicio.querySelectorAll('[id]');
+            buttons.forEach(button => {
+              button.setAttribute('visible', true);
+            });
+            this.m1 = false;
+          }, 500);
+        }else if(this.m1){
+          setTimeout(() => {
+            this.submenu1.setAttribute('visible', true);
+            const buttons = this.submenu1.querySelectorAll('[id]');
+            buttons.forEach(button => {
+              button.setAttribute('visible', true);
+            });
+            this.m1 = false;
+          }, 500);
+        }else if(this.m2){
+          setTimeout(() => {
+            this.submenu2.setAttribute('visible', true);
+            const buttons = this.submenu2.querySelectorAll('[id]');
+            buttons.forEach(button => {
+              button.setAttribute('visible', true);
+            });
+            this.m2 = false;
+          }, 500);
+        }else if(this.m31){
+          setTimeout(() => {
+            this.submenu31.setAttribute('visible', true);
+            const buttons = this.submenu31.querySelectorAll('[id]');
+            buttons.forEach(button => {
+              button.setAttribute('visible', true);
+            });
+            this.m31 = false;
+          }, 500);
+        }else if(this.m32){
+          setTimeout(() => {
+            this.submenu32.setAttribute('visible', true);
+            const buttons = this.submenu32.querySelectorAll('[id]');
+            buttons.forEach(button => {
+              button.setAttribute('visible', true);
+            });
+            this.m32 = false;
+          }, 500);
+        }else if(this.m33){
+          setTimeout(() => {
+            this.submenu33.setAttribute('visible', true);
+            const buttons = this.submenu33.querySelectorAll('[id]');
+            buttons.forEach(button => {
+              button.setAttribute('visible', true);
+            });
+            this.m33 = false;
+          }, 500);
+        }else if(this.m4){
+          setTimeout(() => {
+            this.submenu4.setAttribute('visible', true);
+            const buttons = this.submenu4.querySelectorAll('[id]');
+            buttons.forEach(button => {
+              button.setAttribute('visible', true);
+            });
+            this.m4 = false;
+          }, 500);
         }
     });
 },
