@@ -14,6 +14,14 @@ AFRAME.registerComponent('loader', {
     this.threedoors = false;
     this.fivedoors = false;
     
+    this.initmenu = false;
+    this.m1 = false;
+    this.m2 = false;
+    this.m31 = false;
+    this.m32 = false;
+    this.m33 = false;
+    this.m4 = false;
+    
     fetch('scene.json')
       .then(response => response.json())
       .then(data => {
@@ -123,21 +131,16 @@ AFRAME.registerComponent('loader', {
         }, 500);
       }
     });
-    this.minButton1.addEventListener('click', () => {
-      if (this.submenu1 && this.menuInicio) {
+    this.minButton1El.addEventListener('click', () => {
         this.menuInicio.setAttribute('visible', false);
         const buttons2 = this.menuInicio.querySelectorAll('[id]');
         buttons2.forEach(button => {
           button.setAttribute('visible', false);
         });
         setTimeout(() => {
-          this.submenu1.setAttribute('visible', true);
-          const buttons = this.submenu1.querySelectorAll('[id]');
-          buttons.forEach(button => {
-          button.setAttribute('visible', true);
-        });
+          this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
-      }
+      
     });
     this.xButtonEl.addEventListener('click', () => {
         this.submenu1.setAttribute('visible', false);
@@ -151,6 +154,7 @@ AFRAME.registerComponent('loader', {
     
     //controladores botones submenu1
     this.atrasButtonEl.addEventListener('click', () => {
+        this.initmenu = true;
         this.submenu1.setAttribute('visible', false);
         const buttons = this.submenu1.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -192,6 +196,17 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+        }, 500);
+    });
+    this.minButton2El.addEventListener('click', () => {
+        this.m1 = true;
+        this.submenu1.setAttribute('visible', false);
+        const buttons = this.submenu1.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
     });
     
@@ -252,6 +267,17 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+        }, 500);
+    });
+    this.minButton3El.addEventListener('click', () => {
+        this.m2 = true;
+        this.submenu2.setAttribute('visible', false);
+        const buttons = this.submenu2.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
     });
     
@@ -317,6 +343,17 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+        }, 500);
+    });
+    this.minButton41El.addEventListener('click', () => {
+        this.m31 = true;
+        this.submenu31.setAttribute('visible', false);
+        const buttons = this.submenu31.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
     });
     
@@ -399,6 +436,17 @@ AFRAME.registerComponent('loader', {
           });
         }, 500);
     });
+    this.minButton42El.addEventListener('click', () => {
+        this.m32 = true;
+        this.submenu32.setAttribute('visible', false);
+        const buttons = this.submenu32.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.maximizeButtonEl.setAttribute('visible', true);
+        }, 500);
+    });
     
     //controladores botones submenu3.3
     this.backButtonEl23.addEventListener('click', () => {
@@ -443,6 +491,17 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+        }, 500);
+    });
+    this.minButton43El.addEventListener('click', () => {
+        this.m33 = true;
+        this.submenu33.setAttribute('visible', false);
+        const buttons = this.submenu33.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
     });
     
