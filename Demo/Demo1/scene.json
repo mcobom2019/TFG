@@ -10,6 +10,7 @@
           "id": "startButton",
           "position": "0 0 0",
           "posetx": "0.092",
+          "posety": "-0.02",
           "widthet": "0.15",
           "color": "#2F6A31",
           "visible": "true",
@@ -34,16 +35,21 @@
                     "grabbable": "true",
                     "buttons": [
                         {
-                          "label": "<--",
+                          "label": "noLabel",
                           "id": "backButton",
                           "position": "-0.2 0.15 0",
-                          "visible": "false"
+                          "visible": "false",
+                          "color": "#C1440E"
                         },
                         {
                           "label": "Motor",
                           "id": "motorButton",
                           "position": "-0.1 0.03 0",
                           "visible": "false",
+                          "label": "Barras",
+                          "color": "#2F6A31",
+                          "posetx": "0.092",
+                          "widthet": "0.15",
                           "menuHijo31":{
                             "id": "subMenu31",
                             "position": "0 1.5 -0.5",
@@ -123,6 +129,9 @@
                           "id": "colorButton",
                           "position": "-0.1 -0.09 0",
                           "visible": "false",
+                          "color": "#2F6A31",
+                          "posetx": "0.092",
+                          "widthet": "0.15",
                           "menuHijo32":{
                             "id": "subMenu32",
                             "position": "0 1.5 -0.5",
@@ -176,8 +185,11 @@
                         {
                           "label": "Doors",
                           "id": "puertasButton",
-                          "position": "0.1 0.03 0",
+                          "position": "0.1 -0.03 0",
                           "visible": "false",
+                          "color": "#2F6A31",
+                          "posetx": "0.092",
+                          "widthet": "0.15",
                           "menuHijo33":{
                             "id": "subMenu33",
                             "position": "0 1.5 -0.5",
@@ -215,7 +227,7 @@
                           }
                         },
                         {
-                          "label": "-",
+                          "label": "noLabel",
                           "id": "minButton3",
                           "position": "0.2 0.15 0",
                           "visible": "false"
