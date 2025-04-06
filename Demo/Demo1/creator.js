@@ -115,6 +115,7 @@ AFRAME.registerComponent('loader', {
     this.mostrarButtonEl = document.querySelector('#mostrarButton1');
     this.borrarButtonEl = document.querySelector('#borrarButton1');
     this.minButton5El = document.querySelector('#minButton5');
+    this.sliderrEl = document.querySelector('#sliderr');
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
@@ -340,6 +341,7 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+          this.sliderrEl.setAttribute('visible', true);
         }, 500);
     });
     this.DieselButtonEl.addEventListener('click', () => {
@@ -355,6 +357,7 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+          this.sliderrEl.setAttribute('visible', true);
         }, 500);
         
     });
@@ -371,6 +374,7 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+          this.sliderrEl.setAttribute('visible', true);
         }, 500);
     });
     this.minButton41El.addEventListener('click', () => {
@@ -417,6 +421,7 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+          this.sliderrEl.setAttribute('visible', true);
         }, 500);
     });
     this.NegroButtonEl.addEventListener('click', () => {
@@ -432,6 +437,7 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+          this.sliderrEl.setAttribute('visible', true);
         }, 500);
     });
     this.RojoButtonEl.addEventListener('click', () => {
@@ -447,6 +453,7 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+          this.sliderrEl.setAttribute('visible', true);
         }, 500);
     });
     this.AmarilloButtonEl.addEventListener('click', () => {
@@ -462,6 +469,7 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+          this.sliderrEl.setAttribute('visible', true);
         }, 500);
     });
     this.minButton42El.addEventListener('click', () => {
@@ -504,6 +512,7 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+          this.sliderrEl.setAttribute('visible', true);
         }, 500);
     });
     this.cincoButtonEl.addEventListener('click', () => {
@@ -519,6 +528,7 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
+          this.sliderrEl.setAttribute('visible', true);
         }, 500);
     });
     this.minButton43El.addEventListener('click', () => {
@@ -607,6 +617,7 @@ AFRAME.registerComponent('loader', {
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
+        this.sliderrEl.setAttribute('visible', false);
         }, 500);
     });
     this.mostrarButtonEl.addEventListener('click', () => {
@@ -706,6 +717,11 @@ AFRAME.registerComponent('loader', {
             buttons.forEach(button => {
               button.setAttribute('visible', true);
             });
+            if(this.isDarkMode){
+              this.darkButtonEl.setAttribute('visible', false);
+            }else{
+              this.lightButtonEl.setAttribute('visible', false);
+            }
             this.initmenu = false;
           }, 500);
         }else if(this.m1){
@@ -778,6 +794,7 @@ AFRAME.registerComponent('loader', {
       
       if(menuEl.id === "subMenu4"){
         const slider = document.createElement('a-entity');
+        slider.setAttribute('id', 'sliderr');
         slider.setAttribute('slider', '');
         slider.setAttribute('visible', 'false');
         slider.setAttribute('position', '0 -0.15 0');
