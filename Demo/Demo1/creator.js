@@ -160,7 +160,9 @@ AFRAME.registerComponent('loader', {
         this.darkButtonEl.setAttribute('visible', false);
         this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
         this.el.sceneEl.addState('starry');
-        this.lightButtonEl.setAttribute('visible', true);
+        setTimeout(() => {
+          this.lightButtonEl.setAttribute('visible', true);
+        }, 250);
       
     });
     this.lightButtonEl.addEventListener('click', () => {
@@ -168,7 +170,9 @@ AFRAME.registerComponent('loader', {
         this.lightButtonEl.setAttribute('visible', false);
         this.el.sceneEl.setAttribute('environment', {preset: 'default'});
         this.el.sceneEl.removeState('starry');
-        this.darkButtonEl.setAttribute('visible', true);
+        setTimeout(() => {
+          this.darkButtonEl.setAttribute('visible', true);
+        }, 250);
       
     });
     
@@ -185,10 +189,12 @@ AFRAME.registerComponent('loader', {
           const buttons2 = this.menuInicio.querySelectorAll('[id]');
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
-            if(this.isDarkMode){
-            
-          }
           });
+          if(this.isDarkMode){
+              this.darkButtonEl.setAttribute('visible', false);
+          }else{
+              this.lightButtonEl.setAttribute('visible', false);
+          }
         }, 500);
     });
     this.barrasButtonEl.addEventListener('click', () => {
@@ -646,7 +652,7 @@ AFRAME.registerComponent('loader', {
             barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
             scene.appendChild(barChartEntity);
             //pieChartEntity.setAttribute('grabbable', '');
-            //barChartEntity.setAttribute('size-change', '');
+            barChartEntity.setAttribute('size-change', '');
           
         }else if(this.pie){
             var pieChartEntity = document.createElement('a-entity');
@@ -657,7 +663,7 @@ AFRAME.registerComponent('loader', {
             pieChartEntity.setAttribute('rotation', '90 0 0');
             scene.appendChild(pieChartEntity);
             //pieChartEntity.setAttribute('grabbable', '');
-            //pieChartEntity.setAttribute('size-change', '');
+            pieChartEntity.setAttribute('size-change', '');
         }
     });
     this.borrarButtonEl.addEventListener('click', () => {
