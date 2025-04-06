@@ -12,7 +12,7 @@ AFRAME.registerComponent('button', {
 
   init: function () {
     var el = this.el;
-    //this.color = '#3a50c5';
+    this.color = this.data.color;
 
     // Hacer siempre el botón circular (cilindro)
     el.setAttribute('geometry', {
@@ -26,10 +26,7 @@ AFRAME.registerComponent('button', {
 
     // Material
     el.setAttribute('material', {
-      color: data.color,
-      metalness: 0.3,
-      roughness: 0.2,
-      shader: 'standard'
+      color: this.color,
     });
 
     // Sombra
@@ -91,10 +88,17 @@ AFRAME.registerComponent('button', {
   },
 
   update: function (oldData) {
-    if (oldData.label !== this.data.label) {
-      this.labelEl.setAttribute('text', 'value', this.data.label);
+  if (oldData.label !== this.data.label) {
+    this.labelEl.setAttribute('text', 'value', this.data.label);
+  }
+  
+  if (oldData.color !== this.data.color) {
+    this.color = this.data.color;
+    if (!this.el.is('pressed')) {
+      this.el.setAttribute('material', 'color', this.color);
     }
-  },
+  }
+},
 
   tick: function () {
     this.updateInteractivity();

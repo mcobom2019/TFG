@@ -263,7 +263,7 @@
           "id": "xButton",
           "position": "-0.2 0.15 0",
           "visible": "true",
-          "color": "#f80000"
+          "color": "fe0000"
         }
     ]
   }
