@@ -8,7 +8,7 @@
         {
           "label": "start",
           "id": "startButton",
-          "position": "0 0 0",
+          "position": "0 1 0",
           "visible": "true",
           "menuHijo1":{
               "id": "subMenu1",
@@ -262,7 +262,8 @@
           "label": "X",
           "id": "xButton",
           "position": "-0.2 0.15 0",
-          "visible": "true"
+          "visible": "true",
+          "color": "#f80000"
         }
     ]
   }

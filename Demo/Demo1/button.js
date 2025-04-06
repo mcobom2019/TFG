@@ -3,15 +3,16 @@ AFRAME.registerComponent('button', {
     label: {default: 'label'},
     width: {default: 0.11},
     toggleable: {default: false},
-    posx :{default: 0},
-    posy :{default: 0},
-    posz :{default: 0},
+    color: {default: '#3a50c5'},
+    posetx :{default: 0},//este es x
+    posety :{default: 0},//este es z
+    posetz :{default: 0},//este es y al reves
     
   },
 
   init: function () {
     var el = this.el;
-    this.color = '#3a50c5';
+    //this.color = '#3a50c5';
 
     // Hacer siempre el botón circular (cilindro)
     el.setAttribute('geometry', {
@@ -25,7 +26,7 @@ AFRAME.registerComponent('button', {
 
     // Material
     el.setAttribute('material', {
-      color: this.color,
+      color: data.color,
       metalness: 0.3,
       roughness: 0.2,
       shader: 'standard'
@@ -65,9 +66,7 @@ AFRAME.registerComponent('button', {
       width: 0.5
     });
 
-    labelEl.setAttribute('position', '${this.data.posy} ${this.data.posy} -0.04');
-
-
+    labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety} ${this.data.posetz}`);
     labelEl.setAttribute('rotation', '-90 0 0');
     el.appendChild(labelEl);
 
