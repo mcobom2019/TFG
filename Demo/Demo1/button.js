@@ -1,69 +1,77 @@
-/* global AFRAME */
 AFRAME.registerComponent('button', {
   schema: {
     label: {default: 'label'},
     width: {default: 0.11},
-    toggleable: {default: false},
-    primitive: {default: 'box'}
+    toggleable: {default: false}
   },
+
   init: function () {
     var el = this.el;
-    var labelEl = this.labelEl = document.createElement('a-entity');
-
     this.color = '#3a50c5';
 
-    // primitiva para el maximizeButton
-    if (this.data.primitive === 'cylinder') {
-      el.setAttribute('geometry', {
-        primitive: 'cylinder',
-        radius: this.data.width / 6, // Convertir ancho a radio
-        height: 0.01
-      });
-    } else {
-      // Para cajas y otras primitivas
-      el.setAttribute('geometry', {
-        primitive: this.data.primitive,
-        width: this.data.width,
-        height: 0.05,
-        depth: 0.04
-      });
-    }
+    // Hacer siempre el botón circular (cilindro)
+    el.setAttribute('geometry', {
+      primitive: 'cylinder',
+      radius: this.data.width / 2.2,
+      height: 0.02
+    });
 
-    el.setAttribute('material', {color: this.color});
-    // el.setAttribute('pressable', '');
-    
-    if (this.data.primitive === 'cylinder'){
-      labelEl.setAttribute('position', '0.01 0 0.02');
-      labelEl.setAttribute('text', {
-        value: this.data.label,
-        color: 'white',
-        align: 'center'
-      });
-    }else{
-      labelEl.setAttribute('position', '0 0 0.02');
-      labelEl.setAttribute('text', {
-        value: this.data.label,
-        color: 'white',
-        align: 'center'
-      });
-    }
+    // Rotar el botón 45 grados
+    el.setAttribute('rotation', '0 45 0');
 
-    labelEl.setAttribute('scale', '0.75 0.75 0.75');
-    this.el.appendChild(labelEl);
+    // Material
+    el.setAttribute('material', {
+      color: this.color,
+      metalness: 0.3,
+      roughness: 0.2,
+      shader: 'standard'
+    });
+
+    // Sombra
+    el.setAttribute('shadow', {cast: true, receive: true});
+
+    // Base cilíndrica debajo
+    const base = document.createElement('a-entity');
+    base.setAttribute('geometry', {
+      primitive: 'cylinder',
+      radius: this.data.width / 1.8,
+      height: 0.01
+    });
+    base.setAttribute('position', '0 -0.02 0');
+    base.setAttribute('material', {
+      color: '#333',
+      roughness: 1,
+      metalness: 0
+    });
+    base.setAttribute('shadow', {cast: false, receive: true});
+    el.appendChild(base);
+
+    // Etiqueta
+    const labelEl = this.labelEl = document.createElement('a-entity');
+    labelEl.setAttribute('geometry', {
+      primitive: 'plane',
+      height: 0.025,
+      width: this.data.width + 0.05
+    });
+    labelEl.setAttribute('material', {color: '#f0f0f0'});
+    labelEl.setAttribute('text', {
+      value: this.data.label,
+      color: '#111',
+      align: 'center',
+      width: 1.5
+    });
+
+    labelEl.setAttribute('position', `0 0.06 0`);
+    labelEl.setAttribute('rotation', '-90 0 0');
+    el.appendChild(labelEl);
 
     this.bindMethods();
     this.el.addEventListener('stateadded', this.stateChanged);
     this.el.addEventListener('stateremoved', this.stateChanged);
-    
-    // Estos eventos serán añadidos/eliminados según la visibilidad
-    // this.el.addEventListener('pressedstarted', this.onPressedStarted);
-    // this.el.addEventListener('pressedended', this.onPressedEnded);
-    
-    // Variables para controlar el estado
+
     this.lastVisibleState = null;
     this.interactiveEventsAdded = false;
-    
-    // Iniciar comprobación de visibilidad
+
     this.updateInteractivity();
   },
 
@@ -82,97 +90,75 @@ AFRAME.registerComponent('button', {
       this.labelEl.setAttribute('text', 'value', this.data.label);
     }
   },
-  
-  // Verificar periódicamente la visibilidad
-  tick: function() {
+
+  tick: function () {
     this.updateInteractivity();
   },
 
   stateChanged: function () {
-    var color = this.el.is('pressed') ? 'green' : this.color;
-    this.el.setAttribute('material', {color: color});
+    const color = this.el.is('pressed') ? 'green' : this.color;
+    this.el.setAttribute('material', 'color', color);
   },
 
   onPressedStarted: function () {
     var el = this.el;
-    el.setAttribute('material', {color: 'green'});
+    el.setAttribute('material', 'color', 'green');
     el.emit('click');
-    el.setAttribute('material', {color: '#3a50c5'});
     if (this.data.toggleable) {
-      if (el.is('pressed')) {
-        el.removeState('pressed');
-      } else {
-        el.addState('pressed');
-      }
+      el.is('pressed') ? el.removeState('pressed') : el.addState('pressed');
+    } else {
+      el.setAttribute('material', 'color', this.color);
     }
   },
 
   onPressedEnded: function () {
-    if (this.el.is('pressed')) { return; }
-    this.el.setAttribute('material', {color: this.color});
+    if (!this.el.is('pressed')) {
+      this.el.setAttribute('material', 'color', this.color);
+    }
   },
-  
-  // Actualizar el estado interactivo del botón según su visibilidad
+
   updateInteractivity: function () {
-    var isVisible = this.el.getAttribute('visible');
-    
-    // Solo realizar cambios si el estado de visibilidad ha cambiado
+    const isVisible = this.el.getAttribute('visible');
+
     if (this.lastVisibleState !== isVisible) {
       this.lastVisibleState = isVisible;
-      
-      if (isVisible) {
-        // Si el botón es visible, hacerlo interactivo
-        if (!this.interactiveEventsAdded) {
-          // Añadir pressable para interacción con manos
-          this.el.setAttribute('pressable', '');
-          
-          // Añadir eventos de manos
-          this.el.addEventListener('pressedstarted', this.onPressedStarted);
-          this.el.addEventListener('pressedended', this.onPressedEnded);
-          
-          // Añadir eventos de ratón
-          this.el.addEventListener('mousedown', this.onMouseDown);
-          this.el.addEventListener('mouseup', this.onMouseUp);
-          this.el.addEventListener('mouseleave', this.onMouseLeave);
-          
-          // Añadir clase para raycaster
-          this.el.classList.add('clickable');
-          
-          this.interactiveEventsAdded = true;
-        }
-      } else {
-        // Si el botón no es visible, quitarle toda interactividad
-        if (this.interactiveEventsAdded) {
-          // Eliminar pressable para interacción con manos
-          this.el.removeAttribute('pressable');
-          
-          // Eliminar eventos de manos
-          this.el.removeEventListener('pressedstarted', this.onPressedStarted);
-          this.el.removeEventListener('pressedended', this.onPressedEnded);
-          
-          // Eliminar eventos de ratón
-          this.el.removeEventListener('mousedown', this.onMouseDown);
-          this.el.removeEventListener('mouseup', this.onMouseUp);
-          this.el.removeEventListener('mouseleave', this.onMouseLeave);
-          
-          // Eliminar clase para raycaster
-          this.el.classList.remove('clickable');
-          
-          this.interactiveEventsAdded = false;
-        }
+
+      if (isVisible && !this.interactiveEventsAdded) {
+        this.el.setAttribute('pressable', '');
+
+        this.el.addEventListener('pressedstarted', this.onPressedStarted);
+        this.el.addEventListener('pressedended', this.onPressedEnded);
+
+        this.el.addEventListener('mousedown', this.onMouseDown);
+        this.el.addEventListener('mouseup', this.onMouseUp);
+        this.el.addEventListener('mouseleave', this.onMouseLeave);
+
+        this.el.classList.add('clickable');
+        this.interactiveEventsAdded = true;
+      } else if (!isVisible && this.interactiveEventsAdded) {
+        this.el.removeAttribute('pressable');
+
+        this.el.removeEventListener('pressedstarted', this.onPressedStarted);
+        this.el.removeEventListener('pressedended', this.onPressedEnded);
+
+        this.el.removeEventListener('mousedown', this.onMouseDown);
+        this.el.removeEventListener('mouseup', this.onMouseUp);
+        this.el.removeEventListener('mouseleave', this.onMouseLeave);
+
+        this.el.classList.remove('clickable');
+        this.interactiveEventsAdded = false;
       }
     }
   },
-  
-  // Manejadores de eventos de ratón
+
   onMouseDown: function () {
     this.onPressedStarted();
   },
-  
+
   onMouseUp: function () {
     this.onPressedEnded();
   },
-  
+
   onMouseLeave: function () {
     this.onPressedEnded();
   }
