@@ -26,7 +26,6 @@ AFRAME.registerComponent('loader', {
     fetch('scene.json')
       .then(response => response.json())
       .then(data => {
-        
         // creo todos los menús
         var menuPadre = data.menuPadre;
         this.createMenu(menuPadre);
@@ -48,12 +47,6 @@ AFRAME.registerComponent('loader', {
         //submenu4
         var subMenu4 = subMenu31.buttons[1].menuHijo4;
         this.createMenu(subMenu4);
-        
-        this.slider = document.createElement('a-entity');
-        this.slider.setAttribute('slider', '');
-        this.slider.setAttribute('position', '0 -0.15 0');
-        this.slider.setAttribute('visible', false);
-        this.subMenu4.appendChild(this.slider);
         
         // Después de crear los menús, ahora configuramos los eventos
         this.setupEvents();
@@ -511,7 +504,6 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
-          
         }, 500);
     });
     this.cincoButtonEl.addEventListener('click', () => {
@@ -527,7 +519,6 @@ AFRAME.registerComponent('loader', {
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
-          this.slider.setAttribute('visible', false);
         }, 500);
     });
     this.minButton43El.addEventListener('click', () => {
@@ -784,6 +775,14 @@ AFRAME.registerComponent('loader', {
     if (pMenu.id) {
       menuEl.setAttribute('id', pMenu.id);
       menuEl.setAttribute('menuinicio', '');
+      
+      if(menuEl.id === "subMenu4"){
+        const slider = document.createElement('a-entity');
+        slider.setAttribute('slider', '');
+        slider.setAttribute('visible', 'false');
+        slider.setAttribute('position', '0 -0.15 0');
+        menuEl.appendChild(slider);
+      }
     }
     if (pMenu.position) {
       menuEl.setAttribute('position', pMenu.position);
