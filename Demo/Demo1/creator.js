@@ -834,8 +834,9 @@ AFRAME.registerComponent('loader', {
           width: button.width || 0.2,
           toggleable: button.toggleable || false,
           primitive: button.primitive || 'box',
-          color: button.color ||'#3a50c5',
-          posetx: button.posetx || 0
+          color: button.color ||'#32527b',
+          posetx: button.posetx || 0,
+          widthet: button.widthet || 0.2
         });
       }
       if (button.position) {

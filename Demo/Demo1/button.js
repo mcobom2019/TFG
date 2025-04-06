@@ -3,7 +3,7 @@ AFRAME.registerComponent('button', {
     label: {default: 'label'},
     width: {default: 0.2},
     toggleable: {default: false},
-    color: {default: '#3a50c5'},
+    color: {default: '#32527b'},
     posetx :{default: 0},//este es x
     posety :{default: 0},//este es z
     posetz :{default: 0},//este es y al reves

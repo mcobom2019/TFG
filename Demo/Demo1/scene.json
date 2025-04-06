@@ -6,9 +6,12 @@
     "grabbable": "true",
     "buttons": [
         {
-          "label": "start",
+          "label": "Start",
           "id": "startButton",
           "position": "0 0 0",
+          "posetx": "0.092",
+          "widthet": "0.15",
+          "color": "#edff21",
           "visible": "true",
           "menuHijo1":{
               "id": "subMenu1",
@@ -239,20 +242,25 @@
           }
         },
         {
-          "label": "dark Mode",
+          "label": "Dark Mode",
           "id": "darkButton",
           "position": "0 -0.1 0",
           "visible": "true",
+          "color": "#edff21",
           "width": "0.20",
-          "posetx": "0.1",
-          "widthet":"0.4"
+          "posetx": "0.11",
+          "widthet":"0.27"
         },
         {
           "label": "Light Mode",
           "id": "lightButton",
           "position": "0 -0.1 0",
           "visible": "false",
-          "width": "0.20"
+          "color": "#edff21",
+          "width": "0.20",
+          "width": "0.20",
+          "posetx": "0.11",
+          "widthet":"0.27"
         },
         {
           "label": "noLabel",
