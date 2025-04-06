@@ -11,7 +11,7 @@
           "position": "0 0 0",
           "posetx": "0.092",
           "widthet": "0.15",
-          "color": "#4C9A2A",
+          "color": "#2F6A31",
           "visible": "true",
           "menuHijo1":{
               "id": "subMenu1",
@@ -246,7 +246,7 @@
           "id": "darkButton",
           "position": "0 -0.1 0",
           "visible": "true",
-          "color": "#4C9A2A",
+          "color": "#2F6A31",
           "width": "0.20",
           "posetx": "0.11",
           "widthet":"0.27"
@@ -256,7 +256,7 @@
           "id": "lightButton",
           "position": "0 -0.1 0",
           "visible": "false",
-          "color": "#4C9A2A",
+          "color": "#2F6A31",
           "width": "0.20",
           "width": "0.20",
           "posetx": "0.11",
