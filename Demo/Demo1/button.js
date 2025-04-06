@@ -25,9 +25,7 @@ AFRAME.registerComponent('button', {
     el.setAttribute('rotation', '90 0 0');
 
     // Material
-    el.setAttribute('material', {
-      color: this.color,
-    });
+    el.setAttribute('material', 'color', this.color);
 
     // Sombra
     el.setAttribute('shadow', {cast: true, receive: true});
