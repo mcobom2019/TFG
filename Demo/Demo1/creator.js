@@ -658,7 +658,7 @@ AFRAME.registerComponent('loader', {
         }
     });
     this.minButton5El.addEventListener('click', () => {
-        this.m3 = true;
+        this.m4 = true;
         this.submenu4.setAttribute('visible', false);
         const buttons = this.submenu4.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -679,7 +679,7 @@ AFRAME.registerComponent('loader', {
             buttons.forEach(button => {
               button.setAttribute('visible', true);
             });
-            this.minitmenu = false;
+            this.initmenu = false;
           }, 500);
         }else if(this.m1){
           setTimeout(() => {

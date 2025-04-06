@@ -94,17 +94,21 @@ AFRAME.registerComponent('button', {
   },
 
   onPressedStarted: function () {
-    var el = this.el;
-    el.setAttribute('material', {color: 'green'});
-    el.emit('click');
-    if (this.data.toggleable) {
-      if (el.is('pressed')) {
-        el.removeState('pressed');
-      } else {
-        el.addState('pressed');
-      }
+  var el = this.el;
+  el.setAttribute('material', {color: 'green'});
+  el.emit('click');
+  
+  // Comenta o elimina este bloque:
+  /*
+  if (this.data.toggleable) {
+    if (el.is('pressed')) {
+      el.removeState('pressed');
+    } else {
+      el.addState('pressed');
     }
-  },
+  }
+  */
+},
 
   onPressedEnded: function () {
     if (this.el.is('pressed')) { return; }
