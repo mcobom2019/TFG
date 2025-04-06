@@ -12,12 +12,12 @@ AFRAME.registerComponent('button', {
     // Hacer siempre el botón circular (cilindro)
     el.setAttribute('geometry', {
       primitive: 'cylinder',
-      radius: this.data.width / 2.2,
+      radius: this.data.width / 6.2,
       height: 0.02
     });
 
     // Rotar el botón 45 grados
-    el.setAttribute('rotation', '0 45 0');
+    el.setAttribute('rotation', '90 0 0');
 
     // Material
     el.setAttribute('material', {
@@ -34,10 +34,10 @@ AFRAME.registerComponent('button', {
     const base = document.createElement('a-entity');
     base.setAttribute('geometry', {
       primitive: 'cylinder',
-      radius: this.data.width / 1.8,
+      radius: this.data.width / 4.8,
       height: 0.01
     });
-    base.setAttribute('position', '0 -0.02 0');
+    base.setAttribute('position', '0 0 0');
     base.setAttribute('material', {
       color: '#333',
       roughness: 1,
@@ -51,17 +51,18 @@ AFRAME.registerComponent('button', {
     labelEl.setAttribute('geometry', {
       primitive: 'plane',
       height: 0.025,
-      width: this.data.width + 0.05
+      width: (this.data.width + 0.05)/3
     });
     labelEl.setAttribute('material', {color: '#f0f0f0'});
     labelEl.setAttribute('text', {
       value: this.data.label,
       color: '#111',
       align: 'center',
-      width: 1.5
+      width: 0.5
     });
 
-    labelEl.setAttribute('position', `0 0.06 0`);
+    labelEl.setAttribute('position', `0 0.01 0`);
+
     labelEl.setAttribute('rotation', '-90 0 0');
     el.appendChild(labelEl);
 
