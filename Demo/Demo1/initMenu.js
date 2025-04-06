@@ -22,14 +22,14 @@ AFRAME.registerComponent('menuinicio', {
       depth: 0.01,
       bevelEnabled: false
     };
-
     const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
 
-    // Material metálico
+    // Material metálico oscuro
     const material = new THREE.MeshStandardMaterial({
-      color: '9B9B9B',
-      metalness: 1,
-      roughness: 0.3
+      color: '3a3a3a',        // Gris oscuro metalizado
+      metalness: 0.7,          // Muy metálico
+      roughness: 1.2,          // Algo reflectivo
+      envMapIntensity: 1.2     // Si tienes un entorno HDR
     });
 
     const mesh = new THREE.Mesh(geometry, material);
