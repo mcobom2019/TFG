@@ -153,6 +153,7 @@
                           "visible": "false",
                           "color": "#2F6A31",
                           "posetx": "0.092",
+                          "posety": "-0.01",
                           "widthet": "0.15",
                           "menuHijo32":{
                             "id": "subMenu32",
@@ -232,6 +233,7 @@
                           "visible": "false",
                           "color": "#2F6A31",
                           "posetx": "0.092",
+                          "posety": "-0.01",
                           "widthet": "0.15",
                           "menuHijo33":{
                             "id": "subMenu33",
