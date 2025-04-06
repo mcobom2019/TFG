@@ -1,19 +1,40 @@
-/* global AFRAME */
 AFRAME.registerComponent('menuinicio', {
   init: function () {
-    this.lastTime=0;
-    var el = this.el;
-    var menuBackGroundEl = document.createElement('a-entity');
-    menuBackGroundEl.setAttribute('geometry', {
-      primitive: 'box',
-      width: 0.6,
-      height: 0.40,
-      depth: 0.01
+    const el = this.el;
+
+    // Crear geometría con bordes redondeados
+    const shape = new THREE.Shape();
+    const radius = 0.03;
+    const width = 0.6;
+    const height = 0.4;
+
+    shape.moveTo(-width / 2 + radius, -height / 2);
+    shape.lineTo(width / 2 - radius, -height / 2);
+    shape.quadraticCurveTo(width / 2, -height / 2, width / 2, -height / 2 + radius);
+    shape.lineTo(width / 2, height / 2 - radius);
+    shape.quadraticCurveTo(width / 2, height / 2, width / 2 - radius, height / 2);
+    shape.lineTo(-width / 2 + radius, height / 2);
+    shape.quadraticCurveTo(-width / 2, height / 2, -width / 2, height / 2 - radius);
+    shape.lineTo(-width / 2, -height / 2 + radius);
+    shape.quadraticCurveTo(-width / 2, -height / 2, -width / 2 + radius, -height / 2);
+
+    const extrudeSettings = {
+      depth: 0.01,
+      bevelEnabled: false
+    };
+
+    const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+
+    // Material metálico
+    const material = new THREE.MeshStandardMaterial({
+      color: '9B9B9B',
+      metalness: 1,
+      roughness: 0.3
     });
-    menuBackGroundEl.setAttribute('material', {
-      color: 'gray'
-    });
-    menuBackGroundEl.setAttribute('position', '0 0 -0.025');
-    el.appendChild(menuBackGroundEl);
-  },  
+
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(0, 0, -0.025);
+
+    el.setObject3D('mesh', mesh);
+  }
 });
