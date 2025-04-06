@@ -21,6 +21,7 @@ AFRAME.registerComponent('loader', {
     this.m32 = false;
     this.m33 = false;
     this.m4 = false;
+    this.isDarkMode = false;
     
     fetch('scene.json')
       .then(response => response.json())
@@ -154,17 +155,18 @@ AFRAME.registerComponent('loader', {
         });
     });
     this.darkButtonEl.addEventListener('click', () => {
-        this.initmenu = true;
-        this.menuInicio.setAttribute('visible', false);
-        const buttons2 = this.menuInicio.querySelectorAll('[id]');
-        buttons2.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.maximizeButtonEl.setAttribute('visible', true);
-        }, 500);
-      
-    });
+  if (this.isDarkMode) {
+    this.darkButtonEl.setAttribute('button', 'label: Dark Mode');
+    this.el.sceneEl.setAttribute('environment', {preset: 'default'});
+    this.el.sceneEl.removeState('starry');
+    this.isDarkMode = false; // Esta línea es crucial: restaura el modo claro
+  } else {
+    this.darkButtonEl.setAttribute('button', 'label: Light Mode');
+    this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+    this.el.sceneEl.addState('starry');
+    this.isDarkMode = true; // Descomenta esta línea para activar el modo oscuro
+  }
+});
     
     //controladores botones submenu1
     this.atrasButtonEl.addEventListener('click', () => {
