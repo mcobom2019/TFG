@@ -57,9 +57,9 @@ AFRAME.registerComponent('loader', {
   },
   //tick: function (){
   //  if(this.menuInicio.getAttribute('visible') && this.menuInicio.getAttribute('grababble', '')){
-      
-    }
-  },
+  //    
+  //  }
+  //},
   
   setupEvents: function() {
     // Referencia a los elementos del menú
