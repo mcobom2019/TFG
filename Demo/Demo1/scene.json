@@ -227,7 +227,7 @@
                   "label": "Circular",
                   "id": "circularButton",
                   "color": "#2F6A31",
-                  "posetx": "0.092",
+                  "posetx": "0.095",
                   "widthet": "0.18",
                   "position": "0 -0.1 0",
                   "visible": "false"
@@ -240,7 +240,7 @@
                   "visible": "false"
                 },
                 {
-                  "label": "-",
+                  "label": "noLabel",
                   "id": "minButton2",
                   "position": "0.2 0.15 0",
                   "visible": "false"
