@@ -243,8 +243,14 @@
           "id": "darkButton",
           "position": "0 -0.1 0",
           "visible": "true",
-          "width": "0.20",
-          "toggleable": "true"
+          "width": "0.20"
+        },
+        {
+          "label": "Light Mode",
+          "id": "lightButton",
+          "position": "0 -0.1 0",
+          "visible": "false",
+          "width": "0.20"
         },
         {
           "label": "-",

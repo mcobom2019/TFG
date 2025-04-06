@@ -94,28 +94,23 @@ AFRAME.registerComponent('button', {
   },
 
   onPressedStarted: function () {
-  var el = this.el;
-  el.setAttribute('material', {color: 'green'});
-  // Solo emitir click al presionar, no al mantener presionado
-  if (!this._isPressed) {
+    var el = this.el;
+    el.setAttribute('material', {color: 'green'});
     el.emit('click');
-    this._isPressed = true;
-  }
-  
-  if (this.data.toggleable) {
-    if (el.is('pressed')) {
-      el.removeState('pressed');
-    } else {
-      el.addState('pressed');
+    el.setAttribute('material', {color: '#3a50c5'});
+    if (this.data.toggleable) {
+      if (el.is('pressed')) {
+        el.removeState('pressed');
+      } else {
+        el.addState('pressed');
+      }
     }
-  }
-},
+  },
 
-onPressedEnded: function () {
-  this._isPressed = false;
-  if (this.el.is('pressed')) { return; }
-  this.el.setAttribute('material', {color: this.color});
-},
+  onPressedEnded: function () {
+    if (this.el.is('pressed')) { return; }
+    this.el.setAttribute('material', {color: this.color});
+  },
   
   // Actualizar el estado interactivo del botón según su visibilidad
   updateInteractivity: function () {

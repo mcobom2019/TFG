@@ -75,6 +75,7 @@ AFRAME.registerComponent('loader', {
     this.xButtonEl = document.querySelector('#xButton');
     this.minButton1El = document.querySelector('#minButton1');
     this.darkButtonEl = document.querySelector('#darkButton');
+    this.lightButtonEl = document.querySelector('#lightButton');
     
     //Botones Submenu1
     this.barrasButtonEl = document.querySelector('#barrasButton');
@@ -155,19 +156,20 @@ AFRAME.registerComponent('loader', {
         });
     });
     this.darkButtonEl.addEventListener('click', () => {
-      // Invertir el estado actual
-      if (!this.isDarkMode) {
-        //Cambiar a modo oscuro
-        this.darkButtonEl.setAttribute('button', 'label: Light Mode');
+        this.isDarkMode = true;
+        this.darkButtonEl.setAttribute('visible', false);
         this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
         this.el.sceneEl.addState('starry');
-      } else {
-        // Cambiar a modo claro
-        this.darkButtonEl.setAttribute('button', 'label: Dark Mode');
+        this.lightButtonEl.setAttribute('visible', true);
+      
+    });
+    this.lightButtonEl.addEventListener('click', () => {
+        this.isDarkMode = false;
+        this.lightButtonEl.setAttribute('visible', false);
         this.el.sceneEl.setAttribute('environment', {preset: 'default'});
         this.el.sceneEl.removeState('starry');
-      }
-      this.isDarkMode = !this.isDarkMode;
+        this.darkButtonEl.setAttribute('visible', true);
+      
     });
     
     //controladores botones submenu1
@@ -183,6 +185,9 @@ AFRAME.registerComponent('loader', {
           const buttons2 = this.menuInicio.querySelectorAll('[id]');
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
+            if(this.isDarkMode){
+            
+          }
           });
         }, 500);
     });
