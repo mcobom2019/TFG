@@ -22,7 +22,10 @@
                 {
                   "label": "Barras",
                   "id": "barrasButton",
-                  "position": "0.1 -0.02 0",
+                  "position": "0 0 0",
+                  "color": "#2F6A31",
+                  "posetx": "0.092",
+                  "widthet": "0.15",
                   "visible": "false",
                   "menuHijo2":{
                     "id": "subMenu2",
@@ -223,12 +226,16 @@
                 {
                   "label": "Circular",
                   "id": "circularButton",
-                  "position": "-0.1 -0.02 0",
+                  "color": "#2F6A31",
+                  "posetx": "0.092",
+                  "widthet": "0.18",
+                  "position": "0 -0.1 0",
                   "visible": "false"
                 },
                 {
-                  "label": "<--",
+                  "label": "noLabel",
                   "id": "atrasButton",
+                  "color": "#C1440E",
                   "position": "-0.2 0.15 0",
                   "visible": "false"
                 },
