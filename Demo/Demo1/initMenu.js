@@ -15,5 +15,5 @@ AFRAME.registerComponent('menuinicio', {
     });
     menuBackGroundEl.setAttribute('position', '0 0 -0.025');
     el.appendChild(menuBackGroundEl);
-  },
+  },  
 });
