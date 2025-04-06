@@ -25,6 +25,7 @@ AFRAME.registerComponent('button', {
 
     // Rotar el botón 45 grados
     el.setAttribute('rotation', '90 0 0');
+    if(this.data.label == "maximizeButton")
 
     // Material
     el.setAttribute('material', 'color', this.color);
