@@ -8,7 +8,7 @@
         {
           "label": "start",
           "id": "startButton",
-          "position": "0 1 0",
+          "position": "0 0 0",
           "visible": "true",
           "menuHijo1":{
               "id": "subMenu1",
@@ -243,7 +243,9 @@
           "id": "darkButton",
           "position": "0 -0.1 0",
           "visible": "true",
-          "width": "0.20"
+          "width": "0.20",
+          "posetx": "0.1",
+          "widthet":"0.4"
         },
         {
           "label": "Light Mode",
@@ -253,7 +255,7 @@
           "width": "0.20"
         },
         {
-          "label": "-",
+          "label": "noLabel",
           "id": "minButton1",
           "position": "0.2 0.15 0",
           "visible": "true"

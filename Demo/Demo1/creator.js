@@ -831,10 +831,11 @@ AFRAME.registerComponent('loader', {
         buttonEl.setAttribute('id', button.id);
         buttonEl.setAttribute('button', {
           label: button.label,
-          width: button.width || 0.11,
+          width: button.width || 0.2,
           toggleable: button.toggleable || false,
           primitive: button.primitive || 'box',
-          color: button.color ||'#3a50c5'
+          color: button.color ||'#3a50c5',
+          posetx: button.posetx || 0
         });
       }
       if (button.position) {

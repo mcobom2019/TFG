@@ -1,18 +1,20 @@
 AFRAME.registerComponent('button', {
   schema: {
     label: {default: 'label'},
-    width: {default: 0.11},
+    width: {default: 0.2},
     toggleable: {default: false},
     color: {default: '#3a50c5'},
     posetx :{default: 0},//este es x
     posety :{default: 0},//este es z
     posetz :{default: 0},//este es y al reves
+    widthet: {default: 0.2}
     
   },
 
   init: function () {
     var el = this.el;
     this.color = this.data.color;
+    this.hasLabel = this.data.label !== "noLabel";
 
     // Hacer siempre el botón circular (cilindro)
     el.setAttribute('geometry', {
@@ -46,24 +48,26 @@ AFRAME.registerComponent('button', {
     base.setAttribute('shadow', {cast: false, receive: true});
     el.appendChild(base);
 
-    // Etiqueta
-    const labelEl = this.labelEl = document.createElement('a-entity');
-    labelEl.setAttribute('geometry', {
-      primitive: 'plane',
-      height: 0.025,
-      width: (this.data.width + 0.05)/3
-    });
-    labelEl.setAttribute('material', {color: '#f0f0f0'});
-    labelEl.setAttribute('text', {
-      value: this.data.label,
-      color: '#111',
-      align: 'center',
-      width: 0.5
-    });
+    // Etiqueta solo si no es "noLabel"
+    if(this.hasLabel){
+      const labelEl = this.labelEl = document.createElement('a-entity');
+      labelEl.setAttribute('geometry', {
+        primitive: 'plane',
+        height: 0.025,
+        width: (this.data.widthet + 0.05)/3
+      });
+      labelEl.setAttribute('material', {color: '#f0f0f0'});
+      labelEl.setAttribute('text', {
+        value: this.data.label,
+        color: '#111',
+        align: 'center',
+        width: 0.5
+      });
 
-    labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety} ${this.data.posetz}`);
-    labelEl.setAttribute('rotation', '-90 0 0');
-    el.appendChild(labelEl);
+      labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety} ${this.data.posetz}`);
+      labelEl.setAttribute('rotation', '-90 0 0');
+      el.appendChild(labelEl);
+    }
 
     this.bindMethods();
     this.el.addEventListener('stateadded', this.stateChanged);
@@ -86,17 +90,18 @@ AFRAME.registerComponent('button', {
   },
 
   update: function (oldData) {
-  if (oldData.label !== this.data.label) {
-    this.labelEl.setAttribute('text', 'value', this.data.label);
-  }
-  
-  if (oldData.color !== this.data.color) {
-    this.color = this.data.color;
-    if (!this.el.is('pressed')) {
-      this.el.setAttribute('material', 'color', this.color);
+    // Solo actualizar el label si existe
+    if (this.hasLabel && oldData.label !== this.data.label) {
+      this.labelEl.setAttribute('text', 'value', this.data.label);
     }
-  }
-},
+    
+    if (oldData.color !== this.data.color) {
+      this.color = this.data.color;
+      if (!this.el.is('pressed')) {
+        this.el.setAttribute('material', 'color', this.color);
+      }
+    }
+  },
 
   tick: function () {
     this.updateInteractivity();
