@@ -2,7 +2,11 @@ AFRAME.registerComponent('button', {
   schema: {
     label: {default: 'label'},
     width: {default: 0.11},
-    toggleable: {default: false}
+    toggleable: {default: false},
+    posx :{default: 0},
+    posy :{default: 0},
+    posz :{default: 0},
+    
   },
 
   init: function () {
@@ -61,7 +65,8 @@ AFRAME.registerComponent('button', {
       width: 0.5
     });
 
-    labelEl.setAttribute('position', `0 0.01 0`);
+    labelEl.setAttribute('position', '${this.data.posy} ${this.data.posy} -0.04');
+
 
     labelEl.setAttribute('rotation', '-90 0 0');
     el.appendChild(labelEl);
