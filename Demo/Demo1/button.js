@@ -94,27 +94,23 @@ AFRAME.registerComponent('button', {
   },
 
   onPressedStarted: function () {
-  var el = this.el;
-  el.setAttribute('material', {color: 'green'});
-  el.emit('click');
-  // Solo cambiamos el estado si es un botón toggleable
-  if (this.data.toggleable) {
-    if (el.is('pressed')) {
-      el.removeState('pressed');
-    } else {
-      el.addState('pressed');
+    var el = this.el;
+    el.setAttribute('material', {color: 'green'});
+    el.emit('click');
+    el.setAttribute('material', {color: '#3a50c5'});
+    if (this.data.toggleable) {
+      if (el.is('pressed')) {
+        el.removeState('pressed');
+      } else {
+        el.addState('pressed');
+      }
     }
-  }
-},
+  },
 
-onPressedEnded: function () {
-  // Aquí está el cambio clave: no revisar el estado "pressed" para todos los botones
-  // Solo mantenemos el color verde si específicamente es un botón toggleable que está presionado
-  if (this.data.toggleable && this.el.is('pressed')) { 
-    return; 
-  }
-  this.el.setAttribute('material', {color: this.color});
-},
+  onPressedEnded: function () {
+    if (this.el.is('pressed')) { return; }
+    this.el.setAttribute('material', {color: this.color});
+  },
   
   // Actualizar el estado interactivo del botón según su visibilidad
   updateInteractivity: function () {

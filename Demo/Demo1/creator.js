@@ -73,6 +73,7 @@ AFRAME.registerComponent('loader', {
     this.startButtonEl = document.querySelector('#startButton');
     this.xButtonEl = document.querySelector('#xButton');
     this.minButton1El = document.querySelector('#minButton1');
+    this.darkButtonEl = document.querySelector('#darkButton');
 
     //Botones Submenu1
     this.barrasButtonEl = document.querySelector('#barrasButton');
@@ -151,6 +152,18 @@ AFRAME.registerComponent('loader', {
         buttons2.forEach(button => {
           button.setAttribute('visible', false);
         });
+    });
+    this.darkButtonEl.addEventListener('click', () => {
+        this.initmenu = true;
+        this.menuInicio.setAttribute('visible', false);
+        const buttons2 = this.menuInicio.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.maximizeButtonEl.setAttribute('visible', true);
+        }, 500);
+      
     });
     
     //controladores botones submenu1
