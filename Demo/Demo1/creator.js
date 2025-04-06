@@ -73,6 +73,11 @@ AFRAME.registerComponent('loader', {
     
     //boton de la mano izquierda Maximizar
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
+    this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
+    this.maximizeButtonEl.setAttribute('button', {
+      label: 'noLabel',  
+      width: 0.1     
+    });
 
     // Botones menuInicio
     this.startButtonEl = document.querySelector('#startButton');
