@@ -155,18 +155,20 @@ AFRAME.registerComponent('loader', {
         });
     });
     this.darkButtonEl.addEventListener('click', () => {
-  if (this.isDarkMode) {
-    this.darkButtonEl.setAttribute('button', 'label: Dark Mode');
-    this.el.sceneEl.setAttribute('environment', {preset: 'default'});
-    this.el.sceneEl.removeState('starry');
-    this.isDarkMode = false; // Esta línea es crucial: restaura el modo claro
-  } else {
-    this.darkButtonEl.setAttribute('button', 'label: Light Mode');
-    this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
-    this.el.sceneEl.addState('starry');
-    this.isDarkMode = true; // Descomenta esta línea para activar el modo oscuro
-  }
-});
+      // Invertir el estado actual
+      if (!this.isDarkMode) {
+        //Cambiar a modo oscuro
+        this.darkButtonEl.setAttribute('button', 'label: Light Mode');
+        this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+        this.el.sceneEl.addState('starry');
+      } else {
+        // Cambiar a modo claro
+        this.darkButtonEl.setAttribute('button', 'label: Dark Mode');
+        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
+        this.el.sceneEl.removeState('starry');
+      }
+      this.isDarkMode = !this.isDarkMode;
+    });
     
     //controladores botones submenu1
     this.atrasButtonEl.addEventListener('click', () => {
