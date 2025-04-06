@@ -75,7 +75,7 @@ AFRAME.registerComponent('loader', {
     this.xButtonEl = document.querySelector('#xButton');
     this.minButton1El = document.querySelector('#minButton1');
     this.darkButtonEl = document.querySelector('#darkButton');
-
+    
     //Botones Submenu1
     this.barrasButtonEl = document.querySelector('#barrasButton');
     this.circularButtonEl = document.querySelector('#circularButton');
