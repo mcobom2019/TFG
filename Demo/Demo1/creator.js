@@ -609,79 +609,10 @@ AFRAME.registerComponent('loader', {
         }, 500);
     });
     this.mostrarButtonEl.addEventListener('click', () => {
-        var scene = document.querySelector("a-scene");
-        var dataEntity = document.createElement('a-entity');
-        dataEntity.setAttribute('id', 'data');
-        dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
-        scene.appendChild(dataEntity);
-      
-        // Crear entidad de filtro
-        var filterEntity = document.createElement('a-entity');
-        filterEntity.setAttribute('id', 'filter-data');
-      
-        // Lógica de filtrado
-        if(this.electric){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
-        } else if(this.diesel){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
-        } else if(this.gasoline){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=gasoline');
-        } else if(this.white){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
-        } else if(this.black){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=black');
-        } else if(this.red){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
-        } else if(this.yellow){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=yellow');
-        } else if(this.threedoors){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
-        } else if(this.fivedoors){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
-        }
-        scene.appendChild(filterEntity);
-      
-        // Crear diagrama de barras
-        if(this.bar) {
-            var barChartEntity = document.createElement('a-entity');
-            barChartEntity.setAttribute('id', 'bar-chart');
-            barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
-            barChartEntity.setAttribute('position', '0 0.5 -1');
-            barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
-            scene.appendChild(barChartEntity);
-            //pieChartEntity.setAttribute('grabbable', '');
-            barChartEntity.setAttribute('size-change', '');
-          
-        }else if(this.pie){
-            var pieChartEntity = document.createElement('a-entity');
-            pieChartEntity.setAttribute('id', 'pie-chart');
-            pieChartEntity.setAttribute('babia-pie', 'from: filter-data; legend: true; palette: blues; key: model; size: doors');
-            pieChartEntity.setAttribute('position', '0 0.5 -1');
-            pieChartEntity.setAttribute('scale', '0.2 0.2 0.2');
-            pieChartEntity.setAttribute('rotation', '90 0 0');
-            scene.appendChild(pieChartEntity);
-            //pieChartEntity.setAttribute('grabbable', '');
-            pieChartEntity.setAttribute('size-change', '');
-        }
+        this.viewDiagram();
     });
     this.borrarButtonEl.addEventListener('click', () => {
-        var scene = document.querySelector("a-scene");
-        var barChart = document.querySelector('#bar-chart');
-        if (barChart) {
-            scene.removeChild(barChart);
-        }
-
-        // Eliminar diagrama circular si existe
-        var pieChart = document.querySelector('#pie-chart');
-        if (pieChart) {
-            scene.removeChild(pieChart);
-        }
-
-       // Eliminar filtro de datos si existe
-        var prevFilter = document.querySelector('#filter-data');
-        if (prevFilter) {
-            scene.removeChild(prevFilter);
-        }
+        this.deleteDiagram();
     });
     this.minButton5El.addEventListener('click', () => {
         this.m4 = true;
@@ -891,4 +822,81 @@ AFRAME.registerComponent('loader', {
       parentEl.appendChild(buttonEl);
     });
   },
+  
+  viewDiagram: function (){
+    var scene = document.querySelector("a-scene");
+        var dataEntity = document.createElement('a-entity');
+        dataEntity.setAttribute('id', 'data');
+        dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
+        scene.appendChild(dataEntity);
+      
+        // Crear entidad de filtro
+        var filterEntity = document.createElement('a-entity');
+        filterEntity.setAttribute('id', 'filter-data');
+      
+        // Lógica de filtrado
+        if(this.electric){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
+        } else if(this.diesel){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
+        } else if(this.gasoline){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=gasoline');
+        } else if(this.white){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
+        } else if(this.black){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=black');
+        } else if(this.red){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
+        } else if(this.yellow){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=yellow');
+        } else if(this.threedoors){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
+        } else if(this.fivedoors){
+            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
+        }
+        scene.appendChild(filterEntity);
+      
+        // Crear diagrama de barras
+        if(this.bar) {
+            var barChartEntity = document.createElement('a-entity');
+            barChartEntity.setAttribute('id', 'bar-chart');
+            barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
+            barChartEntity.setAttribute('position', '0 0.5 -1');
+            barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
+            scene.appendChild(barChartEntity);
+            //pieChartEntity.setAttribute('grabbable', '');
+            barChartEntity.setAttribute('size-change', '');
+          
+        }else if(this.pie){
+            var pieChartEntity = document.createElement('a-entity');
+            pieChartEntity.setAttribute('id', 'pie-chart');
+            pieChartEntity.setAttribute('babia-pie', 'from: filter-data; legend: true; palette: blues; key: model; size: doors');
+            pieChartEntity.setAttribute('position', '0 0.5 -1');
+            pieChartEntity.setAttribute('scale', '0.2 0.2 0.2');
+            pieChartEntity.setAttribute('rotation', '90 0 0');
+            scene.appendChild(pieChartEntity);
+            //pieChartEntity.setAttribute('grabbable', '');
+            pieChartEntity.setAttribute('size-change', '');
+        }
+  },
+  
+  deleteDiagram: function(){
+    var scene = document.querySelector("a-scene");
+        var barChart = document.querySelector('#bar-chart');
+        if (barChart) {
+            scene.removeChild(barChart);
+        }
+
+        // Eliminar diagrama circular si existe
+        var pieChart = document.querySelector('#pie-chart');
+        if (pieChart) {
+            scene.removeChild(pieChart);
+        }
+
+       // Eliminar filtro de datos si existe
+        var prevFilter = document.querySelector('#filter-data');
+        if (prevFilter) {
+            scene.removeChild(prevFilter);
+        }
+  }
 });

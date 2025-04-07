@@ -93,7 +93,8 @@
                                         "posetz": "0.07",
                                         "posety": "-0.01",
                                         "widthet": "0.16",
-                                        "visible": "false"
+                                        "visible": "false",
+                                        "function": "viewDiagram"
                                       },
                                       {
                                         "label": "Delete",
@@ -103,7 +104,8 @@
                                         "posetz": "0.07",
                                         "posety": "-0.01",
                                         "widthet": "0.16",
-                                        "visible": "false"
+                                        "visible": "false",
+                                        "function": "deleteDiagram"
                                       },
                                       {
                                         "label": "noLabel",
