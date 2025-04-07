@@ -41,29 +41,6 @@ AFRAME.registerComponent('loader', {
       });
   },
   
-  // Función auxiliar para obtener la posición actual de un menú
-  getMenuPosition: function(menuElement) {
-    if (!menuElement) return { x: 0, y: 0, z: 0 };
-    
-    const position = menuElement.getAttribute('position');
-    return {
-      x: position.x,
-      y: position.y,
-      z: position.z
-    };
-  },
-  
-  // Función auxiliar para aplicar una posición a un menú
-  applyMenuPosition: function(menuElement, position) {
-    if (!menuElement) return;
-    
-    menuElement.setAttribute('position', {
-      x: position.x,
-      y: position.y,
-      z: position.z
-    });
-  },
-  
   setupEvents: function() {
     // Referencia a los elementos del menú
     this.menuInicio = document.querySelector('#menuinicio');
@@ -1089,5 +1066,27 @@ AFRAME.registerComponent('loader', {
         if (prevFilter) {
             scene.removeChild(prevFilter);
         }
-  }
+  },
+  // Función auxiliar para obtener la posición actual de un menú
+  getMenuPosition: function(menuElement) {
+    if (!menuElement) return { x: 0, y: 0, z: 0 };
+    
+    const position = menuElement.getAttribute('position');
+    return {
+      x: position.x,
+      y: position.y,
+      z: position.z
+    };
+  },
+  
+  // Función auxiliar para aplicar una posición a un menú
+  applyMenuPosition: function(menuElement, position) {
+    if (!menuElement) return;
+    
+    menuElement.setAttribute('position', {
+      x: position.x,
+      y: position.y,
+      z: position.z
+    });
+  },
 });
