@@ -27,26 +27,8 @@ AFRAME.registerComponent('loader', {
       .then(response => response.json())
       .then(data => {
         // creo todos los menús
-        var menuPadre = data.menuPadre;
-        this.createMenu(menuPadre);
-        
-        var subMenu1 = menuPadre.buttons[0].menuHijo1;
-        this.createMenu(subMenu1);
-      
-        var subMenu2 = subMenu1.buttons[0].menuHijo2;
-        this.createMenu(subMenu2);
-        
-        //submenu3
-        var subMenu31 = subMenu2.buttons[1].menuHijo31;
-        this.createMenu(subMenu31);
-        var subMenu32 = subMenu2.buttons[2].menuHijo32;
-        this.createMenu(subMenu32);
-        var subMenu33 = subMenu2.buttons[3].menuHijo33;
-        this.createMenu(subMenu33);
-      
-        //submenu4
-        var subMenu4 = subMenu31.buttons[1].menuHijo4;
-        this.createMenu(subMenu4);
+        this.data = data;
+        this.signalCreateMenus();
         
         // Después de crear los menús, ahora configuro los eventos
         this.setupEvents();
@@ -792,8 +774,61 @@ AFRAME.registerComponent('loader', {
     });
 },
   
-  signalCreateMenus: function(){
+  signalCreateMenus: function() {
+    if (!this.data) {
+      console.error('No se encontraron datos en el JSON');
+      return;
+    }
     
+    // Buscar todas las propiedades que contengan "menuPadre" en el nivel raíz
+    Object.keys(this.data).forEach(key => {
+      if (key.includes('menuPadre')) {
+        console.log('Creando menú padre:', key);
+        
+        // Crear el menú padre
+        this.createMenu(this.data[key]);
+        
+        // Crear recursivamente todos sus menús hijos
+        this.createChildMenus(this.data[key]);
+      }
+    });
+    
+    // Adicionalmente, buscar arrays de menús padre si existieran
+    Object.keys(this.data).forEach(key => {
+      const value = this.data[key];
+      if (Array.isArray(value)) {
+        value.forEach(item => {
+          // Si el elemento del array es un menú (tiene ID y posiblemente botones)
+          if (item && item.id && item.buttons) {
+            console.log('Creando menú desde array:', item.id);
+            this.createMenu(item);
+            this.createChildMenus(item);
+          }
+        });
+      }
+    });
+  },
+  
+  createChildMenus: function(parentMenu) {
+    // Si el menú no tiene botones, termina la recursión
+    if (!parentMenu.buttons || !Array.isArray(parentMenu.buttons)) {
+      return;
+    }
+    
+    // Iteramos sobre todos los botones del menú
+    parentMenu.buttons.forEach(button => {
+      // Buscamos propiedades que contengan "menuHijo" (para ser más flexibles con los nombres)
+      Object.keys(button).forEach(key => {
+        if (key.includes('menuHijo') && button[key]) {
+          // Si encontramos un menuHijo, lo creamos
+          console.log('Creando menú hijo:', key, ' - ID:', button[key].id);
+          this.createMenu(button[key]);
+          
+          // Y continuamos la recursión con ese menú hijo
+          this.createChildMenus(button[key]);
+        }
+      });
+    });
   },
   
   createMenu: function(pMenu) {

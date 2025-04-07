@@ -352,5 +352,18 @@
           "color": "#f80000"
         }
     ]
+  },
+ "menuPadre2":{
+    "id": "menuinicio",
+    "position": "-1.5 1.5 -0.5",
+    "visible": "true",
+    "grabbable": "true",
+     "menuHijo11":{
+              "id": "subMenu11",
+              "position": "0 2.5 -0.5",
+              "visible": "false",
+              "grabbable": "true"
+     }
+     
   }
 }
