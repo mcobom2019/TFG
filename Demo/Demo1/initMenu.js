@@ -2,7 +2,7 @@ AFRAME.registerComponent('menuinicio', {
   init: function () {
     const el = this.el;
 
-    // Crear geometría con bordes redondeados
+    // bordes redondeados
     const shape = new THREE.Shape();
     const radius = 0.03;
     const width = 0.6;
@@ -28,8 +28,8 @@ AFRAME.registerComponent('menuinicio', {
     const material = new THREE.MeshStandardMaterial({
       color: '3a3a3a',        // Gris oscuro metalizado
       metalness: 0.7,          // Muy metálico
-      roughness: 1.2,          // Algo reflectivo
-      envMapIntensity: 1.2     // Si tienes un entorno HDR
+      roughness: 1.2,          // reflectivo
+      envMapIntensity: 1.2     // entorno HDR
     });
 
     const mesh = new THREE.Mesh(geometry, material);

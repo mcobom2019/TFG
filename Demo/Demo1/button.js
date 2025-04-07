@@ -16,14 +16,14 @@ AFRAME.registerComponent('button', {
     this.color = this.data.color;
     this.hasLabel = this.data.label !== "noLabel";
 
-    // Hacer siempre el botón circular (cilindro)
+    //botón circular (cilindro)
     el.setAttribute('geometry', {
       primitive: 'cylinder',
       radius: this.data.width / 6.2,
       height: 0.02
     });
 
-    // Rotar el botón 45 grados
+    // Rotar el botón 90 grados
     el.setAttribute('rotation', '90 0 0');
 
     // Material
