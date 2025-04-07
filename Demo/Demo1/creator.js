@@ -25,6 +25,7 @@ AFRAME.registerComponent('loader', {
     
     // Variable para almacenar la última posición conocida
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
+    this.lastMenuRotation = { x: 0, y: 0, z: 0 };
     
     fetch('scene.json')
       .then(response => response.json())
@@ -1072,10 +1073,14 @@ AFRAME.registerComponent('loader', {
     if (!menuElement) return { x: 0, y: 0, z: 0 };
     
     const position = menuElement.getAttribute('position');
+    const rotation = menuElement.getAttribute('rotation');
     return {
       x: position.x,
       y: position.y,
-      z: position.z
+      z: position.z,
+      a: rotation.x,
+      b: rotation.y,
+      c: rotation.z
     };
   },
   
@@ -1086,7 +1091,12 @@ AFRAME.registerComponent('loader', {
     menuElement.setAttribute('position', {
       x: position.x,
       y: position.y,
-      z: position.z
+      z: position.z,
+    });
+    menuElement.setAttribute('rotation', {
+      x: position.a,
+      y: position.b,
+      z: position.c,
     });
   },
 });
