@@ -48,7 +48,7 @@ AFRAME.registerComponent('loader', {
         var subMenu4 = subMenu31.buttons[1].menuHijo4;
         this.createMenu(subMenu4);
         
-        // Después de crear los menús, ahora configuramos los eventos
+        // Después de crear los menús, ahora configuro los eventos
         this.setupEvents();
       })
       .catch(error => {
@@ -791,6 +791,10 @@ AFRAME.registerComponent('loader', {
         }
     });
 },
+  
+  signalCreateMenus: function(){
+    
+  },
   
   createMenu: function(pMenu) {
     if (!pMenu) return;
