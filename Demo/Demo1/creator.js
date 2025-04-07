@@ -1030,5 +1030,6 @@ AFRAME.registerComponent('loader', {
   changeGrabbable: function(menu1, menu2){
     menu1.setAttribute('grababble', '');
     menu2.removeAttribute('grabbable');
+    menu1.setAttribute('grabbable', '');
   }
 });
