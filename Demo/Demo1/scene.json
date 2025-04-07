@@ -17,7 +17,7 @@
               "id": "subMenu1",
               "position": "0 1.5 -0.5",
               "visible": "false",
-              "grabbable": "true",
+              "grabbable": "false",
               "buttons": [
                 {
                   "label": "Barras",
@@ -32,7 +32,7 @@
                     "id": "subMenu2",
                     "position": "0 1.5 -0.5",
                     "visible": "false",
-                    "grabbable": "true",
+                    "grabbable": "false",
                     "buttons": [
                         {
                           "label": "noLabel",
@@ -54,7 +54,7 @@
                             "id": "subMenu31",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
-                            "grabbable": "true",
+                            "grabbable": "false",
                             "buttons": [
                               {
                                 "label": "noLabel",
@@ -76,7 +76,7 @@
                                     "id": "subMenu4",
                                     "position": "0 1.5 -0.5",
                                     "visible": "false",
-                                    "grabbable": "true",
+                                    "grabbable": "false",
                                     "buttons": [
                                       {
                                         "label": "noLabel",
@@ -161,7 +161,7 @@
                             "id": "subMenu32",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
-                            "grabbable": "true",
+                            "grabbable": "false",
                             "buttons": [
                               {
                                 "label": "noLabel",
@@ -242,7 +242,7 @@
                             "id": "subMenu33",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
-                            "grabbable": "true",
+                            "grabbable": "false",
                             "buttons": [
                               {
                                 "label": "noLabel",
