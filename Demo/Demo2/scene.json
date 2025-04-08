@@ -42,16 +42,16 @@
                           "color": "#C1440E"
                         },
                         {
-                          "label": "Motor",
-                          "id": "motorButton",
+                          "label": "LLSE",
+                          "id": "llseButton",
                           "position": "-0.1 0.03 0",
                           "visible": "false",
                           "color": "#2F6A31",
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
-                          "menuHijo31":{
-                            "id": "subMenu31",
+                          "menuC3":{
+                            "id": "childmenu3",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "false",
@@ -64,8 +64,8 @@
                                 "visible": "false"
                               },
                               {
-                                "label": "Electric",
-                                "id": "electricoButton",
+                                "label": "Play",
+                                "id": "playButton",
                                 "position": "-0.15 0 0",
                                 "color": "#2F6A31",
                                 "posetz": "0.07",
@@ -74,8 +74,8 @@
                                 "visible": "false"
                               },
                               {
-                                "label": "Diesel",
-                                "id": "DieselButton",
+                                "label": "Pause",
+                                "id": "pauseButton",
                                 "position": "0 0 0",
                                 "visible": "false",
                                 "color": "#2F6A31",
@@ -85,8 +85,8 @@
                                 "buttons": []
                               },
                               {
-                                "label": "Gasoline",
-                                "id": "GasolinaButton",
+                                "label": "Stop",
+                                "id": "stopButton",
                                 "position": "0.15 0 0",
                                 "visible": "false",
                                 "color": "#2F6A31",
@@ -98,141 +98,6 @@
                               {
                                 "label": "noLabel",
                                 "id": "minButton41",
-                                "position": "0.2 0.15 0",
-                                "visible": "false",
-                                "buttons": []
-                              }
-                            ]
-                          }
-                        },
-                        {
-                          "label": "Color",
-                          "id": "colorButton",
-                          "position": "-0.1 -0.09 0",
-                          "visible": "false",
-                          "color": "#2F6A31",
-                          "posetx": "0.092",
-                          "posety": "-0.01",
-                          "widthet": "0.15",
-                          "menuHijo32":{
-                            "id": "subMenu32",
-                            "position": "0 1.5 -0.5",
-                            "visible": "false",
-                            "grabbable": "false",
-                            "buttons": [
-                              {
-                                "label": "noLabel",
-                                "color": "#C1440E",
-                                "id": "backButton22",
-                                "position": "-0.2 0.15 0",
-                                "visible": "false"
-                              },
-                              {
-                                "label": "White",
-                                "id": "BlancoButton",
-                                "position": "-0.1 0.03 0",
-                                "visible": "false",
-                                "color": "#2F6A31",
-                                "posety": "-0.01",
-                                "posetx": "-0.1",
-                                "widthet": "0.15",
-                                "visible": "false",
-                                "buttons": []
-                              },
-                              {
-                                "label": "Black",
-                                "id": "NegroButton",
-                                "position": "-0.1 -0.09 0",
-                                "visible": "false",
-                                "color": "#2F6A31",
-                                "posety": "-0.01",
-                                "posetx": "-0.1",
-                                "widthet": "0.15",
-                                "visible": "false",
-                                "buttons": []
-                              },
-                              {
-                                "label": "Red",
-                                "id": "RojoButton",
-                                "position": "0.1 0.03 0",
-                                "visible": "false",
-                                "color": "#2F6A31",
-                                "posety": "-0.01",
-                                "posetx": "0.1",
-                                "widthet": "0.13",
-                                "visible": "false",
-                                "buttons": []
-                              },
-                              {
-                                "label": "Yellow",
-                                "id": "AmarilloButton",
-                                "position": "0.1 -0.09 0",
-                                "visible": "false",
-                                "color": "#2F6A31",
-                                
-                                "posety": "-0.01",
-                                "posetx": "0.1",
-                                "widthet": "0.2",
-                                "visible": "false",
-                                "buttons": []
-                              },
-                              {
-                                "label": "noLabel",
-                                "id": "minButton42",
-                                "position": "0.2 0.15 0",
-                                "visible": "false",
-                                "buttons": []
-                              }
-                            ]
-                          }
-                        },
-                        {
-                          "label": "Doors",
-                          "id": "puertasButton",
-                          "position": "0.1 -0.03 0",
-                          "visible": "false",
-                          "color": "#2F6A31",
-                          "posetx": "0.092",
-                          "posety": "-0.01",
-                          "widthet": "0.15",
-                          "menuHijo33":{
-                            "id": "subMenu33",
-                            "position": "0 1.5 -0.5",
-                            "visible": "false",
-                            "grabbable": "false",
-                            "buttons": [
-                              {
-                                "label": "noLabel",
-                                "color": "#C1440E",
-                                "id": "backButton23",
-                                "position": "-0.2 0.15 0",
-                                "visible": "false"
-                              },
-                              {
-                                "label": "3 Doors",
-                                "id": "dosButton",
-                                "position": "0.1 -0.02 0",
-                                "visible": "false",
-                                "color": "#2F6A31",
-                                "posetz": "0.07",
-                                "posety": "-0.01",
-                                "widthet": "0.19",
-                                "buttons": []
-                              },
-                              {
-                                "label": "5 Doors",
-                                "id": "cincoButton",
-                                "position": "-0.1 -0.02 0",
-                                "visible": "false",
-                                "color": "#2F6A31",
-                                "posetz": "0.07",
-                                "posety": "-0.01",
-                                "widthet": "0.19",
-                                "buttons": []
-                              },
-                              {
-                                "label": "noLabel",
-                                "id": "minButton43",
                                 "position": "0.2 0.15 0",
                                 "visible": "false",
                                 "buttons": []
