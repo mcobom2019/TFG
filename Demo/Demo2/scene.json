@@ -126,7 +126,7 @@
                 },
                 {
                   "label": "noLabel",
-                  "id": "atrasButton",
+                  "id": "backButton1",
                   "color": "#C1440E",
                   "position": "-0.2 0.15 0",
                   "visible": "false"

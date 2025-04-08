@@ -35,9 +35,9 @@ AFRAME.registerComponent('menu', {
     this.minButton1El = document.querySelector('#minButton1');
     
     //Botones Submenu1
-    this.barrasButtonEl = document.querySelector('#musicButton');
+    this.musicButtonEl = document.querySelector('#musicButton');
     this.circularButtonEl = document.querySelector('#circularButton');
-    this.atrasButtonEl = document.querySelector('#atrasButton');
+    this.backButton1El = document.querySelector('#backButton1');
     this.minButton2El = document.querySelector('#minButton2');
 
     //Botones submenu2
@@ -118,28 +118,22 @@ AFRAME.registerComponent('menu', {
     });
     
     //controladores botones submenu1
-    this.atrasButtonEl.addEventListener('click', () => {
-        this.initmenu = true;
-        this.lastMenuPosition = this.getMenuPosition(this.submenu1);
-        this.submenu1.setAttribute('visible', false);
-        this.changeGrabbable(this.menuInicio, this.submenu1);
-        const buttons = this.submenu1.querySelectorAll('[id]');
+    this.backButton1El.addEventListener('click', () => {
+        this.lastMenuPosition = this.getMenuPosition(this.childMenu1);
+        this.childMenu1.setAttribute('visible', false);
+        this.changeGrabbable(this.initMenu, this.childMenu1);
+        const buttons = this.childMenu1.querySelectorAll('[id]');
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
         
         setTimeout(() => {
-          this.applyMenuPosition(this.menuInicio, this.lastMenuPosition);
-          this.menuInicio.setAttribute('visible', true);
-          const buttons2 = this.menuInicio.querySelectorAll('[id]');
+          this.applyMenuPosition(this.initMenu, this.lastMenuPosition);
+          this.initMenu.setAttribute('visible', true);
+          const buttons2 = this.initMenu.querySelectorAll('[id]');
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
-          if(this.isDarkMode){
-              this.darkButtonEl.setAttribute('visible', false);
-          }else{
-              this.lightButtonEl.setAttribute('visible', false);
-          }
         }, 500);
     });
     
