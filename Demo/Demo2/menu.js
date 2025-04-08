@@ -22,13 +22,8 @@ AFRAME.registerComponent('menu', {
   
   setupEvents: function() {
     // Referencia a los elementos del menú
-    this.menuInicio = document.querySelector('#menuinicio');
-    this.submenu1 = document.querySelector('#subMenu1');
-    this.submenu2 = document.querySelector('#subMenu2');
-    this.submenu31 = document.querySelector('#subMenu31');
-    this.submenu32 = document.querySelector('#subMenu32');
-    this.submenu33 = document.querySelector('#subMenu33');
-    this.submenu4 = document.querySelector('#subMenu4');
+    this.initMenu = document.querySelector('#initmenu');
+    this.childMenu1 = document.querySelector('#childmenu1');
     
     //boton de la mano izquierda Maximizar
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
@@ -38,11 +33,9 @@ AFRAME.registerComponent('menu', {
     this.startButtonEl = document.querySelector('#startButton');
     this.xButtonEl = document.querySelector('#xButton');
     this.minButton1El = document.querySelector('#minButton1');
-    this.darkButtonEl = document.querySelector('#darkButton');
-    this.lightButtonEl = document.querySelector('#lightButton');
     
     //Botones Submenu1
-    this.barrasButtonEl = document.querySelector('#barrasButton');
+    this.barrasButtonEl = document.querySelector('#musicButton');
     this.circularButtonEl = document.querySelector('#circularButton');
     this.atrasButtonEl = document.querySelector('#atrasButton');
     this.minButton2El = document.querySelector('#minButton2');
@@ -84,18 +77,18 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
-      if (this.submenu1 && this.menuInicio) {
-        this.lastMenuPosition = this.getMenuPosition(this.menuInicio);
-        this.changeGrabbable(this.submenu1, this.menuInicio);
-        this.menuInicio.setAttribute('visible', false);
-        const buttons2 = this.menuInicio.querySelectorAll('[id]');
+      if (this.childMenu1 && this.initMenu) {
+        this.lastMenuPosition = this.getMenuPosition(this.initMenu);
+        this.changeGrabbable(this.childMenu1, this.initMenu);
+        this.initMenu.setAttribute('visible', false);
+        const buttons2 = this.initMenu.querySelectorAll('[id]');
         buttons2.forEach(button => {
           button.setAttribute('visible', false);
         });
         setTimeout(() => {
-          this.applyMenuPosition(this.submenu1, this.lastMenuPosition);
-          this.submenu1.setAttribute('visible', true);
-          const buttons = this.submenu1.querySelectorAll('[id]');
+          this.applyMenuPosition(this.childMenu1, this.lastMenuPosition);
+          this.childMenu1.setAttribute('visible', true);
+          const buttons = this.childMenu1.querySelectorAll('[id]');
           buttons.forEach(button => {
             button.setAttribute('visible', true);
           });
@@ -104,10 +97,9 @@ AFRAME.registerComponent('menu', {
     });
     
     this.minButton1El.addEventListener('click', () => {
-        this.initmenu = true;
-        this.lastMenuPosition = this.getMenuPosition(this.menuInicio);
-        this.menuInicio.setAttribute('visible', false);
-        const buttons2 = this.menuInicio.querySelectorAll('[id]');
+        this.lastMenuPosition = this.getMenuPosition(this.initMenu);
+        this.initMenu.setAttribute('visible', false);
+        const buttons2 = this.initMenu.querySelectorAll('[id]');
         buttons2.forEach(button => {
           button.setAttribute('visible', false);
         });
@@ -118,35 +110,11 @@ AFRAME.registerComponent('menu', {
     });
     
     this.xButtonEl.addEventListener('click', () => {
-        this.submenu1.setAttribute('visible', false);
-        this.menuInicio.setAttribute('visible', false);
-        
-        const buttons2 = this.menuInicio.querySelectorAll('[id]');
+        this.initMenu.setAttribute('visible', false);
+        const buttons2 = this.initMenu.querySelectorAll('[id]');
         buttons2.forEach(button => {
           button.setAttribute('visible', false);
         });
-    });
-    
-    this.darkButtonEl.addEventListener('click', () => {
-        this.isDarkMode = true;
-        this.darkButtonEl.setAttribute('visible', false);
-        this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
-        this.el.sceneEl.addState('starry');
-        setTimeout(() => {
-          this.lightButtonEl.setAttribute('visible', true);
-        }, 250);
-      
-    });
-    
-    this.lightButtonEl.addEventListener('click', () => {
-        this.isDarkMode = false;
-        this.lightButtonEl.setAttribute('visible', false);
-        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
-        this.el.sceneEl.removeState('starry');
-        setTimeout(() => {
-          this.darkButtonEl.setAttribute('visible', true);
-        }, 250);
-      
     });
     
     //controladores botones submenu1
@@ -897,25 +865,6 @@ AFRAME.registerComponent('menu', {
     });
   },
   
-  deleteDiagram: function(){
-    var scene = document.querySelector("a-scene");
-        var barChart = document.querySelector('#bar-chart');
-        if (barChart) {
-            scene.removeChild(barChart);
-        }
-
-        // Eliminar diagrama circular si existe
-        var pieChart = document.querySelector('#pie-chart');
-        if (pieChart) {
-            scene.removeChild(pieChart);
-        }
-
-       // Eliminar filtro de datos si existe
-        var prevFilter = document.querySelector('#filter-data');
-        if (prevFilter) {
-            scene.removeChild(prevFilter);
-        }
-  },
   // Función auxiliar para obtener la posición actual de un menú
   getMenuPosition: function(menuElement) {
     if (!menuElement) return { x: 0, y: 0, z: 0 };
