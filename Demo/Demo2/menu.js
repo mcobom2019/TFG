@@ -24,6 +24,7 @@ AFRAME.registerComponent('menu', {
     // Referencia a los elementos del menú
     this.initMenu = document.querySelector('#initmenu');
     this.childMenu1 = document.querySelector('#childmenu1');
+    this.childMenu2 = document.querySelector('#childmenu2');
     
     //boton de la mano izquierda Maximizar
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
@@ -137,20 +138,19 @@ AFRAME.registerComponent('menu', {
         }, 500);
     });
     
-    this.barrasButtonEl.addEventListener('click', () => {
-        this.bar = true;
-        this.lastMenuPosition = this.getMenuPosition(this.submenu1);
-        this.changeGrabbable(this.submenu2, this.submenu1);
-        this.submenu1.setAttribute('visible', false);
-        const buttons = this.submenu1.querySelectorAll('[id]');
+    this.musicButtonEl.addEventListener('click', () => {
+        this.lastMenuPosition = this.getMenuPosition(this.childMenu1);
+        this.changeGrabbable(this.childMenu2, this.childMenu1);
+        this.childMenu1.setAttribute('visible', false);
+        const buttons = this.childMenu1.querySelectorAll('[id]');
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
         
         setTimeout(() => {
-          this.applyMenuPosition(this.submenu2, this.lastMenuPosition);
-          this.submenu2.setAttribute('visible', true);
-          const buttons2 = this.submenu2.querySelectorAll('[id]');
+          this.applyMenuPosition(this.childMenu2, this.lastMenuPosition);
+          this.childMenu2.setAttribute('visible', true);
+          const buttons2 = this.childMenu2.querySelectorAll('[id]');
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
@@ -178,10 +178,9 @@ AFRAME.registerComponent('menu', {
     });
     
     this.minButton2El.addEventListener('click', () => {
-        this.m1 = true;
-        this.lastMenuPosition = this.getMenuPosition(this.submenu1);
-        this.submenu1.setAttribute('visible', false);
-        const buttons = this.submenu1.querySelectorAll('[id]');
+        this.lastMenuPosition = this.getMenuPosition(this.childMenu1);
+        this.childMenu1.setAttribute('visible', false);
+        const buttons = this.childMenu1.querySelectorAll('[id]');
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
