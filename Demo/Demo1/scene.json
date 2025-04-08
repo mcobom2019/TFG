@@ -20,13 +20,13 @@
               "grabbable": "false",
               "buttons": [
                 {
-                  "label": "Bars",
+                  "label": "Bar",
                   "id": "barrasButton",
                   "position": "0 0 0",
                   "color": "#2F6A31",
                   "posetx": "0.092",
                   "posety": "-0.01",
-                  "widthet": "0.15",
+                  "widthet": "0.1",
                   "visible": "false",
                   "menuHijo2":{
                     "id": "subMenu2",
