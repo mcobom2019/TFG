@@ -20,7 +20,7 @@
               "grabbable": "false",
               "buttons": [
                 {
-                  "label": "Barras",
+                  "label": "Bars",
                   "id": "barrasButton",
                   "position": "0 0 0",
                   "color": "#2F6A31",
