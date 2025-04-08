@@ -1,5 +1,5 @@
-{"menuPadre":{
-    "id": "menuinicio",
+{"menuP":{
+    "id": "initmenu",
     "position": "0 1.5 -0.5",
     "visible": "true",
     "grabbable": "true",
@@ -13,23 +13,23 @@
           "widthet": "0.15",
           "color": "#2F6A31",
           "visible": "true",
-          "menuHijo1":{
-              "id": "subMenu1",
+          "menuC1":{
+              "id": "childmenu1",
               "position": "0 1.5 -0.5",
               "visible": "false",
               "grabbable": "false",
               "buttons": [
                 {
-                  "label": "Bar",
-                  "id": "barrasButton",
+                  "label": "Music",
+                  "id": "musicButton",
                   "position": "0 0 0",
                   "color": "#2F6A31",
                   "posetx": "0.092",
                   "posety": "-0.01",
                   "widthet": "0.1",
                   "visible": "false",
-                  "menuHijo2":{
-                    "id": "subMenu2",
+                  "menuC2":{
+                    "id": "childmenu2",
                     "position": "0 1.5 -0.5",
                     "visible": "false",
                     "grabbable": "false",
@@ -71,50 +71,7 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.18",
-                                "visible": "false",
-                                    "menuHijo4":{
-                                    "id": "subMenu4",
-                                    "position": "0 1.5 -0.5",
-                                    "visible": "false",
-                                    "grabbable": "false",
-                                    "buttons": [
-                                      {
-                                        "label": "noLabel",
-                                        "id": "backButton31",
-                                        "position": "-0.2 0.15 0",
-                                        "visible": "false",
-                                        "color": "#C1440E"
-                                      },
-                                      {
-                                        "label": "Show",
-                                        "id": "mostrarButton1",
-                                        "position": "0.1 -0.02 0",
-                                        "color": "#2F6A31",
-                                        "posetz": "0.07",
-                                        "posety": "-0.01",
-                                        "widthet": "0.16",
-                                        "visible": "false",
-                                        "function": "viewDiagram"
-                                      },
-                                      {
-                                        "label": "Delete",
-                                        "id": "borrarButton1",
-                                        "position": "-0.1 -0.02 0",
-                                        "color": "#2F6A31",
-                                        "posetz": "0.07",
-                                        "posety": "-0.01",
-                                        "widthet": "0.16",
-                                        "visible": "false",
-                                        "function": "deleteDiagram"
-                                      },
-                                      {
-                                        "label": "noLabel",
-                                        "id": "minButton5",
-                                        "position": "0.2 0.15 0",
-                                        "visible": "false"
-                                      }
-                                    ]
-                                  }
+                                "visible": "false"
                               },
                               {
                                 "label": "Diesel",
@@ -317,28 +274,6 @@
                 }
               ]
           }
-        },
-        {
-          "label": "Dark Mode",
-          "id": "darkButton",
-          "position": "0 -0.1 0",
-          "visible": "true",
-          "color": "#2F6A31",
-          "width": "0.20",
-          "posetx": "0.11",
-          "posety": "-0.01",
-          "widthet":"0.29"
-        },
-        {
-          "label": "Light Mode",
-          "id": "lightButton",
-          "position": "0 -0.1 0",
-          "visible": "false",
-          "color": "#2F6A31",
-          "width": "0.20",
-          "posetx": "0.11",
-          "posety": "-0.01",
-          "widthet":"0.29"
         },
         {
           "label": "noLabel",
