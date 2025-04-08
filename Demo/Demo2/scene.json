@@ -36,7 +36,7 @@
                     "buttons": [
                         {
                           "label": "noLabel",
-                          "id": "backButton",
+                          "id": "backButton2",
                           "position": "-0.2 0.15 0",
                           "visible": "false",
                           "color": "#C1440E"
