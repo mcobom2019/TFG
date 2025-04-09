@@ -549,5 +549,5 @@ AFRAME.registerComponent('menu', {
 
         // Estado inicial: música parada
         this.isPlaying = false;
-}
+  }
 });
