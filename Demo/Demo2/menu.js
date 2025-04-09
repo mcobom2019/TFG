@@ -401,7 +401,7 @@ AFRAME.registerComponent('menu', {
     
     //Controladores childmenu5
     this.backButton23El.addEventListener('click', () => {
-        this.sphere,this.box, this.cylinder, this.cone = false;
+        this.box = fals,this.sphere, this.cylinder, this.cone = false;
         this.lastMenuPosition = this.getMenuPosition(this.childMenu5);
         this.changeGrabbable(this.childMenu4, this.childMenu5);
         this.childMenu5.setAttribute('visible', false);
@@ -428,6 +428,9 @@ AFRAME.registerComponent('menu', {
         }else if(this.cone){
           this.createForm('cone');
         }
+    });
+    this.deleteButtonEl.addEventListener('click', () => {
+        this.deleteForm();
     });
     
     //controlador boton maximizar
@@ -686,7 +689,6 @@ AFRAME.registerComponent('menu', {
     const types = ['box', 'cylinder', 'sphere', 'cone'];
     if (!types.includes(type)) {
       console.error('Tipo no válido. Use: box, cylinder, sphere o cone');
-      type = 'box'; // Valor por defecto
     }
 
     // Crear el elemento con el tipo especificado
@@ -703,33 +705,37 @@ AFRAME.registerComponent('menu', {
     escene.appendChild(element);
   },
   
-  deleteForm: function () {
-    // Verificar si se proporcionó un elemento válido
-  if (!elemento || !elemento.parentNode) {
-    console.error('Error: Se requiere un elemento válido para eliminar');
-    return false;
-  }
-  
-  try {
-    // Eliminar el elemento de la escena
-    elemento.parentNode.removeChild(elemento);
-    return true;
-  } catch (error) {
-    console.error('Error al eliminar el elemento:', error);
-    return false;
-  }
-}
+  deleteForm: function(type) {
+    // Buscar la última primitiva creada del tipo especificado
+    var type = "";
+    if(this.sphere){
+      type = "sphere";
+    }else if(this.box){
+      type = "box";
+    }else if(this.cylinder){
+      type = "cylinder";
+    }else if(this.cone){
+      type = "cone";
+    }
+    const elements = document.querySelectorAll('a-' + type);
 
-// Función alternativa para eliminar por ID
-function eliminarElementoPorId(id) {
-  const elemento = document.getElementById(id);
-  
-  if (!elemento) {
-    console.error(`Error: No se encontró ningún elemento con ID: ${id}`);
-    return false;
+    if (elements.length === 0) {
+      console.error(`No se encontró ningún elemento del tipo: ${type}`);
+      return false;
+    }
+
+    try {
+      // Tomar el último elemento creado (podría ser otra lógica según necesites)
+      const elementToRemove = elements[elements.length - 1];
+
+      // Eliminar el elemento de la escena
+      elementToRemove.parentNode.removeChild(elementToRemove);
+      console.log(`Elemento ${type} eliminado correctamente`);
+      return true;
+    } catch (error) {
+      console.error('Error al eliminar el elemento:', error);
+      return false;
+    }
   }
-  
-  return eliminarElemento(elemento);
-}
-  }
+
 });
