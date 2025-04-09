@@ -46,6 +46,7 @@ AFRAME.registerComponent('menu', {
     this.backButton2El = document.querySelector('#backButton2');
     this.llseButtonEl = document.querySelector('#llseButton');
     this.gladiatorButtonEl = document.querySelector('#gladiatorButton');
+    this.dpButtonEl = document.querySelector('#dpButton');
     this.minButton3El = document.querySelector('#minButton3');
     
     //Botones submenu31
@@ -229,6 +230,25 @@ AFRAME.registerComponent('menu', {
     });
     
     this.gladiatorButtonEl.addEventListener('click', () => {
+        this.lastMenuPosition = this.getMenuPosition(this.childMenu2);
+        this.changeGrabbable(this.childMenu3, this.childMenu2);
+        this.childMenu2.setAttribute('visible', false);
+        const buttons = this.childMenu2.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        this.loadSong("gladiator");
+        setTimeout(() => {
+          this.applyMenuPosition(this.childMenu3, this.lastMenuPosition);
+          this.childMenu3.setAttribute('visible', true);
+          const buttons2 = this.childMenu3.querySelectorAll('[id]');
+          buttons2.forEach(button => {
+            button.setAttribute('visible', true);
+          });
+        }, 500);
+    });
+    
+    this.dpButtonEl.addEventListener('click', () => {
         this.lastMenuPosition = this.getMenuPosition(this.childMenu2);
         this.changeGrabbable(this.childMenu3, this.childMenu2);
         this.childMenu2.setAttribute('visible', false);
@@ -667,6 +687,8 @@ AFRAME.registerComponent('menu', {
           audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/La%20M.O.D.A.%20_%20Los%20locos%20son%20ellos.mp3?v=1744133441584';
         }else if(name == "gladiator"){
           audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Now%20We%20Are%20Free.mp3?v=1744188527544';
+        }else if(name == "Darling Pretty"){
+          audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Mark%20Knopfler%20-%20Darling%20Pretty%20(Official%20Video).mp3?v=1744194898957";
         }
         audioEl.preload = 'auto';
         audioEl.loop = true; // Hacer que la canción se repita
