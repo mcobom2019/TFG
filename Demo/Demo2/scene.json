@@ -71,8 +71,7 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.18",
-                                "visible": "false",
-                                "primitive": "triangle"
+                                "visible": "false"
                               },
                               {
                                 "label": "Pause",
@@ -94,7 +93,8 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.22",
-                                "buttons": []
+                                "buttons": [],
+                                "primitive": "box"
                               },
                               {
                                 "label": "noLabel",
