@@ -353,15 +353,13 @@ AFRAME.registerComponent('menu', {
     //Controladores childmenu4
     this.backButton22El.addEventListener('click', () => {
         this.lastMenuPosition = this.getMenuPosition(this.childMenu4);
-        this.changeGrabbable(this.childMenu2, this.childMenu3);
-        this.childMenu3.setAttribute('visible', false);
-        const buttons = this.childMenu3.querySelectorAll('[id]');
+        this.changeGrabbable(this.childMenu2, this.childMenu4);
+        this.childMenu4.setAttribute('visible', false);
+        const buttons = this.childMenu4.querySelectorAll('[id]');
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
-        this.audioElement.pause();
-        this.audioElement.currentTime = 0;
-        this.isPlaying = false;
+
         setTimeout(() => {
           this.applyMenuPosition(this.childMenu2, this.lastMenuPosition);
           this.childMenu2.setAttribute('visible', true);
