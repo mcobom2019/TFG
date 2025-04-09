@@ -287,7 +287,9 @@ AFRAME.registerComponent('menu', {
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
-        
+        this.audioElement.pause();
+        this.audioElement.currentTime = 0;
+        this.isPlaying = false;
         setTimeout(() => {
           this.applyMenuPosition(this.childMenu2, this.lastMenuPosition);
           this.childMenu2.setAttribute('visible', true);
