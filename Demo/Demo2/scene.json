@@ -106,6 +106,16 @@
                           }
                         },
                         {
+                          "label": "Gladiator",
+                          "id": "gladiatorButton",
+                          "position": "-0.1 0.03 0",
+                          "visible": "false",
+                          "color": "#2F6A31",
+                          "posetx": "0.092",
+                          "posety": "-0.01",
+                          "widthet": "0.15"
+                        },
+                        {
                           "label": "noLabel",
                           "id": "minButton3",
                           "position": "0.2 0.15 0",

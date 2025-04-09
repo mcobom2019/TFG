@@ -11,19 +11,6 @@ AFRAME.registerComponent('menu', {
         // creo todos los menús
         this.data = data;
         this.signalCreateMenus();
-      
-        const audioEl = document.createElement('audio');
-        audioEl.id = 'backgroundMusic';
-        audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/La%20M.O.D.A.%20_%20Los%20locos%20son%20ellos.mp3?v=1744133441584'; // Reemplaza 'tucancion.mp3' con el nombre real de tu archivo
-        audioEl.preload = 'auto';
-        audioEl.loop = true; // Hacer que la canción se repita
-        document.body.appendChild(audioEl);
-
-        // Guardar referencia al elemento de audio
-        this.audioElement = audioEl;
-
-        // Estado inicial: música parada
-        this.isPlaying = false;
         
         // Después de crear los menús, ahora configuro los eventos
         this.setupEvents();
@@ -58,6 +45,7 @@ AFRAME.registerComponent('menu', {
     //Botones submenu2
     this.backButton2El = document.querySelector('#backButton2');
     this.llseButtonEl = document.querySelector('#llseButton');
+    this.gladiatorButtonEl = document.querySelector('#gladiatorButton');
     this.minButton3El = document.querySelector('#minButton3');
     
     //Botones submenu31
@@ -229,7 +217,26 @@ AFRAME.registerComponent('menu', {
         buttons.forEach(button => {
           button.setAttribute('visible', false);
         });
-        
+        this.loadSong("llse");
+        setTimeout(() => {
+          this.applyMenuPosition(this.childMenu3, this.lastMenuPosition);
+          this.childMenu3.setAttribute('visible', true);
+          const buttons2 = this.childMenu3.querySelectorAll('[id]');
+          buttons2.forEach(button => {
+            button.setAttribute('visible', true);
+          });
+        }, 500);
+    });
+    
+    this.gladiatorButtonEl.addEventListener('click', () => {
+        this.lastMenuPosition = this.getMenuPosition(this.childMenu2);
+        this.changeGrabbable(this.childMenu3, this.childMenu2);
+        this.childMenu2.setAttribute('visible', false);
+        const buttons = this.childMenu2.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        this.loadSong("gladiator");
         setTimeout(() => {
           this.applyMenuPosition(this.childMenu3, this.lastMenuPosition);
           this.childMenu3.setAttribute('visible', true);
@@ -649,5 +656,24 @@ AFRAME.registerComponent('menu', {
     menu1.setAttribute('grababble', '');
     menu2.removeAttribute('grabbable');
     menu1.setAttribute('grabbable', '');
-  }
+  },
+  
+  loadSong: function(name){
+    const audioEl = document.createElement('audio');
+        audioEl.id = 'backgroundMusic';
+        if(name == "llse"){
+          audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/La%20M.O.D.A.%20_%20Los%20locos%20son%20ellos.mp3?v=1744133441584';
+        }else if(name == "gladiator"){
+          audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Now%20We%20Are%20Free.mp3?v=1744188527544';
+        }
+        audioEl.preload = 'auto';
+        audioEl.loop = true; // Hacer que la canción se repita
+        document.body.appendChild(audioEl);
+
+        // Guardar referencia al elemento de audio
+        this.audioElement = audioEl;
+
+        // Estado inicial: música parada
+        this.isPlaying = false;
+}
 });
