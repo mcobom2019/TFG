@@ -603,7 +603,7 @@ AFRAME.registerComponent('menu', {
           label: button.label,
           width: button.width || 0.2,
           toggleable: button.toggleable || false,
-          primitive: button.primitive || 'box',
+          primitive: button.primitive || 'cylinder',
           color: button.color ||'#32527b',
           posetx: button.posetx || 0,
           posety: button.posety || 0,

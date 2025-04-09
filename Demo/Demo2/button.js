@@ -7,8 +7,8 @@ AFRAME.registerComponent('button', {
     posetx :{default: 0},//este es x
     posety :{default: 0},//este es z
     posetz :{default: 0},//este es y al reves
-    widthet: {default: 0.2}
-    
+    widthet: {default: 0.2},
+    primitive: {default: 'cylinder'}
   },
 
   init: function () {
@@ -16,15 +16,41 @@ AFRAME.registerComponent('button', {
     this.color = this.data.color;
     this.hasLabel = this.data.label !== "noLabel";
 
-    //botón circular (cilindro)
-    el.setAttribute('geometry', {
-      primitive: 'cylinder',
-      radius: this.data.width / 6.2,
-      height: 0.02
-    });
+    // Utilizar la propiedad primitive
+    if (this.data.primitive === 'triangle') {
+      // Botón triangular (para play)
+      el.setAttribute('geometry', {
+        primitive: 'cone',
+        radiusBottom: this.data.width / 5,
+        radiusTop: 0,
+        height: 0.04,
+        segmentsRadial: 3
+      });
 
-    // Rotar el botón 90 grados
-    el.setAttribute('rotation', '90 0 0');
+      // Rotar para que apunte hacia la derecha (como icono de play)
+      el.setAttribute('rotation', '90 0 0');
+    } else if (this.data.primitive === 'box') {
+      // Botón cuadrado
+      el.setAttribute('geometry', {
+        primitive: 'box',
+        width: this.data.width / 3,
+        height: this.data.width / 3,
+        depth: 0.02
+      });
+
+      // Rotar si es necesario
+      el.setAttribute('rotation', '90 0 0');
+    } else {
+      // Botón circular por defecto (cilindro)
+      el.setAttribute('geometry', {
+        primitive: 'cylinder',
+        radius: this.data.width / 6.2,
+        height: 0.02
+      });
+
+      // Rotar el botón 90 grados
+      el.setAttribute('rotation', '90 0 0');
+    }
 
     // Material
     el.setAttribute('material', 'color', this.color);
