@@ -66,7 +66,7 @@ AFRAME.registerComponent('button', {
       radius: this.data.width / 4.8,
       height: 0.01
     });
-    base.setAttribute('position', '0 0 0');
+    base.setAttribute('position', '0 -0.01 0');
     base.setAttribute('material', {
       color: '#333',
       roughness: 1,
@@ -91,7 +91,7 @@ AFRAME.registerComponent('button', {
         width: 0.5
       });
 
-      labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety} ${this.data.posetz}`);
+      labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety-0.004} ${this.data.posetz}`);
       labelEl.setAttribute('rotation', '-90 0 0');
       el.appendChild(labelEl);
     }

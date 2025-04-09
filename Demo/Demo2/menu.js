@@ -350,48 +350,21 @@ AFRAME.registerComponent('menu', {
           }, 500);
         }else if(this.cm2){
           setTimeout(() => {
-            this.submenu2.setAttribute('visible', true);
-            const buttons = this.submenu2.querySelectorAll('[id]');
+            this.childMenu2.setAttribute('visible', true);
+            const buttons = this.childMenu2.querySelectorAll('[id]');
             buttons.forEach(button => {
               button.setAttribute('visible', true);
             });
-            this.m2 = false;
+            this.cm2 = false;
           }, 500);
-        }else if(this.m31){
+        }else if(this.cm3){
           setTimeout(() => {
-            this.submenu31.setAttribute('visible', true);
-            const buttons = this.submenu31.querySelectorAll('[id]');
+            this.childMenu3.setAttribute('visible', true);
+            const buttons = this.childMenu3.querySelectorAll('[id]');
             buttons.forEach(button => {
               button.setAttribute('visible', true);
             });
-            this.m31 = false;
-          }, 500);
-        }else if(this.m32){
-          setTimeout(() => {
-            this.submenu32.setAttribute('visible', true);
-            const buttons = this.submenu32.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-            this.m32 = false;
-          }, 500);
-        }else if(this.m33){
-          setTimeout(() => {
-            this.submenu33.setAttribute('visible', true);
-            const buttons = this.submenu33.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-            this.m33 = false;
-          }, 500);
-        }else if(this.m4){
-          setTimeout(() => {
-            this.submenu4.setAttribute('visible', true);
-            const buttons = this.submenu4.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-            this.m4 = false;
+            this.cm3 = false;
           }, 500);
         }
     });

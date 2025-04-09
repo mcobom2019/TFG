@@ -64,7 +64,7 @@ AFRAME.registerComponent('button', {
         width: 0.5
       });
 
-      labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety} ${this.data.posetz}`);
+      labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety-0.004} ${this.data.posetz}`);
       labelEl.setAttribute('rotation', '-90 0 0');
       el.appendChild(labelEl);
     }
