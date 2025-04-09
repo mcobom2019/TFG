@@ -6,6 +6,7 @@ AFRAME.registerComponent('menu', {
     this.cm2 = false;
     this.cm3 = false;
     this.cm4 = false;
+    this.cm5 = false;
     
     this.sphere = false;
     this.box = false;
@@ -433,6 +434,18 @@ AFRAME.registerComponent('menu', {
     this.deleteButtonEl.addEventListener('click', () => {
         this.deleteForm();
     });
+    this.minButton5El.addEventListener('click', () => {
+        this.cm5 = true;
+        this.lastMenuPosition = this.getMenuPosition(this.childMenu5);
+        this.childMenu5.setAttribute('visible', false);
+        const buttons = this.childMenu5.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.maximizeButtonEl.setAttribute('visible', true);
+        }, 500);
+    });
     
     //controlador boton maximizar
     this.maximizeButtonEl.addEventListener('click', () => {
@@ -480,7 +493,16 @@ AFRAME.registerComponent('menu', {
             buttons.forEach(button => {
               button.setAttribute('visible', true);
             });
-            this.c43 = false;
+            this.cm4 = false;
+          }, 500);
+        }else if(this.cm5){
+          setTimeout(() => {
+            this.childMenu5.setAttribute('visible', true);
+            const buttons = this.childMenu5.querySelectorAll('[id]');
+            buttons.forEach(button => {
+              button.setAttribute('visible', true);
+            });
+            this.cm5 = false;
           }, 500);
         }
     });
@@ -697,7 +719,10 @@ AFRAME.registerComponent('menu', {
       type = "cone";
     }
     
-    const prevElement = 
+    const prevElement = document.querySelector('a-' + type);
+    if(prevElement){
+      return;
+    }
     // Crear el elemento con el tipo especificado
     const element = document.createElement('a-' + type);
     

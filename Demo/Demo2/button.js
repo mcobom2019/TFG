@@ -16,6 +16,8 @@ AFRAME.registerComponent('button', {
     var el = this.el;
     this.color = this.data.color;
     this.hasLabel = this.data.label !== "noLabel";
+    // Añadir una propiedad para evitar múltiples clics
+    this.lastClickTime = 0;
 
     // Utilizar la propiedad primitive
     if (this.data.primitive === 'triangle') {
@@ -140,6 +142,13 @@ AFRAME.registerComponent('button', {
   },
 
   onPressedStarted: function () {
+    // Protección contra clics duplicados
+    const now = Date.now();
+    if (now - this.lastClickTime < 300) { // 300ms como umbral
+      return; // Ignorar el clic si ha pasado poco tiempo
+    }
+    this.lastClickTime = now;
+    
     var el = this.el;
     el.setAttribute('material', 'color', 'green');
     el.emit('click');
@@ -191,6 +200,13 @@ AFRAME.registerComponent('button', {
   },
 
   onMouseDown: function () {
+    // Protección contra clics duplicados
+    const now = Date.now();
+    if (now - this.lastClickTime < 300) { // 300ms como umbral
+      return; // Ignorar el clic si ha pasado poco tiempo
+    }
+    this.lastClickTime = now;
+    
     this.onPressedStarted();
   },
 
