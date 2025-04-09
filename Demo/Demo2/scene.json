@@ -241,8 +241,7 @@
                           "posety": "-0.01",
                           "posetx": "-0.1",
                           "widthet": "0.15",
-                          "visible": "false",
-                          ]
+                          "visible": "false"
                         },
                         {
                           "label": "Cylinder",
