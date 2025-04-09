@@ -39,7 +39,7 @@ AFRAME.registerComponent('button', {
       radius: this.data.width / 4.8,
       height: 0.01
     });
-    base.setAttribute('position', '0 0 0');
+    base.setAttribute('position', '0 -0.01 0');
     base.setAttribute('material', {
       color: '#333',
       roughness: 1,

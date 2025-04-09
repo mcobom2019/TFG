@@ -21,14 +21,14 @@ AFRAME.registerComponent('button', {
       // Botón triangular (para play)
       el.setAttribute('geometry', {
         primitive: 'cone',
-        radiusBottom: this.data.width / 5,
+        radiusBottom: this.data.width / 4.1,
         radiusTop: 0,
         height: 0.04,
         segmentsRadial: 3
       });
-
+      
       // Rotar para que apunte hacia la derecha (como icono de play)
-      el.setAttribute('rotation', '90 0 0');
+      el.setAttribute('rotation', '80 0 0');
     } else if (this.data.primitive === 'box') {
       // Botón cuadrado
       el.setAttribute('geometry', {
@@ -65,7 +65,7 @@ AFRAME.registerComponent('button', {
       radius: this.data.width / 4.8,
       height: 0.01
     });
-    base.setAttribute('position', '0 0 0');
+    base.setAttribute('position', '0 -0.01 0');
     base.setAttribute('material', {
       color: '#333',
       roughness: 1,
