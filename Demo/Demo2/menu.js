@@ -31,6 +31,7 @@ AFRAME.registerComponent('menu', {
     this.childMenu2 = document.querySelector('#childmenu2');
     this.childMenu3 = document.querySelector('#childmenu3');
     this.childMenu4 = document.querySelector('#childmenu4');
+    this.childMenu5 = document.querySelector('#childmenu5');
     
     //boton de la mano izquierda Maximizar
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
@@ -63,6 +64,15 @@ AFRAME.registerComponent('menu', {
     
     //Botones submenu4
     this.backButton22El = document.querySelector('#backButton22');
+    this.sphereButtonEl = document.querySelector('#sphereButton');
+    
+    //botones submenu5
+    this.backButton23El = document.querySelector('#backButton23');
+    this.showButtonEl = document.querySelector('#showButton');
+    this.positionButtonEl = document.querySelector('#positionButton');
+    this.colorButtonEl = document.querySelector('#colorButton');
+    this.deleteButtonEl = document.querySelector('#deleteButton');
+    this.deleteButtonEl = document.querySelector('#deleteButton');
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {

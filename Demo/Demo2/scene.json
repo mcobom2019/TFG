@@ -173,6 +173,13 @@
                             "grabbable": "false",
                             "buttons": [
                               {
+                                "label": "noLabel",
+                                "id": "backButton23",
+                                "position": "-0.2 0.15 0",
+                                "visible": "false",
+                                "color": "#C1440E"
+                              },
+                              {
                                 "label": "Show",
                                 "id": "showButton",
                                 "position": "-0.1 0.03 0",
@@ -215,6 +222,12 @@
                                 "posetx": "0.1",
                                 "widthet": "0.2",
                                 "visible": "false"
+                              },
+                              {
+                                "label": "noLabel",
+                                "id": "minButton5",
+                                "position": "0.2 0.15 0",
+                                "visible": "false"
                               }
                             ]
                            }
@@ -228,7 +241,8 @@
                           "posety": "-0.01",
                           "posetx": "-0.1",
                           "widthet": "0.15",
-                          "visible": "false"
+                          "visible": "false",
+                          ]
                         },
                         {
                           "label": "Cylinder",
