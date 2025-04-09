@@ -401,7 +401,10 @@ AFRAME.registerComponent('menu', {
     
     //Controladores childmenu5
     this.backButton23El.addEventListener('click', () => {
-        this.box = fals,this.sphere, this.cylinder, this.cone = false;
+        this.box = false;
+        this.sphere = false; 
+        this.cylinder = false; 
+        this.cone = false;
         this.lastMenuPosition = this.getMenuPosition(this.childMenu5);
         this.changeGrabbable(this.childMenu4, this.childMenu5);
         this.childMenu5.setAttribute('visible', false);
@@ -419,15 +422,11 @@ AFRAME.registerComponent('menu', {
         }, 500);
     });
     this.showButtonEl.addEventListener('click', () => {
-        if(this.sphere){
-          this.createForm('sphere');
-        }else if(this.box){
-          this.createForm('box');
-        }else if(this.cylinder){
-          this.createForm('cylinder');
-        }else if(this.cone){
-          this.createForm('cone');
-        }
+      this.createForm();
+        
+    });
+    this.deleteButtonEl.addEventListener('click', () => {
+        this.deleteForm();
     });
     this.deleteButtonEl.addEventListener('click', () => {
         this.deleteForm();
@@ -684,11 +683,16 @@ AFRAME.registerComponent('menu', {
         }, 500);
   },
   
-  createForm: function (type){
-  // Validar el tipo de primitiva
-    const types = ['box', 'cylinder', 'sphere', 'cone'];
-    if (!types.includes(type)) {
-      console.error('Tipo no válido. Use: box, cylinder, sphere o cone');
+  createForm: function (){
+    var type = "";
+    if(this.sphere){
+      type = "sphere";
+    }else if(this.box){
+      type = "box";
+    }else if(this.cylinder){
+      type = "cylinder";
+    }else if(this.cone){
+      type = "cone";
     }
 
     // Crear el elemento con el tipo especificado
@@ -717,25 +721,42 @@ AFRAME.registerComponent('menu', {
     }else if(this.cone){
       type = "cone";
     }
-    const elements = document.querySelectorAll('a-' + type);
+    const element = document.querySelector('a-' + type);
 
-    if (elements.length === 0) {
+    if (element.length === 0) {
       console.error(`No se encontró ningún elemento del tipo: ${type}`);
       return false;
     }
-
     try {
-      // Tomar el último elemento creado (podría ser otra lógica según necesites)
-      const elementToRemove = elements[elements.length - 1];
-
       // Eliminar el elemento de la escena
-      elementToRemove.parentNode.removeChild(elementToRemove);
+      element.parentNode.removeChild(element);
       console.log(`Elemento ${type} eliminado correctamente`);
       return true;
     } catch (error) {
       console.error('Error al eliminar el elemento:', error);
       return false;
     }
+  },
+  
+  plusSize: function (){
+    var type = "";
+    if(this.sphere){
+      type = "sphere";
+    }else if(this.box){
+      type = "box";
+    }else if(this.cylinder){
+      type = "cylinder";
+    }else if(this.cone){
+      type = "cone";
+    }
+    
+    const element = document.querySelector('a-' + type);
+    if (element.length === 0) {
+      console.error(`No se encontró ningún elemento del tipo: ${type}`);
+      return false;
+    }else{
+      const currentScale = element.getAttribute('scale');
+      element.setAttribute('scale', currentScale * 1.1);
+    }
   }
-
 });
