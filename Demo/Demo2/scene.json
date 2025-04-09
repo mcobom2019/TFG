@@ -93,8 +93,7 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.22",
-                                "buttons": [],
-                                "primitive": "box"
+                                "buttons": []
                               },
                               {
                                 "label": "noLabel",

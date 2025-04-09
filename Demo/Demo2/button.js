@@ -29,7 +29,7 @@ AFRAME.registerComponent('button', {
       });
 
       // Rotar para que apunte hacia la derecha (como icono de play)
-      el.setAttribute('rotation', '90 0 0');
+      el.setAttribute('rotation', '90 0 90');
     } else if (this.data.primitive === 'box') {
       // Botón cuadrado
       el.setAttribute('geometry', {
@@ -40,7 +40,7 @@ AFRAME.registerComponent('button', {
       });
 
       // Rotar si es necesario
-      el.setAttribute('rotation', '0 0 0');
+      el.setAttribute('rotation', '90 0 0');
     } else {
       // Botón circular por defecto (cilindro)
       el.setAttribute('geometry', {
@@ -73,7 +73,6 @@ AFRAME.registerComponent('button', {
       metalness: 0
     });
     base.setAttribute('shadow', {cast: false, receive: true});
-    base.setAttribute('rotation', '90 0 0');
     el.appendChild(base);
 
     // Etiqueta solo si no es "noLabel"
@@ -93,7 +92,7 @@ AFRAME.registerComponent('button', {
       });
 
       labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety} ${this.data.posetz}`);
-      labelEl.setAttribute('rotation', '-180 0 0');
+      labelEl.setAttribute('rotation', '-90 0 0');
       el.appendChild(labelEl);
     }
 
