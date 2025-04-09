@@ -140,11 +140,11 @@
                   "color": "#2F6A31",
                   "posetx": "0.12",
                   "posety": "-0.01",
-                  "widthet": "0.33",
+                  "widthet": "0.35",
                   "position": "0 -0.1 0",
                   "visible": "false",
                   "menuC4":{
-                    "id": "childmenu2",
+                    "id": "childmenu4",
                     "position": "0 1.5 -0.5",
                     "visible": "false",
                     "grabbable": "false",
@@ -165,7 +165,59 @@
                           "posety": "-0.01",
                           "posetx": "-0.1",
                           "widthet": "0.15",
-                          "visible": "false"
+                          "visible": "false",
+                           "menuC5":{
+                            "id": "childmenu5",
+                            "position": "0 1.5 -0.5",
+                            "visible": "false",
+                            "grabbable": "false",
+                            "buttons": [
+                              {
+                                "label": "Show",
+                                "id": "showButton",
+                                "position": "-0.1 0.03 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posety": "-0.01",
+                                "posetx": "-0.1",
+                                "widthet": "0.15",
+                                "visible": "false"
+                              },
+                              {
+                                "label": "Change Position",
+                                "id": "positionButton",
+                                "position": "-0.1 -0.09 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posety": "-0.01",
+                                "posetx": "-0.1",
+                                "widthet": "0.15",
+                                "visible": "false"
+                              },
+                              {
+                                "label": "Change Color",
+                                "id": "colorButton",
+                                "position": "0.1 0.03 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posety": "-0.01",
+                                "posetx": "0.1",
+                                "widthet": "0.13",
+                                "visible": "false"
+                              },
+                              {
+                                "label": "Delete",
+                                "id": "deleteButton",
+                                "position": "0.1 -0.09 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posety": "-0.01",
+                                "posetx": "0.1",
+                                "widthet": "0.2",
+                                "visible": "false"
+                              }
+                            ]
+                           }
                         },
                         {
                           "label": "Box",
@@ -198,6 +250,12 @@
                           "posety": "-0.01",
                           "posetx": "0.1",
                           "widthet": "0.2",
+                          "visible": "false"
+                        },
+                        {
+                          "label": "noLabel",
+                          "id": "minButton42",
+                          "position": "0.2 0.15 0",
                           "visible": "false"
                         }
                       ]

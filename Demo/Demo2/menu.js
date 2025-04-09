@@ -30,6 +30,7 @@ AFRAME.registerComponent('menu', {
     this.childMenu1 = document.querySelector('#childmenu1');
     this.childMenu2 = document.querySelector('#childmenu2');
     this.childMenu3 = document.querySelector('#childmenu3');
+    this.childMenu4 = document.querySelector('#childmenu4');
     
     //boton de la mano izquierda Maximizar
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
@@ -42,7 +43,7 @@ AFRAME.registerComponent('menu', {
     
     //Botones Submenu1
     this.musicButtonEl = document.querySelector('#musicButton');
-    this.circularButtonEl = document.querySelector('#circularButton');
+    this.formsButtonEl = document.querySelector('#formsButton');
     this.backButton1El = document.querySelector('#backButton1');
     this.minButton2El = document.querySelector('#minButton2');
 
@@ -59,6 +60,9 @@ AFRAME.registerComponent('menu', {
     this.pauseButton = document.querySelector('#pauseButton');
     this.stopButton = document.querySelector('#stopButton');
     this.minButton41El = document.querySelector('#minButton41');
+    
+    //Botones submenu4
+    this.backButton22El = document.querySelector('#backButton22');
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
@@ -136,6 +140,25 @@ AFRAME.registerComponent('menu', {
           this.applyMenuPosition(this.childMenu2, this.lastMenuPosition);
           this.childMenu2.setAttribute('visible', true);
           const buttons2 = this.childMenu2.querySelectorAll('[id]');
+          buttons2.forEach(button => {
+            button.setAttribute('visible', true);
+          });
+        }, 500);
+    });
+    
+    this.formsButtonEl.addEventListener('click', () => {
+        this.lastMenuPosition = this.getMenuPosition(this.childMenu1);
+        this.changeGrabbable(this.childMenu4, this.childMenu1);
+        this.childMenu1.setAttribute('visible', false);
+        const buttons = this.childMenu1.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        
+        setTimeout(() => {
+          this.applyMenuPosition(this.childMenu4, this.lastMenuPosition);
+          this.childMenu4.setAttribute('visible', true);
+          const buttons2 = this.childMenu4.querySelectorAll('[id]');
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
@@ -324,6 +347,28 @@ AFRAME.registerComponent('menu', {
         });
         setTimeout(() => {
           this.maximizeButtonEl.setAttribute('visible', true);
+        }, 500);
+    });
+    
+    //Controladores childmenu4
+    this.backButton22El.addEventListener('click', () => {
+        this.lastMenuPosition = this.getMenuPosition(this.childMenu4);
+        this.changeGrabbable(this.childMenu2, this.childMenu3);
+        this.childMenu3.setAttribute('visible', false);
+        const buttons = this.childMenu3.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        this.audioElement.pause();
+        this.audioElement.currentTime = 0;
+        this.isPlaying = false;
+        setTimeout(() => {
+          this.applyMenuPosition(this.childMenu2, this.lastMenuPosition);
+          this.childMenu2.setAttribute('visible', true);
+          const buttons2 = this.childMenu2.querySelectorAll('[id]');
+          buttons2.forEach(button => {
+            button.setAttribute('visible', true);
+          });
         }, 500);
     });
     
