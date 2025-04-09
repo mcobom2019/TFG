@@ -406,6 +406,7 @@ AFRAME.registerComponent('menu', {
         this.sphere = false; 
         this.cylinder = false; 
         this.cone = false;
+        this.deleteForm();
         this.lastMenuPosition = this.getMenuPosition(this.childMenu5);
         this.changeGrabbable(this.childMenu4, this.childMenu5);
         this.childMenu5.setAttribute('visible', false);
@@ -691,7 +692,7 @@ AFRAME.registerComponent('menu', {
   
   showMenu5: function (){
     this.lastMenuPosition = this.getMenuPosition(this.childMenu4);
-        this.changeGrabbable(this.childMenu4, this.childMenu5);
+        this.changeGrabbable(this.childMenu5, this.childMenu4);
         this.childMenu4.setAttribute('visible', false);
         const buttons = this.childMenu4.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -737,7 +738,7 @@ AFRAME.registerComponent('menu', {
     escene.appendChild(element);
   },
   
-  deleteForm: function(type) {
+  deleteForm: function() {
     // Buscar la última primitiva creada del tipo especificado
     var type = "";
     if(this.sphere){
