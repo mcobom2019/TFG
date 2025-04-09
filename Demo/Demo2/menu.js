@@ -79,7 +79,7 @@ AFRAME.registerComponent('menu', {
     //botones submenu5
     this.backButton23El = document.querySelector('#backButton23');
     this.showButtonEl = document.querySelector('#showButton');
-    this.positionButtonEl = document.querySelector('#positionButton');
+    this.pSizeButtonEl = document.querySelector('#plusSButton');
     this.colorButtonEl = document.querySelector('#colorButton');
     this.deleteButtonEl = document.querySelector('#deleteButton');
     this.minButton5El = document.querySelector('#minButton5');
@@ -423,10 +423,12 @@ AFRAME.registerComponent('menu', {
     });
     this.showButtonEl.addEventListener('click', () => {
       this.createForm();
-        
     });
-    this.deleteButtonEl.addEventListener('click', () => {
-        this.deleteForm();
+    this.pSizeButtonEl.addEventListener('click', () => {
+        this.plusSize();
+    });
+    this.colorButtonEl.addEventListener('click', () => {
+        this.changeColor();
     });
     this.deleteButtonEl.addEventListener('click', () => {
         this.deleteForm();
@@ -694,10 +696,11 @@ AFRAME.registerComponent('menu', {
     }else if(this.cone){
       type = "cone";
     }
-
+    
+    const prevElement = 
     // Crear el elemento con el tipo especificado
     const element = document.createElement('a-' + type);
-
+    
     // Configurar propiedades comunes
     element.setAttribute('position', '0 1 -3');
     element.setAttribute('color', '#FF6347');
@@ -723,7 +726,7 @@ AFRAME.registerComponent('menu', {
     }
     const element = document.querySelector('a-' + type);
 
-    if (element.length === 0) {
+    if (!element) {
       console.error(`No se encontró ningún elemento del tipo: ${type}`);
       return false;
     }
@@ -751,12 +754,45 @@ AFRAME.registerComponent('menu', {
     }
     
     const element = document.querySelector('a-' + type);
-    if (element.length === 0) {
+    if (!element) {
       console.error(`No se encontró ningún elemento del tipo: ${type}`);
       return false;
     }else{
       const currentScale = element.getAttribute('scale');
-      element.setAttribute('scale', currentScale * 1.1);
+      element.setAttribute('scale', {
+        x: currentScale.x * 1.1,
+        y: currentScale.y * 1.1,
+        z: currentScale.z * 1.1
+      });
     }
+  },
+  
+  changeColor: function (){
+    var type = "";
+    if(this.sphere){
+      type = "sphere";
+    }else if(this.box){
+      type = "box";
+    }else if(this.cylinder){
+      type = "cylinder";
+    }else if(this.cone){
+      type = "cone";
+    }
+    
+    const element = document.querySelector('a-' + type);
+    if (!element) {
+      console.error(`No se encontró ningún elemento del tipo: ${type}`);
+      return false;
+    }else{
+      element.setAttribute('color', this.randomColor());
+    }
+  },
+  
+  randomColor: function(){
+    const r = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+    const g = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+    const b = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+
+    return `#${r}${g}${b}`;
   }
 });

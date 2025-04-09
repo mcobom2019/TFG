@@ -191,8 +191,8 @@
                                 "visible": "false"
                               },
                               {
-                                "label": "Change Position",
-                                "id": "positionButton",
+                                "label": "Bigger Size",
+                                "id": "plusSButton",
                                 "position": "-0.1 -0.09 0",
                                 "visible": "false",
                                 "color": "#2F6A31",
