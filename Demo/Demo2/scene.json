@@ -132,7 +132,8 @@
                           "visible": "false"
                         }
                     ]
-                  },
+                  }
+                },
                 {
                   "label": "Create Forms",
                   "id": "formsButton",

@@ -165,25 +165,6 @@ AFRAME.registerComponent('menu', {
         }, 500);
     });
     
-    this.circularButtonEl.addEventListener('click', () => {
-        this.pie = true;
-        this.lastMenuPosition = this.getMenuPosition(this.submenu1);
-        this.changeGrabbable(this.submenu2, this.submenu1);
-        this.submenu1.setAttribute('visible', false);
-        const buttons = this.submenu1.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        
-        setTimeout(() => {
-          this.applyMenuPosition(this.submenu2, this.lastMenuPosition);
-          this.submenu2.setAttribute('visible', true);
-          const buttons2 = this.submenu2.querySelectorAll('[id]');
-          buttons2.forEach(button => {
-            button.setAttribute('visible', true);
-          });
-        }, 500);
-    });
     
     this.minButton2El.addEventListener('click', () => {
       this.cm1 = true;
@@ -353,7 +334,7 @@ AFRAME.registerComponent('menu', {
     //Controladores childmenu4
     this.backButton22El.addEventListener('click', () => {
         this.lastMenuPosition = this.getMenuPosition(this.childMenu4);
-        this.changeGrabbable(this.childMenu2, this.childMenu4);
+        this.changeGrabbable(this.childMenu1, this.childMenu4);
         this.childMenu4.setAttribute('visible', false);
         const buttons = this.childMenu4.querySelectorAll('[id]');
         buttons.forEach(button => {
@@ -361,9 +342,9 @@ AFRAME.registerComponent('menu', {
         });
 
         setTimeout(() => {
-          this.applyMenuPosition(this.childMenu2, this.lastMenuPosition);
-          this.childMenu2.setAttribute('visible', true);
-          const buttons2 = this.childMenu2.querySelectorAll('[id]');
+          this.applyMenuPosition(this.childMenu1, this.lastMenuPosition);
+          this.childMenu1.setAttribute('visible', true);
+          const buttons2 = this.childMenu1.querySelectorAll('[id]');
           buttons2.forEach(button => {
             button.setAttribute('visible', true);
           });
