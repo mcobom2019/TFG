@@ -418,6 +418,17 @@ AFRAME.registerComponent('menu', {
           });
         }, 500);
     });
+    this.showButtonEl.addEventListener('click', () => {
+        if(this.sphere){
+          this.createForm('sphere');
+        }else if(this.box){
+          this.createForm('box');
+        }else if(this.cylinder){
+          this.createForm('cylinder');
+        }else if(this.cone){
+          this.createForm('cone');
+        }
+    });
     
     //controlador boton maximizar
     this.maximizeButtonEl.addEventListener('click', () => {
@@ -668,5 +679,57 @@ AFRAME.registerComponent('menu', {
             button.setAttribute('visible', true);
           });
         }, 500);
+  },
+  
+  createForm: function (type){
+  // Validar el tipo de primitiva
+    const types = ['box', 'cylinder', 'sphere', 'cone'];
+    if (!types.includes(type)) {
+      console.error('Tipo no válido. Use: box, cylinder, sphere o cone');
+      type = 'box'; // Valor por defecto
+    }
+
+    // Crear el elemento con el tipo especificado
+    const element = document.createElement('a-' + type);
+
+    // Configurar propiedades comunes
+    element.setAttribute('position', '0 1 -3');
+    element.setAttribute('color', '#FF6347');
+    element.setAttribute('scale', '0.5 0.5 0.5');
+    element.setAttribute('shadow', '');
+
+    // Añadir el elemento a la escena
+    const escene = document.querySelector('a-scene');
+    escene.appendChild(element);
+  },
+  
+  deleteForm: function () {
+    // Verificar si se proporcionó un elemento válido
+  if (!elemento || !elemento.parentNode) {
+    console.error('Error: Se requiere un elemento válido para eliminar');
+    return false;
+  }
+  
+  try {
+    // Eliminar el elemento de la escena
+    elemento.parentNode.removeChild(elemento);
+    return true;
+  } catch (error) {
+    console.error('Error al eliminar el elemento:', error);
+    return false;
+  }
+}
+
+// Función alternativa para eliminar por ID
+function eliminarElementoPorId(id) {
+  const elemento = document.getElementById(id);
+  
+  if (!elemento) {
+    console.error(`Error: No se encontró ningún elemento con ID: ${id}`);
+    return false;
+  }
+  
+  return eliminarElemento(elemento);
+}
   }
 });
