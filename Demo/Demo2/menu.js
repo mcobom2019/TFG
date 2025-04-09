@@ -402,11 +402,11 @@ AFRAME.registerComponent('menu', {
     
     //Controladores childmenu5
     this.backButton23El.addEventListener('click', () => {
+        this.deleteForm();
         this.box = false;
         this.sphere = false; 
         this.cylinder = false; 
         this.cone = false;
-        this.deleteForm();
         this.lastMenuPosition = this.getMenuPosition(this.childMenu5);
         this.changeGrabbable(this.childMenu4, this.childMenu5);
         this.childMenu5.setAttribute('visible', false);
@@ -728,10 +728,11 @@ AFRAME.registerComponent('menu', {
     const element = document.createElement('a-' + type);
     
     // Configurar propiedades comunes
-    element.setAttribute('position', '0 1 -3');
+    element.setAttribute('position', '0 1 -2');
     element.setAttribute('color', '#FF6347');
     element.setAttribute('scale', '0.5 0.5 0.5');
     element.setAttribute('shadow', '');
+    element.setAttribute('grabbable', '');
 
     // Añadir el elemento a la escena
     const escene = document.querySelector('a-scene');
