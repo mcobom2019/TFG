@@ -103,7 +103,7 @@ AFRAME.registerComponent('menu', {
         });
     });
     
-    //controladores botones childmenu2
+    //controladores botones childmenu1
     this.backButton1El.addEventListener('click', () => {
         this.nextMenu(this.childMenu1, this.initMenu);
     });

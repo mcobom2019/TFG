@@ -31,6 +31,9 @@
                   "posety": "-0.01",
                   "widthet": "0.14",
                   "visible": "false",
+                  "function": "nextMenu",
+                  "parameter1": "childMenu1",
+                  "parameter2": "childMenu2",
                   "menuC2":{
                     "id": "childMenu2",
                     "position": "0 1.5 -0.5",
@@ -42,7 +45,10 @@
                           "id": "backButton2",
                           "position": "-0.2 0.15 0",
                           "visible": "false",
-                          "color": "#C1440E"
+                          "color": "#C1440E",
+                          "function": "nextMenu",
+                          "parameter1": "childMenu2",
+                          "parameter2": "childMenu1"
                         },
                         {
                           "label": "LLSE",
@@ -53,6 +59,9 @@
                           "posetx": "0.087",
                           "posety": "-0.01",
                           "widthet": "0.12",
+                          "function": "nextMenu",
+                          "parameter1": "childMenu2",
+                          "parameter2": "childMenu3",
                           "menuC3":{
                             "id": "childMenu3",
                             "position": "0 1.5 -0.5",
@@ -64,7 +73,10 @@
                                 "color": "#C1440E",
                                 "id": "backButton21",
                                 "position": "-0.2 0.15 0",
-                                "visible": "false"
+                                "visible": "false",
+                                "function": "nextMenu",
+                                "parameter1": "childMenu3",
+                                "parameter2": "childMenu2"
                               },
                               {
                                 "label": "Play",
@@ -116,7 +128,10 @@
                           "color": "#2F6A31",
                           "posetx": "0.1",
                           "posety": "-0.01",
-                          "widthet": "0.22"
+                          "widthet": "0.22",
+                          "function": "nextMenu",
+                          "parameter1": "childMenu2",
+                          "parameter2": "childMenu3"
                         },
                         {
                           "label": "Darling Pretty",
@@ -126,7 +141,10 @@
                           "color": "#2F6A31",
                           "posetx": "0.12",
                           "posety": "-0.01",
-                          "widthet": "0.35"
+                          "widthet": "0.35",
+                          "function": "nextMenu",
+                          "parameter1": "childMenu2",
+                          "parameter2": "childMenu3"
                         },
                         {
                           "label": "noLabel",
@@ -146,6 +164,9 @@
                   "widthet": "0.35",
                   "position": "0 -0.1 0",
                   "visible": "false",
+                  "function": "nextMenu",
+                  "parameter1": "childMenu1",
+                  "parameter2": "childMenu4",
                   "menuC4":{
                     "id": "childMenu4",
                     "position": "0 1.5 -0.5",
@@ -157,7 +178,10 @@
                           "id": "backButton22",
                           "position": "-0.2 0.15 0",
                           "visible": "false",
-                          "color": "#C1440E"
+                          "color": "#C1440E",
+                          "function": "nextMenu",
+                          "parameter1": "childMenu4",
+                          "parameter2": "childMenu1"
                         },
                         {
                           "label": "Sphere",
@@ -169,6 +193,9 @@
                           "posetx": "-0.1",
                           "widthet": "0.15",
                           "visible": "false",
+                          "function": "nextMenu",
+                          "parameter1": "childMenu4",
+                          "parameter2": "childMenu5",
                            "menuC5":{
                             "id": "childMenu5",
                             "position": "0 1.5 -0.5",
@@ -180,7 +207,10 @@
                                 "id": "backButton23",
                                 "position": "-0.2 0.15 0",
                                 "visible": "false",
-                                "color": "#C1440E"
+                                "color": "#C1440E",
+                                "function": "nextMenu",
+                                "parameter1": "childMenu5",
+                                "parameter2": "childMenu4"
                               },
                               {
                                 "label": "Show",
@@ -244,7 +274,10 @@
                           "posety": "-0.01",
                           "posetx": "-0.1",
                           "widthet": "0.12",
-                          "visible": "false"
+                          "visible": "false",
+                          "function": "nextMenu",
+                          "parameter1": "childMenu4",
+                          "parameter2": "childMenu5"
                         },
                         {
                           "label": "Cylinder",
@@ -255,7 +288,10 @@
                           "posety": "-0.01",
                           "posetx": "0.1",
                           "widthet": "0.2",
-                          "visible": "false"
+                          "visible": "false",
+                          "function": "nextMenu",
+                          "parameter1": "childMenu4",
+                          "parameter2": "childMenu5"
                         },
                         {
                           "label": "Cone",
@@ -266,7 +302,10 @@
                           "posety": "-0.01",
                           "posetx": "0.1",
                           "widthet": "0.15",
-                          "visible": "false"
+                          "visible": "false",
+                          "function": "nextMenu",
+                          "parameter1": "childMenu4",
+                          "parameter2": "childMenu5"
                         },
                         {
                           "label": "noLabel",
@@ -282,7 +321,10 @@
                   "id": "backButton1",
                   "color": "#C1440E",
                   "position": "-0.2 0.15 0",
-                  "visible": "false"
+                  "visible": "false",
+                  "function": "nextMenu",
+                  "parameter1": "childMenu1",
+                  "parameter2": "initMenu"
                 },
                 {
                   "label": "noLabel",
