@@ -712,5 +712,51 @@ AFRAME.registerComponent('menu', {
     } else {
       console.warn('No se encontró el botón maximizar');
     }
+  },
+  setupAutomaticNextMenuEvents: function() {
+    if (!this.data) return;
+    
+    // Función recursiva para configurar eventos de nextMenu en un menú y sus submenús
+    const setupNextMenuEventsInMenu = (menuObj) => {
+      if (!menuObj || !menuObj.buttons || !Array.isArray(menuObj.buttons)) return;
+      
+      // Recorrer todos los botones del menú
+      menuObj.buttons.forEach(button => {
+        // Si el botón tiene la función nextMenu y sus parámetros
+        if (button.function === "nextMenu" && button.parameter1 && button.parameter2) {
+          const buttonEl = document.querySelector('#' + button.id);
+          const menuFrom = document.querySelector('#' + button.parameter1);
+          const menuTo = document.querySelector('#' + button.parameter2);
+          
+          if (buttonEl && menuFrom && menuTo) {
+            console.log(`Configurando evento nextMenu automático para botón ${button.id}: de ${button.parameter1} a ${button.parameter2}`);
+            
+            // Crear el event listener automáticamente
+            buttonEl.addEventListener('click', () => {
+              this.nextMenu(menuFrom, menuTo);
+            });
+          } else {
+            console.warn(`No se puede configurar evento para botón ${button.id}, faltan elementos DOM necesarios`);
+          }
+        }
+        
+        // Buscar submenús para procesar sus botones recursivamente
+        Object.keys(button).forEach(key => {
+          if (key.startsWith('menuC') && button[key]) {
+            setupNextMenuEventsInMenu(button[key]);
+          }
+        });
+      });
+    };
+    
+    // Comenzar la configuración desde todos los menús principales
+    Object.keys(this.data).forEach(key => {
+      if (key.startsWith('menuP')) {
+        setupNextMenuEventsInMenu(this.data[key]);
+      }
+    });
+  },
+  changeBoolean: function (bool){
+    bool = !bool;
   }
 });

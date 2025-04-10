@@ -62,6 +62,8 @@
                           "function": "nextMenu",
                           "parameter1": "childMenu2",
                           "parameter2": "childMenu3",
+                          "function2": "loadSong",
+                          "parameter1.1": "llse",
                           "menuC3":{
                             "id": "childMenu3",
                             "position": "0 1.5 -0.5",
@@ -131,7 +133,9 @@
                           "widthet": "0.22",
                           "function": "nextMenu",
                           "parameter1": "childMenu2",
-                          "parameter2": "childMenu3"
+                          "parameter2": "childMenu3",
+                          "function2": "loadSong",
+                          "parameter1.1": "gladiator"
                         },
                         {
                           "label": "Darling Pretty",
@@ -144,7 +148,9 @@
                           "widthet": "0.35",
                           "function": "nextMenu",
                           "parameter1": "childMenu2",
-                          "parameter2": "childMenu3"
+                          "parameter2": "childMenu3",
+                          "function2": "loadSong",
+                          "parameter1.1": "Darling Pretty"
                         },
                         {
                           "label": "noLabel",
@@ -196,6 +202,8 @@
                           "function": "nextMenu",
                           "parameter1": "childMenu4",
                           "parameter2": "childMenu5",
+                          "function2": "changeBoolean",
+                          "parameter": "sphere",
                            "menuC5":{
                             "id": "childMenu5",
                             "position": "0 1.5 -0.5",
@@ -277,7 +285,9 @@
                           "visible": "false",
                           "function": "nextMenu",
                           "parameter1": "childMenu4",
-                          "parameter2": "childMenu5"
+                          "parameter2": "childMenu5",
+                          "function2": "changeBoolean",
+                          "parameter": "box"
                         },
                         {
                           "label": "Cylinder",
@@ -291,7 +301,9 @@
                           "visible": "false",
                           "function": "nextMenu",
                           "parameter1": "childMenu4",
-                          "parameter2": "childMenu5"
+                          "parameter2": "childMenu5",
+                          "function2": "changeBoolean",
+                          "parameter": "cylinder"
                         },
                         {
                           "label": "Cone",
@@ -305,7 +317,9 @@
                           "visible": "false",
                           "function": "nextMenu",
                           "parameter1": "childMenu4",
-                          "parameter2": "childMenu5"
+                          "parameter2": "childMenu5",
+                          "function2": "changeBoolean",
+                          "parameter": "cone"
                         },
                         {
                           "label": "noLabel",
