@@ -733,14 +733,6 @@ AFRAME.registerComponent('menu', {
       }
     });
   },
-  changeBoolean: function (bool){
-    if(bool == true){
-      this.$`{bool}` = false;
-    }else{
-      bool = true;
-    }
-  },
-  
   deleteMenu: function(menu){
         menu.setAttribute('visible', false);
         const buttons2 = menu.querySelectorAll('[id]');
@@ -772,5 +764,15 @@ AFRAME.registerComponent('menu', {
         this.audioElement.currentTime = 0;
         this.isPlaying = false;
       }
+  },
+  
+  changeBoolean: function(bool){
+    console.log("TRAZA",this.sphere);
+    if(bool){
+      bool = false;
+    }else{
+      bool = true;
+      console.log("TRAZA",this.sphere);
+    }
   }
 });
