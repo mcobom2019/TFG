@@ -93,16 +93,7 @@ AFRAME.registerComponent('menu', {
     });
     this.minButton1El.addEventListener('click', () => {
         this.im = true;
-        this.lastMenuPosition = this.getMenuPosition(this.initMenu);
-        this.initMenu.setAttribute('visible', false);
-        const buttons2 = this.initMenu.querySelectorAll('[id]');
-        buttons2.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.maximizeButtonEl.setAttribute('visible', true);
-        }, 500);
-      
+        this.minimizeMenu(this.initMenu);
     });
     this.xButtonEl.addEventListener('click', () => {
         this.initMenu.setAttribute('visible', false);
@@ -112,15 +103,13 @@ AFRAME.registerComponent('menu', {
         });
     });
     
-    //controladores botones submenu1
+    //controladores botones c
     this.backButton1El.addEventListener('click', () => {
         this.nextMenu(this.childMenu1, this.initMenu);
     });
-    
     this.musicButtonEl.addEventListener('click', () => {
         this.nextMenu(this.childMenu1, this.childMenu2);
     });
-    
     this.formsButtonEl.addEventListener('click', () => {
         this.nextMenu(this.childMenu1, this.childMenu4);
     });
@@ -642,7 +631,7 @@ AFRAME.registerComponent('menu', {
   },
   
   nextMenu: function (prevM, nextM){
-    this.lastMenuPosition = this.getMenuPosition(prevM);
+        this.lastMenuPosition = this.getMenuPosition(prevM);
         this.changeGrabbable(nextM, prevM);
         prevM.setAttribute('visible', false);
         const buttons2 = prevM.querySelectorAll('[id]');
@@ -656,6 +645,18 @@ AFRAME.registerComponent('menu', {
           buttons.forEach(button => {
             button.setAttribute('visible', true);
           });
+        }, 500);
+  },
+  
+  minimizeMenu: function (menu){
+        this.lastMenuPosition = this.getMenuPosition(menu);
+        menu.setAttribute('visible', false);
+        const buttons2 = menu.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
   }
 });
