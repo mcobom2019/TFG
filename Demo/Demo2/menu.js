@@ -41,8 +41,9 @@ AFRAME.registerComponent('menu', {
     this.childMenu4 = document.querySelector('#childmenu4');
     this.childMenu5 = document.querySelector('#childmenu5');*/
     
+    this.setupButtonReferences();
     //boton de la mano izquierda Maximizar
-    this.maximizeButtonEl = document.querySelector('#maximizeButton');
+    /*this.maximizeButtonEl = document.querySelector('#maximizeButton');
     this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
 
     // Botones menuInicio
@@ -84,7 +85,7 @@ AFRAME.registerComponent('menu', {
     this.pSizeButtonEl = document.querySelector('#plusSButton');
     this.colorButtonEl = document.querySelector('#colorButton');
     this.deleteButtonEl = document.querySelector('#deleteButton');
-    this.minButton5El = document.querySelector('#minButton5');
+    this.minButton5El = document.querySelector('#minButton5');*/
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
@@ -141,7 +142,7 @@ AFRAME.registerComponent('menu', {
     });
     
     //controladores botones childmenu3
-    this.backButtonEl21.addEventListener('click', () => {
+    this.backButton21El.addEventListener('click', () => {
         this.nextMenu(this.childMenu3, this.childMenu2);
     });
     this.playButtonEl.addEventListener('click', () => {
@@ -638,6 +639,70 @@ AFRAME.registerComponent('menu', {
     });
 
     // También crear la referencia al botón maximizar que está fuera de la jerarquía de menús
+    this.maximizeButtonEl = document.querySelector('#maximizeButton');
+    if (this.maximizeButtonEl) {
+      this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
+    } else {
+      console.warn('No se encontró el botón maximizar');
+    }
+  },
+  // Añade esta función después de setupMenuReferences
+  setupButtonReferences: function() {
+    // Lista para almacenar todos los IDs de botones encontrados
+    const buttonIds = [];
+
+    // Función recursiva para extraer IDs de botones del JSON
+    const extractButtonIds = (menuObj) => {
+      if (!menuObj || typeof menuObj !== 'object') return;
+
+      // Si el objeto tiene botones, extraemos sus IDs
+      if (menuObj.buttons && Array.isArray(menuObj.buttons)) {
+        menuObj.buttons.forEach(button => {
+          // Si el botón tiene un ID, lo añadimos a la lista
+          if (button.id) {
+            buttonIds.push(button.id);
+          }
+
+          // Buscamos menús hijos para extraer también sus botones
+          Object.keys(button).forEach(key => {
+            if (key.startsWith('menuC') && button[key]) {
+              extractButtonIds(button[key]);
+            }
+          });
+        });
+      }
+    };
+
+    // Iniciar la extracción desde todos los menús padre
+    if (this.data) {
+      Object.keys(this.data).forEach(key => {
+        if (key.startsWith('menuP')) {
+          extractButtonIds(this.data[key]);
+        }
+      });
+    }
+
+    console.log("Botones encontrados:", buttonIds);
+
+    // Crear referencias a todos los botones encontrados
+    buttonIds.forEach(buttonId => {
+      // Convertir el ID a camelCase para la propiedad y añadir 'El' al final
+      // Por ejemplo: 'startButton' → 'startButtonEl'
+      const propName = buttonId.replace(/([a-z])([A-Z])/g, '$1$2')
+                             .replace(/[-_]([a-z])/g, (_, letter) => letter.toUpperCase())
+                             .replace(/^([a-z])/, (_, letter) => letter) + 'El';
+
+      // Guardar la referencia al elemento del DOM
+      this[propName] = document.querySelector('#' + buttonId);
+
+      if (!this[propName]) {
+        console.warn(`No se encontró el botón con ID: ${buttonId}`);
+      } else {
+        console.log(`Referencia creada: this.${propName} = elemento con ID #${buttonId}`);
+      }
+    });
+
+    // Referencia específica al botón maximizar que podría estar fuera de la jerarquía normal
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
     if (this.maximizeButtonEl) {
       this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
