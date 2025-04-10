@@ -225,9 +225,18 @@
                                 "position": "-0.2 0.15 0",
                                 "visible": "false",
                                 "color": "#C1440E",
-                                "function": "nextMenu",
-                                "parameter1": "childMenu5",
-                                "parameter2": "childMenu4"
+                                "function":"deleteForm",
+                                "function2":"changeBoolean",
+                                "parameter1f2": "box",
+                                "function3":"changeBoolean",
+                                "parameter1f3": "sphere",
+                                "function4":"changeBoolean",
+                                "parameter1f4": "cylinder",
+                                "function5":"changeBoolean",
+                                "parameter1f5": "cone",
+                                "function6": "nextMenu",
+                                "parameter1f6": "childMenu5",
+                                "parameter2f6": "childMenu4"
                               },
                               {
                                 "label": "Show",
@@ -238,7 +247,8 @@
                                 "posety": "-0.009",
                                 "posetx": "-0.1",
                                 "widthet": "0.15",
-                                "visible": "false"
+                                "visible": "false",
+                                "function":"createForm"
                               },
                               {
                                 "label": "Bigger Size",
@@ -249,7 +259,8 @@
                                 "posety": "-0.01",
                                 "posetx": "-0.12",
                                 "widthet": "0.28",
-                                "visible": "false"
+                                "visible": "false",
+                                "function":"deleteForm"
                               },
                               {
                                 "label": "Change Color",
@@ -260,7 +271,8 @@
                                 "posety": "-0.01",
                                 "posetx": "0.125",
                                 "widthet": "0.35",
-                                "visible": "false"
+                                "visible": "false",
+                                "function":"deleteForm"
                               },
                               {
                                 "label": "Delete",

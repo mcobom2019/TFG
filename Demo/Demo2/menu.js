@@ -92,7 +92,7 @@ AFRAME.registerComponent('menu', {
       this.nextMenu(this.initMenu, this.childMenu1);
     });
     this.minButton1El.addEventListener('click', () => {
-        this.changeBoolean(this.im);
+        this.changeBoolean('im');
         this.minimizeMenu(this.initMenu);
     });
     this.xButtonEl.addEventListener('click', () => {
@@ -110,7 +110,7 @@ AFRAME.registerComponent('menu', {
         this.nextMenu(this.childMenu1, this.childMenu4);
     });
     this.minButton2El.addEventListener('click', () => {
-        this.changeBoolean(this.cm1);
+        this.changeBoolean('cm1');
         this.minimizeMenu(this.childMenu1);
     });
     
@@ -131,7 +131,7 @@ AFRAME.registerComponent('menu', {
         this.nextMenu(this.childMenu2, this.childMenu3);
     });
     this.minButton3El.addEventListener('click', () => {
-        this.changeBoolean(this.cm2);
+        this.changeBoolean('cm2');
         this.minimizeMenu(this.childMenu2);
     });
     
@@ -150,7 +150,7 @@ AFRAME.registerComponent('menu', {
       this.stopMusic();
     });
     this.minButton41El.addEventListener('click', () => {
-        this.changeBoolean(this.cm3);
+        this.changeBoolean('cm3');
         this.minimizeMenu(this.childMenu3);
     });
     
@@ -159,33 +159,33 @@ AFRAME.registerComponent('menu', {
         this.nextMenu(this.childMenu4, this.childMenu1);
     });
     this.sphereButtonEl.addEventListener('click', () => {
-        this.changeBoolean(this.sphere);
+        this.changeBoolean('sphere');
         this.nextMenu(this.childMenu4, this.childMenu5);
     });
     this.boxButtonEl.addEventListener('click', () => {
-        this.changeBoolean(this.box);
+        this.changeBoolean('box');
         this.nextMenu(this.childMenu4, this.childMenu5);
     });
     this.cylinderButtonEl.addEventListener('click', () => {
-        this.changeBoolean(this.cylinder);
+        this.changeBoolean('cylinder');
         this.nextMenu(this.childMenu4, this.childMenu5);
     });
     this.coneButtonEl.addEventListener('click', () => {
-        this.changeBoolean(this.cone);
+        this.changeBoolean('cone');
         this.nextMenu(this.childMenu4, this.childMenu5);
     });
     this.minButton42El.addEventListener('click', () => {
-        this.changeBoolean(this.cm4);
+        this.changeBoolean('cm4');
         this.minimizeMenu(this.childMenu4);
     });
     
     //Controladores childmenu5
     this.backButton23El.addEventListener('click', () => {
         this.deleteForm();
-        this.changeBoolean(this.box);
-        this.changeBoolean(this.sphere);
-        this.changeBoolean(this.cylinder);
-        this.changeBoolean(this.cone);
+        this.changeBoolean('box');
+        this.changeBoolean('sphere');
+        this.changeBoolean('cylinder');
+        this.changeBoolean('cone');
         this.nextMenu(this.childMenu5, this.childMenu4);
     });
     this.showButtonEl.addEventListener('click', () => {
@@ -201,7 +201,7 @@ AFRAME.registerComponent('menu', {
         this.deleteForm();
     });
     this.minButton5El.addEventListener('click', () => {
-        this.changeBoolean(this.cm5);
+        this.changeBoolean('cm5');
         this.minimizeMenu(this.childMenu5);
     });
     
@@ -210,22 +210,22 @@ AFRAME.registerComponent('menu', {
         this.maximizeButtonEl.setAttribute('visible', false);
         if(this.im){
             this.maximizeMenu(this.initMenu);
-            this.im = false;
+            this.changeBoolean('im');
         }else if(this.cm1){
             this.maximizeMenu(this.childMenu1);
-            this.cm1 = false;
+            this.changeBoolean('cm1');
         }else if(this.cm2){
             this.maximizeMenu(this.childMenu2);
-            this.cm2 = false;
+            this.changeBoolean('cm2');
         }else if(this.cm3){
             this.maximizeMenu(this.childMenu3);
-            this.cm3 = false;
+            this.changeBoolean('cm3');
         }else if(this.cm4){
             this.maximizeMenu(this.childMenu4);
-            this.cm4 = false;
+            this.changeBoolean('cm4');
         }else if(this.cm5){
             this.maximizeMenu(this.childMenu5);
-            this.cm5 = false;
+            this.changeBoolean('cm5');
         }
     });
   },
@@ -766,12 +766,13 @@ AFRAME.registerComponent('menu', {
       }
   },
   
-  changeBoolean: function(bool){
+  changeBoolean: function(boolName) {
     console.log("TRAZA",this.sphere);
-    if(bool){
-      bool = false;
-    }else{
-      bool = true;
+    if (this[boolName] !== undefined) {
+      this[boolName] = !this[boolName];
+      console.log('Estado de ' + boolName + ' cambiado a: ' + this[boolName]);
+    }else {
+      console.warn('La propiedad ' + boolName + ' no existe en este componente');
       console.log("TRAZA",this.sphere);
     }
   }
