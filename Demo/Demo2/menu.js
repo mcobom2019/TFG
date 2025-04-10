@@ -96,11 +96,7 @@ AFRAME.registerComponent('menu', {
         this.minimizeMenu(this.initMenu);
     });
     this.xButtonEl.addEventListener('click', () => {
-        this.initMenu.setAttribute('visible', false);
-        const buttons2 = this.initMenu.querySelectorAll('[id]');
-        buttons2.forEach(button => {
-          button.setAttribute('visible', false);
-        });
+        this.deleteMenu(this.initMenu);
     });
     
     //controladores botones childmenu1
@@ -762,5 +758,13 @@ AFRAME.registerComponent('menu', {
     }else{
       bool = true;
     }
+  },
+  
+  deleteMenu: function(menu){
+        menu.setAttribute('visible', false);
+        const buttons2 = menu.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', false);
+        });
   }
 });

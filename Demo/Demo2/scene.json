@@ -14,8 +14,8 @@
           "color": "#2F6A31",
           "visible": "true",
           "function": "nextMenu",
-          "parameter1": "initMenu",
-          "parameter2": "childMenu1",
+          "parameter1f1": "initMenu",
+          "parameter2f1": "childMenu1",
           "menuC1":{
               "id": "childMenu1",
               "position": "0 1.5 -0.5",
@@ -32,8 +32,8 @@
                   "widthet": "0.14",
                   "visible": "false",
                   "function": "nextMenu",
-                  "parameter1": "childMenu1",
-                  "parameter2": "childMenu2",
+                  "parameter1f1": "childMenu1",
+                  "parameter2f1": "childMenu2",
                   "menuC2":{
                     "id": "childMenu2",
                     "position": "0 1.5 -0.5",
@@ -171,7 +171,7 @@
                   "position": "0 -0.1 0",
                   "visible": "false",
                   "function": "nextMenu",
-                  "parameter1": "childMenu1",
+                  "parameter2f1": "childMenu1",
                   "parameter2": "childMenu4",
                   "menuC4":{
                     "id": "childMenu4",
@@ -337,8 +337,8 @@
                   "position": "-0.2 0.15 0",
                   "visible": "false",
                   "function": "nextMenu",
-                  "parameter1": "childMenu1",
-                  "parameter2": "initMenu"
+                  "parameter1f1": "childMenu1",
+                  "parameter2f1": "initMenu"
                 },
                 {
                   "label": "noLabel",
@@ -353,14 +353,20 @@
           "label": "noLabel",
           "id": "minButton1",
           "position": "0.2 0.15 0",
-          "visible": "true"
+          "visible": "true",
+          "function": "changeBoolean",
+          "parameter1f1": "im",
+          "function2": "minimizeMenu",
+          "parameter1f2": "initMenu"
         },
         {
           "label": "noLabel",
           "id": "xButton",
           "position": "-0.2 0.15 0",
           "visible": "true",
-          "color": "#f80000"
+          "color": "#f80000",
+          "function": "deleteMenu",
+          "parameter1f1": "initMenu"
         }
     ]
   }
