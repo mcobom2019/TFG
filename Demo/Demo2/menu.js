@@ -137,36 +137,17 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones childmenu3
     this.backButton21El.addEventListener('click', () => {
-        if (this.audioElement) {
-          this.audioElement.pause();
-          this.audioElement.currentTime = 0;
-          this.isPlaying = false;
-        }
-        this.nextMenu(this.childMenu3, this.childMenu2);
+      this.stopMusic();
+      this.nextMenu(this.childMenu3, this.childMenu2);
     });
     this.playButtonEl.addEventListener('click', () => {
-        this.playButtonEl.addEventListener('click', () => {
-          console.log('Reproduciendo música...');
-          if (this.audioElement) {
-            this.audioElement.play();
-            this.isPlaying = true;
-          }
-        });
+      this.playMusic();
     });
     this.pauseButtonEl.addEventListener('click', () => {
-      console.log('Pausando música...');
-      if (this.audioElement && this.isPlaying) {
-        this.audioElement.pause();
-        this.isPlaying = false;
-      }
+      this.pauseMusic();
     });
     this.stopButtonEl.addEventListener('click', () => {
-      console.log('Deteniendo música...');
-      if (this.audioElement) {
-        this.audioElement.pause();
-        this.audioElement.currentTime = 0;
-        this.isPlaying = false;
-      }
+      this.stopMusic();
     });
     this.minButton41El.addEventListener('click', () => {
         this.cm3 = true;
@@ -766,5 +747,30 @@ AFRAME.registerComponent('menu', {
         buttons2.forEach(button => {
           button.setAttribute('visible', false);
         });
+  },
+  
+  playMusic: function(){
+     console.log('Reproduciendo música...');
+      if (this.audioElement) {
+        this.audioElement.play();
+        this.isPlaying = true;
+      }
+  },
+  
+  pauseMusic: function(){
+    console.log('Pausando música...');
+      if (this.audioElement && this.isPlaying) {
+        this.audioElement.pause();
+        this.isPlaying = false;
+      }
+  },
+  
+  stopMusic: function(){
+    console.log('Deteniendo música...');
+      if (this.audioElement) {
+        this.audioElement.pause();
+        this.audioElement.currentTime = 0;
+        this.isPlaying = false;
+      }
   }
 });
