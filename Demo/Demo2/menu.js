@@ -103,7 +103,7 @@ AFRAME.registerComponent('menu', {
         });
     });
     
-    //controladores botones c
+    //controladores botones childmenu2
     this.backButton1El.addEventListener('click', () => {
         this.nextMenu(this.childMenu1, this.initMenu);
     });
@@ -113,59 +113,36 @@ AFRAME.registerComponent('menu', {
     this.formsButtonEl.addEventListener('click', () => {
         this.nextMenu(this.childMenu1, this.childMenu4);
     });
-    
-    
     this.minButton2El.addEventListener('click', () => {
-      this.cm1 = true;
-        this.lastMenuPosition = this.getMenuPosition(this.childMenu1);
-        this.childMenu1.setAttribute('visible', false);
-        const buttons = this.childMenu1.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.maximizeButtonEl.setAttribute('visible', true);
-        }, 500);
+        this.cm1 = true;
+        this.minimizeMenu(this.childMenu1);
     });
     
-    //controladores botones submenu2
+    //controladores botones childmenu2
     this.backButton2El.addEventListener('click', () => {
         this.nextMenu(this.childMenu2, this.childMenu1);
     });
-    
     this.llseButtonEl.addEventListener('click', () => {
         this.loadSong("llse");
         this.nextMenu(this.childMenu2, this.childMenu3);
     });
-    
     this.gladiatorButtonEl.addEventListener('click', () => {
         this.loadSong("gladiator");
         this.nextMenu(this.childMenu2, this.childMenu3);
     });
-    
     this.dpButtonEl.addEventListener('click', () => {
         this.loadSong("Darling Pretty");
         this.nextMenu(this.childMenu2, this.childMenu3);
     });
-    
     this.minButton3El.addEventListener('click', () => {
         this.cm2 = true;
-        this.lastMenuPosition = this.getMenuPosition(this.childMenu2);
-        this.childMenu2.setAttribute('visible', false);
-        const buttons = this.childMenu2.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.maximizeButtonEl.setAttribute('visible', true);
-        }, 500);
+        this.minimizeMenu(this.childMenu2);
     });
     
-    //controladores botones submenu3.1
+    //controladores botones childmenu3
     this.backButtonEl21.addEventListener('click', () => {
         this.nextMenu(this.childMenu3, this.childMenu2);
     });
-    
     this.playButtonEl.addEventListener('click', () => {
         this.playButtonEl.addEventListener('click', () => {
           console.log('Reproduciendo música...');
@@ -175,7 +152,6 @@ AFRAME.registerComponent('menu', {
           }
         });
     });
-    
     this.pauseButton.addEventListener('click', () => {
       console.log('Pausando música...');
       if (this.audioElement && this.isPlaying) {
@@ -183,7 +159,6 @@ AFRAME.registerComponent('menu', {
         this.isPlaying = false;
       }
     });
-    
     this.stopButton.addEventListener('click', () => {
       console.log('Deteniendo música...');
       if (this.audioElement) {
@@ -192,18 +167,9 @@ AFRAME.registerComponent('menu', {
         this.isPlaying = false;
       }
     });
-    
     this.minButton41El.addEventListener('click', () => {
         this.cm3 = true;
-        this.lastMenuPosition = this.getMenuPosition(this.childMenu3);
-        this.childMenu3.setAttribute('visible', false);
-        const buttons = this.childMenu3.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.maximizeButtonEl.setAttribute('visible', true);
-        }, 500);
+        this.minimizeMenu(this.childMenu3);
     });
     
     //Controladores childmenu4
@@ -228,15 +194,7 @@ AFRAME.registerComponent('menu', {
     });
     this.minButton42El.addEventListener('click', () => {
         this.cm4 = true;
-        this.lastMenuPosition = this.getMenuPosition(this.childMenu4);
-        this.childMenu4.setAttribute('visible', false);
-        const buttons = this.childMenu4.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.maximizeButtonEl.setAttribute('visible', true);
-        }, 500);
+        this.minimizeMenu(this.childMenu4);
     });
     
     //Controladores childmenu5
@@ -262,77 +220,33 @@ AFRAME.registerComponent('menu', {
     });
     this.minButton5El.addEventListener('click', () => {
         this.cm5 = true;
-        this.lastMenuPosition = this.getMenuPosition(this.childMenu5);
-        this.childMenu5.setAttribute('visible', false);
-        const buttons = this.childMenu5.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.maximizeButtonEl.setAttribute('visible', true);
-        }, 500);
+        this.minimizeMenu(this.childMenu5);
     });
     
     //controlador boton maximizar
     this.maximizeButtonEl.addEventListener('click', () => {
         this.maximizeButtonEl.setAttribute('visible', false);
         if(this.im){
-          setTimeout(() => {
-            this.initMenu.setAttribute('visible', true);
-            const buttons = this.initMenu.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
+            this.maximizeMenu(this.initMenu);
             this.im = false;
-          }, 500);
         }else if(this.cm1){
-          setTimeout(() => {
-            this.childMenu1.setAttribute('visible', true);
-            const buttons = this.childMenu1.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
+            this.maximizeMenu(this.childMenu1);
             this.cm1 = false;
-          }, 500);
         }else if(this.cm2){
-          setTimeout(() => {
-            this.childMenu2.setAttribute('visible', true);
-            const buttons = this.childMenu2.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
+            this.maximizeMenu(this.childMenu2);
             this.cm2 = false;
-          }, 500);
         }else if(this.cm3){
-          setTimeout(() => {
-            this.childMenu3.setAttribute('visible', true);
-            const buttons = this.childMenu3.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
+            this.maximizeMenu(this.childMenu3);
             this.cm3 = false;
-          }, 500);
         }else if(this.cm4){
-          setTimeout(() => {
-            this.childMenu4.setAttribute('visible', true);
-            const buttons = this.childMenu4.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
+            this.maximizeMenu(this.childMenu4);
             this.cm4 = false;
-          }, 500);
         }else if(this.cm5){
-          setTimeout(() => {
-            this.childMenu5.setAttribute('visible', true);
-            const buttons = this.childMenu5.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
+            this.maximizeMenu(this.childMenu5);
             this.cm5 = false;
-          }, 500);
         }
     });
-},
+  },
   
   signalCreateMenus: function() {
     if (!this.data) {
@@ -658,5 +572,15 @@ AFRAME.registerComponent('menu', {
         setTimeout(() => {
           this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
+  },
+  
+  maximizeMenu: function(menu){
+    setTimeout(() => {
+        menu.setAttribute('visible', true);
+        const buttons = menu.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    }, 500);
   }
 });
