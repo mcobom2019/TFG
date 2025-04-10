@@ -13,6 +13,9 @@
           "widthet": "0.15",
           "color": "#2F6A31",
           "visible": "true",
+          "function": "nextMenu",
+          "parameter1": "initMenu",
+          "parameter2": "childMenu1",
           "menuC1":{
               "id": "childMenu1",
               "position": "0 1.5 -0.5",

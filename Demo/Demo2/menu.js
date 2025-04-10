@@ -89,9 +89,7 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
-      if (this.childMenu1 && this.initMenu) {
-        this.nextMenu(this.initMenu, this.childMenu1);
-      }
+      this.nextMenu(this.initMenu, this.childMenu1);
     });
     this.minButton1El.addEventListener('click', () => {
         this.im = true;
@@ -143,6 +141,11 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones childmenu3
     this.backButton21El.addEventListener('click', () => {
+        if (this.audioElement) {
+          this.audioElement.pause();
+          this.audioElement.currentTime = 0;
+          this.isPlaying = false;
+        }
         this.nextMenu(this.childMenu3, this.childMenu2);
     });
     this.playButtonEl.addEventListener('click', () => {
@@ -154,14 +157,14 @@ AFRAME.registerComponent('menu', {
           }
         });
     });
-    this.pauseButton.addEventListener('click', () => {
+    this.pauseButtonEl.addEventListener('click', () => {
       console.log('Pausando música...');
       if (this.audioElement && this.isPlaying) {
         this.audioElement.pause();
         this.isPlaying = false;
       }
     });
-    this.stopButton.addEventListener('click', () => {
+    this.stopButtonEl.addEventListener('click', () => {
       console.log('Deteniendo música...');
       if (this.audioElement) {
         this.audioElement.pause();
@@ -211,7 +214,7 @@ AFRAME.registerComponent('menu', {
     this.showButtonEl.addEventListener('click', () => {
       this.createForm();
     });
-    this.pSizeButtonEl.addEventListener('click', () => {
+    this.plusSButtonEl.addEventListener('click', () => {
         this.plusSize();
     });
     this.colorButtonEl.addEventListener('click', () => {
