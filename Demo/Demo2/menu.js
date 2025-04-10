@@ -42,7 +42,6 @@ AFRAME.registerComponent('menu', {
     this.childMenu5 = document.querySelector('#childmenu5');*/
     
     this.setupButtonReferences();
-    this.setupAutomaticEvents();
     //boton de la mano izquierda Maximizar
     /*this.maximizeButtonEl = document.querySelector('#maximizeButton');
     this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
@@ -89,9 +88,9 @@ AFRAME.registerComponent('menu', {
     this.minButton5El = document.querySelector('#minButton5');*/
     
     //controladores botones menuInicio
-    /*this.startButtonEl.addEventListener('click', () => {
+    this.startButtonEl.addEventListener('click', () => {
       this.nextMenu(this.initMenu, this.childMenu1);
-    });*/
+    });
     this.minButton1El.addEventListener('click', () => {
         this.im = true;
         this.minimizeMenu(this.initMenu);
@@ -105,7 +104,7 @@ AFRAME.registerComponent('menu', {
     });
     
     //controladores botones childmenu1
-    /*this.backButton1El.addEventListener('click', () => {
+    this.backButton1El.addEventListener('click', () => {
         this.nextMenu(this.childMenu1, this.initMenu);
     });
     this.musicButtonEl.addEventListener('click', () => {
@@ -113,14 +112,14 @@ AFRAME.registerComponent('menu', {
     });
     this.formsButtonEl.addEventListener('click', () => {
         this.nextMenu(this.childMenu1, this.childMenu4);
-    });*/
+    });
     this.minButton2El.addEventListener('click', () => {
         this.cm1 = true;
         this.minimizeMenu(this.childMenu1);
     });
     
     //controladores botones childmenu2
-    /*this.backButton2El.addEventListener('click', () => {
+    this.backButton2El.addEventListener('click', () => {
         this.nextMenu(this.childMenu2, this.childMenu1);
     });
     this.llseButtonEl.addEventListener('click', () => {
@@ -134,21 +133,21 @@ AFRAME.registerComponent('menu', {
     this.dpButtonEl.addEventListener('click', () => {
         this.loadSong("Darling Pretty");
         this.nextMenu(this.childMenu2, this.childMenu3);
-    });*/
+    });
     this.minButton3El.addEventListener('click', () => {
         this.cm2 = true;
         this.minimizeMenu(this.childMenu2);
     });
     
     //controladores botones childmenu3
-    /*this.backButton21El.addEventListener('click', () => {
+    this.backButton21El.addEventListener('click', () => {
         if (this.audioElement) {
           this.audioElement.pause();
           this.audioElement.currentTime = 0;
           this.isPlaying = false;
         }
         this.nextMenu(this.childMenu3, this.childMenu2);
-    });*/
+    });
     this.playButtonEl.addEventListener('click', () => {
         this.playButtonEl.addEventListener('click', () => {
           console.log('Reproduciendo música...');
@@ -179,7 +178,7 @@ AFRAME.registerComponent('menu', {
     });
     
     //Controladores childmenu4
-    /*this.backButton22El.addEventListener('click', () => {
+    this.backButton22El.addEventListener('click', () => {
         this.nextMenu(this.childMenu4, this.childMenu1);
     });
     this.sphereButtonEl.addEventListener('click', () => {
@@ -197,7 +196,7 @@ AFRAME.registerComponent('menu', {
     this.coneButtonEl.addEventListener('click', () => {
         this.changeBoolean(this.cone);
         this.nextMenu(this.childMenu4, this.childMenu5);
-    });*/
+    });
     this.minButton42El.addEventListener('click', () => {
         this.cm4 = true;
         this.minimizeMenu(this.childMenu4);
@@ -763,75 +762,5 @@ AFRAME.registerComponent('menu', {
     }else{
       bool = true;
     }
-  },
-  setupAutomaticEvents: function() {
-    if (!this.data) return;
-
-    // Función recursiva para configurar eventos en un menú y sus submenús
-    const setupEventsInMenu = (menuObj) => {
-      if (!menuObj || !menuObj.buttons || !Array.isArray(menuObj.buttons)) return;
-
-      // Recorrer todos los botones del menú
-      menuObj.buttons.forEach(button => {
-        const buttonEl = document.querySelector('#' + button.id);
-        if (!buttonEl) {
-          console.warn(`No se encontró el botón con ID: ${button.id}`);
-          return;
-        }
-
-        // Si el botón tiene la función nextMenu
-        if (button.function === "nextMenu" && button.parameter1 && button.parameter2) {
-          const menuFrom = document.querySelector('#' + button.parameter1);
-          const menuTo = document.querySelector('#' + button.parameter2);
-
-          if (menuFrom && menuTo) {
-            console.log(`Configurando evento nextMenu para botón ${button.id}: de ${button.parameter1} a ${button.parameter2}`);
-
-            // Crear el event listener automáticamente
-            buttonEl.addEventListener('click', () => {
-              // Verificar si hay una función secundaria para ejecutar antes de nextMenu
-              if (button.function2) {
-                if (button.function2 === "loadSong" && button["parameter1.1"]) {
-                  this.loadSong(button["parameter1.1"]);
-                } else if (button.function2 === "changeBoolean" && button.parameter) {
-                  this.changeBoolean(this[button.parameter]);
-                }
-              }
-
-              // Ejecutar la función principal nextMenu
-              this.nextMenu(menuFrom, menuTo);
-            });
-          } else {
-            console.warn(`No se puede configurar evento para botón ${button.id}, faltan elementos DOM`);
-          }
-        }
-        // Si el botón solo tiene una función que no es nextMenu
-        else if (button.function && button.function !== "nextMenu") {
-          console.log(`Configurando evento ${button.function} para botón ${button.id}`);
-
-          buttonEl.addEventListener('click', () => {
-            if (button.function === "loadSong" && button.parameter) {
-              this.loadSong(button.parameter);
-            } else if (button.function === "changeBoolean" && button.parameter) {
-              this.changeBoolean(this[button.parameter]);
-            }
-          });
-        }
-
-        // Buscar submenús para procesar sus botones recursivamente
-        Object.keys(button).forEach(key => {
-          if (key.startsWith('menuC') && button[key]) {
-            setupEventsInMenu(button[key]);
-          }
-        });
-      });
-    };
-
-    // Comenzar la configuración desde todos los menús principales
-    Object.keys(this.data).forEach(key => {
-      if (key.startsWith('menuP')) {
-        setupEventsInMenu(this.data[key]);
-      }
-    });
   }
 });
