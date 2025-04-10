@@ -260,7 +260,7 @@
                                 "posetx": "-0.12",
                                 "widthet": "0.28",
                                 "visible": "false",
-                                "function":"deleteForm"
+                                "function":"plusSize"
                               },
                               {
                                 "label": "Change Color",
@@ -272,7 +272,7 @@
                                 "posetx": "0.125",
                                 "widthet": "0.35",
                                 "visible": "false",
-                                "function":"deleteForm"
+                                "function":"changeColor"
                               },
                               {
                                 "label": "Delete",
@@ -283,13 +283,18 @@
                                 "posety": "-0.01",
                                 "posetx": "0.095",
                                 "widthet": "0.17",
-                                "visible": "false"
+                                "visible": "false",
+                                "function":"deleteForm"
                               },
                               {
                                 "label": "noLabel",
                                 "id": "minButton5",
                                 "position": "0.2 0.15 0",
-                                "visible": "false"
+                                "visible": "false",
+                                "function": "changeBoolean",
+                                "parameter1f1": "cm5",
+                                "function2": "minimizeMenu",
+                                "parameter1f6": "childMenu5"
                               }
                             ]
                            }

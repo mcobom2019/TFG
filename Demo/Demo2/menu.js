@@ -775,5 +775,6 @@ AFRAME.registerComponent('menu', {
       console.warn('La propiedad ' + boolName + ' no existe en este componente');
       console.log("TRAZA",this.sphere);
     }
-  }
+  },
+  
 });
