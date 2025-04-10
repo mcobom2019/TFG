@@ -88,21 +88,7 @@ AFRAME.registerComponent('menu', {
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
       if (this.childMenu1 && this.initMenu) {
-        this.lastMenuPosition = this.getMenuPosition(this.initMenu);
-        this.changeGrabbable(this.childMenu1, this.initMenu);
-        this.initMenu.setAttribute('visible', false);
-        const buttons2 = this.initMenu.querySelectorAll('[id]');
-        buttons2.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.applyMenuPosition(this.childMenu1, this.lastMenuPosition);
-          this.childMenu1.setAttribute('visible', true);
-          const buttons = this.childMenu1.querySelectorAll('[id]');
-          buttons.forEach(button => {
-            button.setAttribute('visible', true);
-          });
-        }, 500);
+        this.nextMenu(this.initMenu, this.childMenu1);
       }
     });
     
@@ -821,5 +807,23 @@ AFRAME.registerComponent('menu', {
     const b = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
 
     return `#${r}${g}${b}`;
+  },
+  
+  nextMenu: function (prevM, nextM){
+    this.lastMenuPosition = this.getMenuPosition(prevM);
+        this.changeGrabbable(nextM, prevM);
+        prevM.setAttribute('visible', false);
+        const buttons2 = prevM.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.applyMenuPosition(nextM, this.lastMenuPosition);
+          nextM.setAttribute('visible', true);
+          const buttons = nextM.querySelectorAll('[id]');
+          buttons.forEach(button => {
+            button.setAttribute('visible', true);
+          });
+        }, 500);
   }
 });
