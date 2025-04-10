@@ -1,5 +1,5 @@
 {"menuP":{
-    "id": "initmenu",
+    "id": "initMenu",
     "position": "0 1.5 -0.5",
     "visible": "true",
     "grabbable": "true",
@@ -14,7 +14,7 @@
           "color": "#2F6A31",
           "visible": "true",
           "menuC1":{
-              "id": "childmenu1",
+              "id": "childMenu1",
               "position": "0 1.5 -0.5",
               "visible": "false",
               "grabbable": "false",
@@ -29,7 +29,7 @@
                   "widthet": "0.14",
                   "visible": "false",
                   "menuC2":{
-                    "id": "childmenu2",
+                    "id": "childMenu2",
                     "position": "0 1.5 -0.5",
                     "visible": "false",
                     "grabbable": "false",
@@ -51,7 +51,7 @@
                           "posety": "-0.01",
                           "widthet": "0.12",
                           "menuC3":{
-                            "id": "childmenu3",
+                            "id": "childMenu3",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "false",
@@ -144,7 +144,7 @@
                   "position": "0 -0.1 0",
                   "visible": "false",
                   "menuC4":{
-                    "id": "childmenu4",
+                    "id": "childMenu4",
                     "position": "0 1.5 -0.5",
                     "visible": "false",
                     "grabbable": "false",
@@ -167,7 +167,7 @@
                           "widthet": "0.15",
                           "visible": "false",
                            "menuC5":{
-                            "id": "childmenu5",
+                            "id": "childMenu5",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "false",
