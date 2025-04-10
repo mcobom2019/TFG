@@ -92,7 +92,7 @@ AFRAME.registerComponent('menu', {
       this.nextMenu(this.initMenu, this.childMenu1);
     });
     this.minButton1El.addEventListener('click', () => {
-        this.im = true;
+        this.changeBoolean(this.im);
         this.minimizeMenu(this.initMenu);
     });
     this.xButtonEl.addEventListener('click', () => {
@@ -110,7 +110,7 @@ AFRAME.registerComponent('menu', {
         this.nextMenu(this.childMenu1, this.childMenu4);
     });
     this.minButton2El.addEventListener('click', () => {
-        this.cm1 = true;
+        this.changeBoolean(this.cm1);
         this.minimizeMenu(this.childMenu1);
     });
     
@@ -131,7 +131,7 @@ AFRAME.registerComponent('menu', {
         this.nextMenu(this.childMenu2, this.childMenu3);
     });
     this.minButton3El.addEventListener('click', () => {
-        this.cm2 = true;
+        this.changeBoolean(this.cm2);
         this.minimizeMenu(this.childMenu2);
     });
     
@@ -150,7 +150,7 @@ AFRAME.registerComponent('menu', {
       this.stopMusic();
     });
     this.minButton41El.addEventListener('click', () => {
-        this.cm3 = true;
+        this.changeBoolean(this.cm3);
         this.minimizeMenu(this.childMenu3);
     });
     
@@ -175,17 +175,17 @@ AFRAME.registerComponent('menu', {
         this.nextMenu(this.childMenu4, this.childMenu5);
     });
     this.minButton42El.addEventListener('click', () => {
-        this.cm4 = true;
+        this.changeBoolean(this.cm4);
         this.minimizeMenu(this.childMenu4);
     });
     
     //Controladores childmenu5
     this.backButton23El.addEventListener('click', () => {
         this.deleteForm();
-        this.box = false;
-        this.sphere = false; 
-        this.cylinder = false; 
-        this.cone = false;
+        this.changeBoolean(this.box);
+        this.changeBoolean(this.sphere);
+        this.changeBoolean(this.cylinder);
+        this.changeBoolean(this.cone);
         this.nextMenu(this.childMenu5, this.childMenu4);
     });
     this.showButtonEl.addEventListener('click', () => {

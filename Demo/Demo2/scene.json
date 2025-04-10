@@ -76,14 +76,10 @@
                                 "id": "backButton21",
                                 "position": "-0.2 0.15 0",
                                 "visible": "false",
-                                "function": "nextMenu",
-                                "parameter1": "childMenu3",
-                                "parameter2": "childMenu2"
-                                "function": "loadSong",
-                                "parameter1f1": "Darling Pretty",
+                                "function": "stopMusic",
                                 "function2": "nextMenu",
-                                "parameter1f2": "childMenu2",
-                                "parameter2f2": "childMenu3"
+                                "parameter1f2": "childMenu3",
+                                "parameter2f2": "childMenu2"
                               },
                               {
                                 "label": "Play",
@@ -93,7 +89,8 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.18",
-                                "visible": "false"
+                                "visible": "false",
+                                "function": "playMusic"
                               },
                               {
                                 "label": "Pause",
@@ -104,7 +101,7 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.16",
-                                "buttons": []
+                                "function": "pauseMusic"
                               },
                               {
                                 "label": "Stop",
@@ -115,14 +112,17 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.22",
-                                "buttons": []
+                                "function": "stopMusic"
                               },
                               {
                                 "label": "noLabel",
                                 "id": "minButton41",
                                 "position": "0.2 0.15 0",
                                 "visible": "false",
-                                "buttons": []
+                                "function": "changeBoolean",
+                                "parameter1f1": "cm3",
+                                "function2": "minimizeMenu",
+                                "parameter1f2": "childMenu3"
                               }
                             ]
                           }
@@ -195,8 +195,8 @@
                           "visible": "false",
                           "color": "#C1440E",
                           "function": "nextMenu",
-                          "parameter1": "childMenu4",
-                          "parameter2": "childMenu1"
+                          "parameter1f1": "childMenu4",
+                          "parameter2f1": "childMenu1"
                         },
                         {
                           "label": "Sphere",
@@ -208,11 +208,11 @@
                           "posetx": "-0.1",
                           "widthet": "0.15",
                           "visible": "false",
-                          "function": "nextMenu",
-                          "parameter1": "childMenu4",
-                          "parameter2": "childMenu5",
-                          "function2": "changeBoolean",
-                          "parameter": "sphere",
+                          "function": "changeBoolean",
+                          "parameter1f1": "sphere",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu4",
+                          "parameter2f2": "childMenu5",
                            "menuC5":{
                             "id": "childMenu5",
                             "position": "0 1.5 -0.5",
@@ -292,11 +292,11 @@
                           "posetx": "-0.1",
                           "widthet": "0.12",
                           "visible": "false",
-                          "function": "nextMenu",
-                          "parameter1": "childMenu4",
-                          "parameter2": "childMenu5",
-                          "function2": "changeBoolean",
-                          "parameter": "box"
+                          "function": "changeBoolean",
+                          "parameter1f1": "box",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu4",
+                          "parameter2f2": "childMenu5"
                         },
                         {
                           "label": "Cylinder",
@@ -308,11 +308,11 @@
                           "posetx": "0.1",
                           "widthet": "0.2",
                           "visible": "false",
-                          "function": "nextMenu",
-                          "parameter1": "childMenu4",
-                          "parameter2": "childMenu5",
-                          "function2": "changeBoolean",
-                          "parameter": "cylinder"
+                          "function": "changeBoolean",
+                          "parameter1f1": "cylinder",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu4",
+                          "parameter2f2": "childMenu5"
                         },
                         {
                           "label": "Cone",
@@ -324,17 +324,21 @@
                           "posetx": "0.1",
                           "widthet": "0.15",
                           "visible": "false",
-                          "function": "nextMenu",
-                          "parameter1": "childMenu4",
-                          "parameter2": "childMenu5",
-                          "function2": "changeBoolean",
-                          "parameter": "cone"
+                          "function": "changeBoolean",
+                          "parameter1f1": "cone",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu4",
+                          "parameter2f2": "childMenu5"
                         },
                         {
                           "label": "noLabel",
                           "id": "minButton42",
                           "position": "0.2 0.15 0",
-                          "visible": "false"
+                          "visible": "false",
+                          "function": "changeBoolean",
+                          "parameter1f1": "cm4",
+                          "function2": "minimizeMenu",
+                          "parameter1f2": "childMenu4"
                         }
                       ]
                   }
