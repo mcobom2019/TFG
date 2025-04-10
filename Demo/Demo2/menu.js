@@ -201,7 +201,7 @@ AFRAME.registerComponent('menu', {
         this.deleteForm();
     });
     this.minButton5El.addEventListener('click', () => {
-        this.cm5 = true;
+        this.changeBoolean(this.cm5);
         this.minimizeMenu(this.childMenu5);
     });
     
@@ -734,8 +734,8 @@ AFRAME.registerComponent('menu', {
     });
   },
   changeBoolean: function (bool){
-    if(bool){
-      bool = false;
+    if(bool == true){
+      this.$`{bool}` = false;
     }else{
       bool = true;
     }
