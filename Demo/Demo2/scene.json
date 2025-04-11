@@ -294,7 +294,7 @@
                                 "function1": "changeBoolean",
                                 "parameter1f1": "cm5",
                                 "function2": "minimizeMenu",
-                                "parameter1f6": "childMenu5"
+                                "parameter1f2": "childMenu5"
                               }
                             ]
                            }
@@ -378,7 +378,7 @@
                   "function1": "changeBoolean",
                   "parameter1f1": "cm1",
                   "function2": "minimizeMenu",
-                  "parameter1f1": "childMenu1"
+                  "parameter1f2": "childMenu1"
                 }
               ]
           }
