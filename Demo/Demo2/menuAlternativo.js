@@ -22,6 +22,7 @@ AFRAME.registerComponent('menu', {
         // creo todos los menús
         this.data = data;
         this.signalCreateMenus();
+        
         // Después de crear los menús, ahora configuro los eventos
         this.setupEvents();
       })
@@ -33,8 +34,176 @@ AFRAME.registerComponent('menu', {
   setupEvents: function() {
     // Referencia a los elementos del menú
     this.setupMenuReferences();
+    /*this.initMenu = document.querySelector('#initmenu');
+    this.childMenu1 = document.querySelector('#childmenu1');
+    this.childMenu2 = document.querySelector('#childmenu2');
+    this.childMenu3 = document.querySelector('#childmenu3');
+    this.childMenu4 = document.querySelector('#childmenu4');
+    this.childMenu5 = document.querySelector('#childmenu5');*/
+    
     this.setupButtonReferences();
-    this.setupAutomaticButtonEvents();
+    //boton de la mano izquierda Maximizar
+    /*this.maximizeButtonEl = document.querySelector('#maximizeButton');
+    this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
+
+    // Botones menuInicio
+    this.startButtonEl = document.querySelector('#startButton');
+    this.xButtonEl = document.querySelector('#xButton');
+    this.minButton1El = document.querySelector('#minButton1');
+    
+    //Botones Submenu1
+    this.musicButtonEl = document.querySelector('#musicButton');
+    this.formsButtonEl = document.querySelector('#formsButton');
+    this.backButton1El = document.querySelector('#backButton1');
+    this.minButton2El = document.querySelector('#minButton2');
+
+    //Botones submenu2
+    this.backButton2El = document.querySelector('#backButton2');
+    this.llseButtonEl = document.querySelector('#llseButton');
+    this.gladiatorButtonEl = document.querySelector('#gladiatorButton');
+    this.dpButtonEl = document.querySelector('#dpButton');
+    this.minButton3El = document.querySelector('#minButton3');
+    
+    //Botones submenu31
+    this.backButtonEl21 = document.querySelector('#backButton21');
+    this.playButtonEl = document.querySelector('#playButton');
+    this.pauseButton = document.querySelector('#pauseButton');
+    this.stopButton = document.querySelector('#stopButton');
+    this.minButton41El = document.querySelector('#minButton41');
+    
+    //Botones submenu4
+    this.backButton22El = document.querySelector('#backButton22');
+    this.sphereButtonEl = document.querySelector('#sphereButton');
+    this.boxButtonEl = document.querySelector('#boxButton');
+    this.cylinderButtonEl = document.querySelector('#cylinderButton');
+    this.coneButtonEl = document.querySelector('#coneButton');
+    this.minButton42El = document.querySelector('#minButton42');
+    
+    //botones submenu5
+    this.backButton23El = document.querySelector('#backButton23');
+    this.showButtonEl = document.querySelector('#showButton');
+    this.pSizeButtonEl = document.querySelector('#plusSButton');
+    this.colorButtonEl = document.querySelector('#colorButton');
+    this.deleteButtonEl = document.querySelector('#deleteButton');
+    this.minButton5El = document.querySelector('#minButton5');*/
+    
+    //controladores botones menuInicio
+    this.startButtonEl.addEventListener('click', () => {
+      this.nextMenu(this.initMenu, this.childMenu1);
+    });
+    this.minButton1El.addEventListener('click', () => {
+        this.changeBoolean('im');
+        this.minimizeMenu(this.initMenu);
+    });
+    this.xButtonEl.addEventListener('click', () => {
+        this.deleteMenu(this.initMenu);
+    });
+    
+    //controladores botones childmenu1
+    this.backButton1El.addEventListener('click', () => {
+        this.nextMenu(this.childMenu1, this.initMenu);
+    });
+    this.musicButtonEl.addEventListener('click', () => {
+        this.nextMenu(this.childMenu1, this.childMenu2);
+    });
+    this.formsButtonEl.addEventListener('click', () => {
+        this.nextMenu(this.childMenu1, this.childMenu4);
+    });
+    this.minButton2El.addEventListener('click', () => {
+        this.changeBoolean('cm1');
+        this.minimizeMenu(this.childMenu1);
+    });
+    
+    //controladores botones childmenu2
+    this.backButton2El.addEventListener('click', () => {
+        this.nextMenu(this.childMenu2, this.childMenu1);
+    });
+    this.llseButtonEl.addEventListener('click', () => {
+        this.loadSong("llse");
+        this.nextMenu(this.childMenu2, this.childMenu3);
+    });
+    this.gladiatorButtonEl.addEventListener('click', () => {
+        this.loadSong("gladiator");
+        this.nextMenu(this.childMenu2, this.childMenu3);
+    });
+    this.dpButtonEl.addEventListener('click', () => {
+        this.loadSong("Darling Pretty");
+        this.nextMenu(this.childMenu2, this.childMenu3);
+    });
+    this.minButton3El.addEventListener('click', () => {
+        this.changeBoolean('cm2');
+        this.minimizeMenu(this.childMenu2);
+    });
+    
+    //controladores botones childmenu3
+    this.backButton21El.addEventListener('click', () => {
+      this.stopMusic();
+      this.nextMenu(this.childMenu3, this.childMenu2);
+    });
+    this.playButtonEl.addEventListener('click', () => {
+      this.playMusic();
+    });
+    this.pauseButtonEl.addEventListener('click', () => {
+      this.pauseMusic();
+    });
+    this.stopButtonEl.addEventListener('click', () => {
+      this.stopMusic();
+    });
+    this.minButton41El.addEventListener('click', () => {
+        this.changeBoolean('cm3');
+        this.minimizeMenu(this.childMenu3);
+    });
+    
+    //Controladores childmenu4
+    this.backButton22El.addEventListener('click', () => {
+        this.nextMenu(this.childMenu4, this.childMenu1);
+    });
+    this.sphereButtonEl.addEventListener('click', () => {
+        this.changeBoolean('sphere');
+        this.nextMenu(this.childMenu4, this.childMenu5);
+    });
+    this.boxButtonEl.addEventListener('click', () => {
+        this.changeBoolean('box');
+        this.nextMenu(this.childMenu4, this.childMenu5);
+    });
+    this.cylinderButtonEl.addEventListener('click', () => {
+        this.changeBoolean('cylinder');
+        this.nextMenu(this.childMenu4, this.childMenu5);
+    });
+    this.coneButtonEl.addEventListener('click', () => {
+        this.changeBoolean('cone');
+        this.nextMenu(this.childMenu4, this.childMenu5);
+    });
+    this.minButton42El.addEventListener('click', () => {
+        this.changeBoolean('cm4');
+        this.minimizeMenu(this.childMenu4);
+    });
+    
+    //Controladores childmenu5
+    this.backButton23El.addEventListener('click', () => {
+        this.deleteForm();
+        this.changeBoolean('box');
+        this.changeBoolean('sphere');
+        this.changeBoolean('cylinder');
+        this.changeBoolean('cone');
+        this.nextMenu(this.childMenu5, this.childMenu4);
+    });
+    this.showButtonEl.addEventListener('click', () => {
+      this.createForm();
+    });
+    this.plusSButtonEl.addEventListener('click', () => {
+        this.plusSize();
+    });
+    this.colorButtonEl.addEventListener('click', () => {
+        this.changeColor();
+    });
+    this.deleteButtonEl.addEventListener('click', () => {
+        this.deleteForm();
+    });
+    this.minButton5El.addEventListener('click', () => {
+        this.changeBoolean('cm5');
+        this.minimizeMenu(this.childMenu5);
+    });
     
     //controlador boton maximizar
     this.maximizeButtonEl.addEventListener('click', () => {
@@ -607,118 +776,5 @@ AFRAME.registerComponent('menu', {
       console.log("TRAZA",this.sphere);
     }
   },
-  
-  setupAutomaticButtonEvents: function() {
-    if (!this.data) return;
-
-    console.log("Configurando eventos automáticos para botones...");
-
-    // Función recursiva para configurar eventos en un menú y sus submenús
-    const setupButtonEventsInMenu = (menuObj, menuId) => {
-      if (!menuObj || !menuObj.buttons || !Array.isArray(menuObj.buttons)) return;
-
-      console.log(`Configurando ${menuObj.buttons.length} botones para menú ${menuId}`);
-
-      // Recorrer todos los botones del menú
-      menuObj.buttons.forEach(button => {
-        if (!button.id) return;
-
-        const buttonEl = document.querySelector('#' + button.id);
-        if (!buttonEl) {
-          console.warn(`No se encontró el botón con ID: ${button.id}`);
-          return;
-        }
-
-        console.log(`Configurando botón ${button.id} con label: ${button.label || 'sin etiqueta'}`);
-
-        // Crear un solo event listener que ejecutará todas las funciones definidas
-        buttonEl.addEventListener('click', (event) => {
-          console.log(`Botón ${button.id} clickeado!`);
-
-          // Buscar hasta 6 funciones definidas (function1 a function6)
-          for (let i = 1; i <= 6; i++) {
-            const funcName = `function${i}`;
-
-            if (button[funcName]) {
-              const functionToCall = button[funcName];
-              console.log(`Ejecutando ${functionToCall} para botón ${button.id}`);
-
-              // Si la función no existe en el componente, mostrar error
-              if (typeof this[functionToCall] !== 'function') {
-                console.error(`La función "${functionToCall}" no existe en el componente menu`);
-                continue;
-              }
-
-              // Comprobar si hay parámetros para esta función específica
-              const param1 = button[`parameter1f${i}`];
-              const param2 = button[`parameter2f${i}`];
-
-              try {
-                // Manejo especial según el tipo de función
-                switch(functionToCall) {
-                  case 'nextMenu':
-                  case 'minimizeMenu':
-                  case 'maximizeMenu':
-                  case 'deleteMenu':
-                    // Estas funciones requieren elementos DOM
-                    if (param1) {
-                      const menuEl = document.querySelector('#' + param1);
-                      if (!menuEl) {
-                        console.error(`No se encontró el menú con ID: ${param1} para función ${functionToCall}`);
-                        continue;
-                      }
-
-                      console.log(`Llamando a ${functionToCall} con menú ${param1}`);
-
-                      if (param2 && functionToCall === 'nextMenu') {
-                        const menuEl2 = document.querySelector('#' + param2);
-                        if (!menuEl2) {
-                          console.error(`No se encontró el menú destino con ID: ${param2}`);
-                          continue;
-                        }
-                        this[functionToCall](menuEl, menuEl2);
-                      } else {
-                        this[functionToCall](menuEl);
-                      }
-                    } else {
-                      console.error(`No se especificó menú para función ${functionToCall}`);
-                    }
-                    break;
-
-                  default:
-                    // Otras funciones con sus parámetros normales
-                    if (param1 && param2) {
-                      this[functionToCall](param1, param2);
-                    } else if (param1) {
-                      this[functionToCall](param1);
-                    } else {
-                      this[functionToCall]();
-                    }
-                }
-              } catch (error) {
-                console.error(`Error ejecutando ${functionToCall}:`, error);
-              }
-            }
-          }
-        });
-
-        // Procesar recursivamente los submenús
-        Object.keys(button).forEach(key => {
-          if (key.startsWith('menuC') && button[key]) {
-            setupButtonEventsInMenu(button[key], button[key].id);
-          }
-        });
-      });
-    };
-
-    // Comenzar la configuración desde todos los menús principales
-    Object.keys(this.data).forEach(key => {
-      if (key.startsWith('menuP')) {
-        setupButtonEventsInMenu(this.data[key], this.data[key].id);
-      }
-    });
-
-    console.log("Configuración de eventos automáticos completada");
-  }
   
 });
