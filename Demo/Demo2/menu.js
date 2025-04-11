@@ -42,6 +42,7 @@ AFRAME.registerComponent('menu', {
     this.childMenu5 = document.querySelector('#childmenu5');*/
     
     this.setupButtonReferences();
+    this.setupAutomaticButtonEvents();
     //boton de la mano izquierda Maximizar
     /*this.maximizeButtonEl = document.querySelector('#maximizeButton');
     this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
@@ -88,7 +89,7 @@ AFRAME.registerComponent('menu', {
     this.minButton5El = document.querySelector('#minButton5');*/
     
     //controladores botones menuInicio
-    this.startButtonEl.addEventListener('click', () => {
+    /*this.startButtonEl.addEventListener('click', () => {
       this.nextMenu(this.initMenu, this.childMenu1);
     });
     this.minButton1El.addEventListener('click', () => {
@@ -203,7 +204,7 @@ AFRAME.registerComponent('menu', {
     this.minButton5El.addEventListener('click', () => {
         this.changeBoolean('cm5');
         this.minimizeMenu(this.childMenu5);
-    });
+    });*/
     
     //controlador boton maximizar
     this.maximizeButtonEl.addEventListener('click', () => {
@@ -775,6 +776,65 @@ AFRAME.registerComponent('menu', {
       console.warn('La propiedad ' + boolName + ' no existe en este componente');
       console.log("TRAZA",this.sphere);
     }
+  },
+  
+  setupAutomaticButtonEvents: function() {
+    if (!this.data) return;
+    
+    // Función recursiva para configurar eventos en un menú y sus submenús
+    const setupButtonEventsInMenu = (menuObj) => {
+      if (!menuObj || !menuObj.buttons || !Array.isArray(menuObj.buttons)) return;
+      
+      // Recorrer todos los botones del menú
+      menuObj.buttons.forEach(button => {
+        const buttonEl = document.querySelector('#' + button.id);
+        if (!buttonEl) {
+          console.warn(`No se encontró el botón con ID: ${button.id}`);
+          return;
+        }
+        
+        // Crear una función que ejecutará todas las funciones del botón en secuencia
+        buttonEl.addEventListener('click', () => {
+          // Buscar hasta 6 funciones definidas (function1 a function6)
+          for (let i = 1; i <= 6; i++) {
+            const funcName = `function${i}`;
+            const paramName1 = `parameter1f${i}`;
+            const paramName2 = `parameter2f${i}`;
+            
+            if (button[funcName]) {
+              const functionToCall = button[funcName];
+              console.log(`Ejecutando ${functionToCall} para botón ${button.id}`);
+              
+              // Llamar a la función correspondiente con los parámetros proporcionados
+              if (button[paramName1] && button[paramName2]) {
+                // Función con dos parámetros
+                this[functionToCall](button[paramName1], button[paramName2]);
+              } else if (button[paramName1]) {
+                // Función con un parámetro
+                this[functionToCall](button[paramName1]);
+              } else {
+                // Función sin parámetros
+                this[functionToCall]();
+              }
+            }
+          }
+        });
+        
+        // Buscar submenús para procesar sus botones recursivamente
+        Object.keys(button).forEach(key => {
+          if (key.startsWith('menuC') && button[key]) {
+            setupButtonEventsInMenu(button[key]);
+          }
+        });
+      });
+    };
+    
+    // Comenzar la configuración desde todos los menús principales
+    Object.keys(this.data).forEach(key => {
+      if (key.startsWith('menuP')) {
+        setupButtonEventsInMenu(this.data[key]);
+      }
+    });
   },
   
 });
