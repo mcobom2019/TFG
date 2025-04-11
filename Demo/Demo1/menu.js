@@ -44,13 +44,14 @@ AFRAME.registerComponent('menu', {
   
   setupEvents: function() {
     // Referencia a los elementos del menú
-    this.menuinicio = document.querySelector('#menuinicio');
-    this.submenu1 = document.querySelector('#subMenu1');
-    this.submenu2 = document.querySelector('#subMenu2');
-    this.submenu31 = document.querySelector('#subMenu31');
-    this.submenu32 = document.querySelector('#subMenu32');
-    this.submenu33 = document.querySelector('#subMenu33');
-    this.submenu4 = document.querySelector('#subMenu4');
+    this.setupMenuReferences();
+    /*this.menuinicio = document.querySelector('#menuinicio');
+    this.submenu1 = document.querySelector('#submenu1');
+    this.submenu2 = document.querySelector('#submenu2');
+    this.submenu31 = document.querySelector('#submenu31');
+    this.submenu32 = document.querySelector('#submenu32');
+    this.submenu33 = document.querySelector('#submenu33');
+    this.submenu4 = document.querySelector('#submenu4');*/
     
     //boton de la mano izquierda Maximizar
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
@@ -664,5 +665,58 @@ AFRAME.registerComponent('menu', {
         this.lightButtonEl.setAttribute('visible', false);
       }
     }, 500);
+  },
+  
+  setupMenuReferences: function() {
+
+    // Lista para almacenar todos los IDs de menús encontrados
+    const menuIds = [];
+
+    // Función recursiva para extraer IDs de menús del JSON
+    const extractMenuIds = (menuObj) => {
+      if (!menuObj || typeof menuObj !== 'object') return;
+
+      // Si el objeto tiene un ID, lo añadimos a la lista
+      if (menuObj.id) {
+        menuIds.push(menuObj.id);
+      }
+
+      // Si el objeto tiene botones, buscamos menús hijos en ellos
+      if (menuObj.buttons && Array.isArray(menuObj.buttons)) {
+        menuObj.buttons.forEach(button => {
+          // Buscamos todas las propiedades que empiezan con "menuC" (menús hijos)
+          Object.keys(button).forEach(key => {
+            if (key.startsWith('menuC') && button[key]) {
+              extractMenuIds(button[key]);
+            }
+          });
+        });
+      }
+    };
+
+    // Iniciar la extracción desde el menú padre
+    if (this.data && this.data.menuP) {
+      extractMenuIds(this.data.menuP);
+    }
+
+    console.log("Menús encontrados:", menuIds);
+
+    // Crear referencias a todos los menús encontrados
+    menuIds.forEach(menuId => {
+      // Convertir el ID a camelCase para la propiedad
+      // Por ejemplo: 'childmenu1' → 'childMenu1'
+      const propName = menuId.replace(/([a-z])([A-Z])/g, '$1$2')
+                             .replace(/[-_]([a-z])/g, (_, letter) => letter.toUpperCase())
+                             .replace(/^([a-z])/, (_, letter) => letter);
+
+      // Guardar la referencia al elemento del DOM
+      this[propName] = document.querySelector('#' + menuId);
+
+      if (!this[propName]) {
+        console.warn(`No se encontró el menú con ID: ${menuId}`);
+      } else {
+        console.log(`Referencia creada: this.${propName} = elemento con ID #${menuId}`);
+      }
+    });
   },
 });

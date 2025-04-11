@@ -1,4 +1,4 @@
-{"menuPadre":{
+{"menuP":{
     "id": "menuinicio",
     "position": "0 1.5 -0.5",
     "visible": "true",
@@ -13,7 +13,7 @@
           "widthet": "0.15",
           "color": "#2F6A31",
           "visible": "true",
-          "menuHijo1":{
+          "menuC1":{
               "id": "submenu1",
               "position": "0 1.5 -0.5",
               "visible": "false",
@@ -28,8 +28,8 @@
                   "posety": "-0.01",
                   "widthet": "0.1",
                   "visible": "false",
-                  "menuHijo2":{
-                    "id": "subMenu2",
+                  "menuC2":{
+                    "id": "submenu2",
                     "position": "0 1.5 -0.5",
                     "visible": "false",
                     "grabbable": "false",
@@ -50,8 +50,8 @@
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
-                          "menuHijo31":{
-                            "id": "subMenu31",
+                          "menuC3":{
+                            "id": "submenu31",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "false",
@@ -72,8 +72,8 @@
                                 "posety": "-0.01",
                                 "widthet": "0.18",
                                 "visible": "false",
-                                    "menuHijo4":{
-                                    "id": "subMenu4",
+                                    "menuC4":{
+                                    "id": "submenu4",
                                     "position": "0 1.5 -0.5",
                                     "visible": "false",
                                     "grabbable": "false",
@@ -157,8 +157,8 @@
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
-                          "menuHijo32":{
-                            "id": "subMenu32",
+                          "menuC5":{
+                            "id": "submenu32",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "false",
@@ -238,8 +238,8 @@
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
-                          "menuHijo33":{
-                            "id": "subMenu33",
+                          "menuC6":{
+                            "id": "submenu33",
                             "position": "0 1.5 -0.5",
                             "visible": "false",
                             "grabbable": "false",
