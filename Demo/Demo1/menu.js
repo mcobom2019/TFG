@@ -115,35 +115,17 @@ AFRAME.registerComponent('menu', {
     });
     
     this.xButtonEl.addEventListener('click', () => {
-        this.submenu1.setAttribute('visible', false);
-        this.menuInicio.setAttribute('visible', false);
-        
-        const buttons2 = this.menuInicio.querySelectorAll('[id]');
-        buttons2.forEach(button => {
-          button.setAttribute('visible', false);
-        });
+        this.deleteMenu(this.menuInicio);
     });
     
     this.darkButtonEl.addEventListener('click', () => {
-        this.isDarkMode = true;
-        this.darkButtonEl.setAttribute('visible', false);
-        this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
-        this.el.sceneEl.addState('starry');
-        setTimeout(() => {
-          this.lightButtonEl.setAttribute('visible', true);
-        }, 250);
-      
+        this.changeBoolean('isDarkMode');
+        this.darkMode();
     });
     
     this.lightButtonEl.addEventListener('click', () => {
-        this.isDarkMode = false;
-        this.lightButtonEl.setAttribute('visible', false);
-        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
-        this.el.sceneEl.removeState('starry');
-        setTimeout(() => {
-          this.darkButtonEl.setAttribute('visible', true);
-        }, 250);
-      
+        this.changeBoolean('isDarkMode');
+        this.lightMode();
     });
     
     //controladores botones submenu1
@@ -169,6 +151,7 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones submenu2
     this.backButtonEl.addEventListener('click', () => {
+        this.initilizeBoolean
         this.pie = false;
         this.bar = false;
         this.nextMenu(this.submenu2, this.submenu1);
@@ -269,16 +252,8 @@ AFRAME.registerComponent('menu', {
     });
     
     this.minButton43El.addEventListener('click', () => {
-        this.m33 = true;
-        this.lastMenuPosition = this.getMenuPosition(this.submenu33);
-        this.submenu33.setAttribute('visible', false);
-        const buttons = this.submenu33.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.maximizeButtonEl.setAttribute('visible', true);
-        }, 500);
+        this.changeBoolean('m33');
+        this.minimizeMenu(this.submenu33);
     });
     
     //controladores botones submenu4
@@ -354,15 +329,8 @@ AFRAME.registerComponent('menu', {
         this.deleteDiagram();
     });
     this.minButton5El.addEventListener('click', () => {
-        this.m4 = true;
-        this.submenu4.setAttribute('visible', false);
-        const buttons = this.submenu4.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.maximizeButtonEl.setAttribute('visible', true);
-        }, 500);
+        this.changeBoolean('m4');
+        this.minimizeMenu(this.submenu4);
     });
     
     //controlador boton maximizar
@@ -713,5 +681,31 @@ AFRAME.registerComponent('menu', {
         setTimeout(() => {
           this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
+  },
+  deleteMenu: function(menu){
+        menu.setAttribute('visible', false);
+        const buttons2 = menu.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+  },
+  darkMode: function (){
+    this.darkButtonEl.setAttribute('visible', false);
+        this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+        this.el.sceneEl.addState('starry');
+        setTimeout(() => {
+          this.lightButtonEl.setAttribute('visible', true);
+        }, 250);
+  },
+  lightMode: function(){
+    this.lightButtonEl.setAttribute('visible', false);
+        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
+        this.el.sceneEl.removeState('starry');
+        setTimeout(() => {
+          this.darkButtonEl.setAttribute('visible', true);
+        }, 250);
+  },
+  initilizeBoolean: function(boolName) {
+    this[boolName] = false;
   },
 });
