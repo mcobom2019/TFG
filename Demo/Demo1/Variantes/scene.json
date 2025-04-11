@@ -14,7 +14,7 @@
           "color": "#2F6A31",
           "visible": "true",
           "menuHijo1":{
-              "id": "submenu1",
+              "id": "subMenu1",
               "position": "0 1.5 -0.5",
               "visible": "false",
               "grabbable": "false",

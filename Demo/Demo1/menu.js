@@ -44,7 +44,7 @@ AFRAME.registerComponent('menu', {
   
   setupEvents: function() {
     // Referencia a los elementos del menú
-    this.menuInicio = document.querySelector('#menuinicio');
+    this.menuinicio = document.querySelector('#menuinicio');
     this.submenu1 = document.querySelector('#subMenu1');
     this.submenu2 = document.querySelector('#subMenu2');
     this.submenu31 = document.querySelector('#subMenu31');
@@ -106,16 +106,16 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
-      this.nextMenu(this.menuInicio, this.submenu1);
+      this.nextMenu(this.menuinicio, this.submenu1);
     });
     
     this.minButton1El.addEventListener('click', () => {
         this.changeBoolean('initmenu');
-        this.minimizeMenu(this.menuInicio);
+        this.minimizeMenu(this.menuinicio);
     });
     
     this.xButtonEl.addEventListener('click', () => {
-        this.deleteMenu(this.menuInicio);
+        this.deleteMenu(this.menuinicio);
     });
     
     this.darkButtonEl.addEventListener('click', () => {
@@ -131,7 +131,7 @@ AFRAME.registerComponent('menu', {
     //controladores botones submenu1
     this.atrasButtonEl.addEventListener('click', () => {
         this.changeBoolean('initmenu');
-        this.nextMenu(this.submenu1, this.menuInicio);
+        this.nextMenu(this.submenu1, this.menuinicio);
     });
     
     this.barrasButtonEl.addEventListener('click', () => {
@@ -276,7 +276,7 @@ AFRAME.registerComponent('menu', {
         this.maximizeButtonEl.setAttribute('visible', false);
         if(this.initmenu){
           setTimeout(() => {
-            this.maximizeMenu(this.menuInicio);
+            this.maximizeMenu(this.menuinicio);
             if(this.isDarkMode){
               this.darkButtonEl.setAttribute('visible', false);
             }else{
@@ -569,6 +569,13 @@ AFRAME.registerComponent('menu', {
           buttons.forEach(button => {
             button.setAttribute('visible', true);
           });
+          if(nextM == this.menuinicio){
+            if(this.isDarkMode){
+              this.darkButtonEl.setAttribute('visible', false);
+            }else{
+              this.lightButtonEl.setAttribute('visible', false);
+            }
+          }
         }, 500);
   },
   changeBoolean: function(boolName) {
@@ -651,6 +658,11 @@ AFRAME.registerComponent('menu', {
         buttons.forEach(button => {
           button.setAttribute('visible', true);
         });
+      if(this.isDarkMode){
+        this.darkButtonEl.setAttribute('visible', false);
+      }else{
+        this.lightButtonEl.setAttribute('visible', false);
+      }
     }, 500);
   },
 });
