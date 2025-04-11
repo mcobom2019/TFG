@@ -151,9 +151,8 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones submenu2
     this.backButtonEl.addEventListener('click', () => {
-        this.initilizeBoolean
-        this.pie = false;
-        this.bar = false;
+        this.initilizeBoolean('pie');
+        this.initilizeBoolean('bar');
         this.nextMenu(this.submenu2, this.submenu1);
     });
     
@@ -176,24 +175,24 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones submenu3.1
     this.backButtonEl21.addEventListener('click', () => {
-        this.electric = false;
-        this.diesel = false;
-        this.gasoline = false;
+        this.initilizeBoolean('electric');
+        this.initilizeBoolean('diesel');
+        this.initilizeBoolean('gasoline');
         this.nextMenu(this.submenu31, this.submenu2);
     });
     
     this.electricoButtonEl.addEventListener('click', () => {
-        this.electric = true;
+        this.changeBoolean('electric');
         this.nextMenu(this.submenu31, this.submenu4);
     });
     
     this.DieselButtonEl.addEventListener('click', () => {
-        this.diesel = true;
+        this.changeBoolean('diesel');
         this.nextMenu(this.submenu31, this.submenu4);
     });
     
     this.GasolinaButtonEl.addEventListener('click', () => {
-        this.gasoline = true;
+        this.changeBoolean('gasoline');
         this.nextMenu(this.submenu31, this.submenu4);
     });
     
@@ -204,30 +203,30 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones submenu3.2
     this.backButtonEl22.addEventListener('click', () => {
-        this.white = false;
-        this.black = false;
-        this.red = false;
-        this.yellow = false;
+        this.initilizeBoolean('white');
+        this.initilizeBoolean('black');
+        this.initilizeBoolean('red');
+        this.initilizeBoolean('yellow');
         this.nextMenu(this.submenu32, this.submenu2);
     });
     
     this.BlancoButtonEl.addEventListener('click', () => {
-        this.white = true;
+        this.changeBoolean('white');
         this.nextMenu(this.submenu32, this.submenu4);
     });
     
     this.NegroButtonEl.addEventListener('click', () => {
-        this.black = true;
+        this.changeBoolean('black');
         this.nextMenu(this.submenu32, this.submenu4);
     });
     
     this.RojoButtonEl.addEventListener('click', () => {
-        this.red = true;
+        this.changeBoolean('red');
         this.nextMenu(this.submenu32, this.submenu4);
     });
     
     this.AmarilloButtonEl.addEventListener('click', () => {
-        this.yellow = true;
+        this.changeBoolean('yellow');
         this.nextMenu(this.submenu32, this.submenu4);
     });
     
@@ -242,12 +241,12 @@ AFRAME.registerComponent('menu', {
     });
     
     this.tresButtonEl.addEventListener('click', () => {
-        this.threedoors = true;
+        this.changeBoolean('threedoors');
         this.nextMenu(this.submenu33, this.submenu4);
     });
     
     this.cincoButtonEl.addEventListener('click', () => {
-        this.fivedoors = true;
+        this.changeBoolean('fivedoors');
         this.nextMenu(this.submenu33, this.submenu4);
     });
     
@@ -258,69 +257,7 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones submenu4
     this.backButtonEl31.addEventListener('click', () => {
-        var scene = document.querySelector("a-scene");
         this.deleteDiagram();
-        
-        // Guardar la posición actual del submenu4
-        this.lastMenuPosition = this.getMenuPosition(this.submenu4);
-        setTimeout(() => {
-          if(this.electric || this.diesel || this.gasoline){
-            this.changeGrabbable(this.submenu31, this.submenu4);
-            this.electric = false;
-            this.diesel = false;
-            this.gasoline = false;
-            this.submenu4.setAttribute('visible', false);
-            
-            setTimeout(() => {
-              // Aplicar la posición guardada al submenu31
-              this.applyMenuPosition(this.submenu31, this.lastMenuPosition);
-              
-              this.submenu31.setAttribute('visible', true);
-              const buttons2 = this.submenu31.querySelectorAll('[id]');
-              buttons2.forEach(button => {
-                button.setAttribute('visible', true);
-              });
-            }, 500);
-            
-          } else if(this.white || this.black || this.red || this.yellow){
-            this.changeGrabbable(this.submenu32, this.submenu4);
-            this.white = false;
-            this.black = false;
-            this.red = false;
-            this.yellow = false;
-            this.submenu4.setAttribute('visible', false);
-            
-            setTimeout(() => {
-              // Aplicar la posición guardada al submenu32
-              this.applyMenuPosition(this.submenu32, this.lastMenuPosition);
-              this.submenu32.setAttribute('visible', true);
-              const buttons2 = this.submenu32.querySelectorAll('[id]');
-              buttons2.forEach(button => {
-                button.setAttribute('visible', true);
-              });
-            }, 500);
-          
-        }else if(this.threedoors || this.fivedoors){
-          this.changeGrabbable(this.submenu33, this.submenu4);
-          this.threedoors = false;
-          this.fivedoors = false;
-          this.submenu4.setAttribute('visible', false);
-          setTimeout(() => {
-            this.applyMenuPosition(this.submenu33, this.lastMenuPosition);
-            this.submenu33.setAttribute('visible', true);
-            const buttons2 = this.submenu33.querySelectorAll('[id]');
-            buttons2.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-          }, 500);
-        }
-        
-        const buttons = this.submenu4.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        this.sliderrEl.setAttribute('visible', false);
-        }, 500);
     });
     this.mostrarButtonEl.addEventListener('click', () => {
         this.viewDiagram();
@@ -708,4 +645,35 @@ AFRAME.registerComponent('menu', {
   initilizeBoolean: function(boolName) {
     this[boolName] = false;
   },
+  multipleBack: function(){
+    var scene = document.querySelector("a-scene");
+    // Guardar la posición actual del submenu4
+        this.lastMenuPosition = this.getMenuPosition(this.submenu4);
+        setTimeout(() => {
+          if(this.electric || this.diesel || this.gasoline){
+            this.initilizeBoolean('electric');
+            this.initilizeBoolean('diesel');
+            this.initilizeBoolean('gasoline');
+            this.nextMenu(this.submenu4, this.submenu31);
+            
+          }else if(this.white || this.black || this.red || this.yellow){
+            this.initilizeBoolean('white');
+            this.initilizeBoolean('black');
+            this.initilizeBoolean('red');
+            this.initilizeBoolean('yellow');
+            this.nextMenu(this.submenu4, this.submenu32);
+          
+        }else if(this.threedoors || this.fivedoors){
+            this.initilizeBoolean('threedoors');
+            this.initilizeBoolean('fivedoors');
+            this.nextMenu(this.submenu4, this.submenu33);
+        }
+        
+        const buttons = this.submenu4.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        this.sliderrEl.setAttribute('visible', false);
+        }, 500);
+  }
 });
