@@ -99,9 +99,9 @@ AFRAME.registerComponent('menu', {
     this.minButton43El = document.querySelector('#minButton43');
     
     //botones submenu4
-    -this.backButtonEl31 = document.querySelector('#backButton31');
-    -this.mostrarButtonEl = document.querySelector('#mostrarButton1');
-    -this.borrarButtonEl = document.querySelector('#borrarButton1');
+    this.backButton31El = document.querySelector('#backButton31');
+    this.mostrarButtonEl = document.querySelector('#mostrarButton');
+    this.borrarButtonEl = document.querySelector('#borrarButton');
     this.minButton5El = document.querySelector('#minButton5');
     this.sliderrEl = document.querySelector('#sliderr');
     
@@ -257,7 +257,7 @@ AFRAME.registerComponent('menu', {
     });
     
     //controladores botones submenu4
-    this.backButtonEl31.addEventListener('click', () => {
+    this.backButton31El.addEventListener('click', () => {
         this.deleteDiagram();
         this.multipleBack();
     });
