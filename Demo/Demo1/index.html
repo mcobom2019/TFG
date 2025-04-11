@@ -7,7 +7,7 @@
   <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
   <script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
   <script src="https://unpkg.com/aframe-rounded@^1.0.0/aframe-rounded.min.js"></script>
-  <script src="creator.js"></script>
+  <script src="menu.js"></script>
   <script src="initMenu.js"></script>
   <script src="button.js"></script>
   <script src="pressable.js"></script>
@@ -17,7 +17,7 @@
 </head>
 <body>
  
-  <a-scene environment loader>
+  <a-scene environment menu>
       <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
         <a-entity id="maximizeButton" button="label: noLabel; primitive: cylinder; width: 0.1; color: #a9825a" position="0 0.025 -0.01" visible="false"></a-entity>
       </a-entity>
