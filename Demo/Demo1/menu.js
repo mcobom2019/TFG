@@ -78,14 +78,14 @@ AFRAME.registerComponent('menu', {
     this.minButton3El = document.querySelector('#minButton3');
     
     //Botones submenu31
-    this.backButtonEl21 = document.querySelector('#backButton21');
+    this.backButton21El = document.querySelector('#backButton21');
     this.electricoButtonEl = document.querySelector('#electricoButton');
     this.DieselButtonEl = document.querySelector('#DieselButton');
     this.GasolinaButtonEl = document.querySelector('#GasolinaButton');
     this.minButton41El = document.querySelector('#minButton41');
     
     //Botones submenu32
-    this.backButtonEl22 = document.querySelector('#backButton22');
+    this.backButton22El = document.querySelector('#backButton22');
     this.BlancoButtonEl = document.querySelector('#BlancoButton');
     this.NegroButtonEl = document.querySelector('#NegroButton');
     this.RojoButtonEl = document.querySelector('#RojoButton');
@@ -93,15 +93,15 @@ AFRAME.registerComponent('menu', {
     this.minButton42El = document.querySelector('#minButton42');
     
     //Botones submenu33
-    this.backButtonEl23 = document.querySelector('#backButton23');
-    this.tresButtonEl = document.querySelector('#dosButton');
+    this.backButton23El = document.querySelector('#backButton23');
+    this.tresButtonEl = document.querySelector('#tresButton');
     this.cincoButtonEl = document.querySelector('#cincoButton');
     this.minButton43El = document.querySelector('#minButton43');
     
     //botones submenu4
-    this.backButtonEl31 = document.querySelector('#backButton31');
-    this.mostrarButtonEl = document.querySelector('#mostrarButton1');
-    this.borrarButtonEl = document.querySelector('#borrarButton1');
+    -this.backButtonEl31 = document.querySelector('#backButton31');
+    -this.mostrarButtonEl = document.querySelector('#mostrarButton1');
+    -this.borrarButtonEl = document.querySelector('#borrarButton1');
     this.minButton5El = document.querySelector('#minButton5');
     this.sliderrEl = document.querySelector('#sliderr');
     
@@ -175,7 +175,7 @@ AFRAME.registerComponent('menu', {
     });
     
     //controladores botones submenu3.1
-    this.backButtonEl21.addEventListener('click', () => {
+    this.backButton21El.addEventListener('click', () => {
         this.initilizeBoolean('electric');
         this.initilizeBoolean('diesel');
         this.initilizeBoolean('gasoline');
@@ -203,7 +203,7 @@ AFRAME.registerComponent('menu', {
     });
     
     //controladores botones submenu3.2
-    this.backButtonEl22.addEventListener('click', () => {
+    this.backButton22El.addEventListener('click', () => {
         this.initilizeBoolean('white');
         this.initilizeBoolean('black');
         this.initilizeBoolean('red');
@@ -327,7 +327,7 @@ AFRAME.registerComponent('menu', {
     
     // Buscar todas las propiedades que contengan "menuPadre" en el nivel raíz
     Object.keys(this.data).forEach(key => {
-      if (key.includes('menuPadre')) {
+      if (key.includes('menuP')) {
         console.log('Creando menú padre:', key);
         
         // Crear el menú padre
@@ -364,7 +364,7 @@ AFRAME.registerComponent('menu', {
     parentMenu.buttons.forEach(button => {
       // Buscamos propiedades que contengan "menuHijo" (para ser más flexibles con los nombres)
       Object.keys(button).forEach(key => {
-        if (key.includes('menuHijo') && button[key]) {
+        if (key.includes('menuC') && button[key]) {
           // Si encontramos un menuHijo, lo creamos
           console.log('Creando menú hijo:', key, ' - ID:', button[key].id);
           this.createMenu(button[key]);
@@ -422,7 +422,7 @@ AFRAME.registerComponent('menu', {
           label: button.label,
           width: button.width || 0.2,
           toggleable: button.toggleable || false,
-          primitive: button.primitive || 'box',
+          primitive: button.primitive || 'cylinder',
           color: button.color ||'#32527b',
           posetx: button.posetx || 0,
           posety: button.posety || 0,
@@ -718,5 +718,13 @@ AFRAME.registerComponent('menu', {
         console.log(`Referencia creada: this.${propName} = elemento con ID #${menuId}`);
       }
     });
+
+    // También crear la referencia al botón maximizar que está fuera de la jerarquía de menús
+    this.maximizeButtonEl = document.querySelector('#maximizeButton');
+    if (this.maximizeButtonEl) {
+      this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
+    } else {
+      console.warn('No se encontró el botón maximizar');
+    }
   },
 });

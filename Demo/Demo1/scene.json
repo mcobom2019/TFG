@@ -253,7 +253,7 @@
                               },
                               {
                                 "label": "3 Doors",
-                                "id": "dosButton",
+                                "id": "tresButton",
                                 "position": "0.1 -0.02 0",
                                 "visible": "false",
                                 "color": "#2F6A31",
