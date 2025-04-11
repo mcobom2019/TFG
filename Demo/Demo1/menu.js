@@ -258,6 +258,7 @@ AFRAME.registerComponent('menu', {
     //controladores botones submenu4
     this.backButtonEl31.addEventListener('click', () => {
         this.deleteDiagram();
+        this.multipleBack();
     });
     this.mostrarButtonEl.addEventListener('click', () => {
         this.viewDiagram();
@@ -275,71 +276,43 @@ AFRAME.registerComponent('menu', {
         this.maximizeButtonEl.setAttribute('visible', false);
         if(this.initmenu){
           setTimeout(() => {
-            this.menuInicio.setAttribute('visible', true);
-            const buttons = this.menuInicio.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
+            this.maximizeMenu(this.menuInicio);
             if(this.isDarkMode){
               this.darkButtonEl.setAttribute('visible', false);
             }else{
               this.lightButtonEl.setAttribute('visible', false);
             }
-            this.initmenu = false;
+            this.initilizeBoolean('initmenu');
           }, 500);
         }else if(this.m1){
           setTimeout(() => {
-            this.submenu1.setAttribute('visible', true);
-            const buttons = this.submenu1.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-            this.m1 = false;
+            this.maximizeMenu(this.submenu1);
+            this.initilizeBoolean('m1');
           }, 500);
         }else if(this.m2){
           setTimeout(() => {
-            this.submenu2.setAttribute('visible', true);
-            const buttons = this.submenu2.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-            this.m2 = false;
+            this.maximizeMenu(this.submenu2);
+            this.initilizeBoolean('m2');
           }, 500);
         }else if(this.m31){
           setTimeout(() => {
-            this.submenu31.setAttribute('visible', true);
-            const buttons = this.submenu31.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-            this.m31 = false;
+            this.maximizeMenu(this.submenu31);
+            this.initilizeBoolean('m31');
           }, 500);
         }else if(this.m32){
           setTimeout(() => {
-            this.submenu32.setAttribute('visible', true);
-            const buttons = this.submenu32.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-            this.m32 = false;
+            this.maximizeMenu(this.submenu32);
+            this.initilizeBoolean('m32');
           }, 500);
         }else if(this.m33){
           setTimeout(() => {
-            this.submenu33.setAttribute('visible', true);
-            const buttons = this.submenu33.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-            this.m33 = false;
+            this.maximizeMenu(this.submenu33);
+            this.initilizeBoolean('m33');
           }, 500);
         }else if(this.m4){
           setTimeout(() => {
-            this.submenu4.setAttribute('visible', true);
-            const buttons = this.submenu4.querySelectorAll('[id]');
-            buttons.forEach(button => {
-              button.setAttribute('visible', true);
-            });
-            this.m4 = false;
+            this.maximizeMenu(this.submenu4);
+            this.initilizeBoolean('m4');
           }, 500);
         }
     });
@@ -663,17 +636,21 @@ AFRAME.registerComponent('menu', {
             this.initilizeBoolean('yellow');
             this.nextMenu(this.submenu4, this.submenu32);
           
-        }else if(this.threedoors || this.fivedoors){
-            this.initilizeBoolean('threedoors');
-            this.initilizeBoolean('fivedoors');
-            this.nextMenu(this.submenu4, this.submenu33);
-        }
-        
-        const buttons = this.submenu4.querySelectorAll('[id]');
-        buttons.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        this.sliderrEl.setAttribute('visible', false);
+          }else if(this.threedoors || this.fivedoors){
+              this.initilizeBoolean('threedoors');
+              this.initilizeBoolean('fivedoors');
+              this.nextMenu(this.submenu4, this.submenu33);
+          }
+          this.sliderrEl.setAttribute('visible', false);
         }, 500);
-  }
+  },
+  maximizeMenu: function(menu){
+    setTimeout(() => {
+        menu.setAttribute('visible', true);
+        const buttons = menu.querySelectorAll('[id]');
+        buttons.forEach(button => {
+          button.setAttribute('visible', true);
+        });
+    }, 500);
+  },
 });
