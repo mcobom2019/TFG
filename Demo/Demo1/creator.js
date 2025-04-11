@@ -106,23 +106,7 @@ AFRAME.registerComponent('loader', {
     
     //controladores botones menuInicio
     this.startButtonEl.addEventListener('click', () => {
-      if (this.submenu1 && this.menuInicio) {
-        this.lastMenuPosition = this.getMenuPosition(this.menuInicio);
-        this.changeGrabbable(this.submenu1, this.menuInicio);
-        this.menuInicio.setAttribute('visible', false);
-        const buttons2 = this.menuInicio.querySelectorAll('[id]');
-        buttons2.forEach(button => {
-          button.setAttribute('visible', false);
-        });
-        setTimeout(() => {
-          this.applyMenuPosition(this.submenu1, this.lastMenuPosition);
-          this.submenu1.setAttribute('visible', true);
-          const buttons = this.submenu1.querySelectorAll('[id]');
-          buttons.forEach(button => {
-            button.setAttribute('visible', true);
-          });
-        }, 500);
-      }
+      this.nextMenu(this.menuInicio, this.submenu1);
     });
     
     this.minButton1El.addEventListener('click', () => {
@@ -1031,5 +1015,33 @@ AFRAME.registerComponent('loader', {
     menu1.setAttribute('grababble', '');
     menu2.removeAttribute('grabbable');
     menu1.setAttribute('grabbable', '');
-  }
+  },
+  
+  nextMenu: function (prevM, nextM){
+        this.lastMenuPosition = this.getMenuPosition(prevM);
+        this.changeGrabbable(nextM, prevM);
+        prevM.setAttribute('visible', false);
+        const buttons2 = prevM.querySelectorAll('[id]');
+        buttons2.forEach(button => {
+          button.setAttribute('visible', false);
+        });
+        setTimeout(() => {
+          this.applyMenuPosition(nextM, this.lastMenuPosition);
+          nextM.setAttribute('visible', true);
+          const buttons = nextM.querySelectorAll('[id]');
+          buttons.forEach(button => {
+            button.setAttribute('visible', true);
+          });
+        }, 500);
+  },
+  changeBoolean: function(boolName) {
+    console.log("TRAZA",this.sphere);
+    if (this[boolName] !== undefined) {
+      this[boolName] = !this[boolName];
+      console.log('Estado de ' + boolName + ' cambiado a: ' + this[boolName]);
+    }else {
+      console.warn('La propiedad ' + boolName + ' no existe en este componente');
+      console.log("TRAZA",this.sphere);
+    }
+  },
 });
