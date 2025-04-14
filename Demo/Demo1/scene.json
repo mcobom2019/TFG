@@ -13,6 +13,9 @@
           "widthet": "0.15",
           "color": "#2F6A31",
           "visible": "true",
+          "function1": "nextMenu",
+          "parameter1f1": "menuinicio",
+          "parameter2f1": "submenu1",
           "menuC1":{
               "id": "submenu1",
               "position": "0 1.5 -0.5",
@@ -28,6 +31,11 @@
                   "posety": "-0.01",
                   "widthet": "0.1",
                   "visible": "false",
+                  "function1": "changeBoolean",
+                  "parameter1f1": "bar",
+                  "function2": "nextMenu",
+                  "parameter1f2": "submenu1",
+                  "parameter2f2": "submenu2",
                   "menuC2":{
                     "id": "submenu2",
                     "position": "0 1.5 -0.5",
@@ -39,7 +47,14 @@
                           "id": "backButton",
                           "position": "-0.2 0.15 0",
                           "visible": "false",
-                          "color": "#C1440E"
+                          "color": "#C1440E",
+                          "function1": "initilizeBoolean",
+                          "parameter1f1": "pie",
+                          "function2": "initilizeBoolean",
+                          "parameter1f2": "bar",
+                          "function3": "nextMenu",
+                          "parameter1f3": "submenu2",
+                          "parameter2f3": "submenu1"
                         },
                         {
                           "label": "Motor",
@@ -300,20 +315,34 @@
                   "posety": "-0.01",
                   "widthet": "0.18",
                   "position": "0 -0.1 0",
-                  "visible": "false"
+                  "visible": "false",
+                  "function1": "changeBoolean",
+                  "parameter1f1": "pie",
+                  "function2": "nextMenu",
+                  "parameter1f2": "submenu1",
+                  "parameter2f2": "submenu2"
                 },
                 {
                   "label": "noLabel",
                   "id": "atrasButton",
                   "color": "#C1440E",
                   "position": "-0.2 0.15 0",
-                  "visible": "false"
+                  "visible": "false",
+                  "function1": "changeBoolean",
+                  "parameter1f1": "initmenu",
+                  "function2": "nextMenu",
+                  "parameter1f2": "submenu1",
+                  "parameter2f2": "menuinicio"
                 },
                 {
                   "label": "noLabel",
                   "id": "minButton2",
                   "position": "0.2 0.15 0",
-                  "visible": "false"
+                  "visible": "false",
+                  "function1": "changeBoolean",
+                  "parameter1f1": "m1",
+                  "function2": "minimizeMenu",
+                  "parameter1f2": "submenu1"
                 }
               ]
           }
@@ -327,7 +356,10 @@
           "width": "0.20",
           "posetx": "0.11",
           "posety": "-0.01",
-          "widthet":"0.29"
+          "widthet":"0.29",
+          "function1": "changeBoolean",
+          "parameter1f1": "isDarkMode",
+          "function2": "darkMode"
         },
         {
           "label": "Light Mode",
@@ -338,20 +370,29 @@
           "width": "0.20",
           "posetx": "0.11",
           "posety": "-0.01",
-          "widthet":"0.29"
+          "widthet":"0.29",
+          "function1": "changeBoolean",
+          "parameter1f1": "isDarkMode",
+          "function2": "lightMode"
         },
         {
           "label": "noLabel",
           "id": "minButton1",
           "position": "0.2 0.15 0",
-          "visible": "true"
+          "visible": "true",
+          "function1": "changeBoolean",
+          "parameter1f1": "initmenu",
+          "function2": "minimizeMenu",
+          "parameter1f2": "menuinicio"
         },
         {
           "label": "noLabel",
           "id": "xButton",
           "position": "-0.2 0.15 0",
           "visible": "true",
-          "color": "#f80000"
+          "color": "#f80000",
+          "function1": "deleteMenu",
+          "parameter1f1": "menuinicio"
         }
     ]
   }
