@@ -237,7 +237,7 @@ AFRAME.registerComponent('menu', {
     });
     
     //controladores botones submenu3.3
-    this.backButtonEl23.addEventListener('click', () => {
+    this.backButton23El.addEventListener('click', () => {
         this.nextMenu(this.submenu33, this.submenu2);
     });
     
@@ -386,7 +386,7 @@ AFRAME.registerComponent('menu', {
       menuEl.setAttribute('id', pMenu.id);
       menuEl.setAttribute('menuinicio', '');
       
-      if(menuEl.id === "subMenu4"){
+      if(menuEl.id === "submenu4"){
         const slider = document.createElement('a-entity');
         slider.setAttribute('id', 'sliderr');
         slider.setAttribute('slider', '');
