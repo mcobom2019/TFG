@@ -115,7 +115,9 @@
                                         "id": "backButton31",
                                         "position": "-0.2 0.15 0",
                                         "visible": "false",
-                                        "color": "#C1440E"
+                                        "color": "#C1440E",
+                                        "function1": "deleteDiagram",
+                                        "function2": "multipleBack"
                                       },
                                       {
                                         "label": "Show",
@@ -126,7 +128,7 @@
                                         "posety": "-0.01",
                                         "widthet": "0.16",
                                         "visible": "false",
-                                        "function": "viewDiagram"
+                                        "function1": "viewDiagram"
                                       },
                                       {
                                         "label": "Delete",
@@ -137,13 +139,17 @@
                                         "posety": "-0.01",
                                         "widthet": "0.16",
                                         "visible": "false",
-                                        "function": "deleteDiagram"
+                                        "function1": "deleteDiagram"
                                       },
                                       {
                                         "label": "noLabel",
                                         "id": "minButton5",
                                         "position": "0.2 0.15 0",
-                                        "visible": "false"
+                                        "visible": "false",
+                                        "function1": "changeBoolean",
+                                        "parameter1f1": "m4",
+                                        "function2": "minimizeMenu",
+                                        "parameter1f2": "submenu4"
                                       }
                                     ]
                                   }
@@ -241,7 +247,7 @@
                                 "widthet": "0.15",
                                 "visible": "false",
                                 "buttons": [],
-                                "function1": "initilizeBoolean",
+                                "function1": "changeBoolean",
                                 "parameter1f1": "white",
                                 "function2": "nextMenu",
                                 "parameter1f2": "submenu32",
@@ -258,7 +264,7 @@
                                 "widthet": "0.15",
                                 "visible": "false",
                                 "buttons": [],
-                                "function1": "initilizeBoolean",
+                                "function1": "changeBoolean",
                                 "parameter1f1": "black",
                                 "function2": "nextMenu",
                                 "parameter1f2": "submenu32",
@@ -275,7 +281,7 @@
                                 "widthet": "0.13",
                                 "visible": "false",
                                 "buttons": [],
-                                "function1": "initilizeBoolean",
+                                "function1": "changeBoolean",
                                 "parameter1f1": "red",
                                 "function2": "nextMenu",
                                 "parameter1f2": "submenu32",
@@ -292,7 +298,7 @@
                                 "widthet": "0.2",
                                 "visible": "false",
                                 "buttons": [],
-                                "function1": "initilizeBoolean",
+                                "function1": "changeBoolean",
                                 "parameter1f1": "yellow",
                                 "function2": "nextMenu",
                                 "parameter1f2": "submenu32",

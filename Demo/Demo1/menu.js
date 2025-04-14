@@ -45,234 +45,8 @@ AFRAME.registerComponent('menu', {
   setupEvents: function() {
     // Referencia a los elementos del menú
     this.setupMenuReferences();
-    /*this.menuinicio = document.querySelector('#menuinicio');
-    this.submenu1 = document.querySelector('#submenu1');
-    this.submenu2 = document.querySelector('#submenu2');
-    this.submenu31 = document.querySelector('#submenu31');
-    this.submenu32 = document.querySelector('#submenu32');
-    this.submenu33 = document.querySelector('#submenu33');*/
-    //this.submenu4 = document.querySelector('#submenu4');
     this.setupButtonReferences();
-    //boton de la mano izquierda Maximizar
-    /*this.maximizeButtonEl = document.querySelector('#maximizeButton');
-    this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
-
-    // Botones menuInicio
-    this.startButtonEl = document.querySelector('#startButton');
-    this.xButtonEl = document.querySelector('#xButton');
-    this.minButton1El = document.querySelector('#minButton1');
-    this.darkButtonEl = document.querySelector('#darkButton');
-    this.lightButtonEl = document.querySelector('#lightButton');
-    
-    //Botones Submenu1
-    this.barrasButtonEl = document.querySelector('#barrasButton');
-    this.circularButtonEl = document.querySelector('#circularButton');
-    this.atrasButtonEl = document.querySelector('#atrasButton');
-    this.minButton2El = document.querySelector('#minButton2');
-
-    //Botones submenu2
-    this.backButtonEl = document.querySelector('#backButton');
-    this.motorButtonEl = document.querySelector('#motorButton');
-    this.colorButtonEl = document.querySelector('#colorButton');
-    this.puertasButtonEl = document.querySelector('#puertasButton');
-    this.minButton3El = document.querySelector('#minButton3');
-    
-    //Botones submenu31
-    this.backButton21El = document.querySelector('#backButton21');
-    this.electricoButtonEl = document.querySelector('#electricoButton');
-    this.DieselButtonEl = document.querySelector('#DieselButton');
-    this.GasolinaButtonEl = document.querySelector('#GasolinaButton');
-    this.minButton41El = document.querySelector('#minButton41');
-    
-    //Botones submenu32
-    this.backButton22El = document.querySelector('#backButton22');
-    this.BlancoButtonEl = document.querySelector('#BlancoButton');
-    this.NegroButtonEl = document.querySelector('#NegroButton');
-    this.RojoButtonEl = document.querySelector('#RojoButton');
-    this.AmarilloButtonEl = document.querySelector('#AmarilloButton');
-    this.minButton42El = document.querySelector('#minButton42');
-    
-    //Botones submenu33
-    this.backButton23El = document.querySelector('#backButton23');
-    this.tresButtonEl = document.querySelector('#tresButton');
-    this.cincoButtonEl = document.querySelector('#cincoButton');
-    this.minButton43El = document.querySelector('#minButton43');
-    
-    //botones submenu4
-    this.backButton31El = document.querySelector('#backButton31');
-    this.mostrarButtonEl = document.querySelector('#mostrarButton');
-    this.borrarButtonEl = document.querySelector('#borrarButton');
-    this.minButton5El = document.querySelector('#minButton5');
-    this.sliderrEl = document.querySelector('#sliderr');*/
-    
-    //controladores botones menuInicio
-    this.startButtonEl.addEventListener('click', () => {
-      this.nextMenu(this.menuinicio, this.submenu1);
-    });
-    
-    this.minButton1El.addEventListener('click', () => {
-        this.changeBoolean('initmenu');
-        this.minimizeMenu(this.menuinicio);
-    });
-    
-    this.xButtonEl.addEventListener('click', () => {
-        this.deleteMenu(this.menuinicio);
-    });
-    
-    this.darkButtonEl.addEventListener('click', () => {
-        this.changeBoolean('isDarkMode');
-        this.darkMode();
-    });
-    
-    this.lightButtonEl.addEventListener('click', () => {
-        this.changeBoolean('isDarkMode');
-        this.lightMode();
-    });
-    
-    //controladores botones submenu1
-    this.atrasButtonEl.addEventListener('click', () => {
-        this.changeBoolean('initmenu');
-        this.nextMenu(this.submenu1, this.menuinicio);
-    });
-    
-    this.barrasButtonEl.addEventListener('click', () => {
-        this.changeBoolean('bar');
-        this.nextMenu(this.submenu1, this.submenu2);
-    });
-    
-    this.circularButtonEl.addEventListener('click', () => {
-        this.changeBoolean('pie');
-        this.nextMenu(this.submenu1, this.submenu2);
-    });
-    
-    this.minButton2El.addEventListener('click', () => {
-        this.changeBoolean('m1');
-        this.minimizeMenu(this.submenu1);
-    });
-    
-    //controladores botones submenu2
-    this.backButtonEl.addEventListener('click', () => {
-        this.initilizeBoolean('pie');
-        this.initilizeBoolean('bar');
-        this.nextMenu(this.submenu2, this.submenu1);
-    });
-    
-    this.motorButtonEl.addEventListener('click', () => {
-        this.nextMenu(this.submenu2, this.submenu31);
-    });
-    
-    this.colorButtonEl.addEventListener('click', () => {
-        this.nextMenu(this.submenu2, this.submenu32);
-    });
-    
-    this.puertasButtonEl.addEventListener('click', () => {
-        this.nextMenu(this.submenu2, this.submenu33);
-    });
-    
-    this.minButton3El.addEventListener('click', () => {
-        this.changeBoolean('m2');
-        this.minimizeMenu(this.submenu2);
-    });
-    
-    //controladores botones submenu3.1
-    this.backButton21El.addEventListener('click', () => {
-        this.initilizeBoolean('electric');
-        this.initilizeBoolean('diesel');
-        this.initilizeBoolean('gasoline');
-        this.nextMenu(this.submenu31, this.submenu2);
-    });
-    
-    this.electricoButtonEl.addEventListener('click', () => {
-        this.changeBoolean('electric');
-        this.nextMenu(this.submenu31, this.submenu4);
-    });
-    
-    this.DieselButtonEl.addEventListener('click', () => {
-        this.changeBoolean('diesel');
-        this.nextMenu(this.submenu31, this.submenu4);
-    });
-    
-    this.GasolinaButtonEl.addEventListener('click', () => {
-        this.changeBoolean('gasoline');
-        this.nextMenu(this.submenu31, this.submenu4);
-    });
-    
-    this.minButton41El.addEventListener('click', () => {
-        this.changeBoolean('m31');
-        this.minimizeMenu(this.submenu31);
-    });
-    
-    //controladores botones submenu3.2
-    this.backButton22El.addEventListener('click', () => {
-        this.initilizeBoolean('white');
-        this.initilizeBoolean('black');
-        this.initilizeBoolean('red');
-        this.initilizeBoolean('yellow');
-        this.nextMenu(this.submenu32, this.submenu2);
-    });
-    
-    this.BlancoButtonEl.addEventListener('click', () => {
-        this.changeBoolean('white');
-        this.nextMenu(this.submenu32, this.submenu4);
-    });
-    
-    this.NegroButtonEl.addEventListener('click', () => {
-        this.changeBoolean('black');
-        this.nextMenu(this.submenu32, this.submenu4);
-    });
-    
-    this.RojoButtonEl.addEventListener('click', () => {
-        this.changeBoolean('red');
-        this.nextMenu(this.submenu32, this.submenu4);
-    });
-    
-    this.AmarilloButtonEl.addEventListener('click', () => {
-        this.changeBoolean('yellow');
-        this.nextMenu(this.submenu32, this.submenu4);
-    });
-    
-    this.minButton42El.addEventListener('click', () => {
-        this.changeBoolean('m32');
-        this.minimizeMenu(this.submenu32);
-    });
-    
-    //controladores botones submenu3.3
-    this.backButton23El.addEventListener('click', () => {
-        this.initilizeBoolean('threedoors');
-        this.initilizeBoolean('fivedoors');
-        this.nextMenu(this.submenu33, this.submenu2);
-    });
-    
-    this.tresButtonEl.addEventListener('click', () => {
-        this.changeBoolean('threedoors');
-        this.nextMenu(this.submenu33, this.submenu4);
-    });
-    
-    this.cincoButtonEl.addEventListener('click', () => {
-        this.changeBoolean('fivedoors');
-        this.nextMenu(this.submenu33, this.submenu4);
-    });
-    
-    this.minButton43El.addEventListener('click', () => {
-        this.changeBoolean('m33');
-        this.minimizeMenu(this.submenu33);
-    });
-    
-    //controladores botones submenu4
-    this.backButton31El.addEventListener('click', () => {
-        this.deleteDiagram();
-        this.multipleBack();
-    });
-    this.mostrarButtonEl.addEventListener('click', () => {
-        this.viewDiagram();
-    });
-    this.borrarButtonEl.addEventListener('click', () => {
-        this.deleteDiagram();
-    });
-    this.minButton5El.addEventListener('click', () => {
-        this.changeBoolean('m4');
-        this.minimizeMenu(this.submenu4);
-    });
+    this.setupAutomaticButtonEvents();
     
     //controlador boton maximizar
     this.maximizeButtonEl.addEventListener('click', () => {
@@ -613,6 +387,7 @@ AFRAME.registerComponent('menu', {
     this.darkButtonEl.setAttribute('visible', false);
         this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
         this.el.sceneEl.addState('starry');
+        this.toggleLamp(true);
         setTimeout(() => {
           this.lightButtonEl.setAttribute('visible', true);
         }, 250);
@@ -621,6 +396,7 @@ AFRAME.registerComponent('menu', {
     this.lightButtonEl.setAttribute('visible', false);
         this.el.sceneEl.setAttribute('environment', {preset: 'default'});
         this.el.sceneEl.removeState('starry');
+        this.toggleLampinitilizeBoolean(true);
         setTimeout(() => {
           this.darkButtonEl.setAttribute('visible', true);
         }, 250);
@@ -793,4 +569,117 @@ AFRAME.registerComponent('menu', {
       console.warn('No se encontró el botón maximizar');
     }
   },
+  
+  setupAutomaticButtonEvents: function() {
+    if (!this.data) return;
+
+    console.log("Configurando eventos automáticos para botones...");
+
+    // Función recursiva para configurar eventos en un menú y sus submenús
+    const setupButtonEventsInMenu = (menuObj, menuId) => {
+      if (!menuObj || !menuObj.buttons || !Array.isArray(menuObj.buttons)) return;
+
+      console.log(`Configurando ${menuObj.buttons.length} botones para menú ${menuId}`);
+
+      // Recorrer todos los botones del menú
+      menuObj.buttons.forEach(button => {
+        if (!button.id) return;
+
+        const buttonEl = document.querySelector('#' + button.id);
+        if (!buttonEl) {
+          console.warn(`No se encontró el botón con ID: ${button.id}`);
+          return;
+        }
+
+        console.log(`Configurando botón ${button.id} con label: ${button.label || 'sin etiqueta'}`);
+
+        // Crear un solo event listener que ejecutará todas las funciones definidas
+        buttonEl.addEventListener('click', (event) => {
+          console.log(`Botón ${button.id} clickeado!`);
+
+          // Buscar hasta 6 funciones definidas (function1 a function6)
+          for (let i = 1; i <= 6; i++) {
+            const funcName = `function${i}`;
+
+            if (button[funcName]) {
+              const functionToCall = button[funcName];
+              console.log(`Ejecutando ${functionToCall} para botón ${button.id}`);
+
+              // Si la función no existe en el componente, mostrar error
+              if (typeof this[functionToCall] !== 'function') {
+                console.error(`La función "${functionToCall}" no existe en el componente menu`);
+                continue;
+              }
+
+              // Comprobar si hay parámetros para esta función específica
+              const param1 = button[`parameter1f${i}`];
+              const param2 = button[`parameter2f${i}`];
+
+              try {
+                // Manejo especial según el tipo de función
+                switch(functionToCall) {
+                  case 'nextMenu':
+                  case 'minimizeMenu':
+                  case 'maximizeMenu':
+                  case 'deleteMenu':
+                    // Estas funciones requieren elementos DOM
+                    if (param1) {
+                      const menuEl = document.querySelector('#' + param1);
+                      if (!menuEl) {
+                        console.error(`No se encontró el menú con ID: ${param1} para función ${functionToCall}`);
+                        continue;
+                      }
+
+                      console.log(`Llamando a ${functionToCall} con menú ${param1}`);
+
+                      if (param2 && functionToCall === 'nextMenu') {
+                        const menuEl2 = document.querySelector('#' + param2);
+                        if (!menuEl2) {
+                          console.error(`No se encontró el menú destino con ID: ${param2}`);
+                          continue;
+                        }
+                        this[functionToCall](menuEl, menuEl2);
+                      } else {
+                        this[functionToCall](menuEl);
+                      }
+                    } else {
+                      console.error(`No se especificó menú para función ${functionToCall}`);
+                    }
+                    break;
+
+                  default:
+                    // Otras funciones con sus parámetros normales
+                    if (param1 && param2) {
+                      this[functionToCall](param1, param2);
+                    } else if (param1) {
+                      this[functionToCall](param1);
+                    } else {
+                      this[functionToCall]();
+                    }
+                }
+              } catch (error) {
+                console.error(`Error ejecutando ${functionToCall}:`, error);
+              }
+            }
+          }
+        });
+
+        // Procesar recursivamente los submenús
+        Object.keys(button).forEach(key => {
+          if (key.startsWith('menuC') && button[key]) {
+            setupButtonEventsInMenu(button[key], button[key].id);
+          }
+        });
+      });
+    };
+
+    // Comenzar la configuración desde todos los menús principales
+    Object.keys(this.data).forEach(key => {
+      if (key.startsWith('menuP')) {
+        setupButtonEventsInMenu(this.data[key], this.data[key].id);
+      }
+    });
+
+    console.log("Configuración de eventos automáticos completada");
+  }
 });
