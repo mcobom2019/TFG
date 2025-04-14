@@ -238,6 +238,8 @@ AFRAME.registerComponent('menu', {
     
     //controladores botones submenu3.3
     this.backButton23El.addEventListener('click', () => {
+        this.initilizeBoolean('threedoors');
+        this.initilizeBoolean('fivedoors');
         this.nextMenu(this.submenu33, this.submenu2);
     });
     

@@ -99,6 +99,11 @@
                                 "posety": "-0.01",
                                 "widthet": "0.18",
                                 "visible": "false",
+                                "function1": "changeBoolean",
+                                "parameter1f1": "electric",
+                                "function2": "nextMenu",
+                                "parameter1f2": "submenu31",
+                                "parameter2f2": "submenu4",
                                     "menuC4":{
                                     "id": "submenu4",
                                     "position": "0 1.5 -0.5",
@@ -152,7 +157,12 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.16",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "changeBoolean",
+                                "parameter1f1": "diesel",
+                                "function2": "nextMenu",
+                                "parameter1f2": "submenu31",
+                                "parameter2f2": "submenu4"
                               },
                               {
                                 "label": "Gasoline",
@@ -163,14 +173,23 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.22",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "changeBoolean",
+                                "parameter1f1": "gasoline",
+                                "function2": "nextMenu",
+                                "parameter1f2": "submenu31",
+                                "parameter2f2": "submenu4"
                               },
                               {
                                 "label": "noLabel",
                                 "id": "minButton41",
                                 "position": "0.2 0.15 0",
                                 "visible": "false",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "changeBoolean",
+                                "parameter1f1": "m31",
+                                "function2": "minimizeMenu",
+                                "parameter1f2": "submenu31"
                               }
                             ]
                           }
@@ -198,7 +217,18 @@
                                 "color": "#C1440E",
                                 "id": "backButton22",
                                 "position": "-0.2 0.15 0",
-                                "visible": "false"
+                                "visible": "false",
+                                "function1": "initilizeBoolean",
+                                "parameter1f1": "white",
+                                "function2": "initilizeBoolean",
+                                "parameter1f2": "black",
+                                "function3": "initilizeBoolean",
+                                "parameter1f3": "red",
+                                "function4": "initilizeBoolean",
+                                "parameter1f4": "yellow",
+                                "function5": "nextMenu",
+                                "parameter1f5": "submenu32",
+                                "parameter2f5": "submenu2"
                               },
                               {
                                 "label": "White",
@@ -210,7 +240,12 @@
                                 "posetx": "-0.1",
                                 "widthet": "0.15",
                                 "visible": "false",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "initilizeBoolean",
+                                "parameter1f1": "white",
+                                "function2": "nextMenu",
+                                "parameter1f2": "submenu32",
+                                "parameter2f2": "submenu4"
                               },
                               {
                                 "label": "Black",
@@ -222,7 +257,12 @@
                                 "posetx": "-0.1",
                                 "widthet": "0.15",
                                 "visible": "false",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "initilizeBoolean",
+                                "parameter1f1": "black",
+                                "function2": "nextMenu",
+                                "parameter1f2": "submenu32",
+                                "parameter2f2": "submenu4"
                               },
                               {
                                 "label": "Red",
@@ -234,7 +274,12 @@
                                 "posetx": "0.1",
                                 "widthet": "0.13",
                                 "visible": "false",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "initilizeBoolean",
+                                "parameter1f1": "red",
+                                "function2": "nextMenu",
+                                "parameter1f2": "submenu32",
+                                "parameter2f2": "submenu4"
                               },
                               {
                                 "label": "Yellow",
@@ -242,19 +287,27 @@
                                 "position": "0.1 -0.09 0",
                                 "visible": "false",
                                 "color": "#2F6A31",
-                                
                                 "posety": "-0.01",
                                 "posetx": "0.1",
                                 "widthet": "0.2",
                                 "visible": "false",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "initilizeBoolean",
+                                "parameter1f1": "yellow",
+                                "function2": "nextMenu",
+                                "parameter1f2": "submenu32",
+                                "parameter2f2": "submenu4"
                               },
                               {
                                 "label": "noLabel",
                                 "id": "minButton42",
                                 "position": "0.2 0.15 0",
                                 "visible": "false",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "changeBoolean",
+                                "parameter1f1": "m32",
+                                "function2": "minimizeMenu",
+                                "parameter1f2": "submenu32"
                               }
                             ]
                           }
@@ -282,7 +335,14 @@
                                 "color": "#C1440E",
                                 "id": "backButton23",
                                 "position": "-0.2 0.15 0",
-                                "visible": "false"
+                                "visible": "false",
+                                "function1": "initilizeBoolean",
+                                "parameter1f1": "threedoors",
+                                "function2": "initilizeBoolean",
+                                "parameter1f2": "fivedoors",
+                                "function3": "nextMenu",
+                                "parameter1f3": "submenu33",
+                                "parameter2f3": "submenu2"
                               },
                               {
                                 "label": "3 Doors",
@@ -293,7 +353,12 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.19",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "changeBoolean",
+                                "parameter1f1": "threedoors",
+                                "function2": "nextMenu",
+                                "parameter1f2": "submenu33",
+                                "parameter2f2": "submenu4"
                               },
                               {
                                 "label": "5 Doors",
@@ -304,14 +369,23 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.19",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "changeBoolean",
+                                "parameter1f1": "fivedoors",
+                                "function2": "nextMenu",
+                                "parameter1f2": "submenu33",
+                                "parameter2f2": "submenu4"
                               },
                               {
                                 "label": "noLabel",
                                 "id": "minButton43",
                                 "position": "0.2 0.15 0",
                                 "visible": "false",
-                                "buttons": []
+                                "buttons": [],
+                                "function1": "changeBoolean",
+                                "parameter1f1": "m33",
+                                "function2": "minimizeMenu",
+                                "parameter1f2": "submenu33"
                               }
                             ]
                           }
