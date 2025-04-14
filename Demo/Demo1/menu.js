@@ -26,6 +26,7 @@ AFRAME.registerComponent('menu', {
     // Variable para almacenar la última posición conocida
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
+    this.createLamp();
     
     fetch('scene.json')
       .then(response => response.json())
@@ -396,7 +397,7 @@ AFRAME.registerComponent('menu', {
     this.lightButtonEl.setAttribute('visible', false);
         this.el.sceneEl.setAttribute('environment', {preset: 'default'});
         this.el.sceneEl.removeState('starry');
-        this.toggleLampinitilizeBoolean(true);
+        this.toggleLamp(false);
         setTimeout(() => {
           this.darkButtonEl.setAttribute('visible', true);
         }, 250);
@@ -681,5 +682,56 @@ AFRAME.registerComponent('menu', {
     });
 
     console.log("Configuración de eventos automáticos completada");
-  }
+  },
+  createLamp: function() {
+    const sceneEl = this.el.sceneEl;
+    
+    // Crear entidad para la lámpara
+    const lampEntity = document.createElement('a-entity');
+    lampEntity.setAttribute('id', 'menu-lamp');
+    
+    // Crear la luz puntual
+    const lightEntity = document.createElement('a-light');
+    lightEntity.setAttribute('type', 'point');
+    lightEntity.setAttribute('color', '#ffffff');
+    lightEntity.setAttribute('intensity', '0.8');
+    lightEntity.setAttribute('distance', '5');
+    lightEntity.setAttribute('position', '-0 0.2 0');
+    
+    // Crear modelo visual de la lámpara
+    const lampModelEntity = document.createElement('a-entity');
+    lampModelEntity.setAttribute('geometry', 'primitive: sphere; radius: 0.05');
+    lampModelEntity.setAttribute('material', 'color: #ffff99; emissive: #ffff00; emissiveIntensity: 0.8');
+    
+    // Crear soporte de la lámpara
+    const lampStandEntity = document.createElement('a-entity');
+    lampStandEntity.setAttribute('geometry', 'primitive: cylinder; radius: 0.01; height: 0.15');
+    lampStandEntity.setAttribute('material', 'color: #888888');
+    lampStandEntity.setAttribute('position', '0 -0.1 0');
+    
+    // Añadir componentes a la lámpara
+    lampEntity.appendChild(lightEntity);
+    lampEntity.appendChild(lampModelEntity);
+    lampEntity.appendChild(lampStandEntity);
+    
+    // Posicionar la lámpara cerca del campo de visión del usuario pero sin estorbar
+    lampEntity.setAttribute('position', '-0.5 1.5 -0.5');
+    
+    // Ocultar la lámpara inicialmente
+    lampEntity.setAttribute('visible', false);
+    lampEntity.setAttribute('grabbable', true);
+    
+    // Añadir la lámpara a la escena
+    sceneEl.appendChild(lampEntity);
+    
+    // Guardar referencia a la lámpara
+    this.lampEntity = lampEntity;
+  },
+  
+  // Método para mostrar/ocultar la lámpara
+  toggleLamp: function(show) {
+    if (this.lampEntity) {
+      this.lampEntity.setAttribute('visible', show);
+    }
+  },
 });
