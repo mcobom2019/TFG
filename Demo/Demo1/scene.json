@@ -65,6 +65,9 @@
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
+                          "function1": "nextMenu",
+                          "parameter1f1": "submenu2",
+                          "parameter2f1": "submenu31",
                           "menuC3":{
                             "id": "submenu31",
                             "position": "0 1.5 -0.5",
@@ -76,7 +79,16 @@
                                 "color": "#C1440E",
                                 "id": "backButton21",
                                 "position": "-0.2 0.15 0",
-                                "visible": "false"
+                                "visible": "false",
+                                "function1": "initilizeBoolean",
+                                "parameter1f1": "electric",
+                                "function2": "initilizeBoolean",
+                                "parameter1f2": "diesel",
+                                "function3": "initilizeBoolean",
+                                "parameter1f3": "gasoline",
+                                "function4": "nextMenu",
+                                "parameter1f4": "submenu31",
+                                "parameter2f4": "submenu2"
                               },
                               {
                                 "label": "Electric",
@@ -172,6 +184,9 @@
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
+                          "function1": "nextMenu",
+                          "parameter1f1": "submenu2",
+                          "parameter2f1": "submenu32",
                           "menuC5":{
                             "id": "submenu32",
                             "position": "0 1.5 -0.5",
@@ -253,6 +268,9 @@
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
+                          "function1": "nextMenu",
+                          "parameter1f1": "submenu2",
+                          "parameter2f1": "submenu33",
                           "menuC6":{
                             "id": "submenu33",
                             "position": "0 1.5 -0.5",
@@ -302,7 +320,11 @@
                           "label": "noLabel",
                           "id": "minButton3",
                           "position": "0.2 0.15 0",
-                          "visible": "false"
+                          "visible": "false",
+                          "function1": "changeBoolean",
+                          "parameter1f1": "m2",
+                          "function2": "minimizeMenu",
+                          "parameter1f2": "submenu2"
                         }
                     ]
                   }
