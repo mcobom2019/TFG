@@ -73,7 +73,7 @@ AFRAME.registerComponent('slider', {
   // Método para actualizar la interactividad basada en la visibilidad
   updateInteractivity: function() {
     // Obtener el estado de visibilidad del subMenu4
-    var parentMenu = document.querySelector('#subMenu4');
+    var parentMenu = document.querySelector('#submenu4');
     var isVisible = parentMenu && parentMenu.getAttribute('visible');
     
     // Solo realizar cambios si el estado de visibilidad ha cambiado

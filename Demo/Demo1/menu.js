@@ -51,7 +51,7 @@ AFRAME.registerComponent('menu', {
     this.submenu31 = document.querySelector('#submenu31');
     this.submenu32 = document.querySelector('#submenu32');
     this.submenu33 = document.querySelector('#submenu33');*/
-    this.submenu4 = document.querySelector('#submenu4');
+    //this.submenu4 = document.querySelector('#submenu4');
     
     //boton de la mano izquierda Maximizar
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
