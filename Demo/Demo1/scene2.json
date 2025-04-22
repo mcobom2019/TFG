@@ -498,12 +498,14 @@
         },
       {
           "label": "prueba",
-          "id": "xButton",
+          "id": "xButton2",
           "position": "-0.2 -0.15 0",
           "visible": "true",
           "color": "#f80000",
-          "function1": "deleteMenu",
-          "parameter1f1": "menuinicio"
+          "function1": "changeBoolean",
+          "parameter1f1": "initmenu",
+          "function2": "minimizeMenu",
+          "parameter1f2": "menuinicio"
         }
     ]
   
