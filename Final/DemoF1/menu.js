@@ -390,6 +390,8 @@ AFRAME.registerComponent('menu', {
     this.originalSkyVisible = document.querySelector('a-sky').getAttribute('visible');
     // Cambiar a modo oscuro
     document.querySelector('a-sky').setAttribute('visible', false);
+    document.querySelector('#luz1').setAttribute('light', 'intensity', 0);
+    document.querySelector('#luz2').setAttribute('light', 'intensity', 0);
     this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
     this.toggleLamp(true);
     this.isDarkMode = true;
@@ -403,6 +405,8 @@ AFRAME.registerComponent('menu', {
     this.el.sceneEl.removeAttribute('environment');
     document.querySelector('a-sky').setAttribute('src', '#sky');
     document.querySelector('a-sky').setAttribute('visible', true);
+    document.querySelector('#luz1').setAttribute('light', 'intensity', 0.7);
+    document.querySelector('#luz2').setAttribute('light', 'intensity', 0.7);
     this.toggleLamp(false);
     this.isDarkMode = false;
     setTimeout(() => {
