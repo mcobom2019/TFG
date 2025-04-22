@@ -5,8 +5,8 @@ AFRAME.registerComponent('menuinicio', {
     // bordes redondeados
     const shape = new THREE.Shape();
     const radius = 0.03;
-    const width = 1;
-    const height = 0.75;
+    const width = 0.6;
+    const height = 0.4;
 
     shape.moveTo(-width / 2 + radius, -height / 2);
     shape.lineTo(width / 2 - radius, -height / 2);
