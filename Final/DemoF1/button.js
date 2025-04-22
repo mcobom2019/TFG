@@ -1,13 +1,13 @@
 AFRAME.registerComponent('button', {
   schema: {
     label: {default: 'label'},
-    width: {default: 2},
+    width: {default: 0.5},
     toggleable: {default: false},
     color: {default: '#32527b'},
     posetx :{default: 0},//este es x
     posety :{default: 0},//este es z
     posetz :{default: 0},//este es y al reves
-    widthet: {default: 2}
+    widthet: {default: 0.5}
     
   },
 
@@ -20,7 +20,7 @@ AFRAME.registerComponent('button', {
     el.setAttribute('geometry', {
       primitive: 'cylinder',
       radius: this.data.width / 6.2,
-      height: 0.2
+      height: 0.05
     });
 
     // Rotar el botón 90 grados
@@ -37,7 +37,7 @@ AFRAME.registerComponent('button', {
     base.setAttribute('geometry', {
       primitive: 'cylinder',
       radius: this.data.width / 4.8,
-      height: 0.01
+      height: 0.03
     });
     base.setAttribute('position', '0 -0.01 0');
     base.setAttribute('material', {
@@ -61,7 +61,7 @@ AFRAME.registerComponent('button', {
         value: this.data.label,
         color: '#111',
         align: 'center',
-        width: 3.5
+        width: 1.5
       });
 
       labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety-0.004} ${this.data.posetz}`);

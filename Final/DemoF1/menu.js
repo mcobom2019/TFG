@@ -197,14 +197,14 @@ AFRAME.registerComponent('menu', {
         buttonEl.setAttribute('id', button.id);
         buttonEl.setAttribute('button', {
           label: button.label,
-          width: button.width || 2,
+          width: button.width || 0.5,
           toggleable: button.toggleable || false,
           primitive: button.primitive || 'cylinder',
           color: button.color ||'#32527b',
           posetx: button.posetx || 0,
           posety: button.posety || 0,
           posetz: button.posetz || 0,
-          widthet: button.widthet || 2
+          widthet: button.widthet || 0.5
         });
       }
       if (button.position) {

@@ -1,6 +1,6 @@
 {"menuP":{
     "id": "menuinicio",
-    "position": "0 -1 -0.5",
+    "position": "3 -2.5 -0.5",
     "visible": "true",
     "grabbable": "true",
     "buttons": [
@@ -452,7 +452,7 @@
         {
           "label": "Dark Mode",
           "id": "darkButton",
-          "position": "0 -1 0",
+          "position": "0 -0.25 0",
           "visible": "true",
           "color": "#2F6A31",
           "posetx": "1",
@@ -470,7 +470,7 @@
           "color": "#2F6A31",
           "posetx": "1",
           "posety": "-0.01",
-          "widthet":"2.9",
+          "widthet":"0.5",
           "function1": "changeBoolean",
           "parameter1f1": "isDarkMode",
           "function2": "lightMode"
@@ -478,7 +478,7 @@
         {
           "label": "noLabel",
           "id": "minButton1",
-          "position": "1.4 1 0",
+          "position": "0.35 0.25 0",
           "visible": "true",
           "function1": "changeBoolean",
           "parameter1f1": "initmenu",
@@ -488,7 +488,7 @@
         {
           "label": "noLabel",
           "id": "xButton",
-          "position": "-1.4 1 0",
+          "position": "-0.35 0.25 0",
           "visible": "true",
           "color": "#f80000",
           "function1": "deleteMenu",
