@@ -7,6 +7,7 @@
   <script src="https://gftruj.github.io/hand.tracking.controls.extras/dist/aframe-hand-tracking-controls-extras.js"></script>
   <script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
   <script src="https://unpkg.com/aframe-rounded@^1.0.0/aframe-rounded.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.2.0/dist/aframe-extras.min.js"></script>
   <script src="menu.js"></script>
   <script src="initMenu.js"></script>
   <script src="button.js"></script>
@@ -16,15 +17,78 @@
   <script src="slider.js"></script>
 </head>
 <body>
- 
-  <a-scene environment menu>
-      <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
-        <a-entity id="maximizeButton" button="label: noLabel; primitive: cylinder; width: 0.1; color: #a9825a" position="0 0.025 -0.01" visible="false"></a-entity>
+  <a-scene menu>
+    <!-- Assets -->
+    <a-assets>
+      <img id="sky" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/360-panorama.jpg?v=1745337225916">
+      <img id="floor" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/floor-texture.jpg?v=1745337241227">
+      <img id="metalic" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/metalic-texture.jpg?v=1745337245682">
+    </a-assets>
+    
+    <!-- Panorama -->
+    <a-sky src="#sky"></a-sky>
+    
+    <!-- Habitación - Paredes, Suelo y Techo (30% más pequeña) -->
+    <a-entity id="room" position="5 0 0">
+      <!-- Suelo -->
+      <a-plane id="floor2" src="#floor" position="0 0 0" rotation="-90 0 0" width="28" height="35" repeat="3 4"></a-plane>
+      
+      <!-- Techo - beige más oscuro que las paredes -->
+      <a-plane id="ceiling" color="#D2B48C" position="0 10 0" rotation="90 0 0" width="28" height="35"></a-plane>
+      
+      <!-- Paredes -->
+      <a-entity id="walls">
+        <!-- Pared Norte (cristalera) - Eliminamos el plano negro -->
+        <a-entity id="glass-wall">
+          <!-- Marco superior de la cristalera -->
+          <a-box position="0 9.5 -17.5" width="28" height="1" depth="0.25" color="#F5F5DC"></a-box>
+          
+          <!-- Marco inferior de la cristalera -->
+          <a-box position="0 0.5 -17.5" width="28" height="1" depth="0.25" color="#F5F5DC"></a-box>
+          
+          <!-- Marco izquierdo de la cristalera -->
+          <a-box position="-13.85 5 -17.5" width="0.3" height="10" depth="0.25" color="#F5F5DC"></a-box>
+          
+          <!-- Marco derecho de la cristalera -->
+          <a-box position="13.85 5 -17.5" width="0.3" height="10" depth="0.25" color="#F5F5DC"></a-box>
+          
+          <!-- Soportes verticales (cada 7 unidades para mantener proporción) -->
+          <a-box position="-7 5 -17.5" width="0.3" height="10" depth="0.25" color="#F5F5DC"></a-box>
+          <a-box position="0 5 -17.5" width="0.3" height="10" depth="0.25" color="#F5F5DC"></a-box>
+          <a-box position="7 5 -17.5" width="0.3" height="10" depth="0.25" color="#F5F5DC"></a-box>
+          
+          <!-- Paneles de vidrio transparentes (casi invisibles) -->
+          <a-entity id="glass-panels">
+            <a-plane position="-10.5 5 -17.4" width="6.5" height="8" color="#ADDEFF" opacity="0.2" material="transparent: true;"></a-plane>
+            <a-plane position="-3.5 5 -17.4" width="6.5" height="8" color="#ADDEFF" opacity="0.2" material="transparent: true;"></a-plane>
+            <a-plane position="3.5 5 -17.4" width="6.5" height="8" color="#ADDEFF" opacity="0.2" material="transparent: true;"></a-plane>
+            <a-plane position="10.5 5 -17.4" width="6.5" height="8" color="#ADDEFF" opacity="0.2" material="transparent: true;"></a-plane>
+          </a-entity>
+        </a-entity>
+        
+        <!-- Pared Sur (beige) -->
+        <a-box id="south-wall" position="0 5 17.5" width="28" height="10" depth="0.25" color="#F5F5DC"></a-box>
+        
+        <!-- Pared Este (beige) -->
+        <a-box id="east-wall" position="14 5 0" width="0.25" height="10" depth="35" color="#F5F5DC"></a-box>
+        
+        <!-- Pared Oeste (beige) -->
+        <a-box id="west-wall" position="-14 5 0" width="0.25" height="10" depth="35" color="#F5F5DC"></a-box>
       </a-entity>
-      <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
-      <a-entity>
-        <a-entity cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
-      </a-entity>
+    </a-entity>
+    
+    <!-- Mantener componentes originales -->
+    <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
+      <a-entity id="maximizeButton" button="label: noLabel; primitive: cylinder; width: 0.1; color: #a9825a" position="0 0.025 -0.01" visible="false"></a-entity>
+    </a-entity>
+    <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
+    <a-entity>
+      <a-entity cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
+    </a-entity>
+    
+    <!-- Luces -->
+    <a-entity light="color: #fff; type: ambient; intensity: 0.75"></a-entity>
+    <a-entity light="type: directional; color: #FFF; intensity: 0.6; castShadow: true" position="-1 1 -20" rotation="0 0 0"></a-entity>
   </a-scene>
 </body>
 </html>
