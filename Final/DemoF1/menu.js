@@ -204,7 +204,7 @@ AFRAME.registerComponent('menu', {
           posetx: button.posetx || 0,
           posety: button.posety || 0,
           posetz: button.posetz || 0,
-          widthet: button.widthet || 0.2
+          widthet: button.widthet || 2
         });
       }
       if (button.position) {

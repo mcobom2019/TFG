@@ -7,7 +7,7 @@ AFRAME.registerComponent('button', {
     posetx :{default: 0},//este es x
     posety :{default: 0},//este es z
     posetz :{default: 0},//este es y al reves
-    widthet: {default: 0.2}
+    widthet: {default: 2}
     
   },
 
@@ -53,7 +53,7 @@ AFRAME.registerComponent('button', {
       const labelEl = this.labelEl = document.createElement('a-entity');
       labelEl.setAttribute('geometry', {
         primitive: 'plane',
-        height: 0.025,
+        height: 0.35,
         width: (this.data.widthet + 0.05)/3
       });
       labelEl.setAttribute('material', {color: '#f0f0f0'});
@@ -61,7 +61,7 @@ AFRAME.registerComponent('button', {
         value: this.data.label,
         color: '#111',
         align: 'center',
-        width: 0.5
+        width: 3.5
       });
 
       labelEl.setAttribute('position', `${this.data.posetx} ${this.data.posety-0.004} ${this.data.posetz}`);

@@ -105,15 +105,16 @@
                                 </a-entity>
                                 <a-entity laser-controls="hand: right" oculus-touch-controls="hand: right" raycaster="objects: .babiaxraycasterclass">
                                 </a-entity>
+                                <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
+                                <a-entity id="maximizeButton" button="label: noLabel; primitive: cylinder; width: 0.1; color: #a9825a" position="0 0.025 -0.01" visible="false"></a-entity>
+                              </a-entity>
+                              <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
+                              <a-entity>
+                                <a-entity cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
+                              </a-entity>
                         </a-entity>
                 </a-entity>
-                <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
-                <a-entity id="maximizeButton" button="label: noLabel; primitive: cylinder; width: 0.1; color: #a9825a" position="0 0.025 -0.01" visible="false"></a-entity>
-              </a-entity>
-              <a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
-              <a-entity>
-                <a-entity cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
-              </a-entity>
+    
 
         </a-scene>
 </body>
