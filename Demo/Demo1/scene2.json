@@ -495,24 +495,18 @@
           "color": "#f80000",
           "function1": "deleteMenu",
           "parameter1f1": "menuinicio"
-        }
-     { 
-      "label": "Start",
-          "id": "startButton",
-          "position": "0 0 0",
-          "posetx": "0.092",
-          "posety": "-0.01",
-          "widthet": "0.15",
-          "color": "#2F6A31",
+        },
+      {
+          "label": "prueba",
+          "id": "xButton",
+          "position": "-0.2 -0.15 0",
           "visible": "true",
-          "function1": "nextMenu",
-          "parameter1f1": "menuinicio",
-          "parameter2f1": "submenu1",
-          "menuC1":{
-              "id": "submenu1",
-              "position": "0 1.5 -0.5",
-              "visible": "false",
-              "grabbable": "false",
+          "color": "#f80000",
+          "function1": "deleteMenu",
+          "parameter1f1": "menuinicio"
+        }
     ]
+  
   }
+
 }

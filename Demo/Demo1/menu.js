@@ -28,7 +28,7 @@ AFRAME.registerComponent('menu', {
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
     this.createLamp();
     
-    fetch('scene.json')
+    fetch('scene2.json')
       .then(response => response.json())
       .then(data => {
         // creo todos los menús
