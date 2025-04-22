@@ -719,6 +719,9 @@ AFRAME.registerComponent('menu', {
     });
 
     console.log("Configuración de eventos automáticos completada");
+  },
+  initilizeBoolean: function(boolName) {
+    this[boolName] = false;
   }
   
 });
