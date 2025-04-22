@@ -197,7 +197,7 @@ AFRAME.registerComponent('menu', {
         buttonEl.setAttribute('id', button.id);
         buttonEl.setAttribute('button', {
           label: button.label,
-          width: button.width || 0.2,
+          width: button.width || 2,
           toggleable: button.toggleable || false,
           primitive: button.primitive || 'cylinder',
           color: button.color ||'#32527b',

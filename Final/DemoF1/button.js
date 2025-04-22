@@ -1,7 +1,7 @@
 AFRAME.registerComponent('button', {
   schema: {
     label: {default: 'label'},
-    width: {default: 0.2},
+    width: {default: 2},
     toggleable: {default: false},
     color: {default: '#32527b'},
     posetx :{default: 0},//este es x
@@ -20,7 +20,7 @@ AFRAME.registerComponent('button', {
     el.setAttribute('geometry', {
       primitive: 'cylinder',
       radius: this.data.width / 6.2,
-      height: 0.02
+      height: 0.2
     });
 
     // Rotar el botón 90 grados
