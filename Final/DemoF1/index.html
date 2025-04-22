@@ -5,7 +5,6 @@
         <meta charset="utf-8">
         <title>BabiaXR Demo - COVID-19 Data into BabiaXr Charts </title>
         <meta name="description" content="BabiaXR Components Gallery using covid-19 data">
-        </meta>
         <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.2.0/dist/aframe-extras.min.js"></script>
         <script
@@ -70,22 +69,25 @@
                         <!-- Simple Components -->
                         <a-entity position=" 16 0 -12" lounge-plinth="width: 4; depth: 4" lounge-staydown>
                                 <a-entity id="pie"
-                                        babia-pie='legend: true; palette: blues; from: piedata; key: country; size: cases'
-                                        position="0 2.5 0" rotation="90 -45 0" scale="2 2 2"></a-entity>
+                                        babia-pie="legend: true; palette: blues; from: piedata; key: country; size: cases"
+                                         rotation="90 -45 0" scale="2 2 2"></a-entity>
+                          <a-entity babia-barsmap="from: data; legend: true; palette: ubuntu;
+                         x_axis: model; z_axis: color; height: sales" 
+          position="0 2.5 0" scale="2 2 2"></a-entity>
                         </a-entity>
                         <a-entity position="16 0 1" lounge-plinth="width: 4; depth: 4" lounge-staydown>
                                 <a-entity id="doughnut"
-                                        babia-doughnut='legend: true; palette: pearl; from: doughnutdata; key: country; size: cases'
+                                        babia-doughnut="legend: true; palette: pearl; from: doughnutdata; key: country; size: cases"
                                         position="0 2.5 0" rotation="90 -45 0" scale="1.5 1.5 1.5"></a-entity>
                         </a-entity>
                         <a-entity position="0 0 -8" lounge-plinth="width: 6.5; depth: 4" lounge-staydown>
                                 <a-entity id="bar"
-                                        babia-bars='legend: true; axis: true; heightMax: 15; from: bardata; x_axis: date; height: deaths'
+                                        babia-bars="legend: true; axis: true; heightMax: 15; from: bardata; x_axis: date; height: deaths"
                                         position="-2.25 0.275 0" rotation="0 0 0" scale="0.5 0.5 0.5"></a-entity>
                         </a-entity>
                         <a-entity position=" 2 0 10" lounge-plinth="width: 7; depth: 4" lounge-staydown>
                                 <a-entity id="cylinder"
-                                        babia-cyls='legend: true; axis: true; palette: sunset; heightMax: 15; x_axis: country; height: cases; radius: deaths; from: cylsdata'
+                                        babia-cyls="legend: true; axis: true; palette: sunset; heightMax: 15; x_axis: country; height: cases; radius: deaths; from: cylsdata"
                                         position="-2.75 0.275 -0.8" rotation="0 0 0" scale="0.15 0.4 0.15"></a-entity>
                         </a-entity>
 
@@ -93,36 +95,36 @@
                         <!-- 3D Components -->
                         <a-entity position="-12 0 -18" lounge-plinth="width: 10; depth: 4" lounge-staydown>
                                 <a-entity id="bubbles"
-                                        babia-bubbles='legend: true; palette: ubuntu; radiusMax: 2.2; heightMax: 30; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases'
+                                        babia-bubbles="legend: true; palette: ubuntu; radiusMax: 2.2; heightMax: 30; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases"
                                         position="-4.5 0.275 -1.2" rotation="0 0 0" scale="0.12 0.12 0.12"></a-entity>
                         </a-entity>
                         <a-entity position="-12 0 2" lounge-plinth="width: 3; depth: 9.8" lounge-staydown
                                 rotation="0 180 0">
                                 <a-entity id="3dcylinder"
-                                        babia-cylsmap='legend: true; palette: flat; heightMax: 100; radiusMax: 2; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases'
+                                        babia-cylsmap="legend: true; palette: flat; heightMax: 100; radiusMax: 2; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases"
                                         position="1 0.275 -4" rotation="0 -90 0" scale="0.1 0.1 0.1"></a-entity>
                         </a-entity>
                         <a-entity position="-12 0 20" lounge-plinth="width: 4; depth: 8" lounge-staydown rotation="0 180 0">
                                 <a-entity id="3dbar"
-                                        babia-barsmap='x_axis: key; z_axis: key2; height: size; legend: true; palette: bussiness; animation: true;
-                        heightMax:35; data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]'
+                                        babia-barsmap="x_axis: key; z_axis: key2; height: size; legend: true; palette: bussiness; animation: true;
+                        heightMax:35; data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]"
                                         position="-1.062 0.275 -1.887" rotation="0 0 0" scale="0.4 0.4 0.4"></a-entity>
                         </a-entity>
 
 
                         <!-- CodeCity Component-->
                         <a-entity position="16 3 20" lounge-plinth="width: 6; depth: 6" lounge-staydown>
-                                <a-entity position="0 0.25 0" id="codecity" babiaxr-codecity='width: 20; depth: 20; streets: true; color: green;
+                                <a-entity position="0 0.25 0" id="codecity" babiaxr-codecity="width: 20; depth: 20; streets: true; color: green;
                                 extra: 1.5; base_thick: 0.3; split: pivot; titles: true; time_evolution_delta: 3000;
-                                 data: main_data.json' scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
+                                 data: main_data.json" scale="0.3 0.3 0.3" rotation="0 180 0"></a-entity>
                         </a-entity>
 
                         <!-- Network Component -->
                         <a-entity position="7 3 -18" lounge-plinth="width: 6; depth: 6" lounge-staydown>
-                                <a-entity id="network" babia-network='nodesFrom: networknodes; linksFrom: networklinks;
+                                <a-entity id="network" babia-network="nodesFrom: networknodes; linksFrom: networklinks;
                                 nodeId: country; nodeLabel: country; nodeAutoColorBy: country; 
                                 nodeResolution: 20; nodeVal: population; nodeRelSize: 1; 
-                                linkWidth: 0.1; nodeLegend: true;' scale="0.1 0.1 0.1" rotation="0 0 -90"
+                                linkWidth: 0.1; nodeLegend: true;" scale="0.1 0.1 0.1" rotation="0 0 -90"
                                         position="0 5 0">
                                 </a-entity>
                         </a-entity>
@@ -141,7 +143,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-pie Component</h1>
                                 <p>This component shows a pie chart.
-                                <p>Raycaster: </br>Get intersection with a slice to show the value.</p>
+                                <p>Raycaster: <br>Get intersection with a slice to show the value.</p>
                                 </p>
                         </a-entity>
                 </a-entity>
@@ -151,7 +153,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-doughnut Component</h1>
                                 <p>This component shows a doughnut chart.
-                                <p>Raycaster: </br>Get intersection with a slice to show the value.</p>
+                                <p>Raycaster: <br>Get intersection with a slice to show the value.</p>
                                 </p>
                         </a-entity>
                 </a-entity>
@@ -161,7 +163,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-bars Component</h1>
                                 <p>This component shows a 2 axis bar chart.
-                                <p>Raycaster: </br>Get intersection with a bar to show the key and value.</p>
+                                <p>Raycaster: <br>Get intersection with a bar to show the key and value.</p>
                                 </p>
                         </a-entity>
                 </a-entity>
@@ -171,7 +173,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-cyls Component</h1>
                                 <p>This component shows a 2 axis cylinder chart.
-                                <p>Raycaster: </br>Get intersection with a cylinder to show the key and value.</p>
+                                <p>Raycaster: <br>Get intersection with a cylinder to show the key and value.</p>
                                 </p>
                         </a-entity>
                 </a-entity>
@@ -181,7 +183,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-barsmap Component</h1>
                                 <p>This component shows a 3 axis bar chart.
-                                <p>Raycaster: </br>Get intersection with a bar to show the keys and values.</p>
+                                <p>Raycaster: <br>Get intersection with a bar to show the keys and values.</p>
                                 </p>
                         </a-entity>
                 </a-entity>
@@ -191,7 +193,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-cylsmap Component</h1>
                                 <p>This component shows a 3 axis cylinder chart.
-                                <p>Raycaster: </br>Get intersection with a cylinder to show the keys and values.</p>
+                                <p>Raycaster: <br>Get intersection with a cylinder to show the keys and values.</p>
                                 </p>
                         </a-entity>
                 </a-entity>
@@ -201,7 +203,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-bubbles Component</h1>
                                 <p>This component shows a 3 axis bubbles chart.
-                                <p>Raycaster: </br>Get intersection with a bubbles to show the keys and values.</p>
+                                <p>Raycaster: <br>Get intersection with a bubbles to show the keys and values.</p>
                                 </p>
                         </a-entity>
                 </a-entity>
@@ -212,7 +214,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-city Component</h1>
                                 <p>This component shows a city created using repository data.
-                                <p>Raycaster: </br>Get intersection with a building to show the path.</p>
+                                <p>Raycaster: <br>Get intersection with a building to show the path.</p>
                                 </p>
                         </a-entity>
                 </a-entity>
@@ -222,7 +224,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-network Component</h1>
                                 <p>This component shows a set of nodes and relation links.
-                                <p>Raycaster: </br>Get intersection with a node to show its name.</p>
+                                <p>Raycaster: <br>Get intersection with a node to show its name.</p>
                                 </p>
                         </a-entity>
                 </a-entity>
@@ -232,7 +234,7 @@
                         <a-entity htmlembed position="0 0.1 0.1" style="width: 380px; height: 400px;">
                                 <h1>babia-ui Component</h1>
                                 <p>This component lets you choose between sets of data or metrics to show.
-                                <p>Interact: </br>Click on the different buttons to change the data of the doughnut
+                                <p>Interact: <br>Click on the different buttons to change the data of the doughnut
                                         chart.</p>
                                 </p>
                         </a-entity>
