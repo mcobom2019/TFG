@@ -384,23 +384,47 @@ AFRAME.registerComponent('menu', {
           button.setAttribute('visible', false);
         });
   },
-  darkMode: function (){
+  darkMode: function() {
     this.darkButtonEl.setAttribute('visible', false);
-        this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
-        this.el.sceneEl.addState('starry');
-        this.toggleLamp(true);
-        setTimeout(() => {
-          this.lightButtonEl.setAttribute('visible', true);
-        }, 250);
+    // Reducir la luz ambiental en modo oscuro
+    const ambientLight = document.querySelector('a-entity[light="type: ambient"]');
+    if (ambientLight) {
+      ambientLight.setAttribute('light', 'intensity', '0.3');
+    }
+    // Eliminar o atenuar otras luces direccionales
+    const directionalLights = document.querySelectorAll('a-entity[light="type: directional"]');
+    directionalLights.forEach(light => {
+      light.setAttribute('light', 'intensity', '0.2');
+    });
+
+    this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+    this.el.sceneEl.addState('starry');
+    this.isDarkMode = true;
+    this.toggleLamp(true);
+    setTimeout(() => {
+      this.lightButtonEl.setAttribute('visible', true);
+    }, 250);
   },
-  lightMode: function(){
+  lightMode: function() {
     this.lightButtonEl.setAttribute('visible', false);
-        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
-        this.el.sceneEl.removeState('starry');
-        this.toggleLamp(false);
-        setTimeout(() => {
-          this.darkButtonEl.setAttribute('visible', true);
-        }, 250);
+    // Restaurar la luz ambiental en modo claro
+    const ambientLight = document.querySelector('a-entity[light="type: ambient"]');
+    if (ambientLight) {
+      ambientLight.setAttribute('light', 'intensity', '0.75');
+    }
+    // Restaurar luces direccionales
+    const directionalLights = document.querySelectorAll('a-entity[light="type: directional"]');
+    directionalLights.forEach(light => {
+      light.setAttribute('light', 'intensity', '0.6');
+    });
+
+    this.el.sceneEl.setAttribute('environment', {preset: 'default'});
+    this.el.sceneEl.removeState('starry');
+    this.isDarkMode = false;
+    this.toggleLamp(false);
+    setTimeout(() => {
+      this.darkButtonEl.setAttribute('visible', true);
+    }, 250);
   },
   initilizeBoolean: function(boolName) {
     this[boolName] = false;
