@@ -8,6 +8,8 @@
   <script src="https://gftruj.github.io/hand.tracking.controls.extras/components/dist/hand-tracking-controls-extras-components.js"></script>
   <script src="https://unpkg.com/aframe-rounded@^1.0.0/aframe-rounded.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.2.0/dist/aframe-extras.min.js"></script>
+  <!-- Añadimos la biblioteca para htmlembed -->
+  <script src="https://unpkg.com/aframe-htmlembed-component@latest/dist/build.js"></script>
   <script src="menu.js"></script>
   <script src="initMenu.js"></script>
   <script src="button.js"></script>
@@ -64,21 +66,54 @@
             <a-plane position="2.1 5 -10.4" width="4" height="8" color="#ADDEFF" opacity="0.2" material="transparent: true;"></a-plane>
             <a-plane position="6.3 5 -10.4" width="4" height="8" color="#ADDEFF" opacity="0.2" material="transparent: true;"></a-plane>
           </a-entity>
+          
           <!-- COMPONENTES PARA LOS GRAFICOS-->
           <a-entity id="data1" babia-queryjson="url: https://raw.githubusercontent.com/mcobom2019/TFG/refs/heads/main/Jsons/usa2.json; path: data1"></a-entity>
+          
+          <!-- Base para el gráfico bar2Dmap -->
           <a-box id="chart-base" 
-                position="-6.75 0 9" 
-                width="3" 
+                position="-6.1 0.2 9" 
+                width="3.5" 
                 height="0.25" 
                 depth="3" 
                 color="#333333"
                 shadow="cast: true; receive: true">
           </a-box>
-          <a-entity id="bar2Dmap" babia-bars="legend: true; axis: true; heightMax: 15; from: data1; x_axis: date; height: deaths"
-          position="-5.25 0.275 9" rotation="0 180 0" scale="0.25 0.25 0.25"></a-entity>
           
-                       
-
+          <!-- Grupo para la placa metálica y su texto -->
+          <a-entity id="metal-plate-with-info" position="-2 1.5 8">
+            <!-- Placa metálica -->
+            <a-box id="metal-plate" 
+                 src="#metalic" 
+                 height="1.8" 
+                 width="1.8" 
+                 depth="0.05" 
+                 position="0 0 0">
+            </a-box>
+            
+            <!-- Texto explicativo sobre la placa metálica -->
+            <a-entity id="plate-text"
+                    htmlembed="ppu: 256"
+                    position="0 0 0.03" 
+                    rotation="0 0 0"
+                    style="width: 380px; height: 400px; color: white; background-color: rgba(0,0,0,0.5); padding: 15px; border-radius: 10px;">
+              <h1 style="text-align: center; color: #ffcc00; font-size: 22px; margin-bottom: 15px;">babia-bubbles Component</h1>
+              <p style="font-size: 18px; line-height: 1.4; margin-bottom: 10px;">This component shows a 3 axis bubbles chart.</p>
+              <p style="font-size: 18px; line-height: 1.4;">
+                Raycaster: <br>
+                Get intersection with a bubbles to show the keys and values.
+              </p>
+            </a-entity>
+          </a-entity>
+          
+          <!-- Gráfico de barras -->
+          <a-entity id="bar2Dmap" 
+                  babia-bars="legend: true; axis: true; heightMax: 15; from: data1; x_axis: date; height: deaths"
+                  position="-5.25 0.375 9" 
+                  rotation="0 180 0" 
+                  scale="0.25 0.25 0.25">
+          </a-entity>
+        </a-entity>
         
         <!-- Pared Sur (beige) -->
         <a-box id="south-wall" position="0 5 10.5" width="16.8" height="10" depth="0.25" color="#F5F5DC"></a-box>
@@ -101,9 +136,8 @@
     </a-entity>
     
     <!-- Luces -->
-    <!-- Luces -->
-<a-entity id="luz1" light="color: #fff; type: ambient; intensity: 0.7"></a-entity>
-<a-entity id="luz2" light="type: directional; color: #FFF; intensity: 0.7; castShadow: true" position="-1 1 -12" rotation="0 0 0"></a-entity>
+    <a-entity id="luz1" light="color: #fff; type: ambient; intensity: 0.7"></a-entity>
+    <a-entity id="luz2" light="type: directional; color: #FFF; intensity: 0.7; castShadow: true" position="-1 1 -12" rotation="0 0 0"></a-entity>
   </a-scene>
 </body>
 </html>
