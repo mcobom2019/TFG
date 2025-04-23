@@ -29,7 +29,7 @@
     <a-sky src="#sky"></a-sky>
     
     <!-- Habitación - Paredes, Suelo y Techo (40% más pequeña que la anterior) -->
-    <a-entity id="room" position="5 0.5 0">
+    <a-entity id="room" position="0 0.5 0">
       <!-- Suelo -->
       <a-plane id="floor2" src="#floor" position="0 0 0" rotation="-90 0 0" width="16.8" height="21" repeat="2 3"></a-plane>
       
@@ -64,6 +64,8 @@
             <a-plane position="2.1 5 -10.4" width="4" height="8" color="#ADDEFF" opacity="0.2" material="transparent: true;"></a-plane>
             <a-plane position="6.3 5 -10.4" width="4" height="8" color="#ADDEFF" opacity="0.2" material="transparent: true;"></a-plane>
           </a-entity>
+          <!-- COMPONENTES PARA LOS GRAFICOS-->
+          <a-entity id="data1" babia-queryjson="url: ./data.json; path: data1"></a-entity>
         </a-entity>
         
         <!-- Pared Sur (beige) -->
