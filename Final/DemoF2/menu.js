@@ -23,7 +23,7 @@ AFRAME.registerComponent('menu', {
     this.m4 = false;
     this.isDarkMode = false;
     this.numChair = 0;
-    
+    //this.chairs = [];
     // Variable para almacenar la última posición conocida
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -717,5 +717,58 @@ AFRAME.registerComponent('menu', {
     console.log('Silla eliminada. Última silla era: menu-chair' + (this.chairCounter + 1) + '. Número de sillas restantes: ' + this.chairCounter);
     
     return true;
-}
+}/*createChair: function() {
+    const sceneEl = this.el.sceneEl;
+
+    // Incrementar el contador
+    this.chairCounter++;
+    
+    // Crear la silla
+    const chairEntity = document.createElement('a-entity');
+    chairEntity.setAttribute('id', 'menu-chair' + this.chairCounter);
+    
+    // Configurar la silla (mantener la configuración original)
+    chairEntity.setAttribute('obj-model', {
+        obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745430026754'
+    });
+    chairEntity.setAttribute('scale', '0.01 0.01 0.01');
+    chairEntity.setAttribute('position', '0 0.5 -2');
+    chairEntity.setAttribute('grabbable', true);
+    
+    // Añadir la silla a la escena
+    sceneEl.appendChild(chairEntity);
+    
+    // Guardar la referencia a la entidad en el array
+    this.chairs.push(chairEntity);
+    
+    console.log('Silla creada con ID: ' + chairEntity.id + '. Total sillas: ' + this.chairs.length);
+    return chairEntity;
+},
+
+// Reemplazar completamente la función deleteChair:
+deleteChair: function() {
+    // Verificar si hay sillas para eliminar
+    if (this.chairs.length === 0) {
+        console.log('No hay sillas para eliminar');
+        return false;
+    }
+    
+    // Obtener la última silla añadida (la última en el array)
+    const lastChair = this.chairs.pop();
+    
+    // Registro para depuración
+    console.log('Eliminando silla: ' + lastChair.id);
+    
+    // Eliminar la silla de la escena
+    if (lastChair.parentNode) {
+        lastChair.parentNode.removeChild(lastChair);
+    }
+    
+    // Actualizar el contador si es necesario
+    this.chairCounter = this.chairs.length;
+    
+    console.log('Silla eliminada. Quedan ' + this.chairs.length + ' sillas');
+    return true;
+}*/
 });
