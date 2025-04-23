@@ -27,6 +27,7 @@ AFRAME.registerComponent('menu', {
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
     this.createLamp();
+    this.createChair();
     
     fetch('scene.json')
       .then(response => response.json())
@@ -643,4 +644,33 @@ AFRAME.registerComponent('menu', {
       this.lampEntity.setAttribute('visible', show);
     }
   },
+  createChair: function() {
+    const sceneEl = this.el.sceneEl;
+
+    // Crear entidad para la silla
+    const chairEntity = document.createElement('a-entity');
+    chairEntity.setAttribute('id', 'menu-chair');
+
+    // Cargar el modelo GLTF de la silla
+    chairEntity.setAttribute('gltf-model', 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/chair.gltf?v=1745429147865');
+
+    // Ajustar escala si es necesario
+    chairEntity.setAttribute('scale', '1 1 1');
+
+    // Posicionar la silla en la escena
+    chairEntity.setAttribute('position', '0 0 -2');
+
+    // Hacer que la silla sea agarrable
+    chairEntity.setAttribute('grabbable', true);
+
+    // Añadir la silla a la escena
+    sceneEl.appendChild(chairEntity);
+
+    // Guardar referencia a la silla
+    this.chairEntity = chairEntity;
+
+    console.log('Silla creada y añadida a la escena');
+
+    return chairEntity;
+  }
 });
