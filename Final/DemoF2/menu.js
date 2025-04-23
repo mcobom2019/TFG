@@ -218,82 +218,6 @@ AFRAME.registerComponent('menu', {
     });
   },
   
-  viewDiagram: function (){
-    var scene = document.querySelector("a-scene");
-        var dataEntity = document.createElement('a-entity');
-        dataEntity.setAttribute('id', 'data');
-        dataEntity.setAttribute('babia-queryjson', 'url: ./data.json; path: data');
-        scene.appendChild(dataEntity);
-      
-        // Crear entidad de filtro
-        var filterEntity = document.createElement('a-entity');
-        filterEntity.setAttribute('id', 'filter-data');
-      
-        // Lógica de filtrado
-        if(this.electric){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=electric');
-        } else if(this.diesel){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=diesel');
-        } else if(this.gasoline){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: motor=gasoline');
-        } else if(this.white){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=white');
-        } else if(this.black){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=black');
-        } else if(this.red){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=red');
-        } else if(this.yellow){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: color=yellow');
-        } else if(this.threedoors){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=3');
-        } else if(this.fivedoors){
-            filterEntity.setAttribute('babia-filter', 'from: data; filter: doors=5');
-        }
-        scene.appendChild(filterEntity);
-      
-        // Crear diagrama de barras
-        if(this.bar) {
-            var barChartEntity = document.createElement('a-entity');
-            barChartEntity.setAttribute('id', 'bar-chart');
-            barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
-            barChartEntity.setAttribute('position', '0 0.5 -1');
-            barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
-            scene.appendChild(barChartEntity);
-            //pieChartEntity.setAttribute('grabbable', '');
-            barChartEntity.setAttribute('size-change', '');
-          
-        }else if(this.pie){
-            var pieChartEntity = document.createElement('a-entity');
-            pieChartEntity.setAttribute('id', 'pie-chart');
-            pieChartEntity.setAttribute('babia-pie', 'from: filter-data; legend: true; palette: blues; key: model; size: doors');
-            pieChartEntity.setAttribute('position', '0 0.5 -1');
-            pieChartEntity.setAttribute('scale', '0.2 0.2 0.2');
-            pieChartEntity.setAttribute('rotation', '90 0 0');
-            scene.appendChild(pieChartEntity);
-            //pieChartEntity.setAttribute('grabbable', '');
-            pieChartEntity.setAttribute('size-change', '');
-        }
-  },
-  
-  deleteDiagram: function(){
-    var scene = document.querySelector("a-scene");
-        var barChart = document.querySelector('#bar-chart');
-        if (barChart) {
-            scene.removeChild(barChart);
-        }
-
-        // Eliminar diagrama circular si existe
-        var pieChart = document.querySelector('#pie-chart');
-        if (pieChart) {
-            scene.removeChild(pieChart);
-        }
-
-       // Eliminar filtro de datos si existe
-        var prevFilter = document.querySelector('#filter-data');
-        if (prevFilter) {
-            scene.removeChild(prevFilter);
-        }
-  },
   // Función auxiliar para obtener la posición actual de un menú
   getMenuPosition: function(menuElement) {
     if (!menuElement) return { x: 0, y: 0, z: 0 };
@@ -384,52 +308,37 @@ AFRAME.registerComponent('menu', {
           button.setAttribute('visible', false);
         });
   },
-  darkMode: function (){
+  darkMode: function() {
     this.darkButtonEl.setAttribute('visible', false);
-        this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
-        this.el.sceneEl.addState('starry');
-        this.toggleLamp(true);
-        setTimeout(() => {
-          this.lightButtonEl.setAttribute('visible', true);
-        }, 250);
+    // Guardamos el estado inicial para poder restaurarlo después
+    this.originalSkyVisible = document.querySelector('a-sky').getAttribute('visible');
+    // Cambiar a modo oscuro
+    document.querySelector('a-sky').setAttribute('visible', false);
+    document.querySelector('#luz1').setAttribute('light', 'intensity', 0);
+    document.querySelector('#luz2').setAttribute('light', 'intensity', 0);
+    this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+    this.toggleLamp(true);
+    this.isDarkMode = true;
+    setTimeout(() => {
+      this.lightButtonEl.setAttribute('visible', true);
+    }, 250);
   },
-  lightMode: function(){
+    lightMode: function() {
     this.lightButtonEl.setAttribute('visible', false);
-        this.el.sceneEl.setAttribute('environment', {preset: 'default'});
-        this.el.sceneEl.removeState('starry');
-        this.toggleLamp(false);
-        setTimeout(() => {
-          this.darkButtonEl.setAttribute('visible', true);
-        }, 250);
+    // Restaurar exactamente al estado inicial
+    this.el.sceneEl.removeAttribute('environment');
+    document.querySelector('a-sky').setAttribute('src', '#sky');
+    document.querySelector('a-sky').setAttribute('visible', true);
+    document.querySelector('#luz1').setAttribute('light', 'intensity', 0.7);
+    document.querySelector('#luz2').setAttribute('light', 'intensity', 0.7);
+    this.toggleLamp(false);
+    this.isDarkMode = false;
+    setTimeout(() => {
+      this.darkButtonEl.setAttribute('visible', true);
+    }, 250);
   },
   initilizeBoolean: function(boolName) {
     this[boolName] = false;
-  },
-  multipleBack: function(){
-    var scene = document.querySelector("a-scene");
-    // Guardar la posición actual del submenu4
-        this.lastMenuPosition = this.getMenuPosition(this.submenu4);
-        setTimeout(() => {
-          if(this.electric || this.diesel || this.gasoline){
-            this.initilizeBoolean('electric');
-            this.initilizeBoolean('diesel');
-            this.initilizeBoolean('gasoline');
-            this.nextMenu(this.submenu4, this.submenu31);
-            
-          }else if(this.white || this.black || this.red || this.yellow){
-            this.initilizeBoolean('white');
-            this.initilizeBoolean('black');
-            this.initilizeBoolean('red');
-            this.initilizeBoolean('yellow');
-            this.nextMenu(this.submenu4, this.submenu32);
-          
-          }else if(this.threedoors || this.fivedoors){
-              this.initilizeBoolean('threedoors');
-              this.initilizeBoolean('fivedoors');
-              this.nextMenu(this.submenu4, this.submenu33);
-          }
-          this.sliderrEl.setAttribute('visible', false);
-        }, 500);
   },
   maximizeMenu: function(menu){
     setTimeout(() => {
