@@ -256,8 +256,8 @@ AFRAME.registerComponent('menu', {
             var barChartEntity = document.createElement('a-entity');
             barChartEntity.setAttribute('id', 'bar-chart');
             barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
-            barChartEntity.setAttribute('position', '0 0.5 -1');
-            barChartEntity.setAttribute('scale', '0.1 0.1 0.1');
+            barChartEntity.setAttribute('position', '0 0.8 -5');
+            barChartEntity.setAttribute('scale', '0.15 0.15 0.15');
             scene.appendChild(barChartEntity);
             //pieChartEntity.setAttribute('grabbable', '');
             barChartEntity.setAttribute('size-change', '');
@@ -266,8 +266,8 @@ AFRAME.registerComponent('menu', {
             var pieChartEntity = document.createElement('a-entity');
             pieChartEntity.setAttribute('id', 'pie-chart');
             pieChartEntity.setAttribute('babia-pie', 'from: filter-data; legend: true; palette: blues; key: model; size: doors');
-            pieChartEntity.setAttribute('position', '0 0.5 -1');
-            pieChartEntity.setAttribute('scale', '0.2 0.2 0.2');
+            pieChartEntity.setAttribute('position', '0 1 -5');
+            pieChartEntity.setAttribute('scale', '0.4 0.4 0.4');
             pieChartEntity.setAttribute('rotation', '90 0 0');
             scene.appendChild(pieChartEntity);
             //pieChartEntity.setAttribute('grabbable', '');

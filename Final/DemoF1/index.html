@@ -188,7 +188,7 @@
           
           <!-- Gráfico cyls -->
           <a-entity id="cylinder" babia-cyls="legend: true; axis: true; palette: sunset; heightMax: 15; x_axis: country; height: cases; radius: deaths; from: data4"
-            position="-6.75 0.275 0.5" rotation="0 90 0" scale="0.12 0.4 0.18"></a-entity>
+            position="-6.75 0.275 -2.5" rotation="0 -90 0" scale="0.12 0.4 0.18"></a-entity>
         
         <!-- Gráfico de BAR3D -->
         <a-box id="chart-base5" position="6.5 0.13 -1" rotation="0 90 0" width="3.5" height="0.25" depth="3" color="#333333" shadow="cast: true; receive: true">
@@ -206,23 +206,40 @@
                     position="0 0 0.03" 
                     rotation="0 0 0"
                     style="width: 190px; height: 200px; color: white; background-color: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px;">
-              <h1 style="text-align: center; color: #ffcc00; font-size: 14px; margin-bottom: 8px;">babia-cyls Component</h1>
-              <p style="font-size: 11px; line-height: 1.3; margin-bottom: 5px;">This component shows a 2 axis cylinder chart.</p>
-              <p style="font-size: 11px; line-height: 1.3;">
-                Raycaster: <br>Get intersection with a cylinder to show the key and value.
-              </p>
+              <h1 style="text-align: center; color: #ffcc00; font-size: 14px; margin-bottom: 8px;">babia-barsmap Component</h1>
+              <p style="font-size: 11px; line-height: 1.3; margin-bottom: 5px;">This component shows a 3 axis bar chart.</p>
+              <p style="font-size: 11px; line-height: 1.3;">Raycaster: <br>Get intersection with a bar to show the keys and values.</p>
             </a-entity>
           </a-entity>
           
-          <!-- Gráfico cyls -->
+          <!-- Gráfico bar3D -->
 
            <a-entity id="3dbar" babia-barsmap='x_axis: key; z_axis: key2; height: size; legend: true; palette: bussiness; animation: true;
                   heightMax:35; data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]'
-                    position="6.75 0.275 -2" rotation="0 180 0" scale="0.2 0.2 0.2"></a-entity>
+                    position="6.75 0.275 0" rotation="0 180 0" scale="0.2 0.2 0.2"></a-entity>
 
 
 
-        
+        <a-box id="chart-base6" position="0 0.13 -5" rotation="0 90 0" width="3.5" height="0.25" depth="3" color="#333333" shadow="cast: true; receive: true">
+          </a-box>
+          
+          <!-- Grupo para la placa metálica y su texto (más pequeño) -->
+          <a-entity id="metal-plate-with-info6" position="5.1 0.5 -2.3" rotation="0 -90 0">
+            <!-- Placa metálica (mitad del tamaño anterior) -->
+            <a-box id="metal-plate6" src="#metalic" height="0.5" width="0.5" depth="0.05" position="0 0 0">
+            </a-box>
+            
+            <!-- Texto explicativo sobre la placa metálica (ajustado para la placa más pequeña) -->
+            <a-entity id="plate-text6"
+                    htmlembed="ppu: 512"
+                    position="0 0 0.03" 
+                    rotation="0 0 0"
+                    style="width: 190px; height: 200px; color: white; background-color: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px;">
+              <h1 style="text-align: center; color: #ffcc00; font-size: 14px; margin-bottom: 8px;">babia-barsmap Component</h1>
+              <p style="font-size: 11px; line-height: 1.3; margin-bottom: 5px;">This component shows a 3 axis bar chart.</p>
+              <p style="font-size: 11px; line-height: 1.3;">Raycaster: <br>Get intersection with a bar to show the keys and values.</p>
+            </a-entity>
+          </a-entity>
         
         <!-- Pared Sur (beige) -->
         <a-box id="south-wall" position="0 5 10.5" width="16.8" height="10" depth="0.25" color="#F5F5DC"></a-box>
