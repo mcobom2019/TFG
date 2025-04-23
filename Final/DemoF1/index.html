@@ -66,11 +66,19 @@
           </a-entity>
           <!-- COMPONENTES PARA LOS GRAFICOS-->
           <a-entity id="data1" babia-queryjson="url: https://raw.githubusercontent.com/mcobom2019/TFG/refs/heads/main/Jsons/usa2.json; path: data1"></a-entity>
+          <a-box id="chart-base" 
+                position="-6.75 0 9" 
+                width="3" 
+                height="0.25" 
+                depth="3" 
+                color="#333333"
+                shadow="cast: true; receive: true">
+          </a-box>
+          <a-entity id="bar2Dmap" babia-bars="legend: true; axis: true; heightMax: 15; from: data1; x_axis: date; height: deaths"
+          position="-5.25 0.275 9" rotation="0 180 0" scale="0.25 0.25 0.25"></a-entity>
           
-        <a-entity id="barsmapp" babia-barsmap="from: data1; legend: true; axis: true; heightMax: 15; x_axis: date; palette: ubuntu; 
-                         x_axis: model; z_axis: color; height: deaths" 
-                  position="1 0.275 0" scale="0.5 0.5 0.5"></a-entity>
-        </a-entity>
+                       
+
         
         <!-- Pared Sur (beige) -->
         <a-box id="south-wall" position="0 5 10.5" width="16.8" height="10" depth="0.25" color="#F5F5DC"></a-box>
