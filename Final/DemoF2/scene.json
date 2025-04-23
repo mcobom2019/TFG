@@ -76,9 +76,7 @@
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
-                          "function1": "nextMenu",
-                          "parameter1f1": "submenu2",
-                          "parameter2f1": "submenu32"
+                          "function1": "deleteChair"
                         },
                         {
                           "label": "+",
