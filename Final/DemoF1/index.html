@@ -190,12 +190,12 @@
           <a-entity id="cylinder" babia-cyls="legend: true; axis: true; palette: sunset; heightMax: 15; x_axis: country; height: cases; radius: deaths; from: data4"
             position="-6.75 0.275 0.5" rotation="0 90 0" scale="0.12 0.4 0.18"></a-entity>
         
-        <!-- Gráfico de CYLS -->
-        <a-box id="chart-base5" position="-6.5 0.13 -1" rotation="0 90 0" width="3.5" height="0.25" depth="3" color="#333333" shadow="cast: true; receive: true">
+        <!-- Gráfico de BAR3D -->
+        <a-box id="chart-base5" position="6.5 0.13 -1" rotation="0 90 0" width="3.5" height="0.25" depth="3" color="#333333" shadow="cast: true; receive: true">
           </a-box>
           
           <!-- Grupo para la placa metálica y su texto (más pequeño) -->
-          <a-entity id="metal-plate-with-info5" position="-5.1 0.5 -2.3" rotation="0 90 0">
+          <a-entity id="metal-plate-with-info5" position="5.1 0.5 -2.3" rotation="0 -90 0">
             <!-- Placa metálica (mitad del tamaño anterior) -->
             <a-box id="metal-plate5" src="#metalic" height="0.5" width="0.5" depth="0.05" position="0 0 0">
             </a-box>
@@ -215,11 +215,10 @@
           </a-entity>
           
           <!-- Gráfico cyls -->
-          <a-entity id="3dbar" babia-barsmap="x_axis: key; z_axis: key2; height: size; legend: true; palette: bussiness; animation: true;
-                  heightMax:35; data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]"
-                  position="-1.062 0.275 -1.887" rotation="0 0 0" scale="0.4 0.4 0.4"></a-entity>
 
-
+           <a-entity id="3dbar" babia-barsmap='x_axis: key; z_axis: key2; height: size; legend: true; palette: bussiness; animation: true;
+                  heightMax:35; data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]'
+                    position="6.75 0.275 -2" rotation="0 180 0" scale="0.2 0.2 0.2"></a-entity>
 
 
 
