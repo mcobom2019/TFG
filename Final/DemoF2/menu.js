@@ -670,6 +670,12 @@ AFRAME.registerComponent('menu', {
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
       furnitureEntity.setAttribute('position', '0 1 -2');
+    }if(this.nightstand){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_4532938_Wooden%2B2%2BDrawers%2BNightstand.glb?v=1745492534532'
+      );
+      furnitureEntity.setAttribute('scale', '1 1 1');
+      furnitureEntity.setAttribute('position', '0 1 -2');
     }
     // Hacer que la silla sea agarrable
     furnitureEntity.setAttribute('grabbable', true);

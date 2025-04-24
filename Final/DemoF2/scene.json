@@ -52,9 +52,13 @@
                           "parameter1f1": "chair",
                           "function2": "initilizeBoolean",
                           "parameter1f2": "bed",
-                          "function3": "nextMenu",
-                          "parameter1f3": "submenu2",
-                          "parameter2f3": "submenu1"
+                          "function3": "initilizeBoolean",
+                          "parameter1f3": "table",
+                          "function4": "initilizeBoolean",
+                          "parameter1f4": "nightstand",
+                          "function5": "nextMenu",
+                          "parameter1f5": "submenu2",
+                          "parameter2f5": "submenu1"
                         },
                         {
                           "label": "Create",
@@ -159,15 +163,7 @@
                   "parameter1f1": "initmenu",
                   "function2": "nextMenu",
                   "parameter1f2": "submenu1",
-                  "parameter2f2": "menuinicio",
-                  "function3": "initilizeBoolean",
-                  "parameter1f3": "table",
-                  "function4": "initilizeBoolean",
-                  "parameter1f4": "bed",
-                  "function5": "initilizeBoolean",
-                  "parameter1f5": "table",
-                  "function6": "initilizeBoolean",
-                  "parameter1f6": "table"
+                  "parameter2f2": "menuinicio"
                 },
                 {
                   "label": "noLabel",
