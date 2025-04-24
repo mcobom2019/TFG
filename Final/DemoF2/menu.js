@@ -748,10 +748,18 @@ AFRAME.registerComponent('menu', {
         this.lastMenuPosition = this.getMenuPosition(this.submenu2);
         setTimeout(() => {
           if(this.furniture){
+            this.initilizeBoolean(this.chair);
+            this.initilizeBoolean(this.bed);
+            this.initilizeBoolean(this.table);
+            this.initilizeBoolean(this.nightstand);
             this.nextMenu(this.submenu2, this.submenu1);
           }else if(this.decoration){
+            this.initilizeBoolean(this.lamp);
+            this.initilizeBoolean(this.bowl);
+            this.initilizeBoolean(this.pictures);
+            this.initilizeBoolean(this.plant);
             this.nextMenu(this.submenu2, this.submenu3);
           }
-        }, 500);
+        }, 200);
   },
 });
