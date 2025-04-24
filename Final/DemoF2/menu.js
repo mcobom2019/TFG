@@ -655,19 +655,15 @@ AFRAME.registerComponent('menu', {
         mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
       });
       furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
+      furnitureEntity.setAttribute('position', '0 0.5 -2');
     }if(this.bed){
       furnitureEntity.setAttribute('obj-model', {
         obj: 'https://cdn.glitch.me/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/bed_02.obj?v=1745486975982',
-        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/bed_02.mtl?v=1745487570901'
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/bed_02.mtl?v=1745488240486'
       });
-      furnitureEntity.setAttribute('scale', '0.1 0.001 0.001');
+      furnitureEntity.setAttribute('scale', '1 1 1');
+      furnitureEntity.setAttribute('position', '0 1 -2');
     }
-    
-    // Ajustar escala si es necesario
-    
-
-    // Posicionar la silla en la escena
-    furnitureEntity.setAttribute('position', '0 0.5 -2');
 
     // Hacer que la silla sea agarrable
     furnitureEntity.setAttribute('grabbable', true);
