@@ -657,14 +657,12 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
       furnitureEntity.setAttribute('position', '0 0.5 -2');
     }if(this.bed){
-      furnitureEntity.setAttribute('obj-model', {
-        obj: 'https://cdn.glitch.me/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/fbde03.obj?v=1745488801011',
-        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/fbde03%20(1).mtl?v=1745488761978'
-      });
-      furnitureEntity.setAttribute('scale', '10 10 10');
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.me/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed.glb?v=1745489241991'
+      );
+      furnitureEntity.setAttribute('scale', '1 1 1');
       furnitureEntity.setAttribute('position', '0 1 -2');
     }
-
     // Hacer que la silla sea agarrable
     furnitureEntity.setAttribute('grabbable', true);
 
