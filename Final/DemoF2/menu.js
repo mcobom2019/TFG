@@ -658,8 +658,8 @@ AFRAME.registerComponent('menu', {
 
     // Cargar el modelo OBJ de la silla
     chairEntity.setAttribute('obj-model', {
-      obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
-      mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745430026754'
+      obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Chair_low.obj?v=1745482071205',
+      
     });
 
     // Ajustar escala si es necesario
