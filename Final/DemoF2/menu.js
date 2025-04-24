@@ -15,7 +15,7 @@ AFRAME.registerComponent('menu', {
     this.decoration = false;
     
     this.initmenu = false;
-    this.m0 = false;
+    this.m5 = false;
     this.m1 = false;
     this.m2 = false;
     this.m3 = false;
@@ -50,6 +50,7 @@ AFRAME.registerComponent('menu', {
     
     //controlador boton maximizar
     this.maximizeButtonEl.addEventListener('click', () => {
+        console.log("TRAZA"+this.initmenu);
         this.maximizeButtonEl.setAttribute('visible', false);
         if(this.initmenu){
           setTimeout(() => {

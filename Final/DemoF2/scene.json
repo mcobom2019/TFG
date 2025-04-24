@@ -156,11 +156,11 @@
                 },
                 {
                   "label": "noLabel",
-                  "id": "minButton0",
+                  "id": "minButton5",
                   "position": "0.2 0.15 0",
                   "visible": "true",
                   "function1": "changeBoolean",
-                  "parameter1f1": "m0",
+                  "parameter1f1": "m5",
                   "function2": "minimizeMenu",
                   "parameter1f2": "submenu0"
                 }
