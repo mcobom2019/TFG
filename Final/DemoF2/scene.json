@@ -60,7 +60,16 @@
                   "parameter1f2": "submenu0",
                   "parameter2f2": "menuinicio"
                 },
-                
+                {
+                  "label": "noLabel",
+                  "id": "minButton0",
+                  "position": "0.2 0.15 0",
+                  "visible": "true",
+                  "function1": "changeBoolean",
+                  "parameter1f1": "m0",
+                  "function2": "minimizeMenu",
+                  "parameter1f2": "submenu0"
+                }
               ]
           },
           "menuC1":{
@@ -72,7 +81,7 @@
                 {
                   "label": "Bed",
                   "id": "bedButton",
-                  "position": "-0.15 -0.09 0",
+                  "position": "-0.1 0.03 0",
                   "color": "#2F6A31",
                   "posety": "-0.01",
                   "posetx": "-0.1",
@@ -162,7 +171,7 @@
                   "posety": "-0.01",
                   "posetx": "-0.1",
                   "widthet": "0.15",
-                  "position": "-0.15 0.03 0",
+                  "position": "-0.1 -0.09 0",
                   "visible": "false",
                   "function1": "changeBoolean",
                   "parameter1f1": "chair",
@@ -177,7 +186,7 @@
                   "posety": "-0.01",
                   "posetx": "0.1",
                   "widthet": "0.13",
-                  "position": "0.14 0.03 0",
+                  "position": "0.1 0.03 0",
                   "visible": "false",
                   "function1": "changeBoolean",
                   "parameter1f1": "table",

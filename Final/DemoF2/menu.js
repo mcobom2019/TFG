@@ -8,6 +8,7 @@ AFRAME.registerComponent('menu', {
     this.table = false;
     
     this.initmenu = false;
+    this.m0 = false;
     this.m1 = false;
     this.m2 = false;
     this.m3 = false;
@@ -67,6 +68,11 @@ AFRAME.registerComponent('menu', {
           setTimeout(() => {
             this.maximizeMenu(this.submenu3);
             this.initilizeBoolean('m3');
+          }, 500);
+        }else if(this.m0){
+          setTimeout(() => {
+            this.maximizeMenu(this.submenu0);
+            this.initilizeBoolean('m0');
           }, 500);
         }
     });
