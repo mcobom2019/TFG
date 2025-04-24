@@ -9,6 +9,7 @@ AFRAME.registerComponent('menu', {
     this.lamp = false;
     this.bowl = false;
     this.pictures = false;
+    this.plant = false;
     
     this.furniture = false;
     this.decoration = false;
@@ -685,6 +686,13 @@ AFRAME.registerComponent('menu', {
     }if(this.pictures){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3696339_Paintings.glb?v=1745512824249'
+      );
+      furnitureEntity.setAttribute('scale', '0.8 0.8 0.8');
+      furnitureEntity.setAttribute('rotation', '0 90 0');
+      furnitureEntity.setAttribute('position', '0 1.1 -2');
+    }if(this.plant){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5656299_Model_Caladium.glb?v=1745513921773'
       );
       furnitureEntity.setAttribute('scale', '0.8 0.8 0.8');
       furnitureEntity.setAttribute('rotation', '0 90 0');
