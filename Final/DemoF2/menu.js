@@ -657,10 +657,10 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
     }if(this.bed){
       furnitureEntity.setAttribute('obj-model', {
-        obj: 'https://cdn.glitch.me/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_Smania_Caesar.obj?v=1745485424046',
-        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_Smania_Caesar.mtl?v=1745485382823'
+        obj: 'https://cdn.glitch.me/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/bed_02.obj?v=1745486975982',
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/bed_02.mtl?v=1745487570901'
       });
-      furnitureEntity.setAttribute('scale', '0.1 0.1 0.1');
+      furnitureEntity.setAttribute('scale', '0.1 0.001 0.001');
     }
     
     // Ajustar escala si es necesario
