@@ -67,10 +67,13 @@
                         "widthet": "0.15",
                         "visible": "false",
                         "function1": "changeBoolean",
-                        "parameter1f1": "lamp"
+                        "parameter1f1": "lamp",
+                        "function2": "nextMenu",
+                        "parameter1f2": "submenu3",
+                        "parameter2f2": "submenu2"
                       },
                       {
-                        "label": "Picture",
+                        "label": "Pictures",
                         "id": "pictureButton",
                         "color": "#2F6A31",
                         "posety": "-0.01",
@@ -79,7 +82,7 @@
                         "position": "-0.1 -0.09 0",
                         "visible": "false",
                         "function1": "changeBoolean",
-                        "parameter1f1": "chair",
+                        "parameter1f1": "pictures",
                         "function2": "nextMenu",
                         "parameter1f2": "submenu3",
                         "parameter2f2": "submenu2"
@@ -94,7 +97,10 @@
                         "position": "0.1 0.03 0",
                         "visible": "false",
                         "function1": "changeBoolean",
-                        "parameter1f1": "bowl"
+                        "parameter1f1": "bowl",
+                        "function2": "nextMenu",
+                        "parameter1f2": "submenu3",
+                        "parameter2f2": "submenu2"
                       },
                       {
                         "label": "Nstand",

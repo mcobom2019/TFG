@@ -8,6 +8,7 @@ AFRAME.registerComponent('menu', {
     this.table = false;
     this.lamp = false;
     this.bowl = false;
+    this.pictures = false;
     
     this.furniture = false;
     this.decoration = false;
@@ -677,10 +678,17 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('position', '0 1.65 -2');
     }if(this.bowl){
       furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6002454_Lampa_v2_glb.glb?v=1745511627153'
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3962993_fruit_bowl.glb?v=1745512607464'
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
-      furnitureEntity.setAttribute('position', '0 1.65 -2');
+      furnitureEntity.setAttribute('position', '0 0.75 -2');
+    }if(this.pictures){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3696339_Paintings.glb?v=1745512824249'
+      );
+      furnitureEntity.setAttribute('scale', '0.8 0.8 0.8');
+      furnitureEntity.setAttribute('rotation', '0 90 0');
+      furnitureEntity.setAttribute('position', '0 1.1 -2');
     }
     // Hacer que la silla sea agarrable
     furnitureEntity.setAttribute('grabbable', true);
