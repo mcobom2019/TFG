@@ -206,15 +206,15 @@
                           "parameter1f3": "table",
                           "function4": "initilizeBoolean",
                           "parameter1f4": "nightstand",
-                          "function5": "multipleBack",
+                          "function5": "initilizeBoolean",
+                          "parameter1f5": "lamp",
                           "function6": "initilizeBoolean",
-                          "parameter1f6": "chair",
+                          "parameter1f6": "bowl",
                           "function7": "initilizeBoolean",
-                          "parameter1f7": "bed",
+                          "parameter1f7": "pictures",
                           "function8": "initilizeBoolean",
-                          "parameter1f8": "table",
-                          "function9": "initilizeBoolean",
-                          "parameter1f9": "nightstand"
+                          "parameter1f8": "plant",
+                          "function9": "multipleBack"
                           
                         },
                         {
