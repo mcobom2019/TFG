@@ -644,7 +644,7 @@ AFRAME.registerComponent('menu', {
       this.lampEntity.setAttribute('visible', show);
     }
   },
-  createChair: function() {
+  /*createChair: function() {
     const sceneEl = this.el.sceneEl;
 
     // Incrementar el contador de sillas
@@ -717,7 +717,7 @@ AFRAME.registerComponent('menu', {
     console.log('Silla eliminada. Última silla era: menu-chair' + (this.chairCounter + 1) + '. Número de sillas restantes: ' + this.chairCounter);
     
     return true;
-}/*createChair: function() {
+}*/createChair: function() {
     const sceneEl = this.el.sceneEl;
 
     // Incrementar el contador
@@ -770,5 +770,5 @@ deleteChair: function() {
     
     console.log('Silla eliminada. Quedan ' + this.chairs.length + ' sillas');
     return true;
-}*/
+}
 });
