@@ -115,7 +115,7 @@
                       },
                       {
                         "label": "noLabel",
-                        "id": "backButton2",
+                        "id": "backButton3",
                         "color": "#C1440E",
                         "position": "-0.2 0.15 0",
                         "visible": "false",
@@ -309,7 +309,7 @@
                   "parameter1f1": "initmenu",
                   "function2": "nextMenu",
                   "parameter1f2": "submenu1",
-                  "parameter2f2": "menuinicio"
+                  "parameter2f2": "submenu0"
                 },
                 {
                   "label": "noLabel",
