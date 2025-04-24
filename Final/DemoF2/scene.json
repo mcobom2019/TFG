@@ -135,7 +135,7 @@
                         "position": "0.2 0.15 0",
                         "visible": "false",
                         "function1": "changeBoolean",
-                        "parameter1f1": "m",
+                        "parameter1f1": "m3",
                         "function2": "minimizeMenu",
                         "parameter1f2": "submenu3"
                       }
