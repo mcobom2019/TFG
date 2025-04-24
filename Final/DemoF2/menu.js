@@ -649,13 +649,22 @@ AFRAME.registerComponent('menu', {
     furnitureEntity.setAttribute('id', 'menu-furniture' + this.numFurniture);
 
     // Cargar el modelo OBJ de la silla
-    furnitureEntity.setAttribute('obj-model', {
-      obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
-      mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
-    });
-
+    if(this.chair){
+      furnitureEntity.setAttribute('obj-model', {
+        obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
+      });
+      furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
+    }if(this.bed){
+      furnitureEntity.setAttribute('obj-model', {
+        obj: 'https://cdn.glitch.me/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_Smania_Caesar.obj?v=1745485424046',
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_Smania_Caesar.mtl?v=1745485382823'
+      });
+      furnitureEntity.setAttribute('scale', '0.1 0.1 0.1');
+    }
+    
     // Ajustar escala si es necesario
-    furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
+    
 
     // Posicionar la silla en la escena
     furnitureEntity.setAttribute('position', '0 0.5 -2');
