@@ -681,7 +681,7 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3962993_fruit_bowl.glb?v=1745512607464'
       );
-      furnitureEntity.setAttribute('scale', '1 1 1');
+      furnitureEntity.setAttribute('scale', '2 2 2');
       furnitureEntity.setAttribute('position', '0 0.75 -2');
     }if(this.pictures){
       furnitureEntity.setAttribute('gltf-model', 
@@ -695,8 +695,7 @@ AFRAME.registerComponent('menu', {
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5656299_Model_Caladium.glb?v=1745513921773'
       );
       furnitureEntity.setAttribute('scale', '0.8 0.8 0.8');
-      furnitureEntity.setAttribute('rotation', '0 90 0');
-      furnitureEntity.setAttribute('position', '0 1.1 -2');
+      furnitureEntity.setAttribute('position', '0 1 -2');
     }
     // Hacer que la silla sea agarrable
     furnitureEntity.setAttribute('grabbable', true);
