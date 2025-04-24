@@ -15,7 +15,54 @@
           "visible": "true",
           "function1": "nextMenu",
           "parameter1f1": "menuinicio",
-          "parameter2f1": "submenu1",
+          "parameter2f1": "submenu0",
+          "menuC0":{
+              "id": "submenu0",
+              "position": "0 1.5 -0.5",
+              "visible": "false",
+              "grabbable": "false",
+              "buttons": [
+                {
+                  "label": "Furniture",
+                  "id": "furnitureButton",
+                  "position": "0 0 0",
+                  "posetx": "0.092",
+                  "posety": "-0.01",
+                  "widthet": "0.15",
+                  "color": "#2F6A31",
+                  "visible": "true",
+                  "function1": "nextMenu",
+                  "parameter1f1": "submenu0",
+                  "parameter2f1": "submenu1"
+                },
+                {
+                  "label": "Decoration",
+                  "id": "decorationButton",
+                  "position": "0 -0.1 0",
+                  "posetx": "0.11",
+                  "posety": "-0.01",
+                  "widthet":"0.29",
+                  "color": "#2F6A31",
+                  "visible": "true",
+                  "function1": "nextMenu",
+                  "parameter1f1": "submenu0",
+                  "parameter2f1": "submenu3"
+                },
+                {
+                  "label": "noLabel",
+                  "id": "backButton0",
+                  "color": "#C1440E",
+                  "position": "-0.2 0.15 0",
+                  "visible": "false",
+                  "function1": "changeBoolean",
+                  "parameter1f1": "initmenu",
+                  "function2": "nextMenu",
+                  "parameter1f2": "submenu0",
+                  "parameter2f2": "menuinicio"
+                },
+                
+              ]
+          },
           "menuC1":{
               "id": "submenu1",
               "position": "0 1.5 -0.5",
@@ -192,7 +239,7 @@
                         "parameter1f1": "initmenu",
                         "function2": "nextMenu",
                         "parameter1f2": "submenu3",
-                        "parameter2f2": "submenu2"
+                        "parameter2f2": "submenu1"
                       },
                       {
                         "label": "noLabel",
@@ -200,7 +247,7 @@
                         "position": "0.2 0.15 0",
                         "visible": "false",
                         "function1": "changeBoolean",
-                        "parameter1f1": "m1",
+                        "parameter1f1": "m3",
                         "function2": "minimizeMenu",
                         "parameter1f2": "submenu3"
                       }

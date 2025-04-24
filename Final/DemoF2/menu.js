@@ -10,10 +10,7 @@ AFRAME.registerComponent('menu', {
     this.initmenu = false;
     this.m1 = false;
     this.m2 = false;
-    this.m31 = false;
-    this.m32 = false;
-    this.m33 = false;
-    this.m4 = false;
+    this.m3 = false;
     this.isDarkMode = false;
     this.numFurniture = 0;
     //this.chairs = [];
@@ -66,25 +63,10 @@ AFRAME.registerComponent('menu', {
             this.maximizeMenu(this.submenu2);
             this.initilizeBoolean('m2');
           }, 500);
-        }else if(this.m31){
+        }else if(this.m3){
           setTimeout(() => {
-            this.maximizeMenu(this.submenu31);
-            this.initilizeBoolean('m31');
-          }, 500);
-        }else if(this.m32){
-          setTimeout(() => {
-            this.maximizeMenu(this.submenu32);
-            this.initilizeBoolean('m32');
-          }, 500);
-        }else if(this.m33){
-          setTimeout(() => {
-            this.maximizeMenu(this.submenu33);
-            this.initilizeBoolean('m33');
-          }, 500);
-        }else if(this.m4){
-          setTimeout(() => {
-            this.maximizeMenu(this.submenu4);
-            this.initilizeBoolean('m4');
+            this.maximizeMenu(this.submenu3);
+            this.initilizeBoolean('m3');
           }, 500);
         }
     });
