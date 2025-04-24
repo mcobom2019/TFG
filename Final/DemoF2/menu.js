@@ -2,17 +2,8 @@
 AFRAME.registerComponent('menu', {
   init: function() {
     // Cargar el JSON
-    this.pie = false;
-    this.bar = false;
-    this.electric = false;
-    this.diesel = false;
-    this.gasoline = false;
-    this.white = false;
-    this.black = false;
-    this.red = false;
-    this.yellow = false;
-    this.threedoors = false;
-    this.fivedoors = false;
+    this.chair = false;
+    this.bed = false;
     
     this.initmenu = false;
     this.m1 = false;
@@ -22,8 +13,8 @@ AFRAME.registerComponent('menu', {
     this.m33 = false;
     this.m4 = false;
     this.isDarkMode = false;
-    this.numChair = 0;
-    //this.chairs = [];
+    this.numFurniture = 0;
+    this.chairs = [];
     // Variable para almacenar la última posición conocida
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -644,80 +635,8 @@ AFRAME.registerComponent('menu', {
       this.lampEntity.setAttribute('visible', show);
     }
   },
-  /*createChair: function() {
-    const sceneEl = this.el.sceneEl;
-
-    // Incrementar el contador de sillas
-    this.chairCounter++;
-
-    // Crear entidad para la silla
-    const chairEntity = document.createElement('a-entity');
-    
-    // Asignar el ID único con el número secuencial
-    chairEntity.setAttribute('id', 'menu-chair' + this.chairCounter);
-
-    // Cargar el modelo OBJ de la silla
-    chairEntity.setAttribute('obj-model', {
-      obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Chair_low.obj?v=1745482071205',
-      
-    });
-
-    // Ajustar escala si es necesario
-    chairEntity.setAttribute('scale', '0.01 0.01 0.01');
-
-    // Posicionar la silla en la escena
-    chairEntity.setAttribute('position', '0 0.5 -2');
-
-    // Hacer que la silla sea agarrable
-    chairEntity.setAttribute('grabbable', true);
-
-    // Añadir la silla a la escena
-    sceneEl.appendChild(chairEntity);
-
-    // Guardar referencia a la silla (opcional: podrías crear un array para guardar todas)
-    this.chairEntity = chairEntity;
-
-    console.log('Silla creada con ID: ' + chairEntity.id);
-
-    return chairEntity;
-  },
-  deleteChair: function() {
-    // Verificar si hay sillas para eliminar
-    if (this.chairCounter <= 0) {
-        console.log('No hay sillas para eliminar');
-        return false;
-    }
-    
-    // Obtener la última silla creada mediante su ID
-    const chairToRemove = document.querySelector('#menu-chair' + this.chairCounter);
-    
-    if (!chairToRemove) {
-        console.warn('No se encontró la silla con ID menu-chair' + this.chairCounter);
-        return false;
-    }
-    
-    // Eliminar la silla de la escena
-    chairToRemove.parentNode.removeChild(chairToRemove);
-    
-    // Si estamos usando un array para almacenar referencias
-    if (this.chairs && this.chairs.length > 0) {
-        this.chairs.pop(); // Eliminar la última silla del array
-    }
-    
-    // Disminuir el contador de sillas
-    this.chairCounter--;
-    
-    // Actualizar la referencia a la última silla
-    if (this.chairCounter > 0) {
-        this.chairEntity = document.querySelector('#menu-chair' + this.chairCounter);
-    } else {
-        this.chairEntity = null;
-    }
-    
-    console.log('Silla eliminada. Última silla era: menu-chair' + (this.chairCounter + 1) + '. Número de sillas restantes: ' + this.chairCounter);
-    
-    return true;
-}*/createChair: function() {
+  
+  createFurniture: function(type) {
     const sceneEl = this.el.sceneEl;
 
     // Incrementar el contador
@@ -730,7 +649,7 @@ AFRAME.registerComponent('menu', {
     // Configurar la silla (mantener la configuración original)
     chairEntity.setAttribute('obj-model', {
         obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
-        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745430026754'
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
     });
     chairEntity.setAttribute('scale', '0.01 0.01 0.01');
     chairEntity.setAttribute('position', '0 0.5 -2');
@@ -747,7 +666,7 @@ AFRAME.registerComponent('menu', {
 },
 
 // Reemplazar completamente la función deleteChair:
-deleteChair: function() {
+deleteLastFurniture: function() {
     // Verificar si hay sillas para eliminar
     if (this.chairs.length === 0) {
         console.log('No hay sillas para eliminar');

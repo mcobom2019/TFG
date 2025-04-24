@@ -42,3 +42,11 @@
 {"name":"old_chair_AO.png","date":"2025-04-24T08:19:24.806Z","url":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair_AO.png","type":"image/png","size":8298201,"imageWidth":4096,"imageHeight":4096,"thumbnail":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/thumbnails%2Fold_chair_AO.png","thumbnailWidth":330,"thumbnailHeight":330,"uuid":"Ili7ExnOYPxpDaE0"}
 {"name":"old_chair_Roughness.png","date":"2025-04-24T08:19:30.771Z","url":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair_Roughness.png","type":"image/png","size":891874,"imageWidth":4096,"imageHeight":4096,"thumbnail":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/thumbnails%2Fold_chair_Roughness.png","thumbnailWidth":330,"thumbnailHeight":330,"uuid":"NnwPjVqQN4t9xmHj"}
 {"name":"old_chair_Metallic.png","date":"2025-04-24T08:19:33.667Z","url":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair_Metallic.png","type":"image/png","size":24890,"imageWidth":4096,"imageHeight":4096,"thumbnail":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/thumbnails%2Fold_chair_Metallic.png","thumbnailWidth":330,"thumbnailHeight":330,"uuid":"bOzO7g1k8WHC8TGM"}
+{"uuid":"Ili7ExnOYPxpDaE0","deleted":true}
+{"uuid":"NnwPjVqQN4t9xmHj","deleted":true}
+{"uuid":"bOzO7g1k8WHC8TGM","deleted":true}
+{"uuid":"vu24154yBB3odiwG","deleted":true}
+{"name":"old_chair.mtl","date":"2025-04-24T08:23:45.612Z","url":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl","type":"model/mtl","size":734,"thumbnail":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/thumbnails%2Fold_chair.mtl","thumbnailWidth":210,"thumbnailHeight":210,"uuid":"Vsll0bluHAqwaMiz"}
+{"uuid":"Vsll0bluHAqwaMiz","deleted":true}
+{"uuid":"PCvMK9JQVTRHMX1k","deleted":true}
+{"name":"old_chair.mtl","date":"2025-04-24T08:25:39.453Z","url":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl","type":"model/mtl","size":733,"thumbnail":"https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/thumbnails%2Fold_chair.mtl","thumbnailWidth":210,"thumbnailHeight":210,"uuid":"GaOen5FTkgEWZS63"}

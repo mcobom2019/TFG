@@ -32,7 +32,7 @@
                   "widthet": "0.1",
                   "visible": "false",
                   "function1": "changeBoolean",
-                  "parameter1f1": "bar",
+                  "parameter1f1": "bed",
                   "function2": "nextMenu",
                   "parameter1f2": "submenu1",
                   "parameter2f2": "submenu2",
@@ -49,9 +49,9 @@
                           "visible": "false",
                           "color": "#C1440E",
                           "function1": "initilizeBoolean",
-                          "parameter1f1": "pie",
+                          "parameter1f1": "chair",
                           "function2": "initilizeBoolean",
-                          "parameter1f2": "bar",
+                          "parameter1f2": "bed",
                           "function3": "nextMenu",
                           "parameter1f3": "submenu2",
                           "parameter2f3": "submenu1"
@@ -65,7 +65,7 @@
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
-                          "function1": "createChair"
+                          "function1": "createFurniture"
                         },
                         {
                           "label": "Delete",
@@ -76,7 +76,7 @@
                           "posetx": "0.092",
                           "posety": "-0.01",
                           "widthet": "0.15",
-                          "function1": "deleteChair"
+                          "function1": "deleteLastFurniture"
                         },
                         {
                           "label": "+",
@@ -114,7 +114,7 @@
                   "position": "0 -0.1 0",
                   "visible": "false",
                   "function1": "changeBoolean",
-                  "parameter1f1": "pie",
+                  "parameter1f1": "chair",
                   "function2": "nextMenu",
                   "parameter1f2": "submenu1",
                   "parameter2f2": "submenu2"
