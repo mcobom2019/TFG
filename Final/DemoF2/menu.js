@@ -6,6 +6,7 @@ AFRAME.registerComponent('menu', {
     this.bed = false;
     this.nightstand = false;
     this.table = false;
+    this.lamp = false;
     
     this.furniture = false;
     this.decoration = false;
@@ -667,6 +668,12 @@ AFRAME.registerComponent('menu', {
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
       furnitureEntity.setAttribute('position', '0 1 -2');
+    }if(this.lamp){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6002454_Lampa_v2_glb.glb?v=1745511627153'
+      );
+      furnitureEntity.setAttribute('scale', '1 1 1');
+      furnitureEntity.setAttribute('position', '0 1.65 -2');
     }
     // Hacer que la silla sea agarrable
     furnitureEntity.setAttribute('grabbable', true);
@@ -715,28 +722,16 @@ AFRAME.registerComponent('menu', {
   },
   multipleBack: function(){
     var scene = document.querySelector("a-scene");
-    // Guardar la posición actual del submenu4
+    // Guardar la posición actual del submenu2
         this.lastMenuPosition = this.getMenuPosition(this.submenu2);
         setTimeout(() => {
-          if(this.electric || this.diesel || this.gasoline){
-            this.initilizeBoolean('electric');
-            this.initilizeBoolean('diesel');
-            this.initilizeBoolean('gasoline');
-            this.nextMenu(this.submenu4, this.submenu31);
-            
-          }else if(this.white || this.black || this.red || this.yellow){
-            this.initilizeBoolean('white');
-            this.initilizeBoolean('black');
-            this.initilizeBoolean('red');
-            this.initilizeBoolean('yellow');
-            this.nextMenu(this.submenu4, this.submenu32);
-          
-          }else if(this.threedoors || this.fivedoors){
-              this.initilizeBoolean('threedoors');
-              this.initilizeBoolean('fivedoors');
-              this.nextMenu(this.submenu4, this.submenu33);
+          if(this.furniture){
+            this.initilizeBoolean('furniture');
+            this.nextMenu(this.submenu2, this.submenu1);
+          }else if(this.decoration){
+            this.initilizeBoolean('decoration');
+            this.nextMenu(this.submenu2, this.submenu3);
           }
-          this.sliderrEl.setAttribute('visible', false);
         }, 500);
   },
 });

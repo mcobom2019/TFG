@@ -67,7 +67,7 @@
                         "widthet": "0.15",
                         "visible": "false",
                         "function1": "changeBoolean",
-                        "parameter1f1": "bed",
+                        "parameter1f1": "lamp",
                         "function2": "nextMenu",
                         "parameter1f2": "submenu3",
                         "parameter2f2": "submenu2"
@@ -206,9 +206,7 @@
                           "parameter1f3": "table",
                           "function4": "initilizeBoolean",
                           "parameter1f4": "nightstand",
-                          "function5": "nextMenu",
-                          "parameter1f5": "submenu2",
-                          "parameter2f5": "submenu1"
+                          "function5": "multipleBack"
                         },
                         {
                           "label": "Create",
