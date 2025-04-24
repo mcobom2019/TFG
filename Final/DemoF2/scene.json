@@ -67,10 +67,7 @@
                         "widthet": "0.15",
                         "visible": "false",
                         "function1": "changeBoolean",
-                        "parameter1f1": "lamp",
-                        "function2": "nextMenu",
-                        "parameter1f2": "submenu3",
-                        "parameter2f2": "submenu2"
+                        "parameter1f1": "lamp"
                       },
                       {
                         "label": "Picture",
@@ -88,8 +85,8 @@
                         "parameter2f2": "submenu2"
                       },
                       {
-                        "label": "Table",
-                        "id": "tButton",
+                        "label": "Bowl",
+                        "id": "bowlButton",
                         "color": "#2F6A31",
                         "posety": "-0.01",
                         "posetx": "0.1",
@@ -97,10 +94,7 @@
                         "position": "0.1 0.03 0",
                         "visible": "false",
                         "function1": "changeBoolean",
-                        "parameter1f1": "table",
-                        "function2": "nextMenu",
-                        "parameter1f2": "submenu3",
-                        "parameter2f2": "submenu2"
+                        "parameter1f1": "bowl"
                       },
                       {
                         "label": "Nstand",
