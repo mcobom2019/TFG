@@ -135,7 +135,7 @@
                         "position": "0.2 0.15 0",
                         "visible": "false",
                         "function1": "changeBoolean",
-                        "parameter1f1": "m3",
+                        "parameter1f1": "m",
                         "function2": "minimizeMenu",
                         "parameter1f2": "submenu3"
                       }
@@ -156,11 +156,11 @@
                 },
                 {
                   "label": "noLabel",
-                  "id": "minButton5",
+                  "id": "minButton0",
                   "position": "0.2 0.15 0",
                   "visible": "true",
                   "function1": "changeBoolean",
-                  "parameter1f1": "m5",
+                  "parameter1f1": "m0",
                   "function2": "minimizeMenu",
                   "parameter1f2": "submenu0"
                 }

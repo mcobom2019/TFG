@@ -15,7 +15,7 @@ AFRAME.registerComponent('menu', {
     this.decoration = false;
     
     this.initmenu = false;
-    this.m5 = false;
+    this.m0 = false;
     this.m1 = false;
     this.m2 = false;
     this.m3 = false;
@@ -281,6 +281,7 @@ AFRAME.registerComponent('menu', {
     }
   },
   minimizeMenu: function (menu){
+        console.log("minimizado el menu"+menu.id);
         this.lastMenuPosition = this.getMenuPosition(menu);
         menu.setAttribute('visible', false);
         const buttons2 = menu.querySelectorAll('[id]');
