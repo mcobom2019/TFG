@@ -658,10 +658,10 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('position', '0 0.5 -2');
     }if(this.bed){
       furnitureEntity.setAttribute('obj-model', {
-        obj: 'https://cdn.glitch.me/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/bed_02.obj?v=1745486975982',
-        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/bed_02.mtl?v=1745488240486'
+        obj: 'https://cdn.glitch.me/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/fbde03.obj?v=1745488801011',
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/fbde03%20(1).mtl?v=1745488761978'
       });
-      furnitureEntity.setAttribute('scale', '1 1 1');
+      furnitureEntity.setAttribute('scale', '10 10 10');
       furnitureEntity.setAttribute('position', '0 1 -2');
     }
 
