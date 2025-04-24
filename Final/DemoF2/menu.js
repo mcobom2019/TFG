@@ -14,7 +14,7 @@ AFRAME.registerComponent('menu', {
     this.m4 = false;
     this.isDarkMode = false;
     this.numFurniture = 0;
-    this.chairs = [];
+    //this.chairs = [];
     // Variable para almacenar la última posición conocida
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -636,58 +636,73 @@ AFRAME.registerComponent('menu', {
     }
   },
   
-  createFurniture: function(type) {
+  createFurniture: function() {
     const sceneEl = this.el.sceneEl;
 
-    // Incrementar el contador
-    this.chairCounter++;
-    
-    // Crear la silla
-    const chairEntity = document.createElement('a-entity');
-    chairEntity.setAttribute('id', 'menu-chair' + this.chairCounter);
-    
-    // Configurar la silla (mantener la configuración original)
-    chairEntity.setAttribute('obj-model', {
-        obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
-        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
-    });
-    chairEntity.setAttribute('scale', '0.01 0.01 0.01');
-    chairEntity.setAttribute('position', '0 0.5 -2');
-    chairEntity.setAttribute('grabbable', true);
-    
-    // Añadir la silla a la escena
-    sceneEl.appendChild(chairEntity);
-    
-    // Guardar la referencia a la entidad en el array
-    this.chairs.push(chairEntity);
-    
-    console.log('Silla creada con ID: ' + chairEntity.id + '. Total sillas: ' + this.chairs.length);
-    return chairEntity;
-},
+    // Incrementar el contador de sillas
+    this.numFurniture++;
 
-// Reemplazar completamente la función deleteChair:
-deleteLastFurniture: function() {
+    // Crear entidad para la silla
+    const furnitureEntity = document.createElement('a-entity');
+    
+    // Asignar el ID único con el número secuencial
+    furnitureEntity.setAttribute('id', 'menu-furniture' + this.numFurniture);
+
+    // Cargar el modelo OBJ de la silla
+    furnitureEntity.setAttribute('obj-model', {
+      obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
+      mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
+    });
+
+    // Ajustar escala si es necesario
+    furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
+
+    // Posicionar la silla en la escena
+    furnitureEntity.setAttribute('position', '0 0.5 -2');
+
+    // Hacer que la silla sea agarrable
+    furnitureEntity.setAttribute('grabbable', true);
+
+    // Añadir la silla a la escena
+    sceneEl.appendChild(furnitureEntity);
+
+    // Guardar referencia a la silla (opcional: podrías crear un array para guardar todas)
+    this.furnitureEntity = furnitureEntity;
+
+    console.log('Mueble creado con ID: ' + furnitureEntity.id);
+
+    return furnitureEntity;
+  },
+  deleteLastFurniture: function() {
     // Verificar si hay sillas para eliminar
-    if (this.chairs.length === 0) {
+    if (this.numFurniture <= 0) {
         console.log('No hay sillas para eliminar');
         return false;
     }
     
-    // Obtener la última silla añadida (la última en el array)
-    const lastChair = this.chairs.pop();
+    // Obtener la última silla creada mediante su ID
+    const furnitureToRemove = document.querySelector('#menu-furniture' + this.numFurniture);
     
-    // Registro para depuración
-    console.log('Eliminando silla: ' + lastChair.id);
-    
-    // Eliminar la silla de la escena
-    if (lastChair.parentNode) {
-        lastChair.parentNode.removeChild(lastChair);
+    if (!furnitureToRemove) {
+        console.warn('No se encontró el mueble con ID menu-furniture' + this.numFurniture);
+        return false;
     }
     
-    // Actualizar el contador si es necesario
-    this.chairCounter = this.chairs.length;
+    // Eliminar la silla de la escena
+    furnitureToRemove.parentNode.removeChild(furnitureToRemove);
     
-    console.log('Silla eliminada. Quedan ' + this.chairs.length + ' sillas');
+    // Disminuir el contador de sillas
+    this.numFurniture--;
+    
+    // Actualizar la referencia a la última silla
+    if (this.numFurniture > 0) {
+        this.furnitureEntity = document.querySelector('#menu-furniture' + this.numFurniture);
+    } else {
+        this.furnitureEntity = null;
+    }
+    
+    console.log('Mueble eliminado. Última mueble era: menu-furniture' + (this.numFurniture + 1) + '. Número de muebles restantes: ' + this.numFurniture);
+    
     return true;
 }
 });
