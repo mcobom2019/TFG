@@ -7,6 +7,9 @@ AFRAME.registerComponent('menu', {
     this.nightstand = false;
     this.table = false;
     
+    this.furniture = false;
+    this.decoration = false;
+    
     this.initmenu = false;
     this.m0 = false;
     this.m1 = false;
@@ -709,5 +712,31 @@ AFRAME.registerComponent('menu', {
     console.log('Mueble eliminado. Última mueble era: menu-furniture' + (this.numFurniture + 1) + '. Número de muebles restantes: ' + this.numFurniture);
     
     return true;
-}
+  },
+  multipleBack: function(){
+    var scene = document.querySelector("a-scene");
+    // Guardar la posición actual del submenu4
+        this.lastMenuPosition = this.getMenuPosition(this.submenu2);
+        setTimeout(() => {
+          if(this.electric || this.diesel || this.gasoline){
+            this.initilizeBoolean('electric');
+            this.initilizeBoolean('diesel');
+            this.initilizeBoolean('gasoline');
+            this.nextMenu(this.submenu4, this.submenu31);
+            
+          }else if(this.white || this.black || this.red || this.yellow){
+            this.initilizeBoolean('white');
+            this.initilizeBoolean('black');
+            this.initilizeBoolean('red');
+            this.initilizeBoolean('yellow');
+            this.nextMenu(this.submenu4, this.submenu32);
+          
+          }else if(this.threedoors || this.fivedoors){
+              this.initilizeBoolean('threedoors');
+              this.initilizeBoolean('fivedoors');
+              this.nextMenu(this.submenu4, this.submenu33);
+          }
+          this.sliderrEl.setAttribute('visible', false);
+        }, 500);
+  },
 });
