@@ -658,7 +658,7 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('position', '0 0.5 -2');
     }if(this.bed){
       furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.me/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed.glb?v=1745489241991'
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_gltf.glb?v=1745490478737'
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
       furnitureEntity.setAttribute('position', '0 1 -2');
