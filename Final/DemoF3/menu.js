@@ -235,6 +235,8 @@ AFRAME.registerComponent('menu', {
           audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/agua-de-rio-fluyendo_elp1GLMm.mp3?v=1745605564985";
         }else if(name == "Fire"){
           audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Hoguera%20%20relax%20sonido%20fueg%20(mp3cut.net).mp3?v=1745606497177";
+        }else if(name == "Rain"){
+          audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Sonido%20de%20Lluvia%20Relajante%20(mp3cut.net).mp3?v=1745607104182";
         }else if(name == "gladiator"){
           audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/now-we-are-free_eTmCadBH.mp3?v=1745604914553';
         }else if(name == "Darling Pretty"){
