@@ -260,18 +260,18 @@ AFRAME.registerComponent('menu', {
             barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
             scene.appendChild(barChartEntity);
             //pieChartEntity.setAttribute('grabbable', '');
-            barChartEntity.setAttribute('size-change', '');
+            barChartEntity.setAttribute('size-change1', '');
           
         }else if(this.pie){
             var pieChartEntity = document.createElement('a-entity');
             pieChartEntity.setAttribute('id', 'pie-chart');
             pieChartEntity.setAttribute('babia-pie', 'from: filter-data; legend: true; palette: blues; key: model; size: doors');
-            pieChartEntity.setAttribute('position', '-0.15 1.2 -5');
-            pieChartEntity.setAttribute('scale', '0.4 0.4 0.4');
+            pieChartEntity.setAttribute('position', '-0.15 1.82 -5');
+            pieChartEntity.setAttribute('scale', '0.7 0.7 0.7');
             pieChartEntity.setAttribute('rotation', '90 0 0');
             scene.appendChild(pieChartEntity);
             //pieChartEntity.setAttribute('grabbable', '');
-            pieChartEntity.setAttribute('size-change', '');
+            pieChartEntity.setAttribute('size-change2', '');
         }
   },
   
