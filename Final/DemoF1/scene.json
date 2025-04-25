@@ -430,7 +430,7 @@
                   "color": "#C1440E",
                   "position": "-0.2 0.15 0",
                   "visible": "false",
-                  "function1": "changeBoolean",
+                  "function1": "initilizeBoolean",
                   "parameter1f1": "initmenu",
                   "function2": "nextMenu",
                   "parameter1f2": "submenu1",
