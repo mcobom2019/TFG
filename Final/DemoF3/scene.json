@@ -240,11 +240,11 @@
                           "posetx": "0.1",
                           "widthet": "0.2",
                           "visible": "false",
-                          "function1": "changeBoolean",
-                          "parameter1f1": "cylinder",
+                          "function1": "loadSong",
+                          "parameter1f1": "Bueno",
                           "function2": "nextMenu",
                           "parameter1f2": "childMenu4",
-                          "parameter2f2": "childMenu5"
+                          "parameter2f2": "childMenu3"
                         },
                         {
                           "label": "MalditosBastardos",
