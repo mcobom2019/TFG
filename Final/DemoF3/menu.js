@@ -120,14 +120,18 @@ AFRAME.registerComponent('menu', {
   
   createMenu: function(pMenu) {
     if (!pMenu) return;
-    
+
     const sceneEl = this.el;
     const menuEl = document.createElement('a-entity');
-      
+
     if (pMenu.id) {
       menuEl.setAttribute('id', pMenu.id);
-      menuEl.setAttribute('menuinicio', '');
-      
+      menuEl.setAttribute('menuinicio', {
+        width: pMenu.width || 0.6,
+        height: pMenu.height || 0.4,
+        radius: pMenu.radius || 0.03
+      });
+
       if(menuEl.id === "subMenu4"){
         const slider = document.createElement('a-entity');
         slider.setAttribute('id', 'sliderr');
@@ -137,6 +141,7 @@ AFRAME.registerComponent('menu', {
         menuEl.appendChild(slider);
       }
     }
+
     if (pMenu.position) {
       menuEl.setAttribute('position', pMenu.position);
     }
@@ -144,13 +149,13 @@ AFRAME.registerComponent('menu', {
       menuEl.setAttribute('visible', pMenu.visible);
     }
     if (pMenu.grabbable) {
-      menuEl.setAttribute('grabbable', ''); // Corregido "grababble" a "grabbable"
+      menuEl.setAttribute('grabbable', '');
     }
-      
+
     if (pMenu.buttons && pMenu.buttons.length > 0) {
       this.createButtons(menuEl, pMenu.buttons);
     }
-    
+
     sceneEl.appendChild(menuEl);
   },
   

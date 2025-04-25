@@ -1,7 +1,7 @@
 AFRAME.registerComponent('menuinicio', {
   schema: {
-    width: {default: 0.4},
-    height: {default: 0.6},
+    width: {default: 0.6},
+    height: {default: 0.4},
     radius: {default: 0.03}
   },
   init: function () {
