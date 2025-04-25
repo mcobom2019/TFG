@@ -1,0 +1,407 @@
+{"menuP":{
+    "id": "initMenu",
+    "position": "0 1.5 -0.5",
+    "visible": "true",
+    "grabbable": "true",
+    "buttons": [
+        {
+          "label": "Start",
+          "id": "startButton",
+          "position": "0 0 0",
+          "posetx": "0.092",
+          "posety": "-0.01",
+          "widthet": "0.15",
+          "color": "#2F6A31",
+          "visible": "true",
+          "function1": "nextMenu",
+          "parameter1f1": "initMenu",
+          "parameter2f1": "childMenu1",
+          "menuC1":{
+              "id": "childMenu1",
+              "position": "0 1.5 -0.5",
+              "visible": "false",
+              "grabbable": "false",
+              "buttons": [
+                {
+                  "label": "Music",
+                  "id": "musicButton",
+                  "position": "0 0 0",
+                  "color": "#2F6A31",
+                  "posetx": "0.092",
+                  "posety": "-0.01",
+                  "widthet": "0.14",
+                  "visible": "false",
+                  "function1": "nextMenu",
+                  "parameter1f1": "childMenu1",
+                  "parameter2f1": "childMenu2",
+                  "menuC2":{
+                    "id": "childMenu2",
+                    "position": "0 1.5 -0.5",
+                    "visible": "false",
+                    "grabbable": "false",
+                    "buttons": [
+                        {
+                          "label": "noLabel",
+                          "id": "backButton2",
+                          "position": "-0.2 0.15 0",
+                          "visible": "false",
+                          "color": "#C1440E",
+                          "function1": "nextMenu",
+                          "parameter1f1": "childMenu2",
+                          "parameter2f1": "childMenu1"
+                        },
+                        {
+                          "label": "LLSE",
+                          "id": "llseButton",
+                          "position": "-0.1 0.03 0",
+                          "visible": "false",
+                          "color": "#2F6A31",
+                          "posetx": "0.087",
+                          "posety": "-0.01",
+                          "widthet": "0.12",
+                          "function1": "loadSong",
+                          "parameter1f1": "llse",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu2",
+                          "parameter2f2": "childMenu3",
+                          "menuC3":{
+                            "id": "childMenu3",
+                            "position": "0 1.5 -0.5",
+                            "visible": "false",
+                            "grabbable": "false",
+                            "buttons": [
+                              {
+                                "label": "noLabel",
+                                "color": "#C1440E",
+                                "id": "backButton21",
+                                "position": "-0.2 0.15 0",
+                                "visible": "false",
+                                "function1": "stopMusic",
+                                "function2": "nextMenu",
+                                "parameter1f2": "childMenu3",
+                                "parameter2f2": "childMenu2"
+                              },
+                              {
+                                "label": "Play",
+                                "id": "playButton",
+                                "position": "-0.15 0 0",
+                                "color": "#2F6A31",
+                                "posetz": "0.07",
+                                "posety": "-0.01",
+                                "widthet": "0.18",
+                                "visible": "false",
+                                "function1": "playMusic"
+                              },
+                              {
+                                "label": "Pause",
+                                "id": "pauseButton",
+                                "position": "0 0 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posetz": "0.07",
+                                "posety": "-0.01",
+                                "widthet": "0.16",
+                                "function1": "pauseMusic"
+                              },
+                              {
+                                "label": "Stop",
+                                "id": "stopButton",
+                                "position": "0.15 0 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posetz": "0.07",
+                                "posety": "-0.01",
+                                "widthet": "0.22",
+                                "function1": "stopMusic"
+                              },
+                              {
+                                "label": "noLabel",
+                                "id": "minButton41",
+                                "position": "0.2 0.15 0",
+                                "visible": "false",
+                                "function1": "changeBoolean",
+                                "parameter1f1": "cm3",
+                                "function2": "minimizeMenu",
+                                "parameter1f2": "childMenu3"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "label": "Gladiator",
+                          "id": "gladiatorButton",
+                          "position": "-0.1 -0.09 0",
+                          "visible": "false",
+                          "color": "#2F6A31",
+                          "posetx": "0.1",
+                          "posety": "-0.01",
+                          "widthet": "0.22",
+                          "function1": "loadSong",
+                          "parameter1f1": "gladiator",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu2",
+                          "parameter2f2": "childMenu3"
+                        },
+                        {
+                          "label": "Darling Pretty",
+                          "id": "dpButton",
+                          "position": "0.1 -0.03 0",
+                          "visible": "false",
+                          "color": "#2F6A31",
+                          "posetx": "0.12",
+                          "posety": "-0.01",
+                          "widthet": "0.35",
+                          "function1": "loadSong",
+                          "parameter1f1": "Darling Pretty",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu2",
+                          "parameter2f2": "childMenu3"
+                        },
+                        {
+                          "label": "noLabel",
+                          "id": "minButton3",
+                          "position": "0.2 0.15 0",
+                          "visible": "false",
+                          "function1": "changeBoolean",
+                          "parameter1f1": "cm2",
+                          "function2": "minimizeMenu",
+                          "parameter1f2": "childMenu2"
+                        }
+                    ]
+                  }
+                },
+                {
+                  "label": "Create Forms",
+                  "id": "formsButton",
+                  "color": "#2F6A31",
+                  "posetx": "0.12",
+                  "posety": "-0.01",
+                  "widthet": "0.35",
+                  "position": "0 -0.1 0",
+                  "visible": "false",
+                  "function1": "nextMenu",
+                  "parameter1f1": "childMenu1",
+                  "parameter2f1": "childMenu4",
+                  "menuC4":{
+                    "id": "childMenu4",
+                    "position": "0 1.5 -0.5",
+                    "visible": "false",
+                    "grabbable": "false",
+                    "buttons": [ 
+                        {
+                          "label": "noLabel",
+                          "id": "backButton22",
+                          "position": "-0.2 0.15 0",
+                          "visible": "false",
+                          "color": "#C1440E",
+                          "function1": "nextMenu",
+                          "parameter1f1": "childMenu4",
+                          "parameter2f1": "childMenu1"
+                        },
+                        {
+                          "label": "Sphere",
+                          "id": "sphereButton",
+                          "position": "-0.1 0.03 0",
+                          "visible": "false",
+                          "color": "#2F6A31",
+                          "posety": "-0.01",
+                          "posetx": "-0.1",
+                          "widthet": "0.15",
+                          "visible": "false",
+                          "function1": "changeBoolean",
+                          "parameter1f1": "sphere",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu4",
+                          "parameter2f2": "childMenu5",
+                           "menuC5":{
+                            "id": "childMenu5",
+                            "position": "0 1.5 -0.5",
+                            "visible": "false",
+                            "grabbable": "false",
+                            "buttons": [
+                              {
+                                "label": "noLabel",
+                                "id": "backButton23",
+                                "position": "-0.2 0.15 0",
+                                "visible": "false",
+                                "color": "#C1440E",
+                                "function1":"deleteForm",
+                                "function2":"initilizeBoolean",
+                                "parameter1f2": "box",
+                                "function3":"initilizeBoolean",
+                                "parameter1f3": "sphere",
+                                "function4":"initilizeBoolean",
+                                "parameter1f4": "cylinder",
+                                "function5":"initilizeBoolean",
+                                "parameter1f5": "cone",
+                                "function6": "nextMenu",
+                                "parameter1f6": "childMenu5",
+                                "parameter2f6": "childMenu4"
+                              },
+                              {
+                                "label": "Show",
+                                "id": "showButton",
+                                "position": "-0.1 0.03 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posety": "-0.009",
+                                "posetx": "-0.1",
+                                "widthet": "0.15",
+                                "visible": "false",
+                                "function1":"createForm"
+                              },
+                              {
+                                "label": "Bigger Size",
+                                "id": "plusSButton",
+                                "position": "-0.1 -0.09 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posety": "-0.01",
+                                "posetx": "-0.12",
+                                "widthet": "0.28",
+                                "visible": "false",
+                                "function1":"plusSize"
+                              },
+                              {
+                                "label": "Change Color",
+                                "id": "colorButton",
+                                "position": "0.1 0.03 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posety": "-0.01",
+                                "posetx": "0.125",
+                                "widthet": "0.35",
+                                "visible": "false",
+                                "function1":"changeColor"
+                              },
+                              {
+                                "label": "Delete",
+                                "id": "deleteButton",
+                                "position": "0.1 -0.09 0",
+                                "visible": "false",
+                                "color": "#2F6A31",
+                                "posety": "-0.01",
+                                "posetx": "0.095",
+                                "widthet": "0.17",
+                                "visible": "false",
+                                "function1":"deleteForm"
+                              },
+                              {
+                                "label": "noLabel",
+                                "id": "minButton5",
+                                "position": "0.2 0.15 0",
+                                "visible": "false",
+                                "function1": "changeBoolean",
+                                "parameter1f1": "cm5",
+                                "function2": "minimizeMenu",
+                                "parameter1f2": "childMenu5"
+                              }
+                            ]
+                           }
+                        },
+                        {
+                          "label": "Box",
+                          "id": "boxButton",
+                          "position": "-0.1 -0.09 0",
+                          "visible": "false",
+                          "color": "#2F6A31",
+                          "posety": "-0.01",
+                          "posetx": "-0.1",
+                          "widthet": "0.12",
+                          "visible": "false",
+                          "function1": "changeBoolean",
+                          "parameter1f1": "box",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu4",
+                          "parameter2f2": "childMenu5"
+                        },
+                        {
+                          "label": "Cylinder",
+                          "id": "cylinderButton",
+                          "position": "0.1 0.03 0",
+                          "visible": "false",
+                          "color": "#2F6A31",
+                          "posety": "-0.01",
+                          "posetx": "0.1",
+                          "widthet": "0.2",
+                          "visible": "false",
+                          "function1": "changeBoolean",
+                          "parameter1f1": "cylinder",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu4",
+                          "parameter2f2": "childMenu5"
+                        },
+                        {
+                          "label": "Cone",
+                          "id": "coneButton",
+                          "position": "0.1 -0.09 0",
+                          "visible": "false",
+                          "color": "#2F6A31",
+                          "posety": "-0.01",
+                          "posetx": "0.1",
+                          "widthet": "0.15",
+                          "visible": "false",
+                          "function1": "changeBoolean",
+                          "parameter1f1": "cone",
+                          "function2": "nextMenu",
+                          "parameter1f2": "childMenu4",
+                          "parameter2f2": "childMenu5"
+                        },
+                        {
+                          "label": "noLabel",
+                          "id": "minButton42",
+                          "position": "0.2 0.15 0",
+                          "visible": "false",
+                          "function1": "changeBoolean",
+                          "parameter1f1": "cm4",
+                          "function2": "minimizeMenu",
+                          "parameter1f2": "childMenu4"
+                        }
+                      ]
+                  }
+                },
+                {
+                  "label": "noLabel",
+                  "id": "backButton1",
+                  "color": "#C1440E",
+                  "position": "-0.2 0.15 0",
+                  "visible": "false",
+                  "function1": "nextMenu",
+                  "parameter1f1": "childMenu1",
+                  "parameter2f1": "initMenu"
+                },
+                {
+                  "label": "noLabel",
+                  "id": "minButton2",
+                  "position": "0.2 0.15 0",
+                  "visible": "false",
+                  "function1": "changeBoolean",
+                  "parameter1f1": "cm1",
+                  "function2": "minimizeMenu",
+                  "parameter1f2": "childMenu1"
+                }
+              ]
+          }
+        },
+        {
+          "label": "noLabel",
+          "id": "minButton1",
+          "position": "0.2 0.15 0",
+          "visible": "true",
+          "function1": "changeBoolean",
+          "parameter1f1": "im",
+          "function2": "minimizeMenu",
+          "parameter1f2": "initMenu"
+        },
+        {
+          "label": "noLabel",
+          "id": "xButton",
+          "position": "-0.2 0.15 0",
+          "visible": "true",
+          "color": "#f80000",
+          "function1": "deleteMenu",
+          "parameter1f1": "initMenu"
+        }
+    ]
+  }
+}
