@@ -692,11 +692,12 @@ AFRAME.registerComponent('menu', {
         mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
       });
       furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
+      position.y += -0.4;
     }else if(this.bed){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_gltf.glb?v=1745490478737'
       );
-      furnitureEntity.setAttribute('scale', '1 1 1');
+      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
     }else if(this.table){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3673019_table.glb?v=1745491767135'
@@ -706,28 +707,32 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_4532938_Wooden%2B2%2BDrawers%2BNightstand.glb?v=1745492534532'
       );
-      furnitureEntity.setAttribute('scale', '1 1 1');
+      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
+      position.y += -0.2;
     }else if(this.lamp){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6002454_Lampa_v2_glb.glb?v=1745511627153'
       );
       furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
+      position.y += 0.15;
     }else if(this.bowl){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3962993_fruit_bowl.glb?v=1745512607464'
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
+      position.y += -0.3;
     }else if(this.pictures){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3696339_Paintings.glb?v=1745512824249'
       );
       furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
       furnitureEntity.setAttribute('rotation', '0 ' + (menuPosition.b + 90) + ' 0'); // Ajustar rotación
+      position.y += 0.15;
     }else if(this.plant){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5656299_Model_Caladium.glb?v=1745513921773'
       );
-      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
+      furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
     }
     
     // Aplicar la posición calculada
@@ -751,7 +756,7 @@ AFRAME.registerComponent('menu', {
     this.setupMenuTracking();
 
     return furnitureEntity;
-},
+  },
   deleteLastFurniture: function() {
     // Verificar si hay sillas para eliminar
     if (this.numFurniture <= 0) {
