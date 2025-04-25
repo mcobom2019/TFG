@@ -256,8 +256,8 @@ AFRAME.registerComponent('menu', {
             var barChartEntity = document.createElement('a-entity');
             barChartEntity.setAttribute('id', 'bar-chart');
             barChartEntity.setAttribute('babia-barsmap', 'from: filter-data; legend: true; palette: foxy; x_axis: model; height: sales; radius: doors');
-            barChartEntity.setAttribute('position', '-0.7 0.8 -4');
-            barChartEntity.setAttribute('scale', '0.15 0.15 0.15');
+            barChartEntity.setAttribute('position', '-0.8 0.8 -4.8');
+            barChartEntity.setAttribute('scale', '0.2 0.2 0.2');
             scene.appendChild(barChartEntity);
             //pieChartEntity.setAttribute('grabbable', '');
             barChartEntity.setAttribute('size-change', '');

@@ -14,7 +14,7 @@ AFRAME.registerComponent('size-change', {
 
     // Definir rangos de escala diferentes para cada eje
     var minScaleX = 0.1;  // Escala mínima para X
-    var maxScaleX = 0.8;  // Escala máxima para X (más restrictiva)
+    var maxScaleX = 0.5;  // Escala máxima para X (más restrictiva)
 
     var minScaleY = 0.1;  // Escala mínima para Y
     var maxScaleY = 1.5;  // Escala máxima para Y (puede ser más alta)
