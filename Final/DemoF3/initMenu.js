@@ -1,17 +1,17 @@
 AFRAME.registerComponent('menuinicio', {
   schema: {
-    width: {default: 0.2},
-    height: {default: 0.2},
-    radius: {default: 0.2}
+    width: {default: 0.4},
+    height: {default: 0.6},
+    radius: {default: 0.03}
   },
   init: function () {
     const el = this.el;
 
     // bordes redondeados
     const shape = new THREE.Shape();
-    const radius = 0.035;
-    const width = 0.7;
-    const height = 0.45;
+    const radius = this.data.radius;
+    const width = this.data.width;
+    const height = this.data.height;
 
     shape.moveTo(-width / 2 + radius, -height / 2);
     shape.lineTo(width / 2 - radius, -height / 2);
