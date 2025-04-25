@@ -679,7 +679,7 @@ AFRAME.registerComponent('menu', {
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_gltf.glb?v=1745490478737'
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
-      furnitureEntity.setAttribute('position', '0 1 -2');
+      furnitureEntity.setAttribute('position', '0 1.5 -1');
     }if(this.table){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3673019_table.glb?v=1745491767135'
