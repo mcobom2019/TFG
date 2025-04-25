@@ -49,7 +49,7 @@ AFRAME.registerComponent('menu', {
     this.setupAutomaticButtonEvents();
     
     //controlador boton maximizar
-    this.maximizeButtonEl.addEventListener('click', () => {
+    /*this.maximizeButtonEl.addEventListener('click', () => {
         console.log("TRAZA"+this.initmenu);
         this.maximizeButtonEl.setAttribute('visible', false);
         if(this.initmenu){
@@ -82,6 +82,30 @@ AFRAME.registerComponent('menu', {
             this.maximizeMenu(this.submenu0);
             this.initilizeBoolean('m0');
           }, 500);
+        }
+    });*/
+    this.maximizeButtonEl.addEventListener('click', () => {
+        this.maximizeButtonEl.setAttribute('visible', false);
+        if(this.initmenu){
+            if(this.isDarkMode){
+              this.darkButtonEl.setAttribute('visible', false);
+            }else{
+              this.lightButtonEl.setAttribute('visible', false);
+            }
+            this.maximizeMenu(this.menuinicio);
+            this.initilizeBoolean('initmenu');
+        }else if(this.m0){
+            this.maximizeMenu(this.submenu0);
+            this.changeBoolean('m0');
+        }else if(this.m1){
+            this.maximizeMenu(this.submenu1);
+            this.changeBoolean('m1');
+        }else if(this.m3){
+            this.maximizeMenu(this.submenu3);
+            this.changeBoolean('m3');
+        }else if(this.m2){
+            this.maximizeMenu(this.submenu2);
+            this.changeBoolean('m2');
         }
     });
   },
