@@ -656,81 +656,102 @@ AFRAME.registerComponent('menu', {
   
   createFurniture: function() {
     const sceneEl = this.el.sceneEl;
-
-    // Incrementar el contador de sillas
+    const submenu2 = document.querySelector('#submenu2');
+    
+    // Obtener posición y rotación del submenu2
+    const menuPosition = this.getMenuPosition(submenu2);
+    
+    // Incrementar el contador de muebles
     this.numFurniture++;
 
-    // Crear entidad para la silla
+    // Crear entidad para el mueble
     const furnitureEntity = document.createElement('a-entity');
     
     // Asignar el ID único con el número secuencial
     furnitureEntity.setAttribute('id', 'menu-furniture' + this.numFurniture);
 
-    // Cargar el modelo OBJ de la silla
+    // Calcular la posición relativa al frente del submenu2
+    // Ajustamos z para que esté delante del menú
+    const offsetZ = -1; // Distancia delante del menú
+    
+    // Calcular la posición considerando la rotación del menú
+    const angle = menuPosition.b * (Math.PI / 180); // Convertir a radianes
+    const offsetX = Math.sin(angle) * offsetZ;
+    const adjustedZ = Math.cos(angle) * offsetZ;
+    
+    const position = {
+        x: menuPosition.x + offsetX,
+        y: menuPosition.y,
+        z: menuPosition.z + adjustedZ
+    };
+
+    // Cargar el modelo correspondiente según el tipo de mueble
     if(this.chair){
       furnitureEntity.setAttribute('obj-model', {
         obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
         mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
       });
       furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
-      furnitureEntity.setAttribute('position', '0 0.5 -2');
-    }if(this.bed){
+    }else if(this.bed){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_gltf.glb?v=1745490478737'
       );
-      furnitureEntity.setAttribute('scale', '1 1 1');
-      furnitureEntity.setAttribute('position', '0 1.5 -1');
-    }if(this.table){
+      furnitureEntity.setAttribute('scale', '1 1 0.5');
+    }else if(this.table){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3673019_table.glb?v=1745491767135'
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
-      furnitureEntity.setAttribute('position', '0 1 -2');
-    }if(this.nightstand){
+    }else if(this.nightstand){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_4532938_Wooden%2B2%2BDrawers%2BNightstand.glb?v=1745492534532'
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
-      furnitureEntity.setAttribute('position', '0 1 -2');
-    }if(this.lamp){
+    }else if(this.lamp){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6002454_Lampa_v2_glb.glb?v=1745511627153'
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
-      furnitureEntity.setAttribute('position', '0 1.65 -2');
-    }if(this.bowl){
+    }else if(this.bowl){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3962993_fruit_bowl.glb?v=1745512607464'
       );
       furnitureEntity.setAttribute('scale', '2 2 2');
-      furnitureEntity.setAttribute('position', '0 0.75 -2');
-    }if(this.pictures){
+    }else if(this.pictures){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3696339_Paintings.glb?v=1745512824249'
       );
       furnitureEntity.setAttribute('scale', '0.8 0.8 0.8');
-      furnitureEntity.setAttribute('rotation', '0 90 0');
-      furnitureEntity.setAttribute('position', '0 1.1 -2');
-    }if(this.plant){
+      furnitureEntity.setAttribute('rotation', '0 ' + (menuPosition.b + 90) + ' 0'); // Ajustar rotación
+    }else if(this.plant){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5656299_Model_Caladium.glb?v=1745513921773'
       );
       furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
-      furnitureEntity.setAttribute('position', '0 1 -2');
     }
-    // Hacer que la silla sea agarrable
+    
+    // Aplicar la posición calculada
+    furnitureEntity.setAttribute('position', position);
+    
+    // Hacer que el mueble sea agarrable
     furnitureEntity.setAttribute('grabbable', true);
+    
+    // Vincular el mueble al submenu2 para seguimiento
+    furnitureEntity.setAttribute('data-parent-menu', 'submenu2');
 
-    // Añadir la silla a la escena
+    // Añadir el mueble a la escena
     sceneEl.appendChild(furnitureEntity);
 
-    // Guardar referencia a la silla (opcional: podrías crear un array para guardar todas)
+    // Guardar referencia al mueble
     this.furnitureEntity = furnitureEntity;
 
-    console.log('Mueble creado con ID: ' + furnitureEntity.id);
+    console.log('Mueble creado con ID: ' + furnitureEntity.id + ' frente al submenu2');
+
+    // Configurar el seguimiento del submenu2
+    this.setupMenuTracking();
 
     return furnitureEntity;
-  },
+},
   deleteLastFurniture: function() {
     // Verificar si hay sillas para eliminar
     if (this.numFurniture <= 0) {
