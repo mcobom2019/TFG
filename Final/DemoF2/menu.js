@@ -681,7 +681,7 @@ AFRAME.registerComponent('menu', {
     
     const position = {
         x: menuPosition.x + offsetX,
-        y: menuPosition.y,
+        y: menuPosition.y - 0.5,
         z: menuPosition.z + adjustedZ - 0.2
     };
 
