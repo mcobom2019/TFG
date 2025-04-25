@@ -87,11 +87,6 @@ AFRAME.registerComponent('menu', {
     this.maximizeButtonEl.addEventListener('click', () => {
         this.maximizeButtonEl.setAttribute('visible', false);
         if(this.initmenu){
-            if(this.isDarkMode){
-              this.darkButtonEl.setAttribute('visible', false);
-            }else{
-              this.lightButtonEl.setAttribute('visible', false);
-            }
             this.maximizeMenu(this.menuinicio);
             this.initilizeBoolean('initmenu');
         }else if(this.m0){
