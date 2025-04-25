@@ -715,7 +715,7 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5656299_Model_Caladium.glb?v=1745513921773'
       );
-      furnitureEntity.setAttribute('scale', '0.8 0.8 0.8');
+      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
       furnitureEntity.setAttribute('position', '0 1 -2');
     }
     // Hacer que la silla sea agarrable
