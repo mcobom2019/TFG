@@ -634,7 +634,7 @@ AFRAME.registerComponent('menu', {
     lampEntity.appendChild(lampStandEntity);
     
     // Posicionar la lámpara cerca del campo de visión del usuario pero sin estorbar
-    lampEntity.setAttribute('position', '-0.5 1.5 -0.5');
+    lampEntity.setAttribute('position', '-0.5 1.5 0');
     
     // Ocultar la lámpara inicialmente
     lampEntity.setAttribute('visible', false);
