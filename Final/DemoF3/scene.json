@@ -215,7 +215,7 @@
                           "parameter2f2": "childMenu5"
                         },
                         {
-                          "label": "OUTIA",
+                          "label": "EraseUnaVezEnAmerica",
                           "id": "onceButton",
                           "position": "-0.1 -0.09 0",
                           "visible": "false",
@@ -231,8 +231,8 @@
                           "parameter2f2": "childMenu5"
                         },
                         {
-                          "label": "MB",
-                          "id": "cylinderButton",
+                          "label": "ElBuenoElFeoElMalo",
+                          "id": "elbuenoButton",
                           "position": "0.1 0.03 0",
                           "visible": "false",
                           "color": "#2F6A31",
@@ -247,8 +247,8 @@
                           "parameter2f2": "childMenu5"
                         },
                         {
-                          "label": "Cone",
-                          "id": "coneButton",
+                          "label": "MalditosBastardos",
+                          "id": "malditosButton",
                           "position": "0.1 -0.09 0",
                           "visible": "false",
                           "color": "#2F6A31",
