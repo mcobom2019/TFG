@@ -84,7 +84,7 @@ AFRAME.registerComponent('menu', {
           }, 500);
         }
     });
-},
+  },
   
   signalCreateMenus: function() {
     if (!this.data) {
