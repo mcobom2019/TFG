@@ -143,8 +143,8 @@
                           "parameter2f2": "childMenu3"
                         },
                         {
-                          "label": "Darling Pretty",
-                          "id": "dpButton",
+                          "label": "Fire",
+                          "id": "fireButton",
                           "position": "0.1 -0.03 0",
                           "visible": "false",
                           "color": "#2F6A31",
@@ -152,7 +152,7 @@
                           "posety": "-0.01",
                           "widthet": "0.35",
                           "function1": "loadSong",
-                          "parameter1f1": "Darling Pretty",
+                          "parameter1f1": "Fire",
                           "function2": "nextMenu",
                           "parameter1f2": "childMenu2",
                           "parameter2f2": "childMenu3"
