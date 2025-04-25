@@ -239,6 +239,8 @@ AFRAME.registerComponent('menu', {
           audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/once-upon-a-time-in-america-soundtrack-cockeyes-song_cBxq2aDx.mp3?v=1745602912037";
         }else if(name == "Bueno"){
           audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/the-good-the-bad-and-the-ugly-main-theme_LUk8QbcC.mp3?v=1745603822349";
+        }else if(name == "thesurrender"){
+          audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/ennio-morricone-the-surrender-la-resa-hd_mzmlUlUq.mp3?v=1745604182718";
         }
         audioEl.preload = 'auto';
         audioEl.loop = true; // Hacer que la canción se repita
