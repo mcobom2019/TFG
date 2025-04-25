@@ -229,10 +229,10 @@ AFRAME.registerComponent('menu', {
   loadSong: function(name){
     const audioEl = document.createElement('audio');
         audioEl.id = 'backgroundMusic';
-        if(name == "llse"){
-          audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/La%20M.O.D.A.%20_%20Los%20locos%20son%20ellos.mp3?v=1744133441584';
+        if(name == "birds"){
+          audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/cantos-de-pajaros-para-relajar_btET4k1W.mp3?v=1745605337904';
         }else if(name == "gladiator"){
-          audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Now%20We%20Are%20Free.mp3?v=1744188527544';
+          audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/now-we-are-free_eTmCadBH.mp3?v=1745604914553';
         }else if(name == "Darling Pretty"){
           audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Mark%20Knopfler%20-%20Darling%20Pretty%20(Official%20Video).mp3?v=1744194898957";
         }else if(name == "America"){

@@ -51,8 +51,8 @@
                           "parameter2f1": "childMenu1"
                         },
                         {
-                          "label": "LLSE",
-                          "id": "llseButton",
+                          "label": "Birds",
+                          "id": "birdsButton",
                           "position": "-0.1 0.03 0",
                           "visible": "false",
                           "color": "#2F6A31",
@@ -60,7 +60,7 @@
                           "posety": "-0.01",
                           "widthet": "0.12",
                           "function1": "loadSong",
-                          "parameter1f1": "llse",
+                          "parameter1f1": "birds",
                           "function2": "nextMenu",
                           "parameter1f2": "childMenu2",
                           "parameter2f2": "childMenu3",
