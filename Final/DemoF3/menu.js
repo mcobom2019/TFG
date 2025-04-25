@@ -231,6 +231,8 @@ AFRAME.registerComponent('menu', {
         audioEl.id = 'backgroundMusic';
         if(name == "birds"){
           audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/cantos-de-pajaros-para-relajar_btET4k1W.mp3?v=1745605337904';
+        }else if(name == "water"){
+          audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/agua-de-rio-fluyendo_elp1GLMm.mp3?v=1745605564985";
         }else if(name == "gladiator"){
           audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/now-we-are-free_eTmCadBH.mp3?v=1745604914553';
         }else if(name == "Darling Pretty"){

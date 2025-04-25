@@ -128,8 +128,8 @@
                           }
                         },
                         {
-                          "label": "Gladiator",
-                          "id": "gladiatorrButton",
+                          "label": "Water",
+                          "id": "waterButton",
                           "position": "-0.1 -0.09 0",
                           "visible": "false",
                           "color": "#2F6A31",
@@ -137,7 +137,7 @@
                           "posety": "-0.01",
                           "widthet": "0.22",
                           "function1": "loadSong",
-                          "parameter1f1": "gladiator",
+                          "parameter1f1": "water",
                           "function2": "nextMenu",
                           "parameter1f2": "childMenu2",
                           "parameter2f2": "childMenu3"
