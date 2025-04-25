@@ -235,6 +235,8 @@ AFRAME.registerComponent('menu', {
           audioEl.src = 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Now%20We%20Are%20Free.mp3?v=1744188527544';
         }else if(name == "Darling Pretty"){
           audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Mark%20Knopfler%20-%20Darling%20Pretty%20(Official%20Video).mp3?v=1744194898957";
+        }else if(name == "America"){
+          audioEl.src = "https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/once-upon-a-time-in-america-soundtrack-cockeyes-song_cBxq2aDx.mp3?v=1745602912037";
         }
         audioEl.preload = 'auto';
         audioEl.loop = true; // Hacer que la canción se repita
