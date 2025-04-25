@@ -682,7 +682,7 @@ AFRAME.registerComponent('menu', {
     const position = {
         x: menuPosition.x + offsetX,
         y: menuPosition.y,
-        z: menuPosition.z + adjustedZ
+        z: menuPosition.z + adjustedZ - 0.2
     };
 
     // Cargar el modelo correspondiente según el tipo de mueble
@@ -696,7 +696,7 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_gltf.glb?v=1745490478737'
       );
-      furnitureEntity.setAttribute('scale', '1 1 0.5');
+      furnitureEntity.setAttribute('scale', '1 1 1');
     }else if(this.table){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3673019_table.glb?v=1745491767135'
@@ -711,17 +711,17 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6002454_Lampa_v2_glb.glb?v=1745511627153'
       );
-      furnitureEntity.setAttribute('scale', '1 1 1');
+      furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
     }else if(this.bowl){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3962993_fruit_bowl.glb?v=1745512607464'
       );
-      furnitureEntity.setAttribute('scale', '2 2 2');
+      furnitureEntity.setAttribute('scale', '1 1 1');
     }else if(this.pictures){
       furnitureEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3696339_Paintings.glb?v=1745512824249'
       );
-      furnitureEntity.setAttribute('scale', '0.8 0.8 0.8');
+      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
       furnitureEntity.setAttribute('rotation', '0 ' + (menuPosition.b + 90) + ' 0'); // Ajustar rotación
     }else if(this.plant){
       furnitureEntity.setAttribute('gltf-model', 
@@ -790,16 +790,16 @@ AFRAME.registerComponent('menu', {
         this.lastMenuPosition = this.getMenuPosition(this.submenu2);
         setTimeout(() => {
           if(this.furniture){
-            this.initilizeBoolean(this.chair);
-            this.initilizeBoolean(this.bed);
-            this.initilizeBoolean(this.table);
-            this.initilizeBoolean(this.nightstand);
+            this.initilizeBoolean('chair');
+            this.initilizeBoolean('bed');
+            this.initilizeBoolean('table');
+            this.initilizeBoolean('nightstand');
             this.nextMenu(this.submenu2, this.submenu1);
           }else if(this.decoration){
-            this.initilizeBoolean(this.lamp);
-            this.initilizeBoolean(this.bowl);
-            this.initilizeBoolean(this.pictures);
-            this.initilizeBoolean(this.plant);
+            this.initilizeBoolean('lamp');
+            this.initilizeBoolean('bowl');
+            this.initilizeBoolean('pictures');
+            this.initilizeBoolean('plant');
             this.nextMenu(this.submenu2, this.submenu3);
           }
         }, 200);
