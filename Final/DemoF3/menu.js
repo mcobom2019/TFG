@@ -746,60 +746,42 @@ AFRAME.registerComponent('menu', {
   loadModel: function(){
     
     const sceneEl = this.el.sceneEl;
-    const furnitureEntity = document.createElement('a-entity');
-    furnitureEntity.setAttribute('id', 'menu-model');
+    const modelEntity = document.createElement('a-entity');
+    modelEntity.setAttribute('id', 'menu-model');
 
     if(this.bird){
-      furnitureEntity.setAttribute('obj-model', {
+      modelEntity.setAttribute('obj-model', {
         obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/12213_Bird_v1_l3.obj?v=1745685176166',
         mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/12213_Bird_v1_l3.mtl?v=1745685238727'
       });
-      furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
-      furnitureEntity.setAttribute('rotation', '-90 45 0');
-      furnitureEntity.setAttribute('position', '0.1 0.9 -3.9');
+      modelEntity.setAttribute('scale', '0.04 0.04 0.04');
+      modelEntity.setAttribute('rotation', '-90 45 0');
+      modelEntity.setAttribute('position', '0.5 0.85 -3.8');
+      modelEntity.setAttribute('grabbable', true);
+      sceneEl.appendChild(modelEntity);
+      const modelEntity2 = document.createElement('a-entity');
+      modelEntity2.setAttribute('obj-model', {
+        obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/12213_Bird_v1_l3.obj?v=1745685176166',
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/12213_Bird_v1_l3.mtl?v=1745685238727'
+      });
+      modelEntity2.setAttribute('scale', '0.04 0.04 0.04');
+      modelEntity2.setAttribute('rotation', '-90 90 0');
+      modelEntity2.setAttribute('position', '-0.5 0.85 -3.8');
+      modelEntity2.setAttribute('grabbable', true);
+      sceneEl.appendChild(modelEntity2);
     }else if(this.bed){
-      furnitureEntity.setAttribute('gltf-model', 
+      modelEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/scene.gltf?v=1745684384035'
       );
-      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
-    }else if(this.bird){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/scene.gltf?v=1745684384035'
-      );
-      furnitureEntity.setAttribute('scale', '1 1 1');
-    }else if(this.nightstand){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_4532938_Wooden%2B2%2BDrawers%2BNightstand.glb?v=1745492534532'
-      );
-      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
-    }else if(this.lamp){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6002454_Lampa_v2_glb.glb?v=1745511627153'
-      );
-      furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
-    }else if(this.bowl){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3962993_fruit_bowl.glb?v=1745512607464'
-      );
-      furnitureEntity.setAttribute('scale', '1 1 1');
-    }else if(this.pictures){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3696339_Paintings.glb?v=1745512824249'
-      );
-      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
-    }else if(this.plant){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5656299_Model_Caladium.glb?v=1745513921773'
-      );
-      furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
+      modelEntity.setAttribute('scale', '1 1 1');
     }
     
-    furnitureEntity.setAttribute('grabbable', true);
-    sceneEl.appendChild(furnitureEntity);
-    this.furnitureEntity = furnitureEntity;
+    modelEntity.setAttribute('grabbable', true);
+    sceneEl.appendChild(modelEntity);
+    this.modelEntity = modelEntity;
     this.setupMenuTracking();
 
-    return furnitureEntity;
+    return modelEntity;
   },
   
 });
