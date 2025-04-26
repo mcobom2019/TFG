@@ -274,8 +274,17 @@ AFRAME.registerComponent('menu', {
           buttons.forEach(button => {
             button.setAttribute('visible', true);
           });
+          // Verifica si el menú de destino es el menú inicial
+          if(nextM.id === "initMenu"){
+            // Oculta el botón apropiado según el estado actual
+            if(this.isDarkMode){
+              this.darkButtonEl.setAttribute('visible', false);
+            }else{
+              this.lightButtonEl.setAttribute('visible', false);
+            }
+          }
         }, 500);
-  },
+},
   
   minimizeMenu: function (menu){
         this.lastMenuPosition = this.getMenuPosition(menu);
@@ -732,4 +741,6 @@ AFRAME.registerComponent('menu', {
       this.lampEntity.setAttribute('visible', show);
     }
   },
+  
+  
 });
