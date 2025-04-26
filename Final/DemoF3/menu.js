@@ -778,7 +778,7 @@ AFRAME.registerComponent('menu', {
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6030951_untitled.glb?v=1745688301116'
       );
       modelEntity.setAttribute('scale', '1 1 1');
-      modelEntity.setAttribute('rotation', '0 90 0');
+      modelEntity.setAttribute('rotation', '0 180 0');
     }
     
     modelEntity.setAttribute('position', '0.2 0.85 -1');
