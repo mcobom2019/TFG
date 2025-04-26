@@ -629,10 +629,8 @@ AFRAME.registerComponent('menu', {
         this.lastMenuPosition = this.getMenuPosition(this.childMenu3);
         setTimeout(() => {
           if(this.sounds){
-            this.initilizeBoolean('sounds');
             this.nextMenu(this.childMenu3, this.childMenu2);
           }else if(this.soundtracks){
-            this.initilizeBoolean('soundtracks');
             this.nextMenu(this.childMenu3, this.childMenu4);
           }
         }, 200);

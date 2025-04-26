@@ -34,6 +34,8 @@
                   "function1": "nextMenu",
                   "parameter1f1": "childMenu1",
                   "parameter2f1": "childMenu2",
+                  "function2": "changeBoolean",
+                  "parameter1f2": "sounds",
                   "menuC2":{
                     "id": "childMenu2",
                     "position": "0 1.5 -0.5",
@@ -48,7 +50,9 @@
                           "color": "#C1440E",
                           "function1": "nextMenu",
                           "parameter1f1": "childMenu2",
-                          "parameter2f1": "childMenu1"
+                          "parameter2f1": "childMenu1",
+                          "function2": "initilizeBoolean",
+                          "parameter1f2": "sounds"
                         },
                         {
                           "label": "Birds",
@@ -195,6 +199,8 @@
                   "function1": "nextMenu",
                   "parameter1f1": "childMenu1",
                   "parameter2f1": "childMenu4",
+                  "function2": "changeBoolean",
+                  "parameter1f2": "soundtracks",
                   "menuC4":{
                     "id": "childMenu4",
                     "position": "0 1.5 -0.5",
@@ -210,7 +216,9 @@
                           "color": "#C1440E",
                           "function1": "nextMenu",
                           "parameter1f1": "childMenu4",
-                          "parameter2f1": "childMenu1"
+                          "parameter2f1": "childMenu1",
+                          "function2": "initilizeBoolean",
+                          "parameter1f2": "soundtracks"
                         },
                         {
                           "label": "Gladiator",
@@ -311,6 +319,34 @@
                 }
               ]
           }
+        },
+        {
+          "label": "Dark Mode",
+          "id": "darkButton",
+          "position": "0 -0.1 0",
+          "visible": "true",
+          "color": "#2F6A31",
+          "width": "0.20",
+          "posetx": "0.11",
+          "posety": "-0.01",
+          "widthet":"0.29",
+          "function1": "changeBoolean",
+          "parameter1f1": "isDarkMode",
+          "function2": "darkMode"
+        },
+        {
+          "label": "Light Mode",
+          "id": "lightButton",
+          "position": "0 -0.1 0",
+          "visible": "false",
+          "color": "#2F6A31",
+          "width": "0.20",
+          "posetx": "0.11",
+          "posety": "-0.01",
+          "widthet":"0.29",
+          "function1": "changeBoolean",
+          "parameter1f1": "isDarkMode",
+          "function2": "lightMode"
         },
         {
           "label": "noLabel",
