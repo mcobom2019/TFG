@@ -751,15 +751,17 @@ AFRAME.registerComponent('menu', {
     modelEntity.setAttribute('id', 'menu-model');
 
     if(this.bird){
-      modelEntity.setAttribute('obj-model', {
+      const modelEntity1 = document.createElement('a-entity');
+      modelEntity1.setAttribute('id', 'menu-model');
+      modelEntity1.setAttribute('obj-model', {
         obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/12213_Bird_v1_l3.obj?v=1745685176166',
         mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/12213_Bird_v1_l3.mtl?v=1745685238727'
       });
-      modelEntity.setAttribute('scale', '0.04 0.04 0.04');
-      modelEntity.setAttribute('rotation', '-90 45 0');
-      modelEntity.setAttribute('position', '0.5 0.85 -3.8');
-      modelEntity.setAttribute('grabbable', true);
-      sceneEl.appendChild(modelEntity);
+      modelEntity1.setAttribute('scale', '0.04 0.04 0.04');
+      modelEntity1.setAttribute('rotation', '-90 45 0');
+      modelEntity1.setAttribute('position', '0.5 0.85 -3.8');
+      modelEntity1.setAttribute('grabbable', true);
+      sceneEl.appendChild(modelEntity1);
       const modelEntity2 = document.createElement('a-entity');
       modelEntity2.setAttribute('id', 'menu-model');
       modelEntity2.setAttribute('obj-model', {
@@ -773,14 +775,14 @@ AFRAME.registerComponent('menu', {
       sceneEl.appendChild(modelEntity2);
     }else if(this.bonfire){
       modelEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/scene.gltf?v=1745687767041'
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6030951_untitled.glb?v=1745688301116'
       );
       modelEntity.setAttribute('scale', '1 1 1');
-      modelEntity.setAttribute('position', '0.2 0.85 -1');
-      modelEntity.setAttribute('grabbable', true);
-      sceneEl.appendChild(modelEntity);
+      modelEntity.setAttribute('rotation', '0 90 0');
     }
     
+    modelEntity.setAttribute('position', '0.2 0.85 -1');
+    modelEntity.setAttribute('grabbable', true);
     modelEntity.setAttribute('grabbable', true);
     sceneEl.appendChild(modelEntity);
     this.modelEntity = modelEntity;
