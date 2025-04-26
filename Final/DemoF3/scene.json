@@ -77,9 +77,7 @@
                                 "position": "-0.2 0.15 0",
                                 "visible": "false",
                                 "function1": "stopMusic",
-                                "function2": "nextMenu",
-                                "parameter1f2": "childMenu3",
-                                "parameter2f2": "childMenu2"
+                                "function2": "multipleBack"
                               },
                               {
                                 "label": "Play",

@@ -8,10 +8,8 @@ AFRAME.registerComponent('menu', {
     this.cm4 = false;
     this.cm5 = false;
     
-    this.sphere = false;
-    this.box = false;
-    this.cylinder = false;
-    this.cone = false;
+    this.sounds = false;
+    this.soundtracks = false;
     //la última posición del menu
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -257,121 +255,6 @@ AFRAME.registerComponent('menu', {
 
         // Estado inicial: música parada
         this.isPlaying = false;
-  },
-  
-  createForm: function (){
-    var type = "";
-    if(this.sphere){
-      type = "sphere";
-    }else if(this.box){
-      type = "box";
-    }else if(this.cylinder){
-      type = "cylinder";
-    }else if(this.cone){
-      type = "cone";
-    }
-    
-    const prevElement = document.querySelector('a-' + type);
-    if(prevElement){
-      return;
-    }
-    // Crear el elemento con el tipo especificado
-    const element = document.createElement('a-' + type);
-    
-    // Configurar propiedades comunes
-    element.setAttribute('position', '0 1 -2');
-    element.setAttribute('color', '#FF6347');
-    element.setAttribute('scale', '0.5 0.5 0.5');
-    element.setAttribute('shadow', '');
-    element.setAttribute('grabbable', '');
-
-    // Añadir el elemento a la escena
-    const escene = document.querySelector('a-scene');
-    escene.appendChild(element);
-  },
-  
-  deleteForm: function() {
-    // Buscar la última primitiva creada del tipo especificado
-    var type = "";
-    if(this.sphere){
-      type = "sphere";
-    }else if(this.box){
-      type = "box";
-    }else if(this.cylinder){
-      type = "cylinder";
-    }else if(this.cone){
-      type = "cone";
-    }
-    const element = document.querySelector('a-' + type);
-
-    if (!element) {
-      console.error(`No se encontró ningún elemento del tipo: ${type}`);
-      return false;
-    }
-    try {
-      // Eliminar el elemento de la escena
-      element.parentNode.removeChild(element);
-      console.log(`Elemento ${type} eliminado correctamente`);
-      return true;
-    } catch (error) {
-      console.error('Error al eliminar el elemento:', error);
-      return false;
-    }
-  },
-  
-  plusSize: function (){
-    var type = "";
-    if(this.sphere){
-      type = "sphere";
-    }else if(this.box){
-      type = "box";
-    }else if(this.cylinder){
-      type = "cylinder";
-    }else if(this.cone){
-      type = "cone";
-    }
-    
-    const element = document.querySelector('a-' + type);
-    if (!element) {
-      console.error(`No se encontró ningún elemento del tipo: ${type}`);
-      return false;
-    }else{
-      const currentScale = element.getAttribute('scale');
-      element.setAttribute('scale', {
-        x: currentScale.x * 1.1,
-        y: currentScale.y * 1.1,
-        z: currentScale.z * 1.1
-      });
-    }
-  },
-  
-  changeColor: function (){
-    var type = "";
-    if(this.sphere){
-      type = "sphere";
-    }else if(this.box){
-      type = "box";
-    }else if(this.cylinder){
-      type = "cylinder";
-    }else if(this.cone){
-      type = "cone";
-    }
-    
-    const element = document.querySelector('a-' + type);
-    if (!element) {
-      console.error(`No se encontró ningún elemento del tipo: ${type}`);
-      return false;
-    }else{
-      element.setAttribute('color', this.randomColor());
-    }
-  },
-  
-  randomColor: function(){
-    const r = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-    const g = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-    const b = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-
-    return `#${r}${g}${b}`;
   },
   
   nextMenu: function (prevM, nextM){
@@ -739,6 +622,20 @@ AFRAME.registerComponent('menu', {
   },
   initilizeBoolean: function(boolName) {
     this[boolName] = false;
-  }
+  },
+  multipleBack: function(){
+    var scene = document.querySelector("a-scene");
+    // Guardar la posición actual del submenu2
+        this.lastMenuPosition = this.getMenuPosition(this.childMenu3);
+        setTimeout(() => {
+          if(this.sounds){
+            this.initilizeBoolean('sounds');
+            this.nextMenu(this.childMenu3, this.childMenu2);
+          }else if(this.soundtracks){
+            this.initilizeBoolean('soundtracks');
+            this.nextMenu(this.childMenu3, this.childMenu4);
+          }
+        }, 200);
+  },
   
 });
