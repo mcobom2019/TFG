@@ -15,6 +15,7 @@ AFRAME.registerComponent('menu', {
     this.bonfire = false;
     this.fountain = false;
     this.umbrella = false;
+    this.gladiator = false;
     //la última posición del menu
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -751,7 +752,7 @@ AFRAME.registerComponent('menu', {
     const sceneEl = this.el.sceneEl;
     const modelEntity = document.createElement('a-entity');
     modelEntity.setAttribute('id', 'menu-model');
-
+    modelEntity.setAttribute('position', '0 0.85 -2');
     if(this.bird){
       const modelEntity1 = document.createElement('a-entity');
       modelEntity1.setAttribute('id', 'menu-model');
@@ -794,9 +795,16 @@ AFRAME.registerComponent('menu', {
       });
       modelEntity.setAttribute('scale', '0.8 0.8 0.8');
       modelEntity.setAttribute('rotation', '0 180 0');
+    }else if(this.gladiator){
+      modelEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3852717_Gladiator%20(1).glb?v=1745691011792'
+      );
+      modelEntity.setAttribute('scale', '0.4 0.4 0.4');
+      modelEntity.setAttribute('rotation', '0 0 0');
+      modelEntity.setAttribute('position', '0 1.5 -2');
     }
     
-    modelEntity.setAttribute('position', '0 0.85 -2');
+    
     modelEntity.setAttribute('grabbable', true);
     sceneEl.appendChild(modelEntity);
     this.modelEntity = modelEntity;
@@ -827,6 +835,7 @@ AFRAME.registerComponent('menu', {
     this.bonfire = false;
     this.fountain = false;
     this.umbrella = false;
+    this.gladiator = false;
 
     console.log('Todos los modelos han sido eliminados');
   },
