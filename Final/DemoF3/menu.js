@@ -760,6 +760,7 @@ AFRAME.registerComponent('menu', {
       modelEntity.setAttribute('grabbable', true);
       sceneEl.appendChild(modelEntity);
       const modelEntity2 = document.createElement('a-entity');
+      modelEntity2.setAttribute('id', 'menu-model');
       modelEntity2.setAttribute('obj-model', {
         obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/12213_Bird_v1_l3.obj?v=1745685176166',
         mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/12213_Bird_v1_l3.mtl?v=1745685238727'
@@ -783,5 +784,27 @@ AFRAME.registerComponent('menu', {
 
     return modelEntity;
   },
-  
+  deleteModels: function() {
+    console.log('Eliminando modelos...');
+
+    // Buscar todos los elementos con ID 'menu-model'
+    const models = document.querySelectorAll('#menu-model');
+
+    // Eliminar cada modelo encontrado
+    models.forEach(model => {
+      console.log('Eliminando modelo:', model);
+      model.parentNode.removeChild(model);
+    });
+
+    // Limpiar la referencia al modelo principal
+    if (this.modelEntity) {
+      this.modelEntity = null;
+    }
+
+    // Reiniciar los booleanos relacionados con los modelos
+    this.bird = false;
+    this.bed = false;
+
+    console.log('Todos los modelos han sido eliminados');
+  },
 });

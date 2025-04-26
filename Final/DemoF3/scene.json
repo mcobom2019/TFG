@@ -70,7 +70,6 @@
                           "parameter2f2": "childMenu3",
                           "function3": "changeBoolean",
                           "parameter1f3": "bird",
-                          "function4": "loadModel",
                           "menuC3":{
                             "id": "childMenu3",
                             "position": "0 1.5 -0.5",
@@ -84,7 +83,8 @@
                                 "position": "-0.2 0.15 0",
                                 "visible": "false",
                                 "function1": "stopMusic",
-                                "function2": "multipleBack"
+                                "function2": "multipleBack",
+                                "function3": "deleteModels"
                               },
                               {
                                 "label": "Play",
@@ -95,7 +95,8 @@
                                 "posety": "-0.01",
                                 "widthet": "0.18",
                                 "visible": "false",
-                                "function1": "playMusic"
+                                "function1": "playMusic",
+                                "function2": "loadModel"
                               },
                               {
                                 "label": "Pause",
@@ -117,7 +118,8 @@
                                 "posetz": "0.07",
                                 "posety": "-0.01",
                                 "widthet": "0.22",
-                                "function1": "stopMusic"
+                                "function1": "stopMusic",
+                                "function2": "deleteModels"
                               },
                               {
                                 "label": "noLabel",
