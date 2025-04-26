@@ -11,6 +11,7 @@ AFRAME.registerComponent('menu', {
     
     this.sounds = false;
     this.soundtracks = false;
+    this.bird = false;
     //la última posición del menu
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -756,12 +757,12 @@ AFRAME.registerComponent('menu', {
       furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
     }else if(this.bed){
       furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_gltf.glb?v=1745490478737'
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/scene.gltf?v=1745684384035'
       );
       furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
-    }else if(this.table){
+    }else if(this.bird){
       furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3673019_table.glb?v=1745491767135'
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/scene.gltf?v=1745684384035'
       );
       furnitureEntity.setAttribute('scale', '1 1 1');
     }else if(this.nightstand){
@@ -790,7 +791,7 @@ AFRAME.registerComponent('menu', {
       );
       furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
     }
-    furnitureEntity.setAttribute('position', '0 0 -1');
+    furnitureEntity.setAttribute('position', '0 2 -1');
     furnitureEntity.setAttribute('grabbable', true);
     sceneEl.appendChild(furnitureEntity);
     this.furnitureEntity = furnitureEntity;

@@ -68,6 +68,9 @@
                           "function2": "nextMenu",
                           "parameter1f2": "childMenu2",
                           "parameter2f2": "childMenu3",
+                          "function3": "changeBoolean",
+                          "parameter1f3": "bird",
+                          "function4": "loadModel",
                           "menuC3":{
                             "id": "childMenu3",
                             "position": "0 1.5 -0.5",
