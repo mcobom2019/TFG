@@ -775,14 +775,13 @@ AFRAME.registerComponent('menu', {
       sceneEl.appendChild(modelEntity2);
     }else if(this.bonfire){
       modelEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6030951_untitled.glb?v=1745688301116'
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3248308_Campfire.glb?v=1745689802309'
       );
       modelEntity.setAttribute('scale', '1 1 1');
       modelEntity.setAttribute('rotation', '0 180 0');
     }
     
-    modelEntity.setAttribute('position', '0.2 0.85 -1');
-    modelEntity.setAttribute('grabbable', true);
+    modelEntity.setAttribute('position', '0 0.85 -2');
     modelEntity.setAttribute('grabbable', true);
     sceneEl.appendChild(modelEntity);
     this.modelEntity = modelEntity;
