@@ -18,6 +18,7 @@ AFRAME.registerComponent('menu', {
     this.gladiator = false;
     this.america = false;
     this.elbueno = false;
+    this.malditos = false;
     //la última posición del menu
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -815,8 +816,14 @@ AFRAME.registerComponent('menu', {
       modelEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Revolver.glb?v=1745692710898'
       );
-      modelEntity.setAttribute('scale', '0.1 0.1 0.1');
+      modelEntity.setAttribute('scale', '0.3 0.3 0.3');
       modelEntity.setAttribute('position', '0 0.75 -2');
+    }else if(this.malditos){
+      modelEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Baseball%20bat.glb?v=1745692924915'
+      );
+      modelEntity.setAttribute('scale', '0.08 0.08 0.08');
+      modelEntity.setAttribute('position', '0 1.1 -2');
     }
     
     
@@ -853,6 +860,7 @@ AFRAME.registerComponent('menu', {
     this.gladiator = false;
     this.america = false;
     this.elbueno = false;
+    this.malditos = false;
 
     console.log('Todos los modelos han sido eliminados');
   },
