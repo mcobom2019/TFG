@@ -263,7 +263,9 @@
                           "parameter1f1": "America",
                           "function2": "nextMenu",
                           "parameter1f2": "childMenu4",
-                          "parameter2f2": "childMenu3"
+                          "parameter2f2": "childMenu3",
+                          "function3": "changeBoolean",
+                          "parameter1f3": "america"
                         },
                         {
                           "label": "ElBuenoElFeoElMalo",
@@ -279,7 +281,9 @@
                           "parameter1f1": "Bueno",
                           "function2": "nextMenu",
                           "parameter1f2": "childMenu4",
-                          "parameter2f2": "childMenu3"
+                          "parameter2f2": "childMenu3",
+                          "function3": "changeBoolean",
+                          "parameter1f3": "elbueno"
                         },
                         {
                           "label": "MalditosBastardos",

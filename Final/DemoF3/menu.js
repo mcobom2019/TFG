@@ -16,6 +16,8 @@ AFRAME.registerComponent('menu', {
     this.fountain = false;
     this.umbrella = false;
     this.gladiator = false;
+    this.america = false;
+    this.elbueno = false;
     //la última posición del menu
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -802,6 +804,19 @@ AFRAME.registerComponent('menu', {
       modelEntity.setAttribute('scale', '0.4 0.4 0.4');
       modelEntity.setAttribute('rotation', '0 0 0');
       modelEntity.setAttribute('position', '0 1.5 -2');
+    }else if(this.america){
+      modelEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Briefcase.glb?v=1745692396728'
+      );
+      modelEntity.setAttribute('scale', '0.1 0.1 0.1');
+      modelEntity.setAttribute('rotation', '0 45 0');
+      modelEntity.setAttribute('position', '0 0.75 -2');
+    }else if(this.elbueno){
+      modelEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Revolver.glb?v=1745692710898'
+      );
+      modelEntity.setAttribute('scale', '0.1 0.1 0.1');
+      modelEntity.setAttribute('position', '0 0.75 -2');
     }
     
     
@@ -836,6 +851,8 @@ AFRAME.registerComponent('menu', {
     this.fountain = false;
     this.umbrella = false;
     this.gladiator = false;
+    this.america = false;
+    this.elbueno = false;
 
     console.log('Todos los modelos han sido eliminados');
   },
