@@ -13,6 +13,7 @@ AFRAME.registerComponent('menu', {
     this.soundtracks = false;
     this.bird = false;
     this.bonfire = false;
+    this.fountain = false;
     //la última posición del menu
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -779,6 +780,12 @@ AFRAME.registerComponent('menu', {
       );
       modelEntity.setAttribute('scale', '1 1 1');
       modelEntity.setAttribute('rotation', '0 180 0');
+    }else if(this.fountain){
+      modelEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5133177_fountain_model.glb?v=1745690171980'
+      );
+      modelEntity.setAttribute('scale', '0.8 0.8 0.8');
+      modelEntity.setAttribute('rotation', '0 180 0');
     }
     
     modelEntity.setAttribute('position', '0 0.85 -2');
@@ -810,6 +817,7 @@ AFRAME.registerComponent('menu', {
     this.bird = false;
     this.bed = false;
     this.bonfire = false;
+    this.fountain = false;
 
     console.log('Todos los modelos han sido eliminados');
   },
