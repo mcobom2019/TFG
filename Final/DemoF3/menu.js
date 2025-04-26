@@ -742,5 +742,61 @@ AFRAME.registerComponent('menu', {
     }
   },
   
+  loadModel: function(){
+    
+    const sceneEl = this.el.sceneEl;
+    const furnitureEntity = document.createElement('a-entity');
+    furnitureEntity.setAttribute('id', 'menu-model');
+
+    if(this.chair){
+      furnitureEntity.setAttribute('obj-model', {
+        obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
+      });
+      furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
+    }else if(this.bed){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_gltf.glb?v=1745490478737'
+      );
+      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
+    }else if(this.table){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3673019_table.glb?v=1745491767135'
+      );
+      furnitureEntity.setAttribute('scale', '1 1 1');
+    }else if(this.nightstand){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_4532938_Wooden%2B2%2BDrawers%2BNightstand.glb?v=1745492534532'
+      );
+      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
+    }else if(this.lamp){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6002454_Lampa_v2_glb.glb?v=1745511627153'
+      );
+      furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
+    }else if(this.bowl){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3962993_fruit_bowl.glb?v=1745512607464'
+      );
+      furnitureEntity.setAttribute('scale', '1 1 1');
+    }else if(this.pictures){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3696339_Paintings.glb?v=1745512824249'
+      );
+      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
+    }else if(this.plant){
+      furnitureEntity.setAttribute('gltf-model', 
+        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5656299_Model_Caladium.glb?v=1745513921773'
+      );
+      furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
+    }
+    furnitureEntity.setAttribute('position', '0 0 -1');
+    furnitureEntity.setAttribute('grabbable', true);
+    sceneEl.appendChild(furnitureEntity);
+    this.furnitureEntity = furnitureEntity;
+    this.setupMenuTracking();
+
+    return furnitureEntity;
+  },
   
 });
