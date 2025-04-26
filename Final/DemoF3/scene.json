@@ -181,7 +181,9 @@
                           "parameter1f1": "Rain",
                           "function2": "nextMenu",
                           "parameter1f2": "childMenu2",
-                          "parameter2f2": "childMenu3"
+                          "parameter2f2": "childMenu3",
+                          "function3": "changeBoolean",
+                          "parameter1f3": "umbrella"
                         },
                         {
                           "label": "noLabel",

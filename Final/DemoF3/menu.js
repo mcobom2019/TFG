@@ -14,6 +14,7 @@ AFRAME.registerComponent('menu', {
     this.bird = false;
     this.bonfire = false;
     this.fountain = false;
+    this.umbrella = false;
     //la última posición del menu
     this.lastMenuPosition = { x: 0, y: 0, z: 0 };
     this.lastMenuRotation = { x: 0, y: 0, z: 0 };
@@ -786,6 +787,13 @@ AFRAME.registerComponent('menu', {
       );
       modelEntity.setAttribute('scale', '0.8 0.8 0.8');
       modelEntity.setAttribute('rotation', '0 180 0');
+    }else if(this.umbrella){
+      modelEntity.setAttribute('obj-model', {
+        obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_4707588_beach-umbrella.obj?v=1745690692803',
+        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_4707588_beach-umbrella.mtl?v=1745690754541'
+      });
+      modelEntity.setAttribute('scale', '0.8 0.8 0.8');
+      modelEntity.setAttribute('rotation', '0 180 0');
     }
     
     modelEntity.setAttribute('position', '0 0.85 -2');
@@ -818,6 +826,7 @@ AFRAME.registerComponent('menu', {
     this.bed = false;
     this.bonfire = false;
     this.fountain = false;
+    this.umbrella = false;
 
     console.log('Todos los modelos han sido eliminados');
   },
