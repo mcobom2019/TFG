@@ -331,8 +331,6 @@ AFRAME.registerComponent('menu', {
       sky.setAttribute('visible', true);
       sky.setAttribute('material', 'opacity', 0.8);
       sky.setAttribute('material', 'color', '#001133');
-      document.querySelector('#luz1').setAttribute('light', 'intensity', -0.5);
-    document.querySelector('#luz2').setAttribute('light', 'intensity', -0.5);
     }
 
     // Reducimos la intensidad de las luces para crear ambiente nocturno
