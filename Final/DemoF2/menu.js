@@ -320,33 +320,48 @@ AFRAME.registerComponent('menu', {
   },
   darkMode: function() {
     this.darkButtonEl.setAttribute('visible', false);
-    // Guardamos el estado inicial para poder restaurarlo después
-    this.originalSkyVisible = document.querySelector('a-sky').getAttribute('visible');
-    // Cambiar a modo oscuro
-    document.querySelector('a-sky').setAttribute('visible', false);
-    document.querySelector('#luz1').setAttribute('light', 'intensity', 0);
-    document.querySelector('#luz2').setAttribute('light', 'intensity', 0);
-    this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+
+    // No ocultamos el cielo panorámico, sino que lo oscurecemos
+    const sky = document.querySelector('a-sky');
+    sky.setAttribute('visible', true);
+
+    // Aplicamos un filtro oscuro al panorama reduciendo su brillo
+    sky.setAttribute('material', 'opacity', 0.8);
+    sky.setAttribute('material', 'color', '#001133');
+
+    // Reducimos la intensidad de las luces para crear ambiente nocturno
+    document.querySelector('#luz1').setAttribute('light', 'intensity', 0.1);
+    document.querySelector('#luz2').setAttribute('light', 'intensity', 0.1);
+
+    // No aplicamos el entorno estrellado que reemplazaría nuestra imagen
+    // this.el.sceneEl.setAttribute('environment', {preset: 'starry'});
+
     this.toggleLamp(true);
     this.isDarkMode = true;
+
     setTimeout(() => {
       this.lightButtonEl.setAttribute('visible', true);
     }, 250);
   },
     lightMode: function() {
-    this.lightButtonEl.setAttribute('visible', false);
-    // Restaurar exactamente al estado inicial
-    this.el.sceneEl.removeAttribute('environment');
-    document.querySelector('a-sky').setAttribute('src', '#sky');
-    document.querySelector('a-sky').setAttribute('visible', true);
-    document.querySelector('#luz1').setAttribute('light', 'intensity', 0.7);
-    document.querySelector('#luz2').setAttribute('light', 'intensity', 0.7);
-    this.toggleLamp(false);
-    this.isDarkMode = false;
-    setTimeout(() => {
-      this.darkButtonEl.setAttribute('visible', true);
-    }, 250);
-  },
+      this.lightButtonEl.setAttribute('visible', false);
+
+      // Restaurar el cielo a su estado original
+      const sky = document.querySelector('a-sky');
+      sky.setAttribute('material', 'opacity', 1);
+      sky.setAttribute('material', 'color', '#FFFFFF');
+
+      // Restaurar las luces a su intensidad original
+      document.querySelector('#luz1').setAttribute('light', 'intensity', 0.7);
+      document.querySelector('#luz2').setAttribute('light', 'intensity', 0.7);
+
+      this.toggleLamp(false);
+      this.isDarkMode = false;
+
+      setTimeout(() => {
+        this.darkButtonEl.setAttribute('visible', true);
+      }, 250);
+    },
   initilizeBoolean: function(boolName) {
     this[boolName] = false;
   },
