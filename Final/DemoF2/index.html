@@ -14,9 +14,58 @@
   <script src="../dist/button.js"></script>
   <script src="../dist/pressable.js"></script>
   <script src="../dist/pinchable.js"></script>
+  
+  <script>
+    // Script para gestionar la visibilidad de elementos en modo AR
+    AFRAME.registerComponent('ar-mode-handler', {
+      init: function() {
+        var scene = this.el;
+        var roomElements = document.querySelectorAll('#room, #sky');
+        
+        // Verificar el estado de AR al iniciar
+        this.checkARMode();
+        
+        // Escuchar evento de entrada a modo AR
+        scene.addEventListener('enter-vr', (event) => {
+          if (scene.is('ar-mode')) {
+            this.hideVirtualRoom();
+          }
+        });
+        
+        // Escuchar evento de salida de modo AR
+        scene.addEventListener('exit-vr', () => {
+          this.showVirtualRoom();
+        });
+      },
+      
+      checkARMode: function() {
+        var scene = this.el;
+        // Si ya estamos en modo AR al cargar, ocultar la habitación
+        if (scene.is('ar-mode')) {
+          this.hideVirtualRoom();
+        }
+      },
+      
+      hideVirtualRoom: function() {
+        console.log('Entrando en modo AR: ocultando habitación virtual');
+        var roomElements = document.querySelectorAll('#room, #sky');
+        roomElements.forEach(function(element) {
+          element.setAttribute('visible', false);
+        });
+      },
+      
+      showVirtualRoom: function() {
+        console.log('Saliendo de modo AR: mostrando habitación virtual');
+        var roomElements = document.querySelectorAll('#room, #sky');
+        roomElements.forEach(function(element) {
+          element.setAttribute('visible', true);
+        });
+      }
+    });
+  </script>
 </head>
 <body>
-  <a-scene xr-mode-ui="XRMode: xr" menu>
+  <a-scene xr-mode-ui="XRMode: xr" menu ar-mode-handler>
     <!-- Assets -->
     <a-assets>
       <img id="sky" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/360-panorama.jpg?v=1745337225916">
@@ -24,10 +73,10 @@
       <img id="metalic" src="https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/metalic-texture.jpg?v=1745337245682">
     </a-assets>
     
-    <!-- Panorama -->
+    <!-- Panorama - Se ocultará en modo AR -->
     <a-sky hide-on-enter-ar src="#sky"></a-sky>
     
-    <!-- Habitación - Paredes, Suelo y Techo (20% más grande) -->
+    <!-- Habitación - Paredes, Suelo y Techo - Se ocultará en modo AR -->
     <a-entity id="room" position="0 0.5 0">
       <!-- Suelo -->
       <a-plane id="floor2" src="#floor" position="0 0 0" rotation="-90 0 0" width="6.05" height="7.56" repeat="2 3"></a-plane>
@@ -85,9 +134,14 @@
       <a-entity cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
     </a-entity>
     
-    <!-- Luces -->
-    <a-entity hide-on-enter-ar id="luz1" light="color: #fff; type: ambient; intensity: 0.7"></a-entity>
-    <a-entity hide-on-enter-ar id="luz2" light="type: directional; color: #FFF; intensity: 0.7; castShadow: true" position="-1 1 -12" rotation="0 0 0"></a-entity>
+    <!-- Luces - Las mantenemos en AR para poder ver los objetos -->
+    <a-entity id="luz1" light="color: #fff; type: ambient; intensity: 0.7"></a-entity>
+    <a-entity id="luz2" light="type: directional; color: #FFF; intensity: 0.7; castShadow: true" position="-1 1 -12" rotation="0 0 0"></a-entity>
+    
+    <!-- Plano invisible para AR - Ayuda a posicionar objetos en superficies reales -->
+    <a-entity id="ar-floor" visible="false">
+      <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" color="#7BC8A4" opacity="0.0"></a-plane>
+    </a-entity>
   </a-scene>
 </body>
 </html>
