@@ -238,8 +238,8 @@ AFRAME.registerComponent('menu', {
           }
         }, 500);
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: changeBoolean
+  Function that changes the state of the boolean passed as parameter*/
   changeBoolean: function(boolName) {
     if (this[boolName] !== undefined) {
       this[boolName] = !this[boolName];
@@ -248,8 +248,9 @@ AFRAME.registerComponent('menu', {
       console.warn('Property ' + boolName + ' does not exist in this component');
     }
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: minimizeMenu
+  Function that minimizes a menu, makes it not visible, previously you have to change 
+  the state of the boolean corresponding to that menu*/
   minimizeMenu: function (menu){
         console.log("minimizado el menu"+menu.id);
         this.lastMenuPosition = this.getMenuPosition(menu);
@@ -262,8 +263,8 @@ AFRAME.registerComponent('menu', {
           this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: deleteMenu
+  Function that makes the menu passed as parameter not visible*/
   deleteMenu: function(menu){
         menu.setAttribute('visible', false);
         const buttons2 = menu.querySelectorAll('[id]');
@@ -271,69 +272,59 @@ AFRAME.registerComponent('menu', {
           button.setAttribute('visible', false);
         });
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: darkMode
+  Function that controls the functionality of the DarkMode button, 
+  if you press this button, it will change the scene from day to night. 
+  Creates a lamp and makes the lightMode button visible*/
   darkMode: function() {
     this.darkButtonEl.setAttribute('visible', false);
-
-    // Comprobar si estamos en modo AR para no mostrar el cielo
     const scene = this.el.sceneEl;
     const isARMode = scene.is('ar-mode');
-
-    // Modificar el cielo solo si NO estamos en modo AR
     const sky = document.querySelector('a-sky');
+    
     if (!isARMode && sky) {
       sky.setAttribute('visible', true);
       sky.setAttribute('material', 'opacity', 0.8);
       sky.setAttribute('material', 'color', '#001133');
     }
-
-    // Reducimos la intensidad de las luces para crear ambiente nocturno
     document.querySelector('#luz1').setAttribute('light', 'intensity', 0.1);
     document.querySelector('#luz2').setAttribute('light', 'intensity', 0.1);
-
     this.toggleLamp(true);
     this.isDarkMode = true;
-
     setTimeout(() => {
       this.lightButtonEl.setAttribute('visible', true);
     }, 250);
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: lightMode
+  Function that controls the lightMode button functionality, 
+  if you press this button, it will change the scene from night to day. 
+  Remove the lamp and make the darkModeMode button visible*/
   lightMode: function() {
     this.lightButtonEl.setAttribute('visible', false);
-
-    // Comprobar si estamos en modo AR para no mostrar el cielo
     const scene = this.el.sceneEl;
     const isARMode = scene.is('ar-mode');
-
-    // Modificar el cielo solo si NO estamos en modo AR
     const sky = document.querySelector('a-sky');
+    
     if (!isARMode && sky) {
       sky.setAttribute('visible', true);
       sky.setAttribute('material', 'opacity', 1);
       sky.setAttribute('material', 'color', '#FFFFFF');
     }
-
-    // Restaurar las luces a su intensidad original
     document.querySelector('#luz1').setAttribute('light', 'intensity', 0.7);
     document.querySelector('#luz2').setAttribute('light', 'intensity', 0.7);
-
     this.toggleLamp(false);
     this.isDarkMode = false;
-
     setTimeout(() => {
       this.darkButtonEl.setAttribute('visible', true);
     }, 250);
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: initilizeBoolean
+  Function that changes the state of the boolean passed as parameter to false*/
   initilizeBoolean: function(boolName) {
     this[boolName] = false;
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: maximizeMenu
+  Function that makes visible the menu that was minimized*/
   maximizeMenu: function(menu){
     setTimeout(() => {
         menu.setAttribute('visible', true);
@@ -348,25 +339,21 @@ AFRAME.registerComponent('menu', {
       }
     }, 500);
   },
-  
+  /*Function: setupMenuReferences
+  Function that initializes the menu drivers automatically by reading the JSON. 
+  Instead of manually typing this.menuidEl = document.querySelector('#menuid');, 
+  this function does so automatically for all menus defined in the JSON*/
   setupMenuReferences: function() {
-
-    // Lista para almacenar todos los IDs de menús encontrados
     const menuIds = [];
-
-    // Función recursiva para extraer IDs de menús del JSON
     const extractMenuIds = (menuObj) => {
       if (!menuObj || typeof menuObj !== 'object') return;
 
-      // Si el objeto tiene un ID, lo añadimos a la lista
       if (menuObj.id) {
         menuIds.push(menuObj.id);
       }
 
-      // Si el objeto tiene botones, buscamos menús hijos en ellos
       if (menuObj.buttons && Array.isArray(menuObj.buttons)) {
         menuObj.buttons.forEach(button => {
-          // Buscamos todas las propiedades que empiezan con "menuC" (menús hijos)
           Object.keys(button).forEach(key => {
             if (key.startsWith('menuC') && button[key]) {
               extractMenuIds(button[key]);
@@ -375,27 +362,18 @@ AFRAME.registerComponent('menu', {
         });
       }
     };
-
-    // Iniciar la extracción desde el menú padre
     if (this.data && this.data.menuP) {
       extractMenuIds(this.data.menuP);
     }
-
-    console.log("Menús encontrados:", menuIds);
-
-    // Crear referencias a todos los menús encontrados
     menuIds.forEach(menuId => {
-      // Convertir el ID a camelCase para la propiedad
-      // Por ejemplo: 'childmenu1' → 'childMenu1'
+
       const propName = menuId.replace(/([a-z])([A-Z])/g, '$1$2')
                              .replace(/[-_]([a-z])/g, (_, letter) => letter.toUpperCase())
                              .replace(/^([a-z])/, (_, letter) => letter);
-
-      // Guardar la referencia al elemento del DOM
       this[propName] = document.querySelector('#' + menuId);
 
       if (!this[propName]) {
-        console.warn(`No se encontró el menú con ID: ${menuId}`);
+        console.warn(`no match menu with id: ${menuId}`);
       } else {
         console.log(`Referencia creada: this.${propName} = elemento con ID #${menuId}`);
       }
@@ -409,7 +387,8 @@ AFRAME.registerComponent('menu', {
       console.warn('No se encontró el botón maximizar');
     }
   },
-  
+  /*Function: getMenuPosition
+  */
   setupButtonReferences: function() {
     // Lista para almacenar todos los IDs de botones encontrados
     const buttonIds = [];
@@ -473,7 +452,8 @@ AFRAME.registerComponent('menu', {
       console.warn('No se encontró el botón maximizar');
     }
   },
-  
+  /*Function: getMenuPosition
+  */
   setupAutomaticButtonEvents: function() {
     if (!this.data) return;
 
@@ -586,6 +566,8 @@ AFRAME.registerComponent('menu', {
 
     console.log("Configuración de eventos automáticos completada");
   },
+  /*Function: getMenuPosition
+  */
   createLamp: function() {
     const sceneEl = this.el.sceneEl;
     
@@ -630,14 +612,16 @@ AFRAME.registerComponent('menu', {
     // Guardar referencia a la lámpara
     this.lampEntity = lampEntity;
   },
-  
+  /*Function: getMenuPosition
+  */
   // Método para mostrar/ocultar la lámpara
   toggleLamp: function(show) {
     if (this.lampEntity) {
       this.lampEntity.setAttribute('visible', show);
     }
   },
-  
+  /*Function: getMenuPosition
+  */
   createFurniture: function() {
     const sceneEl = this.el.sceneEl;
     const submenu2 = document.querySelector('#submenu2');
@@ -741,6 +725,8 @@ AFRAME.registerComponent('menu', {
 
     return furnitureEntity;
   },
+  /*Function: getMenuPosition
+  */
   deleteLastFurniture: function() {
     // Verificar si hay sillas para eliminar
     if (this.numFurniture <= 0) {
@@ -773,6 +759,8 @@ AFRAME.registerComponent('menu', {
     
     return true;
   },
+  /*Function: getMenuPosition
+  */
   multipleBack: function(){
     var scene = document.querySelector("a-scene");
     // Guardar la posición actual del submenu2
