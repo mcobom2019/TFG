@@ -35,7 +35,7 @@ AFRAME.registerComponent('menu', {
         this.setupEvents();
       })
       .catch(error => {
-        console.error('Error cargando scene.json:', error);
+        console.error('Error scene.json:', error);
       });
   },
   
