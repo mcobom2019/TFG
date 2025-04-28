@@ -1,3 +1,15 @@
+/*
+  Author: Mario Cobo Martínez
+  script: menu.js
+  Description: With this script you can easily create an interactive menu in aframe. 
+  Through a JSON where you define the menus and its buttons have menus with buttons 
+  which will do different actions depending on the functions that you apply them. 
+  For this you must create the corresponding functions, I have left as an example 
+  the darkButton, lightButton and createLamp functions. This scene will be created 
+  automatically by reading from the JSON without having to define the controls of 
+  the buttons or the menus manually, besides applies the functions defined in the JSON 
+  for each menuy automatically.
+*/
 /* global AFRAME */
 AFRAME.registerComponent('menu', {
   init: function() {
@@ -490,7 +502,7 @@ AFRAME.registerComponent('menu', {
                       if (param2 && functionToCall === 'nextMenu') {
                         const menuEl2 = document.querySelector('#' + param2);
                         if (!menuEl2) {
-                          console.error(`No se encontró el menú destino con ID: ${param2}`);
+                          console.error(`No match menu with id: ${param2}`);
                           continue;
                         }
                         this[functionToCall](menuEl, menuEl2);
@@ -498,12 +510,11 @@ AFRAME.registerComponent('menu', {
                         this[functionToCall](menuEl);
                       }
                     } else {
-                      console.error(`No se especificó menú para función ${functionToCall}`);
+                      console.error(`No match menu with the function: ${functionToCall}`);
                     }
                     break;
 
                   default:
-                    // Otras funciones con sus parámetros normales
                     if (param1 && param2) {
                       this[functionToCall](param1, param2);
                     } else if (param1) {
@@ -513,13 +524,11 @@ AFRAME.registerComponent('menu', {
                     }
                 }
               } catch (error) {
-                console.error(`Error ejecutando ${functionToCall}:`, error);
+                console.error(`Error executing ${functionToCall}:`, error);
               }
             }
           }
         });
-
-        // Procesar recursivamente los submenús
         Object.keys(button).forEach(key => {
           if (key.startsWith('menuC') && button[key]) {
             setupButtonEventsInMenu(button[key], button[key].id);
@@ -528,25 +537,21 @@ AFRAME.registerComponent('menu', {
       });
     };
 
-    // Comenzar la configuración desde todos los menús principales
     Object.keys(this.data).forEach(key => {
       if (key.startsWith('menuP')) {
         setupButtonEventsInMenu(this.data[key], this.data[key].id);
       }
     });
 
-    console.log("Configuración de eventos automáticos completada");
+    console.log("Automatic event configuration completed");
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: createLamp
+  Function that creates a lamp in the scene*/
   createLamp: function() {
     const sceneEl = this.el.sceneEl;
-    
-    // Crear entidad para la lámpara
     const lampEntity = document.createElement('a-entity');
     lampEntity.setAttribute('id', 'menu-lamp');
     
-    // Crear la luz puntual
     const lightEntity = document.createElement('a-light');
     lightEntity.setAttribute('type', 'point');
     lightEntity.setAttribute('color', '#ffffff');
@@ -554,202 +559,30 @@ AFRAME.registerComponent('menu', {
     lightEntity.setAttribute('distance', '5');
     lightEntity.setAttribute('position', '-0 0.2 0');
     
-    // Crear modelo visual de la lámpara
     const lampModelEntity = document.createElement('a-entity');
     lampModelEntity.setAttribute('geometry', 'primitive: sphere; radius: 0.05');
     lampModelEntity.setAttribute('material', 'color: #ffff99; emissive: #ffff00; emissiveIntensity: 0.8');
     
-    // Crear soporte de la lámpara
     const lampStandEntity = document.createElement('a-entity');
     lampStandEntity.setAttribute('geometry', 'primitive: cylinder; radius: 0.01; height: 0.15');
     lampStandEntity.setAttribute('material', 'color: #888888');
     lampStandEntity.setAttribute('position', '0 -0.1 0');
     
-    // Añadir componentes a la lámpara
     lampEntity.appendChild(lightEntity);
     lampEntity.appendChild(lampModelEntity);
     lampEntity.appendChild(lampStandEntity);
-    
-    // Posicionar la lámpara cerca del campo de visión del usuario pero sin estorbar
     lampEntity.setAttribute('position', '-0.5 1.5 0');
     
-    // Ocultar la lámpara inicialmente
     lampEntity.setAttribute('visible', false);
     lampEntity.setAttribute('grabbable', true);
-    
-    // Añadir la lámpara a la escena
     sceneEl.appendChild(lampEntity);
-    
-    // Guardar referencia a la lámpara
     this.lampEntity = lampEntity;
   },
-  /*Function: getMenuPosition
-  */
-  // Método para mostrar/ocultar la lámpara
+  /*Function: toggleLamp
+  Function that shows/hides the lamp*/
   toggleLamp: function(show) {
     if (this.lampEntity) {
       this.lampEntity.setAttribute('visible', show);
     }
-  },
-  /*Function: getMenuPosition
-  */
-  createFurniture: function() {
-    const sceneEl = this.el.sceneEl;
-    const submenu2 = document.querySelector('#submenu2');
-    
-    // Obtener posición y rotación del submenu2
-    const menuPosition = this.getMenuPosition(submenu2);
-    
-    // Incrementar el contador de muebles
-    this.numFurniture++;
-
-    // Crear entidad para el mueble
-    const furnitureEntity = document.createElement('a-entity');
-    
-    // Asignar el ID único con el número secuencial
-    furnitureEntity.setAttribute('id', 'menu-furniture' + this.numFurniture);
-
-    // Calcular la posición relativa al frente del submenu2
-    // Ajustamos z para que esté delante del menú
-    const offsetZ = -1; // Distancia delante del menú
-    
-    // Calcular la posición considerando la rotación del menú
-    const angle = menuPosition.b * (Math.PI / 180); // Convertir a radianes
-    const offsetX = Math.sin(angle) * offsetZ;
-    const adjustedZ = Math.cos(angle) * offsetZ;
-    
-    const position = {
-        x: menuPosition.x + offsetX,
-        y: menuPosition.y - 0.5,
-        z: menuPosition.z + adjustedZ - 0.2
-    };
-
-    // Cargar el modelo correspondiente según el tipo de mueble
-    if(this.chair){
-      furnitureEntity.setAttribute('obj-model', {
-        obj: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.obj?v=1745430016393',
-        mtl: 'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/old_chair.mtl?v=1745483139453'
-      });
-      furnitureEntity.setAttribute('scale', '0.01 0.01 0.01');
-      position.y += -0.4;
-    }else if(this.bed){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Bed_gltf.glb?v=1745490478737'
-      );
-      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
-    }else if(this.table){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3673019_table.glb?v=1745491767135'
-      );
-      furnitureEntity.setAttribute('scale', '1 1 1');
-    }else if(this.nightstand){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_4532938_Wooden%2B2%2BDrawers%2BNightstand.glb?v=1745492534532'
-      );
-      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
-      position.y += -0.2;
-    }else if(this.lamp){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_6002454_Lampa_v2_glb.glb?v=1745511627153'
-      );
-      furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
-      position.y += 0.15;
-    }else if(this.bowl){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3962993_fruit_bowl.glb?v=1745512607464'
-      );
-      furnitureEntity.setAttribute('scale', '1 1 1');
-      position.y += -0.3;
-    }else if(this.pictures){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_3696339_Paintings.glb?v=1745512824249'
-      );
-      furnitureEntity.setAttribute('scale', '0.7 0.7 0.7');
-      furnitureEntity.setAttribute('rotation', '0 ' + (menuPosition.b + 90) + ' 0'); // Ajustar rotación
-      position.y += 0.15;
-    }else if(this.plant){
-      furnitureEntity.setAttribute('gltf-model', 
-        'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5656299_Model_Caladium.glb?v=1745513921773'
-      );
-      furnitureEntity.setAttribute('scale', '0.5 0.5 0.5');
-    }
-    
-    // Aplicar la posición calculada
-    furnitureEntity.setAttribute('position', position);
-    
-    // Hacer que el mueble sea agarrable
-    furnitureEntity.setAttribute('grabbable', true);
-    
-    // Vincular el mueble al submenu2 para seguimiento
-    furnitureEntity.setAttribute('data-parent-menu', 'submenu2');
-
-    // Añadir el mueble a la escena
-    sceneEl.appendChild(furnitureEntity);
-
-    // Guardar referencia al mueble
-    this.furnitureEntity = furnitureEntity;
-
-    console.log('Mueble creado con ID: ' + furnitureEntity.id + ' frente al submenu2');
-
-    // Configurar el seguimiento del submenu2
-    this.setupMenuTracking();
-
-    return furnitureEntity;
-  },
-  /*Function: getMenuPosition
-  */
-  deleteLastFurniture: function() {
-    // Verificar si hay sillas para eliminar
-    if (this.numFurniture <= 0) {
-        console.log('No hay sillas para eliminar');
-        return false;
-    }
-    
-    // Obtener la última silla creada mediante su ID
-    const furnitureToRemove = document.querySelector('#menu-furniture' + this.numFurniture);
-    
-    if (!furnitureToRemove) {
-        console.warn('No se encontró el mueble con ID menu-furniture' + this.numFurniture);
-        return false;
-    }
-    
-    // Eliminar la silla de la escena
-    furnitureToRemove.parentNode.removeChild(furnitureToRemove);
-    
-    // Disminuir el contador de sillas
-    this.numFurniture--;
-    
-    // Actualizar la referencia a la última silla
-    if (this.numFurniture > 0) {
-        this.furnitureEntity = document.querySelector('#menu-furniture' + this.numFurniture);
-    } else {
-        this.furnitureEntity = null;
-    }
-    
-    console.log('Mueble eliminado. Última mueble era: menu-furniture' + (this.numFurniture + 1) + '. Número de muebles restantes: ' + this.numFurniture);
-    
-    return true;
-  },
-  /*Function: getMenuPosition
-  */
-  multipleBack: function(){
-    var scene = document.querySelector("a-scene");
-    // Guardar la posición actual del submenu2
-        this.lastMenuPosition = this.getMenuPosition(this.submenu2);
-        setTimeout(() => {
-          if(this.furniture){
-            this.initilizeBoolean('chair');
-            this.initilizeBoolean('bed');
-            this.initilizeBoolean('table');
-            this.initilizeBoolean('nightstand');
-            this.nextMenu(this.submenu2, this.submenu1);
-          }else if(this.decoration){
-            this.initilizeBoolean('lamp');
-            this.initilizeBoolean('bowl');
-            this.initilizeBoolean('pictures');
-            this.initilizeBoolean('plant');
-            this.nextMenu(this.submenu2, this.submenu3);
-          }
-        }, 200);
   },
 });
