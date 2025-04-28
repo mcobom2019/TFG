@@ -48,42 +48,6 @@ AFRAME.registerComponent('menu', {
     this.setupButtonReferences();
     this.setupAutomaticButtonEvents();
     
-    //controlador boton maximizar
-    /*this.maximizeButtonEl.addEventListener('click', () => {
-        console.log("TRAZA"+this.initmenu);
-        this.maximizeButtonEl.setAttribute('visible', false);
-        if(this.initmenu){
-          setTimeout(() => {
-            this.maximizeMenu(this.menuinicio);
-            if(this.isDarkMode){
-              this.darkButtonEl.setAttribute('visible', false);
-            }else{
-              this.lightButtonEl.setAttribute('visible', false);
-            }
-            this.initilizeBoolean('initmenu');
-          }, 500);
-        }else if(this.m1){
-          setTimeout(() => {
-            this.maximizeMenu(this.submenu1);
-            this.initilizeBoolean('m1');
-          }, 500);
-        }else if(this.m2){
-          setTimeout(() => {
-            this.maximizeMenu(this.submenu2);
-            this.initilizeBoolean('m2');
-          }, 500);
-        }else if(this.m3){
-          setTimeout(() => {
-            this.maximizeMenu(this.submenu3);
-            this.initilizeBoolean('m3');
-          }, 500);
-        }else if(this.m0){
-          setTimeout(() => {
-            this.maximizeMenu(this.submenu0);
-            this.initilizeBoolean('m0');
-          }, 500);
-        }
-    });*/
     this.maximizeButtonEl.addEventListener('click', () => {
         this.maximizeButtonEl.setAttribute('visible', false);
         if(this.initmenu){
