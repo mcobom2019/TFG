@@ -252,7 +252,6 @@ AFRAME.registerComponent('menu', {
   Function that minimizes a menu, makes it not visible, previously you have to change 
   the state of the boolean corresponding to that menu*/
   minimizeMenu: function (menu){
-        console.log("minimizado el menu"+menu.id);
         this.lastMenuPosition = this.getMenuPosition(menu);
         menu.setAttribute('visible', false);
         const buttons2 = menu.querySelectorAll('[id]');
@@ -373,39 +372,33 @@ AFRAME.registerComponent('menu', {
       this[propName] = document.querySelector('#' + menuId);
 
       if (!this[propName]) {
-        console.warn(`no match menu with id: ${menuId}`);
+        console.warn(`No match menu with id: ${menuId}`);
       } else {
-        console.log(`Referencia creada: this.${propName} = elemento con ID #${menuId}`);
+        console.log(`Reference created, this.${propName} = element with id #${menuId}`);
       }
     });
 
-    // También crear la referencia al botón maximizar que está fuera de la jerarquía de menús
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
     if (this.maximizeButtonEl) {
       this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
     } else {
-      console.warn('No se encontró el botón maximizar');
+      console.warn('The maximizeButton is not found');
     }
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: setupButtonReferences
+  Function that initializes the buttons controllers of each menu automatically by reading the JSON. 
+  Instead of manually typing this.buttonidEl = document.querySelector('#buttonid');, 
+  this function automatically does so for all the buttons defined in the JSON*/
   setupButtonReferences: function() {
-    // Lista para almacenar todos los IDs de botones encontrados
     const buttonIds = [];
-
-    // Función recursiva para extraer IDs de botones del JSON
     const extractButtonIds = (menuObj) => {
       if (!menuObj || typeof menuObj !== 'object') return;
 
-      // Si el objeto tiene botones, extraemos sus IDs
       if (menuObj.buttons && Array.isArray(menuObj.buttons)) {
         menuObj.buttons.forEach(button => {
-          // Si el botón tiene un ID, lo añadimos a la lista
           if (button.id) {
             buttonIds.push(button.id);
           }
-
-          // Buscamos menús hijos para extraer también sus botones
           Object.keys(button).forEach(key => {
             if (key.startsWith('menuC') && button[key]) {
               extractButtonIds(button[key]);
@@ -414,8 +407,6 @@ AFRAME.registerComponent('menu', {
         });
       }
     };
-
-    // Iniciar la extracción desde todos los menús padre
     if (this.data) {
       Object.keys(this.data).forEach(key => {
         if (key.startsWith('menuP')) {
@@ -424,97 +415,77 @@ AFRAME.registerComponent('menu', {
       });
     }
 
-    console.log("Botones encontrados:", buttonIds);
-
-    // Crear referencias a todos los botones encontrados
     buttonIds.forEach(buttonId => {
-      // Convertir el ID a camelCase para la propiedad y añadir 'El' al final
-      // Por ejemplo: 'startButton' → 'startButtonEl'
       const propName = buttonId.replace(/([a-z])([A-Z])/g, '$1$2')
                              .replace(/[-_]([a-z])/g, (_, letter) => letter.toUpperCase())
                              .replace(/^([a-z])/, (_, letter) => letter) + 'El';
 
-      // Guardar la referencia al elemento del DOM
-      this[propName] = document.querySelector('#' + buttonId);
 
+      this[propName] = document.querySelector('#' + buttonId);
       if (!this[propName]) {
-        console.warn(`No se encontró el botón con ID: ${buttonId}`);
+        console.warn(`there is no button with id: ${buttonId}`);
       } else {
-        console.log(`Referencia creada: this.${propName} = elemento con ID #${buttonId}`);
+        console.log(`Reference created: this.${propName} = element with ID #${buttonId}`);
       }
     });
 
-    // Referencia específica al botón maximizar que podría estar fuera de la jerarquía normal
     this.maximizeButtonEl = document.querySelector('#maximizeButton');
     if (this.maximizeButtonEl) {
       this.maximizeButtonEl.setAttribute('rotation', '0 0 0');
     } else {
-      console.warn('No se encontró el botón maximizar');
+      console.warn('The maximizeButton is not found');
     }
   },
-  /*Function: getMenuPosition
-  */
+  /*Function: setupAutomaticButtonEvents
+  Function that takes the functions defined in each menu, besides the parameters that use these functions. 
+  Apply functions for each menu automatically without having to do it manually*/
   setupAutomaticButtonEvents: function() {
     if (!this.data) return;
 
-    console.log("Configurando eventos automáticos para botones...");
-
-    // Función recursiva para configurar eventos en un menú y sus submenús
     const setupButtonEventsInMenu = (menuObj, menuId) => {
       if (!menuObj || !menuObj.buttons || !Array.isArray(menuObj.buttons)) return;
 
-      console.log(`Configurando ${menuObj.buttons.length} botones para menú ${menuId}`);
-
-      // Recorrer todos los botones del menú
+      console.log(`Configuring ${menuObj.buttons.length} buttons to the menu: ${menuId}`);
       menuObj.buttons.forEach(button => {
         if (!button.id) return;
 
         const buttonEl = document.querySelector('#' + button.id);
         if (!buttonEl) {
-          console.warn(`No se encontró el botón con ID: ${button.id}`);
+          console.warn(`No match menu with id: ${button.id}`);
           return;
         }
 
-        console.log(`Configurando botón ${button.id} con label: ${button.label || 'sin etiqueta'}`);
-
-        // Crear un solo event listener que ejecutará todas las funciones definidas
+        console.log(`Configuring button ${button.id} with label: ${button.label || 'without label'}`);
         buttonEl.addEventListener('click', (event) => {
           console.log(`Botón ${button.id} clickeado!`);
 
-          // Buscar hasta 6 funciones definidas (function1 a function6)
           for (let i = 1; i <= 6; i++) {
             const funcName = `function${i}`;
 
             if (button[funcName]) {
               const functionToCall = button[funcName];
-              console.log(`Ejecutando ${functionToCall} para botón ${button.id}`);
-
-              // Si la función no existe en el componente, mostrar error
+              console.log(`Executing ${functionToCall} to the button: ${button.id}`);
               if (typeof this[functionToCall] !== 'function') {
-                console.error(`La función "${functionToCall}" no existe en el componente menu`);
+                console.error(`The function:  "${functionToCall}" does not exists the button component`);
                 continue;
               }
-
-              // Comprobar si hay parámetros para esta función específica
               const param1 = button[`parameter1f${i}`];
               const param2 = button[`parameter2f${i}`];
 
               try {
-                // Manejo especial según el tipo de función
                 switch(functionToCall) {
                   case 'nextMenu':
                   case 'minimizeMenu':
                   case 'maximizeMenu':
                   case 'deleteMenu':
-                    // Estas funciones requieren elementos DOM
                     if (param1) {
                       const menuEl = document.querySelector('#' + param1);
                       if (!menuEl) {
-                        console.error(`No se encontró el menú con ID: ${param1} para función ${functionToCall}`);
+                        console.error(`No match menu with id: ${param1} to the function: ${functionToCall}`);
                         continue;
                       }
 
-                      console.log(`Llamando a ${functionToCall} con menú ${param1}`);
+                      console.log(`Calling to ${functionToCall} with menu: ${param1}`);
 
                       if (param2 && functionToCall === 'nextMenu') {
                         const menuEl2 = document.querySelector('#' + param2);
