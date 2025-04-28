@@ -97,13 +97,14 @@ AFRAME.registerComponent('menu', {
         if (key.includes('menuC') && button[key]) {
           console.log('Creating child menu:', key, ' - ID:', button[key].id);
           this.createMenu(button[key]);
-          
           this.createChildMenus(button[key]);
         }
       });
     });
   },
-  
+  /*Function: createMenu
+  Function that creates as such the menu giving you position, visibility, an id ... 
+  Also calls the function createButtons.*/
   createMenu: function(pMenu) {
     if (!pMenu) return;
     
@@ -130,16 +131,15 @@ AFRAME.registerComponent('menu', {
       menuEl.setAttribute('visible', pMenu.visible);
     }
     if (pMenu.grabbable) {
-      menuEl.setAttribute('grabbable', ''); // Corregido "grababble" a "grabbable"
+      menuEl.setAttribute('grabbable', '');
     }
-      
     if (pMenu.buttons && pMenu.buttons.length > 0) {
       this.createButtons(menuEl, pMenu.buttons);
     }
-    
     sceneEl.appendChild(menuEl);
   },
-  
+  /*Function: createButtons
+  Function that creates the buttons of each menu by giving them their appearance, id, position ...*/
   createButtons: function(parentEl, buttons) {
     buttons.forEach((button, index) => { 
       const buttonEl = document.createElement('a-entity');
@@ -169,7 +169,8 @@ AFRAME.registerComponent('menu', {
     });
   },
   
-  // Función auxiliar para obtener la posición actual de un menú
+  /*Function: getMenuPosition
+  Function that takes the position and rotation of the menu that is passed as parameter*/
   getMenuPosition: function(menuElement) {
     if (!menuElement) return { x: 0, y: 0, z: 0 };
     
@@ -185,7 +186,9 @@ AFRAME.registerComponent('menu', {
     };
   },
   
-  // Función auxiliar para aplicar una posición a un menú
+  /*Function: applyMenuPosition
+  Function that applies the position and rotation passed as second parameter to the menu 
+  passed as first parameter*/
   applyMenuPosition: function(menuElement, position) {
     if (!menuElement) return;
     
@@ -200,13 +203,17 @@ AFRAME.registerComponent('menu', {
       z: position.c,
     });
   },
-  
+  /*Function: changeGrabbable
+  Function that makes grababble the menu that is passed as first parameter 
+  and removes the grabbable attribute to the menu that is passed as second parameter*/
   changeGrabbable: function(menu1, menu2){
     menu1.setAttribute('grababble', '');
     menu2.removeAttribute('grabbable');
     menu1.setAttribute('grabbable', '');
   },
-  
+  /*Function: nextMenu
+  Function that hides the menu that is passed as first parameter 
+  and makes visible the menu that is passed as second parameter*/
   nextMenu: function (prevM, nextM){
         this.lastMenuPosition = this.getMenuPosition(prevM);
         this.changeGrabbable(nextM, prevM);
@@ -231,16 +238,18 @@ AFRAME.registerComponent('menu', {
           }
         }, 500);
   },
+  /*Function: getMenuPosition
+  */
   changeBoolean: function(boolName) {
-    console.log("TRAZA",this.sphere);
     if (this[boolName] !== undefined) {
       this[boolName] = !this[boolName];
-      console.log('Estado de ' + boolName + ' cambiado a: ' + this[boolName]);
+      console.log('State of' + boolName + ' was changed to: ' + this[boolName]);
     }else {
-      console.warn('La propiedad ' + boolName + ' no existe en este componente');
-      console.log("TRAZA",this.sphere);
+      console.warn('Property ' + boolName + ' does not exist in this component');
     }
   },
+  /*Function: getMenuPosition
+  */
   minimizeMenu: function (menu){
         console.log("minimizado el menu"+menu.id);
         this.lastMenuPosition = this.getMenuPosition(menu);
@@ -253,6 +262,8 @@ AFRAME.registerComponent('menu', {
           this.maximizeButtonEl.setAttribute('visible', true);
         }, 500);
   },
+  /*Function: getMenuPosition
+  */
   deleteMenu: function(menu){
         menu.setAttribute('visible', false);
         const buttons2 = menu.querySelectorAll('[id]');
@@ -260,6 +271,8 @@ AFRAME.registerComponent('menu', {
           button.setAttribute('visible', false);
         });
   },
+  /*Function: getMenuPosition
+  */
   darkMode: function() {
     this.darkButtonEl.setAttribute('visible', false);
 
@@ -286,7 +299,8 @@ AFRAME.registerComponent('menu', {
       this.lightButtonEl.setAttribute('visible', true);
     }, 250);
   },
-
+  /*Function: getMenuPosition
+  */
   lightMode: function() {
     this.lightButtonEl.setAttribute('visible', false);
 
@@ -313,9 +327,13 @@ AFRAME.registerComponent('menu', {
       this.darkButtonEl.setAttribute('visible', true);
     }, 250);
   },
+  /*Function: getMenuPosition
+  */
   initilizeBoolean: function(boolName) {
     this[boolName] = false;
   },
+  /*Function: getMenuPosition
+  */
   maximizeMenu: function(menu){
     setTimeout(() => {
         menu.setAttribute('visible', true);
