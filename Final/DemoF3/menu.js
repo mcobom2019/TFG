@@ -789,7 +789,7 @@ AFRAME.registerComponent('menu', {
       modelEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/uploads_files_5133177_fountain_model.glb?v=1745690171980'
       );
-      modelEntity.setAttribute('scale', '0.8 0.8 0.8');
+      modelEntity.setAttribute('scale', '0.3 0.3 0.3');
       modelEntity.setAttribute('rotation', '0 180 0');
     }else if(this.umbrella){
       modelEntity.setAttribute('obj-model', {
@@ -816,7 +816,7 @@ AFRAME.registerComponent('menu', {
       modelEntity.setAttribute('gltf-model', 
         'https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/Revolver.glb?v=1745692710898'
       );
-      modelEntity.setAttribute('scale', '0.3 0.3 0.3');
+      modelEntity.setAttribute('scale', '0.2 0.2 0.2');
       modelEntity.setAttribute('position', '0 0.75 -2');
     }else if(this.malditos){
       modelEntity.setAttribute('gltf-model', 
