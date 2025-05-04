@@ -6,9 +6,17 @@
   <title>TFG - Realidad Extendida</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #e6f0ff; /* Fondo claro de la página */
+    }
+
     .hero {
       position: relative;
-      background-image: url('https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/gafasVR.jpg?v=1746379426671'); /* Cambia 'tu-imagen.jpg' por el nombre del archivo que tienes */
+      background-image: url('https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/gafasVR.jpg?v=1746379426671');
       background-size: cover;
       background-position: center;
       height: 100vh;
@@ -24,15 +32,83 @@
       font-weight: bold;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     }
+
+    .navbar-custom {
+      background-color: #b3d1ff; /* Azul más oscuro para el menú */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-custom .nav-link {
+      color: #004080; /* Azul fuerte para el texto del menú */
+      font-weight: 500;
+      margin-left: 20px;
+    }
+
+    .navbar-custom .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 80px 20px;
+    }
+
+    .section-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Imagen principal -->
   <div class="hero">
     <h1>Exploración de Interfaces Manipulables con Manos en Realidad Extendida</h1>
   </div>
 
-  <!-- Bootstrap JS (opcional si no usas interactividad) -->
+  <!-- Barra de navegación fija y visible -->
+  <nav class="navbar navbar-light navbar-custom sticky-top">
+    <div class="container d-flex justify-content-center">
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="#contexto">Contexto</a></li>
+        <li class="nav-item"><a class="nav-link" href="#videos">Videos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#enlaces">Enlaces</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Secciones -->
+  <section id="contexto">
+    <div class="container section-content">
+      <h2>Contexto</h2>
+      <p>Mi nombre es Mario Cobo Martínez, estudiante del Grado en Ingeniería Telemática en la Universidad Rey Juan Carlos (URJC).</p>
+        <p>Este Trabajo de Fin de Grado presenta el diseño y desarrollo de un sistema de interfaz interactiva en Realidad Extendida (XR), centrado en la manipulación directa mediante con las manos. Utilizando el framework A-Frame y tecnologías complementarias para el seguimiento de manos, se implementará un menú virtual tridimensional que permite al usuario crear, modificar e interactuar con distintos elementos del entorno sin necesidad de mandos físicos.</p>
+      <p>El proyecto se sitúa en el ámbito de las tecnologías inmersivas, proponiendo una alternativa más natural e intuitiva a las interfaces tradicionales, con el objetivo de facilitar la interacción en entornos virtuales sin hardware adicional.</p>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="container section-content">
+      <h2>Videos</h2>
+      <p>Aquí puedes incrustar videos o enlaces a ellos...</p>
+    </div>
+  </section>
+
+  <section id="enlaces">
+    <div class="container section-content">
+      <h2>Enlaces</h2>
+      <p>Aquí puedes poner enlaces útiles relacionados con tu proyecto...</p>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container section-content">
+      <h2>Contacto</h2>
+      <p>Puedes poner tu correo, redes sociales o un formulario aquí...</p>
+    </div>
+  </section>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
