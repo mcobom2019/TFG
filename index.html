@@ -25,7 +25,7 @@
 
     .hero {
       position: relative;
-      background-image: url('https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/gafasVR.jpg?v=1746379426671');
+      background-image: url('https://cdn.glitch.global/1f8e0b5c-8472-495a-a6ce-b620a6cdfd40/manosVR.jpg?v=1746382993548');
       background-size: cover;
       background-position: center;
       height: 100vh;
@@ -34,12 +34,34 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      flex-direction: column;
     }
 
     .hero h1 {
       font-size: 3rem;
       font-weight: bold;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    .scroll-down {
+      display: inline-block;
+      margin-top: 30px;
+      font-size: 2.5rem;
+      color: white;
+      animation: bounce 2s infinite;
+      text-decoration: none;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0); 
+      }
+      40% {
+        transform: translateY(10px);
+      }
+      60% {
+        transform: translateY(5px);
+      }
     }
 
     .navbar-custom {
@@ -129,6 +151,7 @@
     <!-- Imagen principal -->
     <div class="hero">
       <h1>Exploración de Interfaces Manipulables con Manos en Realidad Extendida</h1>
+      <a href="#contexto" class="scroll-down">&#x25BC;</a>
     </div>
 
     <!-- Barra de navegación -->
@@ -155,7 +178,7 @@
         <p>En definitiva, este trabajo no solo tiene como objetivo el desarrollo técnico de una interfaz inmersiva, sino también la reflexión sobre cómo las tecnologías emergentes pueden acercarnos a experiencias digitales más humanas y accesibles.</p>
       </div>
     </section>
-    
+
     <br><br>
     <!-- Sección: Videos -->
     <section id="videos">
@@ -178,7 +201,7 @@
         </div>
       </div>
     </section>
-    
+
     <br><br>
     <!-- Sección: Enlaces -->
     <section id="enlaces">
