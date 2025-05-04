@@ -57,6 +57,37 @@
       margin: 0 auto;
       text-align: center;
     }
+
+    /* Contenedor para los videos alineados horizontalmente */
+    .video-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap; /* Permite el ajuste a pantallas pequeñas */
+      margin-top: 30px;
+    }
+
+    .video-container .video-item {
+      flex: 1 1 30%; /* Esto asegura que cada video ocupe un 30% del ancho */
+      max-width: 320px;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 180px;
+    }
+
+    .video-link {
+      display: block;
+      margin-top: 10px;
+      color: #004080;
+      text-decoration: none;
+    }
+
+    .video-link:hover {
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 <body>
@@ -83,7 +114,7 @@
     <div class="container section-content">
       <h2>Contexto</h2>
       <p>Mi nombre es Mario Cobo Martínez, estudiante del Grado en Ingeniería Telemática en la Universidad Rey Juan Carlos (URJC).</p>
-        <p>Este Trabajo de Fin de Grado presenta el diseño y desarrollo de un sistema de interfaz interactiva en Realidad Extendida (XR), centrado en la manipulación directa mediante con las manos. Utilizando el framework A-Frame y tecnologías complementarias para el seguimiento de manos, se implementará un menú virtual tridimensional que permite al usuario crear, modificar e interactuar con distintos elementos del entorno sin necesidad de mandos físicos.</p>
+      <p>Este Trabajo de Fin de Grado presenta el diseño y desarrollo de un sistema de interfaz interactiva en Realidad Extendida (XR), centrado en la manipulación directa mediante con las manos. Utilizando el framework A-Frame y tecnologías complementarias para el seguimiento de manos, se implementará un menú virtual tridimensional que permite al usuario crear, modificar e interactuar con distintos elementos del entorno sin necesidad de mandos físicos.</p>
       <p>El proyecto se sitúa en el ámbito de las tecnologías inmersivas, proponiendo una alternativa más natural e intuitiva a las interfaces tradicionales, con el objetivo de facilitar la interacción en entornos virtuales sin hardware adicional.</p>
     </div>
   </section>
@@ -91,7 +122,24 @@
   <section id="videos">
     <div class="container section-content">
       <h2>Videos</h2>
-      <p>Aquí puedes incrustar videos o enlaces a ellos...</p>
+      <!-- Contenedor de los videos alineados horizontalmente -->
+      <div class="video-container">
+        <!-- Video 1 -->
+        <div class="video-item">
+          <iframe src="https://www.youtube.com/shorts/lFavJm42CUQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <a href="Final/DemoF1/index.html" class="video-link">Ver Escena 1</a>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-item">
+          <iframe src="https://www.youtube.com/embed/TUENLENGUIDO" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <a href="Final/DemoF2/index.html" class="video-link">Ver Escena 2</a>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-item">
+          <iframe src="https://www.youtube.com/embed/TUENLENGUIDO" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <a href="Final/DemoF3/index.html" class="video-link">Ver Escena 3</a>
+        </div>
+      </div>
     </div>
   </section>
 
