@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TFG - Realidad Extendida</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     html {
       scroll-behavior: smooth;
@@ -46,7 +46,7 @@
     .scroll-down {
       display: inline-block;
       margin-top: 30px;
-      font-size: 2.5rem;
+      font-size: 4rem; /* Tamaño aumentado de la flecha */
       color: white;
       animation: bounce 2s infinite;
       text-decoration: none;
@@ -54,7 +54,7 @@
 
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0); 
+        transform: translateY(0);
       }
       40% {
         transform: translateY(10px);
@@ -71,8 +71,9 @@
 
     .navbar-custom .nav-link {
       color: #004080;
-      font-weight: 500;
+      font-weight: bold;
       margin-left: 20px;
+      font-size: 1.5rem; /* Aumentado el tamaño del texto del menú */
     }
 
     .navbar-custom .nav-link:hover {
@@ -89,14 +90,16 @@
       text-align: center;
     }
 
-    .video-container, .image-container {
+    .video-container,
+    .image-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 40px;
       margin-top: 40px;
     }
 
-    .video-item, .image-item {
+    .video-item,
+    .image-item {
       text-align: center;
     }
 
@@ -169,7 +172,7 @@
     <!-- Sección: Contexto -->
     <section id="contexto">
       <div class="container section-content">
-        <h2>Contexto</h2>
+        <h1>Contexto</h1>
         <br><br>
         <p>Mi nombre es Mario Cobo Martínez, estudiante del Grado en Ingeniería Telemática en la Universidad Rey Juan Carlos (URJC).</p>
         <p>Este Trabajo de Fin de Grado presenta el diseño y desarrollo de un sistema de interfaz interactiva en Realidad Extendida (XR), centrado en la manipulación directa mediante con las manos. Utilizando el framework A-Frame y tecnologías complementarias para el seguimiento de manos, se implementará un menú virtual tridimensional que permite al usuario crear, modificar e interactuar con distintos elementos del entorno sin necesidad de mandos físicos.</p>
@@ -183,20 +186,20 @@
     <!-- Sección: Videos -->
     <section id="videos">
       <div class="container section-content">
-        <h2>Demos</h2>
+        <h1>Demos</h1>
         <br><br>
         <div class="video-container">
           <div class="video-item">
             <iframe src="https://www.youtube.com/embed/mEBIGMCG-u0" frameborder="0" allowfullscreen></iframe>
-            <a href="Final/DemoF1/index.html" class="video-link">Ver Escena 1</a>
+            <a href="Final/DemoF1/index.html" class="video-link">Ver Demo 1</a>
           </div>
           <div class="video-item">
             <iframe src="https://www.youtube.com/embed/TUENLENGUIDO" frameborder="0" allowfullscreen></iframe>
-            <a href="Final/DemoF2/index.html" class="video-link">Ver Escena 2</a>
+            <a href="Final/DemoF2/index.html" class="video-link">Ver Demo 2</a>
           </div>
           <div class="video-item">
             <iframe src="https://www.youtube.com/embed/TUENLENGUIDO" frameborder="0" allowfullscreen></iframe>
-            <a href="Final/DemoF3/index.html" class="video-link">Ver Escena 3</a>
+            <a href="Final/DemoF3/index.html" class="video-link">Ver Demo 3</a>
           </div>
         </div>
       </div>
@@ -206,23 +209,23 @@
     <!-- Sección: Enlaces -->
     <section id="enlaces">
       <div class="container section-content">
-        <h2>Enlaces</h2>
+        <h1>Enlaces</h1>
         <div class="image-container">
           <div class="image-item">
             <a href="https://github.com/mcobom2019/MemoriaTFG-MarioCoboMartinez" target="_blank">
-              <img src="https://cdn-icons-png.flaticon.com/512/1154/1154769.png" alt="Memoria">
+              <img src="https://cdn-icons-png.flaticon.com/512/1154/1154769.png" alt="Memoria" />
               <p class="image-title">Memoria</p>
             </a>
           </div>
           <div class="image-item">
             <a href="https://github.com/mcobom2019/TFG" target="_blank">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png" alt="Github">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png" alt="Github" />
               <p class="image-title">Github</p>
             </a>
           </div>
           <div class="image-item">
             <a href="https://www.example.com" target="_blank">
-              <img src="https://cdn-icons-png.flaticon.com/512/1180/1180260.png" alt="Presentación">
+              <img src="https://cdn-icons-png.flaticon.com/512/1180/1180260.png" alt="Presentación" />
               <p class="image-title">Presentación</p>
             </a>
           </div>
@@ -230,8 +233,8 @@
       </div>
     </section>
 
-  </div> <!-- Fin del contenido principal -->
-  <br><br>
+  </div>
+  <br><br><br><br><br>
   <!-- Sección de contacto (footer extendido) -->
   <footer id="contacto" class="contact-info">
     <p><strong>Autor:</strong> Mario Cobo Martínez</p>
