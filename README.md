@@ -1,4 +1,5 @@
-# Descripción Funcional. Exploración de Interfaces Manipulables con Manos en Realidad Extendida
+# Exploración de Interfaces Manipulables con Manos en Realidad Extendida
+# Descripción Funcional.
 
 ## Descripción General
 
