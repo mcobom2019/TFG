@@ -313,6 +313,11 @@ AFRAME.registerComponent('menu', {
         buttons.forEach(button => {
           button.setAttribute('visible', true);
         });
+        if(this.isDarkMode){
+          this.darkButtonEl.setAttribute('visible', false);
+        }else{
+          this.lightButtonEl.setAttribute('visible', false);
+        }
     }, 500);
   },
   // Función para procesar automáticamente las referencias a los menús
