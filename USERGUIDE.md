@@ -67,9 +67,9 @@ Estas librerías permiten trabajar con A-Frame, manipular objetos con las manos 
 ### Controladores de entrada (interacción):
 
 ```html
-<a-entity hand-controls="hand: left" super-hands></a-entity>
-<a-entity hand-controls="hand: right" super-hands></a-entity>
-<a-entity laser-controls="hand: right"></a-entity>
+<a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
+<a-entity id="rightHand" hand-tracking-controls="hand: right" hand-tracking-grab-controls="hand: right"></a-entity>
+<a-entity cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
 ```
 
 Estos elementos permiten interactuar con los menús desde diferentes dispositivos (manos, ratón, puntero láser).
