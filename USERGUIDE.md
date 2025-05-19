@@ -1,48 +1,47 @@
+# 🧭 User Guide for the Interactive Menu System in A-Frame
 
-# 🧭 Guía de Usuario del Sistema de Menús Interactivos en A-Frame
-
-Esta guía explica detalladamente cómo implementar y utilizar el sistema de menús interactivos desarrollado para proyectos en realidad virtual y aumentada usando **A-Frame**. Incluye descarga de scripts, estructura de archivos, configuración y ejemplos prácticos para desarrolladores o futuros estudiantes que quieran reutilizar esta solución.
+This guide provides a detailed explanation of how to implement and use the interactive menu system developed for virtual and augmented reality projects using **A-Frame**. It includes script downloads, file structure, configuration, and practical examples for developers or future students looking to reuse this solution.
 
 ---
 
-## 1. 📦 Descarga de Scripts Necesarios
+## 1. 📦 Downloading the Required Scripts
 
-Antes de comenzar, asegúrate de incluir los siguientes archivos JavaScript en tu proyecto:
+Before getting started, make sure to include the following JavaScript files in your project:
 
-### Scripts principales:
+### Main scripts:
 
 - **`button.js`**  
-  Crea botones personalizables:
-  - Tamaño del botón
-  - Texto (etiqueta) del botón
-  - Posición y tamaño de la etiqueta
-  - Color y visibilidad
-  - Componente `pressable` para interacción
+  Creates customizable buttons:
+  - Button size
+  - Button label text
+  - Label position and size
+  - Color and visibility
+  - `pressable` component for interaction
 
 - **`initMenu.js`**  
-  Establece el formato, apariencia y distribución de cada menú.
+  Sets the format, appearance, and layout of each menu.
 
 - **`pressable.js`**  
-  Permite presionar botones con las manos (VR/AR) o con el ratón (modo escritorio).
+  Enables buttons to be pressed using hands (VR/AR) or a mouse (desktop mode).
 
-### Scripts adicionales para sliders:
+### Additional scripts for sliders:
 
 - **`pinchable.js`**  
-  Permite arrastrar sliders con los dedos o punteros.
+  Allows sliders to be dragged using fingers or pointers.
 
 - **`slider.js`**  
-  Crea el componente de slider como tal (barra + controlador).
+  Creates the slider component (bar + handle).
 
 - **`size-change.js`**  
-  Controla el cambio de tamaño de objetos a través del slider.
+  Controls object size changes via the slider.
 
 ---
 
-## 2. 🧾 Creación del archivo `index.html`
+## 2. 🧾 Creating the `index.html` File
 
-Este archivo es el punto de entrada de tu escena.
+This file is the entry point of your scene.
 
-### Librerías necesarias:
+### Required libraries:
 
 ```html
 <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
@@ -50,9 +49,9 @@ Este archivo es el punto de entrada de tu escena.
 <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system@4.0.1/dist/aframe-physics-system.min.js"></script>
 ```
 
-Estas librerías permiten trabajar con A-Frame, manipular objetos con las manos (VR/AR) y aplicar física a las entidades.
+These libraries allow you to work with A-Frame, manipulate objects with your hands (VR/AR), and apply physics to entities.
 
-### Scripts del sistema de menús:
+### Menu system scripts:
 
 ```html
 <script src="js/initMenu.js"></script>
@@ -64,7 +63,7 @@ Estas librerías permiten trabajar con A-Frame, manipular objetos con las manos 
 <script src="js/size-change.js"></script>
 ```
 
-### Controladores de entrada (interacción):
+### Input controllers (interaction):
 
 ```html
 <a-entity id="leftHand" hand-tracking-controls="hand: left" hand-tracking-grab-controls="hand: left">
@@ -72,23 +71,23 @@ Estas librerías permiten trabajar con A-Frame, manipular objetos con las manos 
 <a-entity cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
 ```
 
-Estos elementos permiten interactuar con los menús desde diferentes dispositivos (manos, ratón, puntero láser).
+These entities allow interaction with menus through different devices (hands, mouse, laser pointer).
 
-### Decoración de la escena:
+### Scene decoration:
 
-Opcionalmente, puedes añadir una habitación o entorno de trabajo con:
+Optionally, you can add a room or workspace with:
 
-- Fondos en 360° (`<a-sky>` con imágenes HDR)
-- Entidades geométricas (`<a-box>`, `<a-sphere>`, etc.)
-- Texturas, luces, sonidos, etc.
+- 360° backgrounds (`<a-sky>` with HDR images)
+- Geometric entities (`<a-box>`, `<a-sphere>`, etc.)
+- Textures, lights, sounds, etc.
 
 ---
 
-## 3. 🧩 Archivo `scene.json`: Creación de Menús
+## 3. 🧩 `scene.json` File: Menu Creation
 
-Este archivo es el corazón de la estructura de menús. Contiene la definición de los menús, botones, propiedades visuales y acciones que cada botón debe ejecutar.
+This file is the core of the menu structure. It contains the definition of menus, buttons, visual properties, and the actions that each button must execute.
 
-### 🧪 Ejemplo completo:
+### 🧪 Full example:
 
 ```json
 {
@@ -131,7 +130,7 @@ Este archivo es el corazón de la estructura de menús. Contiene la definición 
               "parameter1f2": "submenu1",
               "parameter2f2": "submenu2",
               "menuC2": {
-                // Submenú adicional
+                // Additional submenu
               }
             }
           ]
@@ -142,22 +141,22 @@ Este archivo es el corazón de la estructura de menús. Contiene la definición 
 }
 ```
 
-Cada menú puede contener botones, y cada botón puede ejecutar una o varias funciones con parámetros. Además, puedes definir submenús (`menuC1`, `menuC2`, etc.) de forma anidada.
+Each menu can contain buttons, and each button can execute one or more functions with parameters. You can also define nested submenus (`menuC1`, `menuC2`, etc.).
 
 ---
 
-## 4. 🧠 Script `menu.js`: Controlador de Lógica
+## 4. 🧠 `menu.js` Script: Logic Controller
 
-Este archivo contiene toda la lógica de comportamiento de los botones, menús, sliders y la navegación entre pantallas.
+This file contains all behavior logic for buttons, menus, sliders, and navigation between screens.
 
-### Funciones más relevantes:
+### Key functions:
 
-- `nextMenu()`: cambia entre menús
-- `changeBoolean()`: activa/desactiva elementos
-- `applyMenuPosition()`: ajusta la posición entre menús
-- `changeGrabbable()`: habilita o desactiva la capacidad de agarrar menús
+- `nextMenu()`: switches between menus
+- `changeBoolean()`: toggles elements on/off
+- `applyMenuPosition()`: adjusts positioning between menus
+- `changeGrabbable()`: enables or disables menu grabbing
 
-### 🔁 Ejemplo real de función `nextMenu`:
+### 🔁 Real example of `nextMenu` function:
 
 ```js
 nextMenu: function (prevM, nextM){
@@ -188,14 +187,14 @@ nextMenu: function (prevM, nextM){
 
 ---
 
-## 5. ✅ Recomendaciones Finales
+## 5. ✅ Final Recommendations
 
-- Usa `scene.json` como el archivo central de la estructura de menús.
-- Evita repetir IDs en los botones o menús.
-- Prueba tu interfaz en VR, AR y escritorio para garantizar compatibilidad.
-- Utiliza colores, tamaños y posiciones coherentes para mejorar la experiencia del usuario.
+- Use `scene.json` as the central file for the menu structure.
+- Avoid repeating IDs for buttons or menus.
+- Test your interface in VR, AR, and desktop to ensure compatibility.
+- Use consistent colors, sizes, and positions to improve user experience.
 
-### Estructura recomendada del proyecto:
+### Recommended project structure:
 
 ```
 ├── index.html
@@ -208,18 +207,18 @@ nextMenu: function (prevM, nextM){
 │   ├── slider.js
 │   ├── pinchable.js
 │   └── size-change.js
-└── assets/ (opcional para texturas, sonidos, fondos, etc.)
+└── assets/ (optional for textures, sounds, backgrounds, etc.)
 ```
 
 ---
 
-## 6. 📌 Nota Final
+## 6. 📌 Final Note
 
-Este sistema está diseñado para ser **modular y reutilizable**. Puedes adaptar los menús a diferentes contextos, como:
+This system is designed to be **modular and reusable**. You can adapt the menus to different contexts such as:
 
-- Representación de datos
-- Diseño de interiores
-- Navegación en experiencias VR/AR
-- Reproducción de sonidos o medios
+- Data visualization
+- Interior design
+- Navigation in VR/AR experiences
+- Playback of sounds or media
 
-Gracias a su estructura clara, los desarrolladores pueden extender o personalizar las funcionalidades fácilmente sin necesidad de rehacer la lógica desde cero.
+Thanks to its clear structure, developers can easily extend or customize the features without needing to rebuild the logic from scratch.
