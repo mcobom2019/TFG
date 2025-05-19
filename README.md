@@ -1,121 +1,123 @@
-# Exploración de Interfaces Manipulables con Manos en Realidad Extendida
-# Descripción Funcional.
+# Exploration of Hand-Manipulable Interfaces in Extended Reality
+## Functional Description
 
-## Descripción General
+### General Overview
 
-El proyecto desarrollado consiste en una aplicación inmersiva de visualización de datos en realidad virtual utilizando tecnologías web como **A-Frame**, **WebXR** y **BabiaXR**. Las escenas están diseñadas para ser accesibles desde distintos dispositivos, aunque su funcionalidad completa se experimenta mediante el uso de gafas de realidad virtual **Meta Quest 3**, aprovechando especialmente la interacción con las manos como principal método de navegación y control.
+The developed project is an immersive data visualization application in virtual reality using web technologies such as **A-Frame**, **WebXR**, and **BabiaXR**. The scenes are designed to be accessible from various devices, although full functionality is experienced using **Meta Quest 3** VR headsets, particularly leveraging **hand interaction** as the main method of navigation and control.
 
-El sistema permite al usuario acceder a un menú principal en el que, mediante botones interactivos, puede navegar por distintos submenús hasta llegar a la selección y representación de los datos. Esta visualización se realiza mediante diagramas circulares o de barras, generación de formas como camas, sillas o mesas a partir de archivos `.glb`, todo ello generado a partir de un archivo **JSON** que contiene los datos estructurados.
+The system allows the user to access a main menu where, through interactive buttons, they can navigate through different submenus to reach data selection and visualization. This visualization is presented through pie or bar charts, and generation of 3D shapes such as beds, chairs, or tables from `.glb` files—all based on a **JSON** file containing structured data.
 
-Todos los elementos de la interfaz (botones, menús, sliders, etc.) han sido diseñados para responder al tacto utilizando las manos del usuario gracias al soporte de **WebXR Hand Tracking**. Además, se ha añadido la funcionalidad de agarrar y mover los paneles (*grabbable*), permitiendo así una experiencia de usuario más personalizada y flexible.
+All interface elements (buttons, menus, sliders, etc.) are designed to respond to touch using the user’s hands, thanks to **WebXR Hand Tracking** support. Additionally, functionality has been added to grab and move panels (*grabbable*), allowing for a more personalized and flexible user experience.
 
-## Estructura General y Funcionamiento
+---
 
-El punto de entrada principal del proyecto es el archivo **index.html**, que se encarga de importar todas las librerías necesarias para el funcionamiento de la escena. Entre las más importantes, destacan:
+### General Structure and Operation
 
-* `aframe.min.js`: biblioteca base para crear escenas WebVR/WebXR con A-Frame.
-* `aframe-hand-tracking-controls-extras.js` y `hand-tracking-controls-extras-components.js`: utilizadas para habilitar y mejorar la detección y el seguimiento de manos en dispositivos VR compatibles.
-* `aframe-environment-component.js`: permite crear un entorno envolvente de forma rápida, como una habitación.
-* `aframe-rounded.js`: utilizada para elementos con estética personalizada.
+The main entry point of the project is the **index.html** file, which is responsible for importing all the libraries needed for the scene to function. Among the most important are:
 
-Además, se importan los siguientes scripts clave:
+- `aframe.min.js`: base library for creating WebVR/WebXR scenes with A-Frame 
+- `aframe-hand-tracking-controls-extras.js` and `hand-tracking-controls-extras-components.js`: used to enable and enhance hand tracking on compatible VR devices 
+- `aframe-environment-component.js`: allows quick creation of immersive environments, like a room 
+- `aframe-rounded.js`: used for custom aesthetic elements
 
-* `menu.js` (script principal)
-* `initMenu.js`
-* `button.js`
-* `pressable.js`
-* `pinchable.js`
-* `size-change.js`
-* `slider.js`
+Additionally, the following key scripts are imported:
 
-Dentro de la etiqueta `<a-scene>`, se instancia la componente personalizada **menu** (definida en `menu.js`), y se configuran los controladores de entrada (ratón, manos, mandos VR), así como el entorno visual de la escena (habitáculo con paredes, techo, suelo, ventanales y fondo fotográfico).
+- `menu.js` (main script) 
+- `initMenu.js` 
+- `button.js` 
+- `pressable.js` 
+- `pinchable.js` 
+- `size-change.js` 
+- `slider.js`
 
-## Componentes Clave y su Funcionalidad
+Within the `<a-scene>` tag, the custom **menu** component (defined in `menu.js`) is instantiated, and input controllers (mouse, hands, VR controllers) are configured, as well as the visual environment of the scene (a room with walls, ceiling, floor, windows, and photographic background).
 
-### `menu.js`
+---
 
-Componente principal del proyecto. Se encarga de:
+### Key Components and Their Functionality
 
-* Leer el archivo `scene.json` donde se define la estructura de la escena.
-* Crear automáticamente los menús y botones especificados.
-* Asociar funciones a cada botón según la configuración del JSON.
-* Controlar funcionalidades complejas como:
+#### `menu.js`
 
-  * Minimizar/maximizar menús.
-  * Cambiar de menú.
-  * Cambiar entre modos (día/noche).
-  * Posicionar/rotar los menús.
-  * Activar/desactivar interactividad (*grabbable*).
-* Gestionar el estado de visibilidad y navegación mediante booleanos internos.
-* Permitir la extensión de funcionalidades con funciones específicas.
+Main component of the project. Responsible for:
 
-### `scene.json`
+- Reading the `scene.json` file where the scene structure is defined 
+- Automatically creating the specified menus and buttons 
+- Associating functions to each button according to the JSON configuration 
+- Handling complex features such as:
+  - Minimizing/maximizing menus 
+  - Switching between menus 
+  - Switching modes (day/night) 
+  - Positioning/rotating menus 
+  - Enabling/disabling interactivity (*grabbable*) 
+- Managing visibility and navigation states via internal booleans 
+- Allowing feature extension through specific functions
 
-Archivo de configuración dinámica. Define:
+#### `scene.json`
 
-* Menús con propiedades como ID, visibilidad, posición, y si es *grabbable*.
-* Botones con:
+Dynamic configuration file. Defines:
 
-  * Etiqueta visible (o "noLabel").
-  * Posición en el menú.
-  * Posición del texto (label).
-  * Tamaño y color.
-  * Funciones asociadas y parámetros.
+- Menus with properties such as ID, visibility, position, and whether they are *grabbable* 
+- Buttons with:
+  - Visible label (or "noLabel") 
+  - Position within the menu 
+  - Label text position 
+  - Size and color 
+  - Associated functions and parameters
 
-Este archivo es leído por `menu.js` para generar la interfaz interactiva sin programación manual de cada botón.
+This file is read by `menu.js` to generate the interactive interface without manually coding each button.
 
-### `button.js`
+#### `button.js`
 
-Define apariencia y comportamiento de botones:
+Defines the appearance and behavior of buttons:
 
-* Tamaño, color y forma.
-* Etiqueta (label), posición y tamaño.
-* Posición y rotación del botón.
-* Interacción mediante ratón o manos (detección VR).
+- Size, color, and shape 
+- Label (text), position, and size 
+- Button position and rotation 
+- Interaction via mouse or hands (VR detection)
 
-### `initMenu.js`
+#### `initMenu.js`
 
-Define la apariencia base de los menús:
+Defines the base appearance of menus:
 
-* Representados como paneles con esquinas redondeadas.
-* Color gris metálico.
-* Tamaño configurable (ancho, alto, radio de borde).
+- Represented as panels with rounded corners 
+- Metallic gray color 
+- Configurable size (width, height, border radius)
 
-### `pressable.js`
+#### `pressable.js`
 
-Añade capacidad de detectar presiones físicas sobre botones, simulando una experiencia realista de "tocar un botón". Compatible con manos y ratón.
+Adds the ability to detect physical presses on buttons, simulating a realistic “button press” experience. Compatible with both hands and mouse.
 
-### `pinchable.js`
+#### `pinchable.js`
 
-Habilita gestos de "pinch" (pellizco) sobre elementos, diseñado para sliders. Soporta también interacción con ratón.
+Enables "pinch" gestures on elements, designed for sliders. Also supports mouse interaction.
 
-### `size-change.js`
+#### `size-change.js`
 
-Permite cambiar el tamaño de elementos de la escena mediante sliders. Interpreta el valor actual y modifica la escala de la entidad correspondiente.
+Allows changing the size of scene elements through sliders. It interprets the current value and modifies the corresponding entity’s scale.
 
-### `slider.js`
+#### `slider.js`
 
-Define funcional y visualmente un slider interactivo:
+Defines the visual and functional aspects of an interactive slider:
 
-* Combina `pinchable.js` y `size-change.js`.
-* Su función principal es ajustar el tamaño de los diagramas generados.
+- Combines `pinchable.js` and `size-change.js` 
+- Its main function is to adjust the size of generated diagrams
 
-## Guía de Uso del Sistema (Desde Cero)
+---
 
-1. Crear `index.html` e importar:
+### System Usage Guide (From Scratch)
 
-   * Librerías básicas: A-Frame, environment, hand-tracking, etc.
-   * Scripts necesarios: `menu.js`, `initMenu.js`, `button.js`, etc.
+1. Create `index.html` and import:
+   - Basic libraries: A-Frame, environment, hand-tracking, etc. 
+   - Required scripts: `menu.js`, `initMenu.js`, `button.js`, etc.
 
-2. En la etiqueta `<a-scene>`, añadir la componente `menu` y definir los controladores de entrada (ratón, manos, VR).
+2. Within the `<a-scene>` tag, add the `menu` component and define the input controllers (mouse, hands, VR).
 
-3. Diseñar el archivo `scene.json`:
+3. Design the `scene.json` file:
+   - Define existing menus 
+   - Define buttons within each menu 
+   - Set the functions each button will execute 
+   - Set positions, visibility, labels, colors, etc.
 
-   * Definir menús existentes.
-   * Botones en cada menú.
-   * Funciones que ejecutará cada botón.
-   * Posiciones, visibilidades, etiquetas, colores, etc.
+4. Extend functionalities by developing additional functions inside `menu.js` (e.g., activate music, create charts, change colors, etc.)
 
-4. Ampliar funcionalidades desarrollando funciones adicionales dentro de `menu.js` (activar música, crear gráficos, cambiar colores, etc.).
-
-5. Incluir scripts `pressable.js`, `pinchable.js`, `slider.js` y `size-change.js` para dotar de interacción avanzada a botones y sliders.
+5. Include scripts like `pressable.js`, `pinchable.js`, `slider.js`, and `size-change.js` to enable advanced interaction for buttons and sliders.
